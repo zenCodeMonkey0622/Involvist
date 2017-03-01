@@ -1,0 +1,9 @@
+{
+  "name": "inv-client-svc",
+  "version": "0.0.1",
+  "description": "Involvist client services.",
+  "author": "Ruben Hansen-Rojas <ruben.rojas1979@gmail.com>",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
+}
