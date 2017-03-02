@@ -1,19 +1,16 @@
 {
-  "name": "CongressDataRetrievalService",
+  "name": "congress-retrieve-data",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "dependencies": {
     "express": "^4.14.1",
-    "mongoose": "^4.8.5",
-    "node": "^0.0.0",
-    "node-schedule": "^1.2.0",
-    "request": "^2.79.0"
+    "node": "^0.0.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Ryan Crowley",
-  "license": "ISC",
-  "description": "Gets congress data to Resist!"
+  "author": "",
+  "license": "ISC"
 }
