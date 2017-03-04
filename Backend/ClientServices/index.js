@@ -1,8 +1,10 @@
 // index.js
+// main entry-point for involvist client services
 
 var express = require("express")
-
 var app = express()
+
+app.use("/oauth", require("./authentication.js"))
 
 // debug
 app.listen("3000", function () {
