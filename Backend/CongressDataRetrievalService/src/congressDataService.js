@@ -141,7 +141,7 @@ var BillRetrieverNamespace = (function () {
 	};
 
 //********************************** "Private Functions" ************************************
-	// For the time now
+	// For the time now...good for debugging
 	function  timeNow () {
 		var now = new Date();
 
@@ -152,8 +152,7 @@ var BillRetrieverNamespace = (function () {
 	* getAllCongressMembersBills() - Gets the latest information for each Congress member
 	* @param <number> count - index of the current congress member to get sponsored bills
 	*/
-	function getAllCongressMembersBills(count) {
-		console.log('Start Time:  ' + timeNow());
+	function getAllCongressMembersBills(count) {		
 		if(count < congressMembers.length){
 			getRequest(BILLS_BY_MEMBER_URI + congressMembers[count].id + '/bills/' + BILL_TYPES[0]  + '.json', processMembersBillsData, function(error) {
 				if(error) {
@@ -169,11 +168,8 @@ var BillRetrieverNamespace = (function () {
 					getAllCongressMembersBills(newCount);
 				});
 			});
-		}	
-		else {
-			console.log('End Time:  ' + timeNow());
-		}
-}
+		}		
+	}
 	
 	/**
 	* getRecentHouseBills() - Gets the latest bills from the house
@@ -225,8 +221,7 @@ var BillRetrieverNamespace = (function () {
 			var billNumber = billData.number.replace(/\./g, "").toLowerCase();
 
 			if(!billsWithDetails.includes(billNumber)) {
-				billsWithDetails.push(billNumber);
-				console.log("GetDetails:  " + billNumber);
+				billsWithDetails.push(billNumber);				
 				getRequest(SPECIFIC_BILL + billNumber + '.json', processSpecificBillData, function(err) {
 					if(err) {
 						return next(err);
