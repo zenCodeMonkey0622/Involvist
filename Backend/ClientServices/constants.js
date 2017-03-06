@@ -1,0 +1,10 @@
+module.exports = {
+    USER_MANAGEMENT_DATA_SOURCE: "",
+    USER_MANAGEMENT_FRAGMENT: "",
+    CLIENTS_DATA_SOURCE: "",
+    CLIENTS_FRAGMENT: "",
+    AUTH_DATA_SOURCE: "",
+    AUTH_FRAGMENT: ""
+}
+
+    
