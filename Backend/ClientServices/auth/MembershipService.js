@@ -7,5 +7,9 @@ function MembershipService()
 }
 
 MembershipService.prototype.areUserCredentialsValid = function(userName, password, scope, callback) {
-    // todo
+    // debug
+    return true;
+    
+    // todo:
+    // call into frame for credential verification
 }
