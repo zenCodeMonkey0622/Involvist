@@ -3,9 +3,13 @@
 
 var express = require('express');
 var constants = require('../constants.js');
+var oauthServer = require('simple-oauth-server');
+var authService = require('./AuthorizationService');
+var clientService = require('./ClientService');
+var membershipService = require('./MembershipService');
+var tokenService = require('./TokenService');
 
 var authRouter = express.Router();
-var authSrv = require('simple-oauth-server');
 
 authRouter.post('/authenticate', function(req, res, next) {
     // debug response:
@@ -14,17 +18,25 @@ authRouter.post('/authenticate', function(req, res, next) {
     res.end();
 });
 
+var authServer = new oauthServer(
+    new clientService(),
+    new tokenService(),
+    new authService(),
+    new membershipService(),
+    3600,
+    ['password']);
+
 authRouter.post('/token', function(req, res, next) {
     // debug response:
     console.log('post to ', req.originalUrl);
-    
-    authSrv.grantAccessToken(req, function(error, token) {
-        if (error) {
-            response.statusCode = 400;
-            return resp.end();
+    authServer.grantAccessToken(req, function(error, token) {
+        if (error)
+        {
+            res.statusCode = 400;
+            return res.end();
         }
-        
-        response.end(token);
+        res.end(token);
+    });
 });
 
 module.exports = authRouter;

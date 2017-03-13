@@ -1,6 +1,6 @@
 // MembershipService.js
 
-module.exports = MembershipService
+module.exports = MembershipService;
 
 function MembershipService()
 {

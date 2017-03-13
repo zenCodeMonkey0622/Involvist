@@ -1,6 +1,6 @@
 // ClientService.js
 
-module.exports = ClientService
+module.exports = ClientService;
 
 var constants = require('../constants');
 var client = require('./Client');

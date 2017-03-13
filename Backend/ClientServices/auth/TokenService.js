@@ -1,8 +1,8 @@
 // TokenService.js
 
-module.exports = TokenService
+module.exports = TokenService;
 
-var uuidGen = require('../uuid/v4');
+var uuidGen = require('uuid/v4');
 
 function TokenService()
 {

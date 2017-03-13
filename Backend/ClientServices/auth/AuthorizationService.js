@@ -1,6 +1,6 @@
 // AuthorizationService.js
 
-module.exports = AuthorizationService
+module.exports = AuthorizationService;
 
 // debug: 
 var codes = {};
