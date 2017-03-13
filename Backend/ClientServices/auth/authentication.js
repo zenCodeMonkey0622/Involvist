@@ -29,7 +29,7 @@ authRouter.post('/token', function(req, res, next) {
             res.statusCode = 400;
             return res.end();
         }
-        res.end(token);
+        res.end(JSON.stringify(token));
     });
 });
 
