@@ -11,13 +11,6 @@ var tokenService = require('./TokenService');
 
 var authRouter = express.Router();
 
-authRouter.post('/authenticate', function(req, res, next) {
-    // debug response:
-    console.log('post to ', req.originalUrl);
-    console.log('user manage data source: ', constants.USER_MANAGEMENT_DATA_SOURCE);
-    res.end();
-});
-
 var authServer = new oauthServer(
     new clientService(),
     new tokenService(),
@@ -28,10 +21,11 @@ var authServer = new oauthServer(
 
 authRouter.post('/token', function(req, res, next) {
     // debug response:
-    console.log('post to ', req.originalUrl);
+    console.log('post: ', req.originalUrl);
     authServer.grantAccessToken(req, function(error, token) {
         if (error)
         {
+            console.log('error: ', error);
             res.statusCode = 400;
             return res.end();
         }

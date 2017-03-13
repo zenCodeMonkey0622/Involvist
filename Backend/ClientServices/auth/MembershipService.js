@@ -8,8 +8,8 @@ function MembershipService()
 
 MembershipService.prototype.areUserCredentialsValid = function(userName, password, scope, callback) {
     // debug
-    return true;
-    
+    return callback(null, true);
+
     // todo:
     // call into frame for credential verification
 }
