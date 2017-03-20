@@ -2,14 +2,17 @@
 
 module.exports = ClientService;
 
-var mdb = require('mongodb');
+var mongoClient = require('mongodb').MongoClient;
 var constants = require('../constants');
 var client = require('./Client');
 
-var mongoClient = mdb.MongoClient();
-
 function ClientService()
 {
+  var mdbUri = 'mongodb://root:g0ld0ntheceiling@' + constants.CLIENTS_DATA_SOURCE;
+  mongoClient.connect(mdbUri, null, function (err, db) {
+    if (err) console.log(err);
+    else console.log('successfully connected to mongodb');
+  });
 }
 
 ClientService.prototype.getById = function(id, callback) {
