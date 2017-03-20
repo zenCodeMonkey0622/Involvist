@@ -2,24 +2,27 @@
 
 module.exports = ClientService;
 
-var mongoClient = require('mongodb').MongoClient;
 var constants = require('../constants');
 var client = require('./Client');
 
 // constructor
 function ClientService()
 {
+  // initialize private members
+  this._mongoClient = require('mongodb').MongoClient;
+  this._mongoDb = null;
+
   // connect to the mongo db
   var mdbUri = 'mongodb://root:g0ld0ntheceiling@' + constants.CLIENTS_DATA_SOURCE;
-  mongoClient.connect(mdbUri, function (err, db) {
-    if (err) console.log(err);
+  this._mongoClient.connect(mdbUri, function (err, db) {
+    if (err)
+    {
+      console.log(err);
+    }
     else
     {
-      // debug do a query for a client by ID
-      db.collection(constants.CLIENTS_COLLECTION).findOne({id: constants.DEBUG.AUTH_CLIENT_ID}, function (err, result) {
-        if (err) console.log(err);
-        else console.log(result);
-      });
+      console.log('successfully connected to mongo');
+      this._mongoDb = db;
     }
   });
 }
@@ -28,17 +31,25 @@ function ClientService()
 * returns a Client object via callback by performing
 * a mongo query by id
 */
-ClientService.prototype.getById = function(id, callback) {
-
-    // debug:
-    callback(null,
-             new client(constants.DEBUG.AUTH_CLIENT_ID,
-                        constants.DEBUG.AUTH_CLIENT_SECRET,
-                        ['password']));
-
-    // TODO:
-    // go to the client collection of the mongo instance to get
-    // the correct client object (should be a small collection)
+ClientService.prototype.getById = function(id, callback)
+{
+  if (this._mongoDb != null)
+  {
+    this._mongoDb.collection(constants.CLIENTS_COLLECTION).findOne({id: id}, function (err, result) {
+      if (err)
+      {
+        console.log(err);
+      }
+      else
+      {
+        callback(null, new client(result.id, result.clientSecret, result.grantTypes));
+      }
+    });
+  }
+  else
+  {
+    callback(null, null);
+  }
 }
 
 /*
@@ -46,9 +57,6 @@ ClientService.prototype.getById = function(id, callback) {
 * client. false otherwise.
 */
 ClientService.prototype.isValidRedirectUri = function(client, requestedUri) {
-    // debug:
+    // sine we currently do not use redirect uris, always return true
     return true;
-
-    // todo:
-    // true redirect uri validation
 }
