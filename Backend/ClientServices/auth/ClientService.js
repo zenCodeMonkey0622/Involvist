@@ -25,32 +25,13 @@ function ClientService()
       this._mongoDb = db;
     }
   });
-
-/*
-  this.getById = function(id, callback)
-  {
-    if (_mongoDb != null)
-    {
-      _mongoDb.collection(constants.CLIENTS_COLLECTION).findOne({id: id}, function (err, result) {
-        if (err)
-        {
-          console.log(err);
-        }
-        else
-        {
-          callback(null, new client(result.id, result.clientSecret, result.grantTypes));
-        }
-      });
-    }
-    else
-    {
-      callback(null, null);
-    }
-  }
-  */
-
 }
 
+/*
+* returns a client object from the client data source via
+* the callback. queries client objects by passed in 'id'
+* parameter
+*/
 ClientService.prototype.getById = function(id, callback)
 {
   if (_mongoDb != null)
