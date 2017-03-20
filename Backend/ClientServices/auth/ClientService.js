@@ -25,24 +25,44 @@ function ClientService()
       this._mongoDb = db;
     }
   });
-}
 
 /*
-* returns a Client object via callback by performing
-* a mongo query by id
-*/
+  this.getById = function(id, callback)
+  {
+    if (_mongoDb != null)
+    {
+      _mongoDb.collection(constants.CLIENTS_COLLECTION).findOne({id: id}, function (err, result) {
+        if (err)
+        {
+          console.log(err);
+        }
+        else
+        {
+          callback(null, new client(result.id, result.clientSecret, result.grantTypes));
+        }
+      });
+    }
+    else
+    {
+      callback(null, null);
+    }
+  }
+  */
+
+}
+
 ClientService.prototype.getById = function(id, callback)
 {
-  if (this._mongoDb != null)
+  if (_mongoDb != null)
   {
-    this._mongoDb.collection(constants.CLIENTS_COLLECTION).findOne({id: id}, function (err, result) {
+      _mongoDb.collection(constants.CLIENTS_COLLECTION).findOne({id: parseInt(id)}, function (err, result) {
       if (err)
       {
         console.log(err);
       }
       else
       {
-        callback(null, new client(result.id, result.clientSecret, result.grantTypes));
+        callback(null, new client(result.id, result.secret, result.grant_types));
       }
     });
   }
@@ -56,7 +76,8 @@ ClientService.prototype.getById = function(id, callback)
 * returns true if a passed in redirect uri is valid for a given
 * client. false otherwise.
 */
-ClientService.prototype.isValidRedirectUri = function(client, requestedUri) {
+ClientService.prototype.isValidRedirectUri = function(client, requestedUri)
+{
     // sine we currently do not use redirect uris, always return true
     return true;
 }
