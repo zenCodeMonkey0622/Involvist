@@ -6,25 +6,14 @@ var constants = require('../constants');
 var client = require('./Client');
 
 // constructor
-function ClientService()
+function ClientService(mongoDb)
 {
-  // initialize private members
-  this._mongoClient = require('mongodb').MongoClient;
-  this._mongoDb = null;
-
-  // connect to the mongo db
-  var mdbUri = 'mongodb://root:g0ld0ntheceiling@' + constants.CLIENTS_DATA_SOURCE;
-  this._mongoClient.connect(mdbUri, function (err, db) {
-    if (err)
-    {
-      console.log(err);
-    }
-    else
-    {
-      console.log('successfully connected to mongo');
-      this._mongoDb = db;
-    }
-  });
+  // debug:
+  if (mongoDb != null)
+  {
+    console.log('client service received non-null mongo db reference.');
+  }
+  this._mongoDb = mongoDb;
 }
 
 /*
@@ -34,9 +23,9 @@ function ClientService()
 */
 ClientService.prototype.getById = function(id, callback)
 {
-  if (_mongoDb != null)
+  if (this._mongoDb != null)
   {
-      _mongoDb.collection(constants.CLIENTS_COLLECTION).findOne({id: parseInt(id)}, function (err, result) {
+      this._mongoDb.collection(constants.CLIENTS_COLLECTION).findOne({id: parseInt(id)}, function (err, result) {
       if (err)
       {
         console.log(err);
