@@ -5,10 +5,6 @@ module.exports = AuthorizationService;
 var constants = require('../constants');
 var token = require('./Token');
 
-// debug:
-var codes = {};
-var tokens = {};
-
 function AuthorizationService(mongoDb)
 {
   // debug:
@@ -21,38 +17,43 @@ function AuthorizationService(mongoDb)
 
 AuthorizationService.prototype.saveAuthorizationCode = function(codeData, callback)
 {
-  // does not get called with password grant type
-    // debug:
-    codes[codeData.code] = codeData;
-    return callback(null, codes[codeData.code]);
-
-    // todo:
-    // save the code data to the auth db's auth codes collection
+  // no implementation needed. does not get called with password grant type
 }
 
+/*
+* saves an token object to the token data source
+* and passes back the saved access token via callback
+*/
 AuthorizationService.prototype.saveAccessToken = function(tokenData, callback)
 {
-    //debug:
-    tokens[tokenData.access_token] = tokenData;
-    return callback(null, tokens[tokenData.access_token]);
-
-    // todo:
-    // save the token data to the auth db's auth tokens collection
+  if (this._mongoDb != null)
+  {
+    this._mongoDb.collection(constants.TOKEN_COLLECTION).insertOne(tokenData, function(err, result){
+      if (err)
+      {
+        console.log(err);
+      }
+      else
+      {
+        callback(null, new token(tokenData.token_type, tokenData.access_token, tokenData.refresh_token, tokenData.expires_in));
+      }
+    });
+  }
+  else
+  {
+    callback(new Error('mongo db not initialized'), null);
+  }
 }
 
 AuthorizationService.prototype.getAuthorizationcode = function(code, callback)
 {
-    // debug:
-    return callback(null, codes[code]);
-
-    // todo:
-    // query the auth db's auth code collection keyed by the code value
+    // no implementation needed. does not get called with password grant type
 }
 
 AuthorizationService.prototype.getAccessToken = function(token, callback)
 {
-    // dbeug:
-    return callback(null, tokens[token]);
+    // debug:
+    return callback(null, null);
 
     // todo:
     // query the auth db's auth token collection keyed by the token value

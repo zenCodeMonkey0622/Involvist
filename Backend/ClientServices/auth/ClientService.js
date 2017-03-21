@@ -25,7 +25,7 @@ ClientService.prototype.getById = function(id, callback)
 {
   if (this._mongoDb != null)
   {
-      this._mongoDb.collection(constants.CLIENTS_COLLECTION).findOne({id: parseInt(id)}, function (err, result) {
+      this._mongoDb.collection(constants.CLIENTS_COLLECTION).findOne({id: parseInt(id)}, function(err, result) {
       if (err)
       {
         console.log(err);
@@ -38,7 +38,7 @@ ClientService.prototype.getById = function(id, callback)
   }
   else
   {
-    callback(null, null);
+    callback(new Error('mongo db not initialized'), null);
   }
 }
 
