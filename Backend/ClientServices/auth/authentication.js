@@ -46,4 +46,4 @@ authRouter.post('/token', function(req, res, next) {
     });
 });
 
-module.exports = authRouter;
+exports.authenticationRouter = authRouter;
