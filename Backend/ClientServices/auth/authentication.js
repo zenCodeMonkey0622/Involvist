@@ -35,8 +35,6 @@ mongoClient.connect(mongoUri, function (err, db) {
 });
 
 authRouter.post('/token', function(req, res, next) {
-    // debug response:
-    console.log('post: ', req.originalUrl);
     authServer.grantAccessToken(req, function(error, token) {
         if (error)
         {
