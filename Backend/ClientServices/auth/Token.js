@@ -2,8 +2,9 @@
 
 module.exports = Token;
 
-function Token(tokenType, accessToken, refreshToken, expiresIn)
+function Token(clientId, tokenType, accessToken, refreshToken, expiresIn)
 {
+  this.clientId = clientId;
   this.tokenType = tokenType;
   this.accessToken = accessToken;
   this.refreshToken = refreshToken;
