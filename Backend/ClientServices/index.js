@@ -1,8 +1,8 @@
 // index.js
 // main entry-point for involvist client services
 
-var auth = require('./auth/authentication.js');
-var gateway = require('./endpoints/gateway.js');
+var auth = require('./auth/authentication');
+var gateway = require('./endpoints/gateway');
 var express = require('express');
 var app = express();
 

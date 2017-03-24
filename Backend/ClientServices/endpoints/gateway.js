@@ -8,21 +8,18 @@ var authServer = require('../auth/authentication').AuthenticationServer;
 var gatewayRouter = express.Router();
 
 gatewayRouter.use('/v1', function(req, res, next) {
-  // TODO: verify access token
+  // debug
+  console.log('reached endpointsGateway');
 
-  /*
+  // verify access token
   authServer.validateAccessToken(request, function(error, validationResult) {
       if(error)
       {
           response.statusCode = 401;
           return response.end(JSON.stringify(error));
       }
-
-      response.end(JSON.stringify(validationResult));
+      next();
   });
-  */
-  console.log('reached endpoointsGateway');
-  next();
 });
 
 gatewayRouter.use('/v1/test', endpointTest);
