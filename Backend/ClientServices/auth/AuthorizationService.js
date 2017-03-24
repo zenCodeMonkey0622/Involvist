@@ -5,14 +5,10 @@ module.exports = AuthorizationService;
 var constants = require('../constants');
 var token = require('./Token');
 
-function AuthorizationService(mongoDb)
+function AuthorizationService(authDb)
 {
-  // debug:
-  if (mongoDb != null)
-  {
-    console.log('authorization service received non-null mongo db reference.');
-  }
-  this._mongoDb = mongoDb;
+  console.log('AuthorizationService constructor');
+  this.AuthDb = authDb;
 }
 
 /*
@@ -21,7 +17,7 @@ function AuthorizationService(mongoDb)
 */
 AuthorizationService.prototype.saveAccessToken = function(tokenData, callback)
 {
-  if (this._mongoDb != null)
+  if (this.AuthDb != null)
   {
     var newToken  = new token(tokenData.clientId,
                               tokenData.token_type,
@@ -29,7 +25,7 @@ AuthorizationService.prototype.saveAccessToken = function(tokenData, callback)
                               tokenData.refresh_token,
                               tokenData.expires_in);
 
-    this._mongoDb.collection(constants.TOKEN_COLLECTION).insertOne(newToken, function(err, result) {
+    this.AuthDb.collection(constants.TOKEN_COLLECTION).insertOne(newToken, function(err, result) {
       if (err)
       {
         console.log(err);
@@ -48,9 +44,9 @@ AuthorizationService.prototype.saveAccessToken = function(tokenData, callback)
 
 AuthorizationService.prototype.getAccessToken = function(token, callback)
 {
-  if (this._mongoDb != null)
+  if (this.AuthDb != null)
   {
-    this._mongoDb.collection(constants.TOKEN_COLLECTION).findOne({clientId: parseInt(token.clientId), token: token.access_token}, function(err, result) {
+    this.AuthDb.collection(constants.TOKEN_COLLECTION).findOne({clientId: parseInt(token.clientId), token: token.access_token}, function(err, result) {
       if (err)
       {
         console.log(err);

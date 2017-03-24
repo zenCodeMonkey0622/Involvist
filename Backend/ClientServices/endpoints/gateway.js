@@ -12,7 +12,7 @@ gatewayRouter.use('/v1', function(req, res, next) {
   console.log('reached endpointsGateway');
 
   // verify access token
-  authServer.validateAccessToken(request, function(error, validationResult) {
+  authServer.validateAccessToken(req, function(error, validationResult) {
       if(error)
       {
           response.statusCode = 401;

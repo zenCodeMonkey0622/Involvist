@@ -4,6 +4,7 @@ module.exports = MembershipService;
 
 function MembershipService()
 {
+  console.log('MembershipService constructor');
 }
 
 MembershipService.prototype.areUserCredentialsValid = function(userName, password, scope, callback) {

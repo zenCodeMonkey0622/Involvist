@@ -4,13 +4,22 @@
 var express = require('express');
 var constants = require('../constants');
 var oauthServer = require('simple-oauth-server');
-var authService = require('./AuthorizationService');
-var clientService = require('./ClientService');
-var membershipService = require('./MembershipService');
-var tokenService = require('./TokenService');
+var as = require('./AuthorizationService');
+var authenticationService = new as();
+var cs = require('./ClientService');
+var clientService = new cs(null);
+var ms = require('./MembershipService');
+var membershipService = new ms();
+var ts = require('./TokenService');
+var tokenService = new ts();
 
 var authRouter = express.Router();
-var authServer = null;
+var authServer = new oauthServer(clientService,
+                                 tokenService,
+                                 authenticationService,
+                                 membershipService,
+                                 3600,
+                                 ['password']);
 
 var mongoClient = require('mongodb').MongoClient;
 var mongoUri = 'mongodb://root:g0ld0ntheceiling@' + constants.CLIENTS_DATA_SOURCE;
@@ -24,13 +33,18 @@ mongoClient.connect(mongoUri, function (err, db) {
   {
     console.log('authentication module successfully connected to mongo!');
 
+    clientService.ClientDb = db;
+    authenticationService.AuthDb = db;
+
+    /*
     authServer = new oauthServer(
-      new clientService(db),
-      new tokenService(),
-      new authService(db),
-      new membershipService(),
+      clientService,
+      tokenService,
+      authenticationService,
+      membershipService,
       3600,
       ['password']);
+    */
   }
 });
 

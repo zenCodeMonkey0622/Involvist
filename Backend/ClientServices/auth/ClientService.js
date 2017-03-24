@@ -6,14 +6,10 @@ var constants = require('../constants');
 var client = require('./Client');
 
 // constructor
-function ClientService(mongoDb)
+function ClientService(clientDb)
 {
-  // debug:
-  if (mongoDb != null)
-  {
-    console.log('client service received non-null mongo db reference.');
-  }
-  this._mongoDb = mongoDb;
+  console.log('ClientService constructor');
+  this.ClientDb = clientDb;
 }
 
 /*
@@ -23,9 +19,9 @@ function ClientService(mongoDb)
 */
 ClientService.prototype.getById = function(id, callback)
 {
-  if (this._mongoDb != null)
+  if (this.ClientDb != null)
   {
-      this._mongoDb.collection(constants.CLIENTS_COLLECTION).findOne({id: parseInt(id)}, function(err, result) {
+      this.ClientDb.collection(constants.CLIENTS_COLLECTION).findOne({id: parseInt(id)}, function(err, result) {
       if (err)
       {
         console.log(err);
@@ -38,7 +34,7 @@ ClientService.prototype.getById = function(id, callback)
   }
   else
   {
-    callback(new Error('mongo db not initialized'), null);
+    callback(new Error('client db not initialized'), null);
   }
 }
 
