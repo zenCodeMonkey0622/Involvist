@@ -2,7 +2,7 @@
 // defines the routes for oauth 2.0 authentication
 
 var express = require('express');
-var constants = require('../constants.js');
+var constants = require('../constants');
 var oauthServer = require('simple-oauth-server');
 var authService = require('./AuthorizationService');
 var clientService = require('./ClientService');
@@ -46,4 +46,5 @@ authRouter.post('/token', function(req, res, next) {
     });
 });
 
-exports.authenticationRouter = authRouter;
+exports.AuthenticationServer = authServer;
+exports.AuthenticationRouter = authRouter;
