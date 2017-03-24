@@ -22,6 +22,7 @@ gatewayRouter.use('/v1', function(req, res, next) {
   });
   */
   console.log('reached endpoointsGateway');
+  next();
 });
 
 gatewayRouter.use('/v1/test', endpointTest);
