@@ -15,57 +15,60 @@ function AuthorizationService(authDb)
 * saves an token object to the token data source
 * and passes back the saved access token via callback
 */
-AuthorizationService.prototype.saveAccessToken = function(tokenData, callback)
+AuthorizationService.prototype.saveAccessToken = function(token, callback)
 {
-  if (this.AuthDb != null)
+  if (token == null)
   {
-    var newToken  = new token(tokenData.clientId,
-                              tokenData.token_type,
-                              tokenData.access_token,
-                              tokenData.refresh_token,
-                              tokenData.expires_in);
-
-    this.AuthDb.collection(constants.TOKEN_COLLECTION).insertOne(newToken, function(err, result) {
-      if (err)
-      {
-        console.log(err);
-      }
-      else
-      {
-        callback(null, newToken);
-      }
-    });
+    callback(new Error('no valid token'), null);
   }
-  else
+
+  if (this.AuthDb == null)
   {
     callback(new Error('mongo db not initialized'), null);
   }
+
+  var newToken  = new token(token.clientId,
+                            token.token_type,
+                            token.access_token,
+                            token.refresh_token,
+                            tokentokenData.expires_in);
+
+  this.AuthDb.collection(constants.TOKEN_COLLECTION).insertOne(newToken, function(err, result) {
+    if (err)
+    {
+      console.log(err);
+    }
+    else
+    {
+      callback(null, newToken);
+    }
+  });
 }
 
 AuthorizationService.prototype.getAccessToken = function(token, callback)
 {
-  if (this.AuthDb != null)
+  if (token == null)
   {
-    this.AuthDb.collection(constants.TOKEN_COLLECTION).findOne({clientId: parseInt(token.clientId), token: token.access_token}, function(err, result) {
-      if (err)
-      {
-        console.log(err);
-      }
-      else
-      {
-        callback(null, token);
-      }
-    });
+    callback(new Error('no valid token'), null);
+    return;
   }
-  else
+
+  if (this.AuthDb == null)
   {
     callback(new Error('mongo db not initialized'), null);
+    return;
   }
-    // debug:
-    return callback(null, null);
 
-    // todo:
-    // query the auth db's auth token collection keyed by the token value
+  this.AuthDb.collection(constants.TOKEN_COLLECTION).findOne({clientId: parseInt(token.clientId), token: token.access_token}, function(err, result) {
+    if (err)
+    {
+      console.log(err);
+    }
+    else
+    {
+      callback(null, token);
+    }
+  });
 }
 
 AuthorizationService.prototype.saveAuthorizationCode = function(codeData, callback)

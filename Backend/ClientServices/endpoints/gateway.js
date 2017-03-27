@@ -15,10 +15,13 @@ gatewayRouter.use('/v1', function(req, res, next) {
   authServer.validateAccessToken(req, function(error, validationResult) {
       if(error)
       {
-          response.statusCode = 401;
-          return response.end(JSON.stringify(error));
+          res.statusCode = 401;
+          return res.end(JSON.stringify({'error': error.message}));
       }
-      next();
+      else
+      {
+        next();
+      }
   });
 });
 
