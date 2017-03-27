@@ -15,9 +15,9 @@ function AuthorizationService(authDb)
 * saves an token object to the token data source
 * and passes back the saved access token via callback
 */
-AuthorizationService.prototype.saveAccessToken = function(token, callback)
+AuthorizationService.prototype.saveAccessToken = function(tokenData, callback)
 {
-  if (token == null)
+  if (tokenData == null)
   {
     callback(new Error('no valid token'), null);
   }
@@ -27,11 +27,11 @@ AuthorizationService.prototype.saveAccessToken = function(token, callback)
     callback(new Error('mongo db not initialized'), null);
   }
 
-  var newToken  = new token(token.clientId,
-                            token.token_type,
-                            token.access_token,
-                            token.refresh_token,
-                            tokentokenData.expires_in);
+  var newToken  = new token(tokenData.clientId,
+                            tokenData.token_type,
+                            tokenData.access_token,
+                            tokenData.refresh_token,
+                            tokenData.expires_in);
 
   this.AuthDb.collection(constants.TOKEN_COLLECTION).insertOne(newToken, function(err, result) {
     if (err)
@@ -45,9 +45,9 @@ AuthorizationService.prototype.saveAccessToken = function(token, callback)
   });
 }
 
-AuthorizationService.prototype.getAccessToken = function(token, callback)
+AuthorizationService.prototype.getAccessToken = function(tokenData, callback)
 {
-  if (token == null)
+  if (tokenData == null)
   {
     callback(new Error('no valid token'), null);
     return;
@@ -59,14 +59,17 @@ AuthorizationService.prototype.getAccessToken = function(token, callback)
     return;
   }
 
-  this.AuthDb.collection(constants.TOKEN_COLLECTION).findOne({clientId: parseInt(token.clientId), token: token.access_token}, function(err, result) {
+  this.AuthDb.collection(constants.TOKEN_COLLECTION).findOne({clientId: parseInt(token.clientId), token: tokenData.access_token}, function(err, result) {
     if (err)
     {
       console.log(err);
     }
     else
     {
-      callback(null, token);
+      // TODO: check returned token result object against expiration date. if expired, purge the token
+      // from the token data source. simple-oauth-server will do a check against expiration time on its own
+      // and return the appropriate error message.
+      callback(null, result);
     }
   });
 }
