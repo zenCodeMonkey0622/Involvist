@@ -59,7 +59,7 @@ AuthorizationService.prototype.getAccessToken = function(tokenData, callback)
     return;
   }
 
-  this.AuthDb.collection(constants.TOKEN_COLLECTION).findOne({clientId: parseInt(token.clientId), token: tokenData.access_token}, function(err, result) {
+  this.AuthDb.collection(constants.TOKEN_COLLECTION).findOne({access_token: tokenData}, function(err, result) {
     if (err)
     {
       console.log(err);
