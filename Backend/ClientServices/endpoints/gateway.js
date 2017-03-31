@@ -3,6 +3,7 @@
 
 var express = require('express');
 var endpointTest = require('./test');
+var endpointBills = require('./bills');
 var authServer = require('../auth/authentication').AuthenticationServer;
 
 var gatewayRouter = express.Router();
@@ -26,5 +27,7 @@ gatewayRouter.use('/v1', function(req, res, next) {
 });
 
 gatewayRouter.use('/v1/test', endpointTest);
+
+gatewayRouter.use('/v1/bills', endpointBills);
 
 module.exports = gatewayRouter;
