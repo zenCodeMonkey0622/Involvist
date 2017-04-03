@@ -1,4 +1,7 @@
-Frame was downloaded as a zip from https://github.com/jedireza/frame/ and uncompressed into the UserManagement directory
-of the Involvist Backend module. It was then added to the Involvist Git repo. Afterwards, 'npm install' was run
-on the base directory of frame-master in order to install all the node modules Frame is reliant on. The node-modules directory
-for Frame was NOT added to Git.
+Author: Ruben Hansen-Rojas
+Last Updated: April 02, 2017
+
+1. Download Frame from https://github.com/jedireza/frame/
+2. Uncompress into the ThirdParty directory of Involvist root.
+3. Changedir to ClientServices directory.
+4. 'npm install --save ../../ThirdParty/frame-master'

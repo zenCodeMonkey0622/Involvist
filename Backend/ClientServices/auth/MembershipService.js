@@ -1,5 +1,6 @@
 // MembershipService.js
-var frame = require("../../UserManagement/frame-master/frame")
+var frame = require('frame');
+
 module.exports = MembershipService;
 
 function MembershipService()
