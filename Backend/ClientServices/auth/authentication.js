@@ -35,16 +35,6 @@ mongoClient.connect(mongoUri, function (err, db) {
 
     clientService.ClientDb = db;
     authenticationService.AuthDb = db;
-
-    /*
-    authServer = new oauthServer(
-      clientService,
-      tokenService,
-      authenticationService,
-      membershipService,
-      3600,
-      ['password']);
-    */
   }
 });
 

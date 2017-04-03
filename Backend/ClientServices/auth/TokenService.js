@@ -2,7 +2,8 @@
 
 module.exports = TokenService;
 
-var uuidGen = require('uuid/v4');
+// generates an RFC4122 v4 uuid
+var uuidv4Gen = require('uuid/v4');
 
 function TokenService()
 {
@@ -11,10 +12,10 @@ function TokenService()
 
 TokenService.prototype.generateToken = function(callback)
 {
-    return callback(null, uuidGen());
+    return callback(null, uuidv4Gen());
 }
 
 TokenService.prototype.generateAuthorizationCode = function(callback)
 {
-    return callback(null, uuidGen());
+    return callback(null, uuidv4Gen());
 }
