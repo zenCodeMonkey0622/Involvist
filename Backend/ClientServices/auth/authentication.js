@@ -46,6 +46,7 @@ authRouter.post('/token', function(req, res, next) {
             res.statusCode = 400;
             return res.end();
         }
+        console.log('PID ' + process.pid + ' assigned authorization token');
         res.end(JSON.stringify(token));
     });
 });
