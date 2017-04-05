@@ -1,5 +1,5 @@
-// index.js
-// main entry-point for involvist client services
+// authStart.js
+// main entry-point for involvist client authentication services
 
 var auth = require('./auth/authentication');
 var gateway = require('./endpoints/gateway');
