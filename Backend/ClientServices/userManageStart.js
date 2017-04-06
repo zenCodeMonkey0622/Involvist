@@ -1,5 +1,14 @@
-// userManagement.js
-// involvist client user management services
-var frame = require('frame');
+// userManagementStart.js
+// main entry point for involvist user management service (Frame)
 
-console.log('starting user management');
+const Composer = require('./index');
+
+Composer((err, server) => {
+    if (err)
+    {
+        throw err;
+    }
+    server.start(() => {
+        console.log('Started the plot device on port ' + server.info.port);
+    });
+});
