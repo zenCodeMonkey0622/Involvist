@@ -1,6 +1,10 @@
 // bootstrap.js
 // launches back-end client service processes
 
+// set the appropriate environment variables
+process.env.NODE_ENV = 'test';
+console.log('bootstrap NODE_ENV = ' + process.env.NODE_ENV);
+
 var procSpawn = require('child_process').spawn;
 
 var authProcess = procSpawn('node', ['authStart.js']);
@@ -23,7 +27,7 @@ authProcess.stderr.on('data', (data) => {
   console.log('authProcess err: ' + data);
 });
 
-// bootstrap process will listen to usr mngmnt process's stdout
+// bootstrap process will listen to usr mngmnt process's stdoutq
 frameProcess.stdout.on('data', (data) => {
   console.log('usrManageProc: ' + data);
 });
