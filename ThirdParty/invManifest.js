@@ -73,73 +73,73 @@ const manifest = {
         {
             plugin: './server/api/accounts',
             options: {
-                routes: { prefix: '/api' }
+                routes: { prefix: Config.get('/api/prefix') }
             }
         },
         {
             plugin: './server/api/admin-groups',
             options: {
-                routes: { prefix: '/api' }
+                routes: { prefix: Config.get('/api/prefix') }
             }
         },
         {
             plugin: './server/api/admins',
             options: {
-                routes: { prefix: '/api' }
+                routes: { prefix: Config.get('/api/prefix') }
             }
         },
         {
             plugin: './server/api/auth-attempts',
             options: {
-                routes: { prefix: '/api' }
+                routes: { prefix: Config.get('/api/prefix') }
             }
         },
         {
             plugin: './server/api/contact',
             options: {
-                routes: { prefix: '/api' }
+                routes: { prefix: Config.get('/api/prefix') }
             }
         },
         {
             plugin: './server/api/index',
             options: {
-                routes: { prefix: '/api' }
+                routes: { prefix: Config.get('/api/prefix') }
             }
         },
         {
             plugin: './server/api/login',
             options: {
-                routes: { prefix: '/api' }
+                routes: { prefix: Config.get('/api/prefix') }
             }
         },
         {
             plugin: './server/api/logout',
             options: {
-                routes: { prefix: '/api' }
+                routes: { prefix: Config.get('/api/prefix') }
             }
         },
         {
             plugin: './server/api/sessions',
             options: {
-                routes: { prefix: '/api' }
+                routes: { prefix: Config.get('/api/prefix') }
             }
         },
         {
             plugin: './server/api/signup',
             options: {
-                routes: { prefix: '/api' }
+                routes: { prefix: Config.get('/api/prefix') }
             }
         },
         {
             plugin: './server/api/statuses',
             options: {
-                routes: { prefix: '/api' }
+                routes: { prefix: Config.get('/api/prefix') }
             }
         },
         {
             plugin: './server/api/users',
             options: {
-                routes: { prefix: '/api' }
+                routes: { prefix: Config.get('/api/prefix') }
             }
         },
         {

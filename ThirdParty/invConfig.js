@@ -1,14 +1,13 @@
 'use strict';
 const Confidence = require('confidence');
 const Dotenv = require('dotenv');
-
+const constants = require('../../constants');
 
 Dotenv.config({ silent: true });
 
 const criteria = {
     env: process.env.NODE_ENV
 };
-
 
 const config = {
     $meta: 'This file configures the plot device.',
@@ -35,7 +34,7 @@ const config = {
             uri: {
                 $filter: 'env',
                 production: process.env.MONGODB_URI,
-                test: 'mongodb://localhost:27017/frame-test',
+                test: constants.USER_MANAGEMENT_DATA_SOURCE,
                 $default: 'mongodb://localhost:27017/frame'
             }
         },
@@ -59,20 +58,20 @@ const config = {
             name: 'Frame',
             address: 'jedireza@gmail.com'
         }
+    },
+    api: {
+      prefix: '/api/int/frame'
     }
 };
 
 
 const store = new Confidence.Store(config);
 
-
 exports.get = function (key) {
-
     return store.get(key, criteria);
 };
 
 
 exports.meta = function (key) {
-
     return store.meta(key, criteria);
 };
