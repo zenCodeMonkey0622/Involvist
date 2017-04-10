@@ -7,7 +7,7 @@ console.log('bootstrap NODE_ENV = ' + process.env.NODE_ENV);
 
 var procSpawn = require('child_process').spawn;
 
-var authProcess = procSpawn('node', ['authStart.js']);
+var authProcess = procSpawn('node', ['AuthStart.js']);
 
 // change working directory to the frame directory in node_modules since
 // frame is built to execute in such a way as to assume its home directory

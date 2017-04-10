@@ -2,8 +2,8 @@
 
 module.exports = AuthorizationService;
 
-var constants = require('../constants');
-var token = require('./Token');
+var constants = require('../../constants');
+var token = require('../OAuthModels/Token');
 
 function AuthorizationService(authDb)
 {

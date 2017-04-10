@@ -2,8 +2,8 @@
 
 module.exports = ClientService;
 
-var constants = require('../constants');
-var client = require('./Client');
+var constants = require('../../constants');
+var client = require('../OAuthModels/Client');
 
 // constructor
 function ClientService(clientDb)

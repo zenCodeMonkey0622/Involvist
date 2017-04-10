@@ -1,4 +1,5 @@
 module.exports = {
+    USER_MANAGEMENT_API_URI: 'localhost:9090',
     USER_MANAGEMENT_DATA_SOURCE: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
     USER_MANAGEMENT_COLLECTION: '',
     CLIENTS_DATA_SOURCE: 'ds147069.mlab.com:47069/projectwoke',
