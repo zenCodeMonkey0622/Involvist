@@ -4,8 +4,8 @@
 var auth = require('./auth/authentication');
 var gateway = require('./endpoints/gateway');
 var express = require('express');
-var app = express();
 
+var app = express();
 
 app.use('/oauth', auth.AuthenticationRouter);
 app.use('/api', gateway);
