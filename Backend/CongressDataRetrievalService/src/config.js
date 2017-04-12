@@ -8,6 +8,8 @@ config.dataRetrieval.retrieveDataOnStartup = true;
 config.dataRetrieval.schedule.hour = 06;
 config.dataRetrieval.schedule.minute = 00;
 
+config.databaseType = 'mongodb';
+
 //mongo database
 config.mongo = {};
 config.mongo.uri = '//localhost:27017';
