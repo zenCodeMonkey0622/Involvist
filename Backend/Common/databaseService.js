@@ -76,42 +76,11 @@ MongoDb.prototype.updateMembers = function (data, callback) {
 }
 
 /**
-* QueryBills() - Queries the bills collection.  
-* @param <object> reqQuery - example {number: billNum}. If 'q' is one of the parameters then its string value
-* will be looked for in the number, title, primary_subject, and description.  If there are other query params, 
-* they will be AND with the 'q' results
+* QueryBills() - Queries the bills collection
+* @param <object> query - example {number: billNumber}
 * @param <function()> callback 
 */
-MongoDb.prototype.queryBills = function (reqQuery, callback) {
-    var keys = Object.keys(reqQuery);
-    var billKeys = Object.keys(Bill.schema.paths);
-    var query = {};
-    
-    for (var i = 0; i < keys.length; i++) {
-        if (billKeys.indexOf(keys[i]) !== -1) {
-            var filterParam = keys[i];
-            var queryValue = reqQuery[filterParam];
-            //'$' is to search for the exact value.  For example looking for h.r.300 and not every number containing h.r.300, such as h.r.3002 
-            query[filterParam] = { '$regex': queryValue + '$', '$options': 'i' }; 
-        }
-    }
-
-    if (keys.indexOf('q') >= 0) {
-        query = {
-            $and: [
-                {
-                    $or: [  { 'number': { '$regex': reqQuery.q, '$options': 'i' } },
-                            { 'title': { '$regex': reqQuery.q, '$options': 'i' } },                            
-                            { 'primary_subject': { '$regex': reqQuery.q, '$options': 'i' } },
-                            { 'description': { '$regex': reqQuery.q, '$options': 'i' } },
-                            { 'tags': { '$regex': reqQuery.q, '$options': 'i' } }
-                    ]
-                },
-                query
-            ]
-        }
-    }    
-
+MongoDb.prototype.queryBills = function (query, callback) {
 	Bill.find(query, function(err, docs){
 		if(err){				
 			return callback(err);
