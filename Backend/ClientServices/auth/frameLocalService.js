@@ -5,6 +5,8 @@
 module.exports = FrameLocalService;
 
 const constants = require('../constants');
+const httpUtility = require('../../ServiceAccess/httpUtility');
+
 const http = require('http');
 const request = require('request');
 const querystring = require('querystring');
@@ -29,10 +31,10 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
     host: constants.USER_MANAGEMENT_INTERAL_API_URI,
     port: constants.USER_MANAGEMENT_INTERNAL_API_PORT,
     path: constants.USER_MANAGEMENT_INTERNAL_API_PATH_PREFIX + '/login',
-    method: 'POST',
+    method: httpUtility.requestType.POST,
     agent: frameAgent,
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': httpUtility.contentType.WWW_FORM_URLENCODED,
       'Content-Length': contentLength
     }
   }
