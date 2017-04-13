@@ -1,4 +1,10 @@
 Backend/ClientServices/node_modules/
+<<<<<<< HEAD
 Backend/CongressDataRetrievalService/node_modules/
 Backend/Common/node_modules/
+=======
+Backend/CongressDataRetrievalService/node_modules
+Backend/Common/node_modules
+
+>>>>>>> CongressDataRetrieval
 
