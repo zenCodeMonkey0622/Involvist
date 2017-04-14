@@ -85,8 +85,8 @@ MongoDb.prototype.updateMembers = function (data, callback) {
 MongoDb.prototype.queryBills = function (reqQuery, callback) {
     var keys = Object.keys(reqQuery);
     var billKeys = Object.keys(Bill.schema.paths);
-    var query = {};
-    
+    var query = {}; 
+
     for (var i = 0; i < keys.length; i++) {
         if (billKeys.indexOf(keys[i]) !== -1) {
             var filterParam = keys[i];
@@ -115,7 +115,7 @@ MongoDb.prototype.queryBills = function (reqQuery, callback) {
 	Bill.find(query, function(err, docs){
 		if(err){				
 			return callback(err);
-		}			
+		}		
 		callback(null, docs);
 	});
 }
