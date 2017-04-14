@@ -2,15 +2,9 @@
 
 module.exports.DatabaseFactory = new DatabaseFactory();
 
-<<<<<<< HEAD
-var mongoose = require("mongoose");
-var CongressMember = require("./models/congress").CongressMember;
-var Bill = require("./models/bill").Bill;
-=======
 var mongoose = require('mongoose');
 var CongressMember = require('./models/congress').CongressMember;
 var Bill = require('./models/bill').Bill;
->>>>>>> CongressDataRetrieval
 
 /**
 * A constructor for defining new mongoDb database service
@@ -24,18 +18,6 @@ function MongoDb(options){
 
     console.log('MongoDB URI:  ' + uri);  	
 
-<<<<<<< HEAD
-    mongoose.connect("mongodb:" + uri);
-
-    var db = mongoose.connection;
-
-    db.on("error", function(err){
-        console.error("Connection Error:", err);	
-    });
-
-    db.once("open", function(){
-        console.log("DB connection successful");
-=======
     mongoose.connect('mongodb:' + uri);
 
     var db = mongoose.connection;
@@ -46,7 +28,6 @@ function MongoDb(options){
 
     db.once('open', function(){
         console.log('DB connection successful');
->>>>>>> CongressDataRetrieval
     });
 }
 
@@ -95,13 +76,6 @@ MongoDb.prototype.updateMembers = function (data, callback) {
 }
 
 /**
-<<<<<<< HEAD
-* QueryBills() - Queries the bills collection
-* @param <object> query - example {number: billNumber}
-* @param <function()> callback 
-*/
-MongoDb.prototype.queryBills = function (query, callback) {
-=======
 * QueryBills() - Queries the bills collection.  
 * @param <object> reqQuery - example {number: billNum}. If 'q' is one of the parameters then its string value
 * will be looked for in the number, title, primary_subject, and description.  If there are other query params, 
@@ -138,7 +112,6 @@ MongoDb.prototype.queryBills = function (reqQuery, callback) {
         }
     }    
 
->>>>>>> CongressDataRetrieval
 	Bill.find(query, function(err, docs){
 		if(err){				
 			return callback(err);
@@ -184,17 +157,10 @@ DatabaseFactory.prototype.databaseClass = MongoDb;
 DatabaseFactory.prototype.createDatabase = function ( options ) {
  
   switch(options.databaseType){
-<<<<<<< HEAD
-    case "mongodb":
-      this.databaseClass = MongoDb;
-      break;
-    case "dynamodb":
-=======
     case 'mongodb':
       this.databaseClass = MongoDb;
       break;
     case 'dynamodb':
->>>>>>> CongressDataRetrieval
       this.databaseClass = DynamoDb;
       break;    
   }
