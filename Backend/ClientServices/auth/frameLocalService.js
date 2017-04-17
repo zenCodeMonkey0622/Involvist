@@ -25,44 +25,36 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
   }
 
   const formData = querystring.stringify(form);
-  const contentLength = formData.length;
 
-  const options = {
-    host: constants.USER_MANAGEMENT_INTERAL_API_URI,
-    port: constants.USER_MANAGEMENT_INTERNAL_API_PORT,
-    path: constants.USER_MANAGEMENT_INTERNAL_API_PATH_PREFIX + '/login',
-    method: httpUtility.requestType.POST,
-    agent: frameAgent,
-    headers: {
-      'Content-Type': httpUtility.contentType.WWW_FORM_URLENCODED,
-      'Content-Length': contentLength
-    }
-  }
+  const frameRequest = httpUtility.makeHttpRequest(constants.USER_MANAGEMENT_INTERAL_API_URI,
+    constants.USER_MANAGEMENT_INTERNAL_API_PORT,
+    constants.USER_MANAGEMENT_INTERNAL_API_PATH_PREFIX + '/login',
+    httpUtility.requestType.POST,
+    frameAgent,
+    formData,
+    httpUtility.contentType.WWW_FORM_URLENCODED,
+    (res) => {
+      console.log('frame response status: ' + res.statusCode);
+      console.log('frame response headers: ' + JSON.stringify(res.headers));
 
-  const req = http.request(options, (res) => {
-    console.log('frame response status: ' + res.statusCode);
-    console.log('frame response headers: ' + JSON.stringify(res.headers));
+      res.on('data', (chunk) => {
+        console.log('frame response body chunk: ' + chunk);
+      });
 
-    res.on('data', (chunk) => {
-      console.log('frame response body chunk: ' + chunk);
+      res.on('end', () => {
+        console.log('frame response body end.');
+
+        if (res.statusCode != '200')
+          callback(new Error('did not work'), null);
+        else
+          callback(null, 'someuser');
+      });
     });
 
-    res.on('end', () => {
-      console.log('frame response body end.');
-
-      if (res.statusCode != '200')
-        callback(new Error('did not work'), null);
-      else
-        callback(null, 'someuser');
-    });
-
-  });
-
-  req.on('error', (e) => {
+  frameRequest.on('error', (e) => {
     console.error('problem with frame request: ' + e.message);
   })
 
-  req.write(formData);
-  req.end();
-
+  frameRequest.write(formData);
+  frameRequest.end();
 }
