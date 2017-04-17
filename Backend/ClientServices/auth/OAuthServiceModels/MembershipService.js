@@ -1,6 +1,6 @@
 // MembershipService.js
 var frame = require('frame');
-var frameLocalSvc = require('../frameLocalService');
+var frameLocalSvc = require('../../FrameClient/frameLocalService');
 
 module.exports = MembershipService;
 
@@ -12,7 +12,7 @@ function MembershipService()
 
 MembershipService.prototype.areUserCredentialsValid = function(userName, password, scope, callback)
 {
-    frameLocalService.findByCredentials(userName, password, (err, user) => {
+    frameLocalService.findByCredentials(userName, password, (err, frameUser) => {
       if (err)
       {
         console.error('Membership Service error: ' + err.messsage);
@@ -20,6 +20,7 @@ MembershipService.prototype.areUserCredentialsValid = function(userName, passwor
       }
       else
       {
+        console.log('Frame returned user ' + frameUser.userName)
         console.log('Membership Service: user creds are valid!');
         callback(null, true);
       }
