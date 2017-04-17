@@ -14,7 +14,6 @@ var authProcess = procSpawn('node', ['AuthStart.js']);
 // is the working directory. without this ClientServices becomes the working
 // directory for frame which fucks up all the require reference paths.
 process.chdir('node_modules/frame');
-console.log('bootstrap new cwd for frame launch: ' + process.cwd());
 var frameProcess = procSpawn('node', ['server.js']);
 
 // bootstrap process will listen to auth process's stdout

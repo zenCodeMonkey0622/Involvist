@@ -46,12 +46,8 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
     (res) => {
       var responseData = '';
 
-      console.log('frame response status: ' + res.statusCode);
-      console.log('frame response headers: ' + JSON.stringify(res.headers));
-
       res.on('data', (chunk) => {
         responseData += chunk;
-        console.log('frame response body chunk: ' + chunk);
       });
 
       res.on('end', () => {
@@ -59,7 +55,7 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
 
         if (res.statusCode != '200')
         {
-          callback(new Error('did not work'), null);
+          callback(new Error('findByCredentials error: ' + res.statusMessage), null);
         }
         else
         {

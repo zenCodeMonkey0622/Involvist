@@ -15,13 +15,12 @@ MembershipService.prototype.areUserCredentialsValid = function(userName, passwor
     frameLocalService.findByCredentials(userName, password, (err, frameUser) => {
       if (err)
       {
-        console.error('Membership Service error: ' + err.messsage);
+        console.error('Membership service error: ' + err.messsage);
         callback(err, false);
       }
       else
       {
-        console.log('Frame returned user ' + frameUser.userName)
-        console.log('Membership Service: user creds are valid!');
+        console.log('Membershp service returned valid user ' + frameUser.userName)
         callback(null, true);
       }
     });
