@@ -1,0 +1,17 @@
+{
+  "name": "inv-common",
+  "version": "0.0.1",
+  "description": "Internal shared module for the Involvist back-end.",
+  "author": "Ryan Crowley",
+  "contributors": [
+    {
+      "name": "Ryan Crowley"
+    },
+    {
+      "name": "Ruben Hansen-Rojas"
+    }
+  ],
+  "dependencies": {
+    "mongoose": "^4.9.5"
+  }
+}
