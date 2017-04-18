@@ -4,13 +4,13 @@
 var express = require('express');
 var constants = require('../constants');
 var oauthServer = require('simple-oauth-server');
-var as = require('./AuthorizationService');
+var as = require('./OAuthServiceModels/AuthorizationService');
 var authenticationService = new as();
-var cs = require('./ClientService');
+var cs = require('./OAuthServiceModels/ClientService');
 var clientService = new cs(null);
-var ms = require('./MembershipService');
+var ms = require('./OAuthServiceModels/MembershipService');
 var membershipService = new ms();
-var ts = require('./TokenService');
+var ts = require('./OAuthServiceModels/TokenService');
 var tokenService = new ts();
 
 var authRouter = express.Router();
