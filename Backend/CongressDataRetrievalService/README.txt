@@ -1,7 +1,7 @@
 To run follow the steps below.
 
 Open shell
-Run the folling commands
+Run the following commands
 
 - cd to the CongressDataRetrivalService folder
 - npm init
