@@ -5,7 +5,7 @@
 module.exports = FrameLocalService;
 
 const constants = require('../constants');
-const httpUtility = require('../../ServiceAccess/httpUtility');
+const httpUtility = require('../../Common/ServiceAccess/httpUtility');
 const frameUser = require('./FrameUser');
 
 const http = require('http');
