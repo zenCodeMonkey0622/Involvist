@@ -6,7 +6,7 @@ var BillRetrieverNamespace = (function () {
 
 	var request = require('request');
 	var schedule = require('node-schedule');
-	var databaseFactory = require('../../Common/databaseService').DatabaseFactory;
+	var databaseFactory = require('../../Common/CongressDataClient/CongressDataLocalService').DatabaseFactory;
 	var config = require('./config');
 	var constants = require('./constants');
 
@@ -14,7 +14,7 @@ var BillRetrieverNamespace = (function () {
 	var congressMembers = [];
 	var billsWithDetails = [];
 
-	var database = databaseFactory.createDatabase(config);	
+	var database = databaseFactory.createDatabase(config);
 
     /**
     * BillRetriever - Gets the latest bills and congress members data
@@ -25,7 +25,7 @@ var BillRetrieverNamespace = (function () {
 
 	BillRetriever.prototype.startGetCongressMembersBillsSchedule = function() {
 		console.log('Congress Data Retrieval Started...');
-		var self = this;				
+		var self = this;
 
 		if(config.dataRetrieval.retrieveDataOnStartup) {
 			self.getCongressMembersBills();
@@ -48,8 +48,8 @@ var BillRetrieverNamespace = (function () {
 	/**
 	* getRecentBills() - Gets the latest bills of each bill type for the house and senate
 	*/
-	BillRetriever.prototype.getRecentBills = function (){	
-		var count = 0;		
+	BillRetriever.prototype.getRecentBills = function (){
+		var count = 0;
 		getRecentHouseBills(count, function(houseErr){
 			if(houseErr) {
 					console.error(houseErr);
@@ -65,7 +65,7 @@ var BillRetrieverNamespace = (function () {
 						if(err) {
 							console.error(err);
 						}
-					});			
+					});
 				}
 			});
 		});
@@ -97,7 +97,7 @@ var BillRetrieverNamespace = (function () {
 	},
 
 	/**
-	* getCongressMembersBills() - Gets the latest bill information sponsored by each Congress member			
+	* getCongressMembersBills() - Gets the latest bill information sponsored by each Congress member
 	*/
 	BillRetriever.prototype.getCongressMembersBills = function () {
 		billsWithDetails = [];
@@ -110,8 +110,8 @@ var BillRetrieverNamespace = (function () {
 			getAllCongressMembersBills(count);
 		});
 	},
-    
-	BillRetriever.prototype.getBill = function(billNumber)	
+
+	BillRetriever.prototype.getBill = function(billNumber)
 	{
 		var query = {number: billNumber};
 		database.queryBills(query, function(err, docs){
@@ -124,7 +124,7 @@ var BillRetrieverNamespace = (function () {
 		database.queryMembers(query, function(err, docs){
 			return docs;
 		});
-	}	
+	}
 
 //********************************** "Private Functions" ************************************
 	// For the time now...good for debugging
@@ -138,7 +138,7 @@ var BillRetrieverNamespace = (function () {
 	* getAllCongressMembersBills() - Gets the latest information for each Congress member
 	* @param <number> count - index of the current congress member to get sponsored bills
 	*/
-	function getAllCongressMembersBills(count) {		
+	function getAllCongressMembersBills(count) {
 		if(count < congressMembers.length){
 		    getRequest(constants.BILLS_BY_MEMBER_URI + congressMembers[count].id + '/bills/' + constants.BILL_TYPES[0] + '.json', processMembersBillsData, function (error) {
 				if(error) {
@@ -154,9 +154,9 @@ var BillRetrieverNamespace = (function () {
 					getAllCongressMembersBills(newCount);
 				});
 			});
-		}		
+		}
 	}
-	
+
 	/**
 	* getRecentHouseBills() - Gets the latest bills from the house
 	* @param <number> count - index of the current bill type
@@ -169,10 +169,10 @@ var BillRetrieverNamespace = (function () {
 				console.log('Count:  ' + newCount);
 				getRecentHouseBills(newCount, next);
 			});
-		}	
+		}
 		else{
 			next();
-		}	
+		}
 	}
 
 	/**
@@ -190,10 +190,10 @@ var BillRetrieverNamespace = (function () {
 				console.log('Count:  ' + newCount);
 				getRecentSenateBills(newCount, next);
 			});
-		}	
-		else{			
+		}
+		else{
 			next();
-		}	
+		}
 	}
 
 	/**
@@ -202,17 +202,17 @@ var BillRetrieverNamespace = (function () {
 	* @param <[{bill}]> memberBills
 	* @param <function()> next
 	*/
-	function getSpecificBillsData(count, memberBills, next) {		
+	function getSpecificBillsData(count, memberBills, next) {
 		memberBills.forEach(function(billData){
 			var billNumber = billData.number.replace(/\./g, "").toLowerCase();
 
 			if(!billsWithDetails.includes(billNumber)) {
-				billsWithDetails.push(billNumber);				
+				billsWithDetails.push(billNumber);
 				getRequest(constants.SPECIFIC_BILL + billNumber + '.json', processSpecificBillData, function (err) {
 					if(err) {
 						return next(err);
-					}					
-				});	
+					}
+				});
 			}
 		})
 
@@ -225,11 +225,11 @@ var BillRetrieverNamespace = (function () {
 	* @param <[{bill}]> memberBills
 	* @param <function()> next
 	*/
-	function getSpecificBillsData_NonAsync(count, memberBills, next) {		
+	function getSpecificBillsData_NonAsync(count, memberBills, next) {
 		if(count < memberBills.length) {
-			var billData = memberBills[count];			
+			var billData = memberBills[count];
 			var billNumber = billData.number.replace(/\./g, '').toLowerCase();
-			
+
 			if(!billsWithDetails.includes(billNumber)) {
 				billsWithDetails.push(billNumber);
 				console.log('GetDetails:  ' + billNumber);
@@ -237,19 +237,19 @@ var BillRetrieverNamespace = (function () {
 					if(err) {
 						return next(err);
 					}
-					
+
 					var billCounter = count + 1;
 					getSpecificBillsData(billCounter, memberBills, next);
-				});	
+				});
 			}
 			else {
 				next();
 			}
 		}
-		else{			
+		else{
 			next();
 		}
-		
+
 	}
 
 
@@ -258,7 +258,7 @@ var BillRetrieverNamespace = (function () {
 
 	/**
 	* getRequest() - Makes a http get request to the URI passed in
-	* @param <String> getUri 
+	* @param <String> getUri
 	* @param <function()> processDataFunction - handles the return from the request
 	* @param <function()> next
 	*/
@@ -271,14 +271,14 @@ var BillRetrieverNamespace = (function () {
 		    }
 	    }
 
-	    request(options, function (error, response, body) {        
+	    request(options, function (error, response, body) {
 	        if(error){
-	        	return processDataFunction(new Error('Request Error: ' + error + ' URI:  ' + getUri));	  
+	        	return processDataFunction(new Error('Request Error: ' + error + ' URI:  ' + getUri));
 	        }
 	        else if (response.statusCode === 200) {
-	        	response = body;     
+	        	response = body;
 	        	return processDataFunction(null, body, next);
-	                   
+
 	        }
 	        else if(response.statusCode === 408) {
 	        	console.error('Request Timeout:  ' + getUri + 'trying again...');
@@ -287,16 +287,16 @@ var BillRetrieverNamespace = (function () {
 	        	//Request timed out...try the call again
 	        	return getRequest(getUri, processDataFunction, next);
 	        }
-	       
+
 	        if(next) {
             	next();
-            }              
+            }
 	    });
 	}
 
 	/**
 	* processRecentBillsData() - Processes the response from the get recent bills request
-	* @param <Error> error 
+	* @param <Error> error
 	* @param <{}> body
 	* @param <function()> next
 	*/
@@ -305,16 +305,16 @@ var BillRetrieverNamespace = (function () {
 			return next(error);
 		}
 
-		var info = JSON.parse(body);	
+		var info = JSON.parse(body);
 
 		if(bills.length == 0){
 			bills = info.results[0].bills;
 		}
 		else{
-			bills = bills.concat(info.results[0].bills);	
+			bills = bills.concat(info.results[0].bills);
 		}
-	    
-	   	bills.sort(sortBills);  	    
+
+	   	bills.sort(sortBills);
 
 	    next();
 
@@ -322,66 +322,66 @@ var BillRetrieverNamespace = (function () {
 	   /* console.log(bills.map(function(obj){
 	    	var viewData = obj.number;
 	    	return viewData;
-	    }));	*/    
+	    }));	*/
 	}
 
 	/**
 	* processMembersData() - Processes the response from the get members request
-	* @param <Error> error 
+	* @param <Error> error
 	* @param <{}> body
 	* @param <function()> next
 	*/
-	function processMembersData (error, body, next) {		
+	function processMembersData (error, body, next) {
 	    if (error) {
 	        console.log(error);
 			//return next(error);
 		}
 
-		var info = JSON.parse(body);	
-		
+		var info = JSON.parse(body);
+
 		if(congressMembers.length == 0){
 			console.log(info);
 			congressMembers = info.results[0].members;
 		}
 		else{
-			congressMembers = congressMembers.concat(info.results[0].members);	
-		}      
+			congressMembers = congressMembers.concat(info.results[0].members);
+		}
 
-	    next();	        
+	    next();
 	}
-	
+
 	/**
 	* processMembersBillsData() - Processes the response from the get bills sponsored by each member of congress request
-	* @param <Error> error 
+	* @param <Error> error
 	* @param <{}> body
 	* @param <function()> next
 	*/
 	function processMembersBillsData (error, body, next) {
 		if(error) {
 			return next(error);
-		}		
+		}
 
 		var info = JSON.parse(body);
-		
+
 		if(info.results[0].bills && info.results[0].bills.length > 0){
-			database.updateBills(info.results[0].bills, function(err){				
+			database.updateBills(info.results[0].bills, function(err){
 				if(err) {
 					return next(err);
 				}
 				if (constants.GET_SPECIFIC_BILL_DATA) {
-					var count = 0;			
-					return getSpecificBillsData(count, info.results[0].bills, next);	
-				}				
-			});		
-		}	  
+					var count = 0;
+					return getSpecificBillsData(count, info.results[0].bills, next);
+				}
+			});
+		}
 		else {
 			next();
 		}
-	}	
+	}
 
 	/**
 	* processSpecificBillData() - Processes the response from the get specific details of a bill request
-	* @param <Error> error 
+	* @param <Error> error
 	* @param <{}> data
 	* @param <function()> next
 	*/
@@ -392,23 +392,23 @@ var BillRetrieverNamespace = (function () {
 			}
 			else {
 				return	console.error(error);
-			}			
+			}
 		}
 
-		var billInfo = JSON.parse(data);		
+		var billInfo = JSON.parse(data);
 
-		if(billInfo.status === 'OK') {			
-			billInfo.results[0].number = billInfo.results[0].bill;	
+		if(billInfo.status === 'OK') {
+			billInfo.results[0].number = billInfo.results[0].bill;
 			database.updateBills(billInfo.results, function(err) {
 				if(err) {
 					return next(err);
-				}				
+				}
 			});
 		}
 
 		next();
 	}
-	
+
 	/**
 	* sortBills() - sorts the bills by introduced_data
 	* <{Bill}> a
@@ -420,7 +420,7 @@ var BillRetrieverNamespace = (function () {
 	*/
 	function sortBills(a, b) {
 		var bDate = new Date(b.introduced_date);
-		var aDate = new Date(a.introduced_date);	
+		var aDate = new Date(a.introduced_date);
 		return bDate - aDate;
-	}	
+	}
 })();
