@@ -1,5 +1,7 @@
 // index.js
 // main entry-point for involvist client services
+
+// DEPRECATED. KEEPING AROUND FOR CLUSTER REFERENCE CODE 
 var cluster = require('cluster');
 var express = require('express');
 var numCPUs = require('os').cpus().length;
@@ -25,6 +27,3 @@ if (cluster.isMaster) {
         console.log('listening on 3000');
     });
 }
-
-
-

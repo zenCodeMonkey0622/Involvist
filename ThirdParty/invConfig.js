@@ -1,7 +1,7 @@
 'use strict';
 const Confidence = require('confidence');
 const Dotenv = require('dotenv');
-const constants = require('../../constants');
+const constants = require('../../../Shared/SharedConstants');
 
 Dotenv.config({ silent: true });
 
