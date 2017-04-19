@@ -9,25 +9,16 @@ var Bill = require('./models/bill').Bill;
 /**
 * A constructor for defining new mongoDb database service
 */
-function MongoDb(options){ 
-
-    var mongoUri = options.mongo.uri || '//localhost:27017';
-    var mongoDatabase = options.mongo.db || 'qa3';
-
-    var uri = mongoUri + '/' + mongoDatabase; 
-
-    console.log('MongoDB URI:  ' + uri);  	
-
-    mongoose.connect('mongodb:' + uri);
-
+function MongoDb(options) {
+    mongoose.connect(options.uri);
     var db = mongoose.connection;
 
-    db.on('error', function(err){
+    db.on('error', function(err) {
         console.error('Connection Error:', err);	
     });
 
     db.once('open', function(){
-        console.log('DB connection successful');
+        console.log('DB connection: ' + options.uri + ' successful');
     });
 }
 

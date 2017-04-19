@@ -1,7 +1,8 @@
 // BillsService.js
-// The service to get bills from the database
-var config = require('./config');
+//TODO: Use ../../Common/constants
+var constants = require('../constants');
 var databaseFactory = require('../../Common/CongressDataClient/CongressDataLocalService').DatabaseFactory;
+var config = { databaseType: 'mongodb', uri: constants.CONGRESS_DATA_SOURCE };
 
 /**
 * A constructor for defining BillsService
@@ -33,8 +34,6 @@ BillsService.prototype.queryBills = function (req, res, next) {
 		}
 		return next();
 	});
-
-
 }
 
 module.exports = new BillsService();

@@ -10,6 +10,8 @@ module.exports = {
     TOKEN_DATA_SOURCE: 'ds147069.mlab.com:47069/projectwoke',
     TOKEN_COLLECTION: 'tokens',
 
+    CONGRESS_DATA_SOURCE: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',   
+
     DEBUG: {
     AUTH_CLIENT_ID: 1,
     AUTH_CLIENT_SECRET: 'fefifofum'

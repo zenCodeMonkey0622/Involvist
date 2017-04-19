@@ -1,3 +1,6 @@
+//TODO: use constants
+//var constants = require('../../Common/constants');
+
 var config = {};
 
 config.dataRetrieval = { schedule : {} };
@@ -10,9 +13,7 @@ config.dataRetrieval.schedule.minute = 00;
 
 config.databaseType = 'mongodb';
 
-//mongo database
-config.mongo = {};
-config.mongo.uri = '//localhost:27017';
-config.mongo.db = 'qa4';
+//TODO use constants constants.CONGRESS_DATA_SOURCE;
+config.uri = 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke'; 
 
 module.exports = config;
