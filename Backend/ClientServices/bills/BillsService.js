@@ -1,7 +1,6 @@
 // BillsService.js
-//TODO: Use ../../Common/constants
-var constants = require('../constants');
-var databaseFactory = require('../../Common/CongressDataClient/CongressDataLocalService').DatabaseFactory;
+var constants = require('../../Shared/SharedConstants');
+var databaseFactory = require('../../Shared/CongressDataClient/CongressDataLocalService').DatabaseFactory;
 var config = { databaseType: 'mongodb', uri: constants.CONGRESS_DATA_SOURCE };
 
 /**

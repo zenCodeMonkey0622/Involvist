@@ -1,5 +1,5 @@
 {
-  "name": "inv-common",
+  "name": "inv-shared",
   "version": "0.0.1",
   "description": "Internal shared module for the Involvist back-end.",
   "author": "Ryan Crowley",

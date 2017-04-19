@@ -2,7 +2,7 @@
 // defines the routes for oauth 2.0 authentication
 
 var express = require('express');
-var constants = require('../constants');
+var constants = require('../../Shared/SharedConstants');
 var oauthServer = require('simple-oauth-server');
 var as = require('./OAuthServiceModels/AuthorizationService');
 var authenticationService = new as();

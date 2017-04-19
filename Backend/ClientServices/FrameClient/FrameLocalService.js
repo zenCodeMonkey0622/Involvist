@@ -4,8 +4,8 @@
 
 module.exports = FrameLocalService;
 
-const constants = require('../constants');
-const httpUtility = require('../../Common/ServiceAccess/httpUtility');
+const constants = require('../../Shared/SharedConstants');
+const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
 const frameUser = require('./FrameUser');
 
 const http = require('http');

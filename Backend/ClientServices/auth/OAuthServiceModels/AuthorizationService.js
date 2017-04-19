@@ -2,7 +2,7 @@
 
 module.exports = AuthorizationService;
 
-var constants = require('../../constants');
+var constants = require('../../../Shared/SharedConstants');
 var token = require('../OAuthModels/Token');
 
 function AuthorizationService(authDb)

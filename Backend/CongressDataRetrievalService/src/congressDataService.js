@@ -6,7 +6,7 @@ var BillRetrieverNamespace = (function () {
 
 	var request = require('request');
 	var schedule = require('node-schedule');
-	var databaseFactory = require('../../Common/CongressDataClient/CongressDataLocalService').DatabaseFactory;
+	var databaseFactory = require('../../Shared/CongressDataClient/CongressDataLocalService').DatabaseFactory;
 	var config = require('./config');
 	var constants = require('./constants');
 
