@@ -12,10 +12,9 @@ var BillsService = function() {
 
 /**
 * queryBills() - Queries the bills in the database
-* @param <object> req - request - req.query.q will contain the value to query for
+* @param <object> req - request - req.query will contain the value to query for
 * @param <object> res - response
 * @param <function()> next - the next function to call
-* @param <string> filterParam - example 'number'
 */
 BillsService.prototype.queryBills = function (req, res, next) {
     this.database.queryBills(req.query, function (err, docs) {

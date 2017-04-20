@@ -1,5 +1,4 @@
-//TODO: use constants
-//var constants = require('../../Common/constants');
+var sharedConstants = require('../../Shared/SharedConstants');
 
 var config = {};
 
@@ -12,8 +11,6 @@ config.dataRetrieval.schedule.hour = 06;
 config.dataRetrieval.schedule.minute = 00;
 
 config.databaseType = 'mongodb';
-
-//TODO use constants constants.CONGRESS_DATA_SOURCE;
-config.uri = 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke'; 
+config.uri = sharedConstants.CONGRESS_DATA_SOURCE;
 
 module.exports = config;
