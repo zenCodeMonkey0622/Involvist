@@ -1,0 +1,1 @@
+1. Need to replace the delivered validateAccessToken.js file from the simple-oauth-server package with this one.

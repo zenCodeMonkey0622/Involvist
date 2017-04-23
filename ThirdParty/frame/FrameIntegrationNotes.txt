@@ -1,0 +1,12 @@
+Author: Ruben Hansen-Rojas
+Last Updated: April 05, 2017
+
+1. Download Frame from https://github.com/jedireza/frame/
+2. Uncompress into the ThirdParty directory of Involvist root.
+3. Changedir to ClientServices directory.
+4. 'npm install --save ../../ThirdParty/frame-master'
+5. Be sure to change the absolute path to the Frame dependency in ClientService package.json to relative path.
+6. Copy the included 'invConfig.js' file into ClientServices/node_modules/frame.
+7. Copy the included 'invManifest.js' file into ClientServices/node_modules/frame.
+8. Edit ClientServices/node_modules/frame/index.js to use invManifest.js instead of manifest.js
+9. Edit ClientServices/node_modules/frame/invManifest.js to use invConfig.js instead of config.js.
