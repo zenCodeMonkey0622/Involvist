@@ -3,7 +3,6 @@
 
 const gatewayRouter = require('express').Router();
 const newUserReg = require('./newUserRegistration');
-const endpointTest = require('./test');
 const endpointBills = require('./bills');
 const authServer = require('../auth/authentication').AuthenticationServer;
 

@@ -32,19 +32,8 @@ mongoClient.connect(mongoUri, function (err, db) {
   else
   {
     console.log('authentication module successfully connected to mongo!');
-
     clientService.ClientDb = db;
     authenticationService.AuthDb = db;
-
-    /*
-    authServer = new oauthServer(
-      clientService,
-      tokenService,
-      authenticationService,
-      membershipService,
-      3600,
-      ['password']);
-    */
   }
 });
 
@@ -56,6 +45,7 @@ authRouter.post('/token', function(req, res, next) {
             res.statusCode = 400;
             return res.end();
         }
+        console.log('authentication service granted token on process id ' + process.pid);
         res.end(JSON.stringify(token));
     });
 });
