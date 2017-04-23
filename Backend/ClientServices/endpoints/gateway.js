@@ -1,12 +1,11 @@
 // endpointsGateway.js
 // the gateway through which all requests to the Involvist APIs routes
 
-var express = require('express');
-var endpointTest = require('./test');
-var endpointBills = require('./bills');
-var authServer = require('../auth/authentication').AuthenticationServer;
-
-var gatewayRouter = express.Router();
+const gatewayRouter = require('express').Router();
+const newUserReg = require('./newUserRegistration');
+const endpointTest = require('./test');
+const endpointBills = require('./bills');
+const authServer = require('../auth/authentication').AuthenticationServer;
 
 gatewayRouter.use('/v1', function(req, res, next) {
   // debug
@@ -27,7 +26,7 @@ gatewayRouter.use('/v1', function(req, res, next) {
 });
 
 gatewayRouter.use('/v1/test', endpointTest);
-
+gatewayRouter.use('/v1/registration', newUserReg);
 gatewayRouter.use('/v1/bills', endpointBills);
 
 module.exports = gatewayRouter;
