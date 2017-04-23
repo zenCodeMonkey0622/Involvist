@@ -25,7 +25,6 @@ gatewayRouter.use('/v1', function(req, res, next) {
   });
 });
 
-gatewayRouter.use('/v1/test', endpointTest);
 gatewayRouter.use('/v1/registration', newUserReg);
 gatewayRouter.use('/v1/bills', endpointBills);
 
