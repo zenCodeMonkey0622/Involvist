@@ -4,9 +4,10 @@
 // DEPRECATED. KEEPING AROUND FOR CLUSTER REFERENCE CODE 
 var cluster = require('cluster');
 var express = require('express');
-var numCPUs = require('os').cpus().length;
-var auth = require('./auth/authentication');
 var gateway = require('./endpoints/gateway');
+//var numCPUs = require('os').cpus().length;
+//DEBUG CODE: setting numCPUs to 1 to make debugging easier.
+var numCPUs = 1;
 
 cluster.schedulingPolicy = cluster.SCHED_RR;
 
@@ -19,11 +20,20 @@ if (cluster.isMaster) {
     // Workers share the TCP connection in this server
     var app = express();
 
-    app.use('/oauth', auth.AuthenticationRouter);
+    app.use(function(req, res, next){
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-Width, Content-Type, Accept, Authorization");
+        if(req.method === "OPTIONS") {
+            res.header("Access-Control-Allow-Methods", "GET");
+            return res.status(200).json({});
+        }
+        next();
+    });
+    
     app.use('/api', gateway);
 
     // debug
     app.listen('3000', function () {
-        console.log('listening on 3000');
+        console.log('Yo Yo listening on 3000');
     });
 }
