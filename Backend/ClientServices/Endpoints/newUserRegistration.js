@@ -4,7 +4,7 @@
 
 const newUserRegRouter = require('express').Router();
 
-newUserRegRouter.get('/', newUserRegistrationGetHandler);
+newUserRegRouter.post('/', newUserRegistrationGetHandler);
 
 function newUserRegistrationGetHandler(req, res, next)
 {
