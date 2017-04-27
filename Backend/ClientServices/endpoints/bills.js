@@ -7,7 +7,7 @@ var billsRouter = express.Router();
 var billsService = require('../bills/BillsService');
 
 //Using .bind(billsService) so the callse will be in the scope of the billsService
-//Example of a search - http://localhost:3000/api/v1/bills?q=dog
+//Example of a search - http://localhost:3000/api/v1/bills?q=dog&congress=115
 billsRouter.get('/', billsService.queryBills.bind(billsService), function(req, res) {
     res.json(req.bills);
 });

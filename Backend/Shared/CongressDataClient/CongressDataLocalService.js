@@ -95,6 +95,7 @@ MongoDb.prototype.queryBills = function (reqQuery, callback) {
                             { 'title': { '$regex': reqQuery.q, '$options': 'i' } },
                             { 'primary_subject': { '$regex': reqQuery.q, '$options': 'i' } },
                             { 'description': { '$regex': reqQuery.q, '$options': 'i' } },
+                            { 'summary': { '$regex': reqQuery.q, '$options': 'i' } },
                             { 'tags': { '$regex': reqQuery.q, '$options': 'i' } }
                     ]
                 },
