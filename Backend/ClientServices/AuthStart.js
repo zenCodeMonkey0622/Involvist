@@ -1,12 +1,14 @@
 // authStart.js
 // main entry-point for involvist client authentication services
 
-var auth = require('./auth/authentication');
-var gateway = require('./endpoints/gateway');
-var express = require('express');
+const auth = require('./auth/authentication');
+const gateway = require('./endpoints/gateway');
+const express = require('express');
+const bodyParser = require('body-parser');
 
 var app = express();
 
+app.use(bodyParser.json());
 app.use('/oauth', auth.AuthenticationRouter);
 app.use('/api', gateway);
 

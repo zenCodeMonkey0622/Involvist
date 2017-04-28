@@ -4,6 +4,7 @@
   "description": "Involvist client services.",
   "author": "Ruben Hansen-Rojas <ruben.rojas1979@gmail.com>",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.14.1",
     "frame": "^0.1.4",
     "mongodb": "^2.2.25",
