@@ -2,8 +2,10 @@
 // client services api endpoint for providing new user registration for
 // involvist services
 
+const frameLocalSvc = require('../FrameClient/frameLocalService');
 const newUserRegRouter = require('express').Router();
-const bodyParser = require('body-parser');
+
+const frameLocalService = new frameLocalSvc();
 
 newUserRegRouter.post('/', newUserRegistrationGetHandler);
 
@@ -15,6 +17,10 @@ newUserRegRouter.post('/', newUserRegistrationGetHandler);
 **/
 function newUserRegistrationGetHandler(req, res, next)
 {
+  var realName = req.body.real_name;
+  var password = req.body.password;
+  var email = req.body.email;
+
   // debug
   console.log('request headers', req.rawHeaders);
   console.log('request body: ', req.body);
@@ -22,8 +28,20 @@ function newUserRegistrationGetHandler(req, res, next)
   console.log('request password: ', req.body.password);
   console.log('request email: ', req.body.email);
 
-  // todo
-  res.end('ok');
+  frameLocalService.registerNewUser(realName, password, email, (err, obj) => {
+    if (err)
+    {
+      console.error('registration endpoint error: ', err.message);
+      res.statusCode = 400;
+      res.end();
+    }
+    else
+    {
+      console.log('registration success!');
+      res.statusCode = 200;
+      res.end('ok');
+    }
+  });
 }
 
 module.exports = newUserRegRouter;

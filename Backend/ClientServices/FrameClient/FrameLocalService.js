@@ -20,6 +20,57 @@ function FrameLocalService()
   frameAgent = new http.Agent({keepAlive: true});
 }
 
+FrameLocalService.prototype.registerNewUser = function(realName, password, email, callback)
+{
+  // write the frame new user request
+  // will use email as the username
+  const form = {
+    name: realName,
+    email: email,
+    username: email,
+    password: password,
+  }
+
+  const formData = querystring.stringify(form);
+
+  const frameRequest = httpUtility.makeHttpRequest(constants.USER_MANAGEMENT_INTERAL_API_URI,
+    constants.USER_MANAGEMENT_INTERNAL_API_PORT,
+    constants.USER_MANAGEMENT_INTERNAL_API_PATH_PREFIX + '/signup',
+    httpUtility.requestType.POST,
+    frameAgent,
+    formData,
+    httpUtility.contentType.WWW_FORM_URLENCODED,
+    (res) => {
+      var responseData = '';
+
+      res.on('data', (chunk) => {
+        responseData += chunk;
+      });
+
+      res.on('end', () => {
+        console.log('frame response body end: ' + responseData);
+
+        if (res.statusCode != '200')
+        {
+          callback(new Error('registerNewUser error: ' + res.statusMessage), null);
+        }
+        else
+        {
+          //todo:
+          callback(null, null);
+          //callback(null, new frameUser(responseData));
+        }
+      });
+    });
+
+  frameRequest.on('error', (e) => {
+    console.error('problem with frame request: ' + e.message);
+  })
+
+  frameRequest.write(formData);
+  frameRequest.end();
+}
+
 /**
 * finds a user in the Frame user management system by passed in credentials
 * @param {string} username - the user name used to log in

@@ -1,6 +1,5 @@
 // MembershipService.js
-var frame = require('frame');
-var frameLocalSvc = require('../../FrameClient/frameLocalService');
+const frameLocalSvc = require('../../FrameClient/frameLocalService');
 
 module.exports = MembershipService;
 
