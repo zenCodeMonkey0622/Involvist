@@ -10,3 +10,7 @@ Last Updated: April 05, 2017
 7. Copy the included 'invManifest.js' file into ClientServices/node_modules/frame.
 8. Edit ClientServices/node_modules/frame/index.js to use invManifest.js instead of manifest.js
 9. Edit ClientServices/node_modules/frame/invManifest.js to use invConfig.js instead of config.js.
+10. Copy the included 'signup.js' and 'users.js' into ClientServices/node_modules/frame/server/api. Be sure to overwrite
+    or save the original elsewhere.
+11. Copy the include 'user.js' into ClientServices/node_modules/frame/server/models. Be sure to overwrite or save
+    the original elsewhere.
