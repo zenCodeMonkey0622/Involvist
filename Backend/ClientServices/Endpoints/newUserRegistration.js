@@ -21,13 +21,6 @@ function newUserRegistrationGetHandler(req, res, next)
   var password = req.body.password;
   var email = req.body.email;
 
-  // debug
-  console.log('request headers', req.rawHeaders);
-  console.log('request body: ', req.body);
-  console.log('request real_name: ', req.body.real_name);
-  console.log('request password: ', req.body.password);
-  console.log('request email: ', req.body.email);
-
   frameLocalService.registerNewUser(realName, password, email, (err, obj) => {
     if (err)
     {

@@ -6,10 +6,34 @@ const newUserReg = require('./newUserRegistration');
 const endpointBills = require('./bills');
 const authServer = require('../auth/authentication').AuthenticationServer;
 
-gatewayRouter.use('/v1', function(req, res, next) {
-  // debug
-  console.log('reached endpointsGateway');
+/**
+* helper function to exclude a particular route from
+* a router middleware assignment
+* courtesy: http://stackoverflow.com/questions/27117337/exclude-route-from-express-middleware
+* @param {string} path - the endpoint path to exclude
+* @param {function(req, res, next)} middleware - the middleware to return if endpoint path doesn't
+* match the passed in path.
+**/
+function unless(path, middleware)
+{
+  return function(req, res, next) {
+    if (path == req.path)
+    {
+      return next();
+    }
+    else
+    {
+      return middleware(req, res, next);
+    }
+  };
+}
 
+/**
+* middleware that validates an authentication token
+**/
+function tokenCheck(req, res, next)
+{
+  console.log('checking authentication token for ', req.path);
   // verify access token
   authServer.validateAccessToken(req, function(error, validationResult) {
       if(error)
@@ -22,8 +46,9 @@ gatewayRouter.use('/v1', function(req, res, next) {
         next();
       }
   });
-});
+}
 
+gatewayRouter.use('/v1', unless('/registration', tokenCheck));
 gatewayRouter.use('/v1/registration', newUserReg);
 gatewayRouter.use('/v1/bills', endpointBills);
 
