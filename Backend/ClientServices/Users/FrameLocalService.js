@@ -7,6 +7,8 @@ module.exports = FrameLocalService;
 const constants = require('../../Shared/SharedConstants');
 const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
 const frameUser = require('./FrameUser');
+const frameError = require('./FrameError');
+const csResponse = require('../DataTransfer/CSResponse');
 
 const http = require('http');
 const request = require('request');
@@ -25,7 +27,7 @@ function FrameLocalService()
 * @param {string} realName - user's legal name
 * @param {string} password - user's chosen password
 * @param {email} email - user's email
-* @param {function(err, newUser)} - callback function 
+* @param {function(err, newUser)} - callback function
 **/
 FrameLocalService.prototype.registerNewUser = function(realName, password, email, callback)
 {
@@ -55,17 +57,16 @@ FrameLocalService.prototype.registerNewUser = function(realName, password, email
       });
 
       res.on('end', () => {
-        console.log('frame response body end: ' + responseData);
+        console.log('registerNewUser response body end: ' + responseData);
 
         if (res.statusCode != '200')
         {
-          callback(new Error('registerNewUser error: ' + res.statusMessage), null);
+          var frErr = frameError(responseData);
+          callback(csResponse(false, frErr.message), null);
         }
         else
         {
-          //todo:
-          callback(null, null);
-          //callback(null, new frameUser(responseData));
+          callback(csResponse(true, ''), frameUser(responseData));
         }
       });
     });
@@ -113,11 +114,12 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
 
         if (res.statusCode != '200')
         {
-          callback(new Error('findByCredentials error: ' + res.statusMessage), null);
+          var frErr = frameError(responseData);
+          callback(csResponse(false, frErr.message), null);
         }
         else
         {
-          callback(null, new frameUser(responseData));
+          callback(csResponse(true, ''), frameUser(responseData));
         }
       });
     });

@@ -1,17 +1,30 @@
 // FrameUser.js - abstracts a Frame user model for consumption by
 // Frame clients
+// note: using ES6 specification
 
-module.exports = FrameUser;
+module.exports = MakeFrameUser;
+
+class FrameUser
+{
+  constructor()
+  {
+    this.userName = '';
+  }
+}
 
 /**
 * constructs a FrameUser object given the http response data
 * from Frame API that returns user data
-* @param {string} frameUserResponseData - Frame API user response data
+* @param {string} frameResponseData - Frame API user response data
 **/
-function FrameUser(frameUserResponseData)
+function MakeFrameUser(frameResponseData)
 {
-  const responseObj = JSON.parse(frameUserResponseData);
+  var user = new FrameUser();
+
+  const responseObj = JSON.parse(frameResponseData);
   const reponseUser = responseObj['user'];
 
-  this.userName = reponseUser['username'];
+  user.userName = reponseUser['username'];
+
+  return user;
 }

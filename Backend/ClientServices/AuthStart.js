@@ -10,6 +10,8 @@ var app = express();
 
 app.use(bodyParser.json());
 app.use('/oauth', auth.AuthenticationRouter);
+
+// todo: launch the api gateway on its own child process?
 app.use('/api', gateway);
 
 // debug

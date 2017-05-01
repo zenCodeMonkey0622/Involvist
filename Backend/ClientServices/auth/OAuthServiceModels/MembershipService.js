@@ -11,10 +11,10 @@ function MembershipService()
 
 MembershipService.prototype.areUserCredentialsValid = function(userName, password, scope, callback)
 {
-    frameLocalService.findByCredentials(userName, password, (err, frameUser) => {
-      if (err)
+    frameLocalService.findByCredentials(userName, password, (csResponse, frameUser) => {
+      if (!csResponse.success)
       {
-        console.error('Membership service error: ' + err.messsage);
+        console.error('Membership service error: ' + csResponse.responseMessage);
         callback(err, false);
       }
       else

@@ -2,7 +2,7 @@
 // client services api endpoint for providing new user registration for
 // involvist services
 
-const frameLocalSvc = require('../FrameClient/frameLocalService');
+const frameLocalSvc = require('../Users/frameLocalService');
 const newUserRegRouter = require('express').Router();
 
 const frameLocalService = new frameLocalSvc();
@@ -21,10 +21,10 @@ function newUserRegistrationGetHandler(req, res, next)
   var password = req.body.password;
   var email = req.body.email;
 
-  frameLocalService.registerNewUser(realName, password, email, (err, obj) => {
-    if (err)
+  frameLocalService.registerNewUser(realName, password, email, (csResponse, newUser) => {
+    if (!csResponse.success)
     {
-      console.error('registration endpoint error: ', err.message);
+      console.error('registration endpoint error: ', csResponse.responseMessage);
       res.statusCode = 400;
       res.end();
     }
