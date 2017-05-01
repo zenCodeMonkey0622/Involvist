@@ -1,5 +1,5 @@
 Author: Ruben Hansen-Rojas
-Last Updated: April 05, 2017
+Last Updated: April 29, 2017
 
 1. Download Frame from https://github.com/jedireza/frame/
 2. Uncompress into the ThirdParty directory of Involvist root.
@@ -16,3 +16,14 @@ Last Updated: April 05, 2017
     the original elsewhere.
 12. Copy the included 'mailer.js' into ClientServices/node_modules/frame/server. Be sure to overwrite or save the
     original elsewhere.
+
+Miscellaneous:
+
+I had to allow less secure apps access to the Gmail account otherwise Frame isn't able to login
+via SMTP. Not sure how I need to solve this, or if it even needs to be addressed now. Via Google's
+message:
+
+"Google will continue to block sign-in attempts from the app you're using because it has known security problems or is out of date.
+You can continue to use this app by allowing access to less secure apps, but this may leave your account vulnerable."
+
+Is nodemailer module out of date? Have to figure this out.
