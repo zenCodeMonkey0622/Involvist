@@ -7,6 +7,7 @@ console.log('bootstrap NODE_ENV = ' + process.env.NODE_ENV);
 
 var procSpawn = require('child_process').spawn;
 
+// todo: remove the debug and inspect flags for prod
 var authProcess = procSpawn('node', ['--debug=7777', '--inspect', 'AuthStart.js']);
 
 // change working directory to the frame directory in node_modules since
@@ -14,7 +15,8 @@ var authProcess = procSpawn('node', ['--debug=7777', '--inspect', 'AuthStart.js'
 // is the working directory. without this ClientServices becomes the working
 // directory for frame which fucks up all the require reference paths.
 process.chdir('node_modules/frame');
-var frameProcess = procSpawn('node', ['server.js']);
+// todo: remove the debug and inspect flags for prod
+var frameProcess = procSpawn('node', ['--debug=7778', '--inspect', 'server.js']);
 
 // bootstrap process will listen to auth process's stdout
 authProcess.stdout.on('data', (data) => {

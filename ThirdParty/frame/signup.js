@@ -1,7 +1,7 @@
 'use strict';
 const Async = require('async');
 const Boom = require('boom');
-const Config = require('../../config');
+const Config = require('../../invConfig');
 const Joi = require('joi');
 
 

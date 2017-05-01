@@ -11,7 +11,7 @@ const criteria = {
 
 const config = {
     $meta: 'This file configures the plot device.',
-    projectName: 'Frame',
+    projectName: 'Involvist',
     port: {
         web: {
             $filter: 'env',
@@ -45,8 +45,8 @@ const config = {
         port: 465,
         secure: true,
         auth: {
-            user: 'jedireza@gmail.com',
-            pass: process.env.SMTP_PASSWORD
+            user: 'involvist.hi@gmail.com',
+            pass: 'Glitterandg0ld'
         }
     },
     system: {

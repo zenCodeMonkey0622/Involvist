@@ -14,3 +14,5 @@ Last Updated: April 05, 2017
     or save the original elsewhere.
 11. Copy the include 'user.js' into ClientServices/node_modules/frame/server/models. Be sure to overwrite or save
     the original elsewhere.
+12. Copy the included 'mailer.js' into ClientServices/node_modules/frame/server. Be sure to overwrite or save the
+    original elsewhere.
