@@ -102,7 +102,6 @@
                                     <constraint firstItem="r4z-eM-hkf" firstAttribute="centerX" secondItem="08v-lw-QPd" secondAttribute="centerX" id="rCd-GC-8iQ"/>
                                     <constraint firstItem="kco-gr-obh" firstAttribute="trailing" secondItem="D0y-Ud-04e" secondAttribute="trailing" id="txG-G6-tDl"/>
                                     <constraint firstItem="uDa-W8-BLb" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.6" id="uhG-zo-7SH"/>
-                                    <constraint firstItem="5Ie-3c-I9q" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="leading" constant="209" id="wJb-cg-G8A"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
