@@ -19,4 +19,13 @@ struct Theme
             return UIColor(red: 185.0/255.0, green: 132.0/255.0, blue: 211.0/255.0, alpha: 1.0)
         }
     }
+    
+    static var involvistDeepPurple: UIColor
+    {
+        get
+        {
+            // evaluates to hex 0x6a1b9aff
+            return UIColor(red: 106.0/255.0, green: 27.0/255.0, blue: 154.0/255.0, alpha: 1.0)
+        }
+    }
 }

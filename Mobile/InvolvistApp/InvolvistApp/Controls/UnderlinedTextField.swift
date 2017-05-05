@@ -9,9 +9,30 @@
 import Foundation
 import UIKit
 
-@IBDesignable class UnderlinedTextField: UIView
+class UnderlinedTextField: UIView
 {
-    @IBOutlet @IBInspectable weak var inputTextField: UITextField!
-    @IBOutlet @IBInspectable weak var underlineView: UIView!
+    @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var underlineView: UIView!
     
+    var underlineColor: UIColor?
+    {
+        didSet
+        {
+            if let uv = underlineView
+            {
+                uv.backgroundColor = underlineColor;
+            }
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        
+        if let xibView = Bundle.main.loadNibNamed("UnderlinedTextField", owner: self, options: nil)?.first as? UIView
+        {
+            xibView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+            self.addSubview(xibView)
+        }
+    }
 }
