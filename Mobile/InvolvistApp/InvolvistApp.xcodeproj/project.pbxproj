@@ -15,6 +15,8 @@
 		AB5393F71EB9952500A00C0B /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB5393F61EB9952500A00C0B /* SignIn.storyboard */; };
 		AB5393FA1EB9957700A00C0B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5393F91EB9957700A00C0B /* Theme.swift */; };
 		ABD78FB71EBCBCFD00E3D5CA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD78FB61EBCBCFD00E3D5CA /* SignInViewController.swift */; };
+		ABD78FBA1EBCD02500E3D5CA /* UnderlinedTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */; };
+		ABD78FBC1EBCD03300E3D5CA /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		AB5393F61EB9952500A00C0B /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		AB5393F91EB9957700A00C0B /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		ABD78FB61EBCBCFD00E3D5CA /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnderlinedTextField.xib; sourceTree = "<group>"; };
+		ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,7 @@
 		AB21F1BB1EB99499000AC7BB /* InvolvistApp */ = {
 			isa = PBXGroup;
 			children = (
+				ABD78FB81EBCCFCB00E3D5CA /* Controls */,
 				AB5393F81EB9956100A00C0B /* Theme */,
 				AB5393F51EB9950F00A00C0B /* SignIn */,
 				AB21F1BC1EB99499000AC7BB /* AppDelegate.swift */,
@@ -87,6 +92,15 @@
 				AB5393F91EB9957700A00C0B /* Theme.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		ABD78FB81EBCCFCB00E3D5CA /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */,
+				ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB5393F71EB9952500A00C0B /* SignIn.storyboard in Resources */,
+				ABD78FBA1EBCD02500E3D5CA /* UnderlinedTextField.xib in Resources */,
 				AB21F1C71EB99499000AC7BB /* LaunchScreen.storyboard in Resources */,
 				AB21F1C41EB99499000AC7BB /* Assets.xcassets in Resources */,
 				AB21F1C21EB99499000AC7BB /* Main.storyboard in Resources */,
@@ -162,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABD78FBC1EBCD03300E3D5CA /* UnderlinedTextField.swift in Sources */,
 				ABD78FB71EBCBCFD00E3D5CA /* SignInViewController.swift in Sources */,
 				AB5393FA1EB9957700A00C0B /* Theme.swift in Sources */,
 				AB21F1BF1EB99499000AC7BB /* RootNavigationController.swift in Sources */,

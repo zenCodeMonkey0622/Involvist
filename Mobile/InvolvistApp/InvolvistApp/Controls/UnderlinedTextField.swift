@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import UIKit
+
+class UnderlinedTextField: UIView
+{
+    @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var underlineView: UIView!
+    
+}
