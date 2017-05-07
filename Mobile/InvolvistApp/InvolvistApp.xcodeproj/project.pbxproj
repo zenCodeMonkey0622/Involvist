@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB048F5D1EBD273900A3F889 /* WireframeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB048F5C1EBD273900A3F889 /* WireframeButton.swift */; };
 		AB21F1BD1EB99499000AC7BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB21F1BC1EB99499000AC7BB /* AppDelegate.swift */; };
 		AB21F1BF1EB99499000AC7BB /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB21F1BE1EB99499000AC7BB /* RootNavigationController.swift */; };
 		AB21F1C21EB99499000AC7BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB21F1C01EB99499000AC7BB /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB048F5C1EBD273900A3F889 /* WireframeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WireframeButton.swift; sourceTree = "<group>"; };
 		AB21F1B91EB99499000AC7BB /* InvolvistApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvolvistApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB21F1BC1EB99499000AC7BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB21F1BE1EB99499000AC7BB /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			children = (
 				ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */,
 				ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */,
+				AB048F5C1EBD273900A3F889 /* WireframeButton.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			files = (
 				ABD78FBC1EBCD03300E3D5CA /* UnderlinedTextField.swift in Sources */,
 				ABD78FB71EBCBCFD00E3D5CA /* SignInViewController.swift in Sources */,
+				AB048F5D1EBD273900A3F889 /* WireframeButton.swift in Sources */,
 				AB5393FA1EB9957700A00C0B /* Theme.swift in Sources */,
 				AB21F1BF1EB99499000AC7BB /* RootNavigationController.swift in Sources */,
 				AB21F1BD1EB99499000AC7BB /* AppDelegate.swift in Sources */,

@@ -43,33 +43,38 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERNAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kco-gr-obh" userLabel="UserNameLabel">
-                                        <rect key="frame" x="210" y="165" width="90" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kco-gr-obh" userLabel="UserNameLabel">
+                                        <rect key="frame" x="224" y="165" width="76" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ie-3c-I9q" userLabel="PasswordLabel">
-                                        <rect key="frame" x="209" y="247" width="91" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ie-3c-I9q" userLabel="PasswordLabel">
+                                        <rect key="frame" x="227" y="247" width="73" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4G-rl-gHB" userLabel="LogInButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4G-rl-gHB" userLabel="LogInButton" customClass="WireframeButton" customModule="InvolvistApp" customModuleProvider="target">
                                         <rect key="frame" x="75" y="322" width="225" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
-                                        <state key="normal" title="LOG IN"/>
+                                        <state key="normal" title="log in">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4z-eM-hkf" userLabel="OrLabel">
-                                        <rect key="frame" x="175" y="370" width="24" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4z-eM-hkf" userLabel="OrLabel">
+                                        <rect key="frame" x="179" y="370" width="16" height="21"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDa-W8-BLb" userLabel="SignUpButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDa-W8-BLb" userLabel="SignUpButton" customClass="WireframeButton" customModule="InvolvistApp" customModuleProvider="target">
                                         <rect key="frame" x="75" y="411" width="225" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
-                                        <state key="normal" title="SIGN UP"/>
+                                        <state key="normal" title="sign up">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWN-Jv-oHk" userLabel="PasswordInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
                                         <rect key="frame" x="75" y="215" width="225" height="30"/>
@@ -115,7 +120,9 @@
                     </view>
                     <connections>
                         <outlet property="containerScrollView" destination="08v-lw-QPd" id="cJb-3V-EJW"/>
+                        <outlet property="logInButton" destination="C4G-rl-gHB" id="haz-cv-4oV"/>
                         <outlet property="passwordInput" destination="pWN-Jv-oHk" id="aWs-pF-7JU"/>
+                        <outlet property="signUpButton" destination="uDa-W8-BLb" id="MFi-zP-e9O"/>
                         <outlet property="userNameInput" destination="D0y-Ud-04e" id="uat-wu-mWw"/>
                     </connections>
                 </viewController>
