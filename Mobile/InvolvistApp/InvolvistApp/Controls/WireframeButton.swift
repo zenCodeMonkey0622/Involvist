@@ -19,19 +19,27 @@ class WireframeButton: UIButton
         }
     }
     
+    var wireBorderLineWidth: CGFloat = 1.0
+    {
+        didSet
+        {
+            setNeedsDisplay()
+        }
+    }
+    
     override func draw(_ rect: CGRect)
     {
         super.draw(rect)
         
         let borderLine = UIBezierPath()
-        borderLine.lineWidth = 3.0
+        borderLine.lineWidth = wireBorderLineWidth
         wireBorderColor.setStroke()
         
-        borderLine.move(to: CGPoint.zero)
-        borderLine.addLine(to: CGPoint(x: self.frame.width, y: 0))
-        borderLine.addLine(to: CGPoint(x: self.frame.width, y: self.frame.height))
-        borderLine.addLine(to: CGPoint(x: 0, y: self.frame.height))
-        borderLine.addLine(to: CGPoint.zero)
+        borderLine.move(to: CGPoint(x: wireBorderLineWidth, y: wireBorderLineWidth))
+        borderLine.addLine(to: CGPoint(x: self.frame.width - wireBorderLineWidth, y: wireBorderLineWidth))
+        borderLine.addLine(to: CGPoint(x: self.frame.width - wireBorderLineWidth, y: self.frame.height - wireBorderLineWidth))
+        borderLine.addLine(to: CGPoint(x: wireBorderLineWidth, y: self.frame.height - wireBorderLineWidth))
+        borderLine.addLine(to: CGPoint(x: wireBorderLineWidth, y: wireBorderLineWidth))
         borderLine.stroke()
         
         /*
