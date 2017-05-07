@@ -41,17 +41,5 @@ class WireframeButton: UIButton
         borderLine.addLine(to: CGPoint(x: wireBorderLineWidth, y: self.frame.height - wireBorderLineWidth))
         borderLine.addLine(to: CGPoint(x: wireBorderLineWidth, y: wireBorderLineWidth))
         borderLine.stroke()
-        
-        /*
-        guard let context: CGContext = UIGraphicsGetCurrentContext() else
-        {
-            return;
-        }
-        
-        context.setLineWidth(3.0)
-        context.setStrokeColor(wireBorderColor.cgColor)
-        context.addLines(between: [CGPoint.zero, CGPoint(x:0, y:self.frame.width), CGPoint(x: self.frame.width, y: self.frame.height)])
-        context.strokePath()
-         */
     }
 }
