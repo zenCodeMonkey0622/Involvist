@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  InvolvistApp
+
+  Created by Ruben Hansen-Rojas on 5/7/17.
+  Copyright © 2017 Involvist. All rights reserved.
+*/
+
+// login screen
+"UserNameLabel" = "username";
+"PasswordLabel" = "password";
+"LogInButtonText" = "log in";
+"SignUpButtonText" = "sign up";
+"OrText" = "or";
+

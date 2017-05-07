@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB048F5D1EBD273900A3F889 /* WireframeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB048F5C1EBD273900A3F889 /* WireframeButton.swift */; };
+		AB048F601EBFA16000A3F889 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB048F5F1EBFA16000A3F889 /* Localizable.strings */; };
 		AB21F1BD1EB99499000AC7BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB21F1BC1EB99499000AC7BB /* AppDelegate.swift */; };
 		AB21F1BF1EB99499000AC7BB /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB21F1BE1EB99499000AC7BB /* RootNavigationController.swift */; };
 		AB21F1C21EB99499000AC7BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB21F1C01EB99499000AC7BB /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		AB048F5C1EBD273900A3F889 /* WireframeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WireframeButton.swift; sourceTree = "<group>"; };
+		AB048F5F1EBFA16000A3F889 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		AB21F1B91EB99499000AC7BB /* InvolvistApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvolvistApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB21F1BC1EB99499000AC7BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB21F1BE1EB99499000AC7BB /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB048F5E1EBFA14700A3F889 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				AB048F5F1EBFA16000A3F889 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		AB21F1B01EB99499000AC7BB = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +76,7 @@
 		AB21F1BB1EB99499000AC7BB /* InvolvistApp */ = {
 			isa = PBXGroup;
 			children = (
+				AB048F5E1EBFA14700A3F889 /* Localization */,
 				ABD78FB81EBCCFCB00E3D5CA /* Controls */,
 				AB5393F81EB9956100A00C0B /* Theme */,
 				AB5393F51EB9950F00A00C0B /* SignIn */,
@@ -169,6 +180,7 @@
 				ABD78FBA1EBCD02500E3D5CA /* UnderlinedTextField.xib in Resources */,
 				AB21F1C71EB99499000AC7BB /* LaunchScreen.storyboard in Resources */,
 				AB21F1C41EB99499000AC7BB /* Assets.xcassets in Resources */,
+				AB048F601EBFA16000A3F889 /* Localizable.strings in Resources */,
 				AB21F1C21EB99499000AC7BB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

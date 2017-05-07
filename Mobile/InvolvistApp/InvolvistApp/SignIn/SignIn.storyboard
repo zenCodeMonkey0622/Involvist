@@ -32,7 +32,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0y-Ud-04e" userLabel="UserNameInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="75" y="133" width="225" height="30"/>
+                                        <rect key="frame" x="56" y="133" width="263" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="ODy-f3-Hk2"/>
@@ -44,40 +44,40 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kco-gr-obh" userLabel="UserNameLabel">
-                                        <rect key="frame" x="224" y="165" width="76" height="21"/>
+                                        <rect key="frame" x="243" y="165" width="76" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ie-3c-I9q" userLabel="PasswordLabel">
-                                        <rect key="frame" x="227" y="247" width="73" height="21"/>
+                                        <rect key="frame" x="246" y="230" width="73" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4G-rl-gHB" userLabel="LogInButton" customClass="WireframeButton" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="75" y="322" width="225" height="30"/>
+                                        <rect key="frame" x="56" y="278" width="263" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                         <state key="normal" title="log in">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4z-eM-hkf" userLabel="OrLabel">
-                                        <rect key="frame" x="179" y="370" width="16" height="21"/>
+                                        <rect key="frame" x="179" y="318" width="16" height="21"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDa-W8-BLb" userLabel="SignUpButton" customClass="WireframeButton" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="75" y="411" width="225" height="30"/>
+                                        <rect key="frame" x="56" y="349" width="263" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                         <state key="normal" title="sign up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWN-Jv-oHk" userLabel="PasswordInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="75" y="215" width="225" height="30"/>
+                                        <rect key="frame" x="56" y="198" width="263" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="4ge-xP-z9e"/>
@@ -86,27 +86,27 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="D0y-Ud-04e" firstAttribute="top" secondItem="08v-lw-QPd" secondAttribute="top" constant="133" id="1c0-Tk-LdG"/>
-                                    <constraint firstItem="pWN-Jv-oHk" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="0.4" id="5Bs-RE-8jx"/>
-                                    <constraint firstItem="C4G-rl-gHB" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="0.4" id="7b9-7n-gEv"/>
-                                    <constraint firstItem="D0y-Ud-04e" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="0.4" id="80E-hu-z5L"/>
+                                    <constraint firstItem="pWN-Jv-oHk" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="0.3" id="5Bs-RE-8jx"/>
+                                    <constraint firstItem="C4G-rl-gHB" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="0.3" id="7b9-7n-gEv"/>
+                                    <constraint firstItem="D0y-Ud-04e" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="0.3" id="80E-hu-z5L"/>
                                     <constraint firstItem="5Ie-3c-I9q" firstAttribute="trailing" secondItem="pWN-Jv-oHk" secondAttribute="trailing" id="8qn-ML-xXN"/>
                                     <constraint firstAttribute="trailing" secondItem="FwG-H2-IlC" secondAttribute="trailing" id="9tR-AE-G0H"/>
                                     <constraint firstItem="FwG-H2-IlC" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="leading" id="BPr-M8-STF"/>
-                                    <constraint firstItem="C4G-rl-gHB" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.6" id="E3H-rT-Qyp"/>
-                                    <constraint firstItem="pWN-Jv-oHk" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.6" id="Hjo-OR-k5N"/>
+                                    <constraint firstItem="C4G-rl-gHB" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.7" id="E3H-rT-Qyp"/>
+                                    <constraint firstItem="pWN-Jv-oHk" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.7" id="Hjo-OR-k5N"/>
                                     <constraint firstItem="kco-gr-obh" firstAttribute="top" secondItem="D0y-Ud-04e" secondAttribute="bottom" constant="2" id="IKR-yf-GTn"/>
-                                    <constraint firstItem="pWN-Jv-oHk" firstAttribute="top" secondItem="D0y-Ud-04e" secondAttribute="bottom" constant="52" id="KwC-gH-Goc"/>
+                                    <constraint firstItem="pWN-Jv-oHk" firstAttribute="top" secondItem="D0y-Ud-04e" secondAttribute="bottom" constant="35" id="KwC-gH-Goc"/>
                                     <constraint firstItem="5Ie-3c-I9q" firstAttribute="top" secondItem="pWN-Jv-oHk" secondAttribute="bottom" constant="2" id="bKq-ZN-QS0"/>
-                                    <constraint firstItem="uDa-W8-BLb" firstAttribute="top" secondItem="r4z-eM-hkf" secondAttribute="bottom" constant="20" id="cFw-WG-2OC"/>
-                                    <constraint firstItem="D0y-Ud-04e" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.6" id="cpb-re-TEZ"/>
+                                    <constraint firstItem="uDa-W8-BLb" firstAttribute="top" secondItem="r4z-eM-hkf" secondAttribute="bottom" constant="10" id="cFw-WG-2OC"/>
+                                    <constraint firstItem="D0y-Ud-04e" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.7" id="cpb-re-TEZ"/>
                                     <constraint firstAttribute="bottom" secondItem="uDa-W8-BLb" secondAttribute="bottom" constant="79" id="cqN-e7-RiG"/>
-                                    <constraint firstItem="r4z-eM-hkf" firstAttribute="top" secondItem="C4G-rl-gHB" secondAttribute="bottom" constant="18" id="gO6-Wv-kvx"/>
-                                    <constraint firstItem="uDa-W8-BLb" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="0.4" id="gsl-EI-w5O"/>
-                                    <constraint firstItem="C4G-rl-gHB" firstAttribute="top" secondItem="pWN-Jv-oHk" secondAttribute="bottom" constant="77" id="lgm-kC-MS5"/>
+                                    <constraint firstItem="r4z-eM-hkf" firstAttribute="top" secondItem="C4G-rl-gHB" secondAttribute="bottom" constant="10" id="gO6-Wv-kvx"/>
+                                    <constraint firstItem="uDa-W8-BLb" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="0.3" id="gsl-EI-w5O"/>
+                                    <constraint firstItem="C4G-rl-gHB" firstAttribute="top" secondItem="pWN-Jv-oHk" secondAttribute="bottom" constant="50" id="lgm-kC-MS5"/>
                                     <constraint firstItem="FwG-H2-IlC" firstAttribute="top" secondItem="08v-lw-QPd" secondAttribute="top" constant="67" id="pji-6e-YEV"/>
                                     <constraint firstItem="r4z-eM-hkf" firstAttribute="centerX" secondItem="08v-lw-QPd" secondAttribute="centerX" id="rCd-GC-8iQ"/>
                                     <constraint firstItem="kco-gr-obh" firstAttribute="trailing" secondItem="D0y-Ud-04e" secondAttribute="trailing" id="txG-G6-tDl"/>
-                                    <constraint firstItem="uDa-W8-BLb" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.6" id="uhG-zo-7SH"/>
+                                    <constraint firstItem="uDa-W8-BLb" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.7" id="uhG-zo-7SH"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
