@@ -31,7 +31,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rousr_logo_100x100" translatesAutoresizingMaskIntoConstraints="NO" id="9QJ-nW-IhA">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rousr_logo3_100x100" translatesAutoresizingMaskIntoConstraints="NO" id="9QJ-nW-IhA">
                                         <rect key="frame" x="137" y="20" width="100" height="100"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0y-Ud-04e" userLabel="UserNameInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
@@ -137,6 +137,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="rousr_logo_100x100" width="100" height="100"/>
+        <image name="rousr_logo3_100x100" width="100" height="100"/>
     </resources>
 </document>
