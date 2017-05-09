@@ -11,21 +11,30 @@ import UIKit
 
 struct Theme
 {
-    static var involvistPurple: UIColor
+    static var involvistPrimary: UIColor
     {
         get
         {
-            // evaluates to hex 0xb984d3ff
-            return UIColor(red: 185.0/255.0, green: 132.0/255.0, blue: 211.0/255.0, alpha: 1.0)
+            // evaluates to hex 0x880e4fff
+            return UIColor(red: 136.0/255.0, green: 14.0/255.0, blue: 79.0/255.0, alpha: 1.0)
         }
     }
     
-    static var involvistDeepPurple: UIColor
+    static var involvistDark: UIColor
     {
         get
         {
-            // evaluates to hex 0x6a1b9aff
-            return UIColor(red: 106.0/255.0, green: 27.0/255.0, blue: 154.0/255.0, alpha: 1.0)
+            // evaluates to hex 0x560027ff
+            return UIColor(red: 86.0/255.0, green: 0.0, blue: 39.0/255.0, alpha: 1.0)
+        }
+    }
+    
+    static var involvistLight: UIColor
+    {
+        get
+        {
+            // evaluates to hex 0xbc477bff
+            return UIColor(red: 188.0/255.0, green: 71.0/255.0, blue: 123.0/255.0, alpha: 1.0)
         }
     }
 }

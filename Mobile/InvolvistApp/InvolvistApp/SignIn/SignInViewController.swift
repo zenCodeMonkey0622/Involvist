@@ -20,7 +20,7 @@ class SignInViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.view.backgroundColor = Theme.involvistDeepPurple
+        self.view.backgroundColor = Theme.involvistPrimary
         
         self.userNameInput.inputTextField.backgroundColor = UIColor.clear
         self.userNameInput.underlineColor = UIColor.white
@@ -29,8 +29,8 @@ class SignInViewController: UIViewController
         self.passwordInput.inputTextField.backgroundColor = UIColor.clear
         self.passwordInput.underlineColor = UIColor.white
         
-        self.logInButton.wireBorderColor = UIColor.white
-        self.signUpButton.wireBorderColor = UIColor.white
+        self.logInButton.wireBorderColor = Theme.involvistDark
+        self.signUpButton.wireBorderColor = Theme.involvistDark
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }

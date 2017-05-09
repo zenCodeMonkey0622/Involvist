@@ -18,9 +18,10 @@ class UnderlinedTextField: UIView
     {
         didSet
         {
-            if let uv = underlineView
+            if let uv = underlineView, let tf = inputTextField
             {
                 uv.backgroundColor = underlineColor;
+                tf.tintColor = underlineColor;
             }
         }
     }
