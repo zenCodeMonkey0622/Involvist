@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C3E23F98C49CAA061D6B3E2 /* Pods_InvolvistApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEFE78C6EFAA32D9D4DAC618 /* Pods_InvolvistApp.framework */; };
 		AB048F5D1EBD273900A3F889 /* WireframeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB048F5C1EBD273900A3F889 /* WireframeButton.swift */; };
 		AB048F601EBFA16000A3F889 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB048F5F1EBFA16000A3F889 /* Localizable.strings */; };
 		AB21F1BD1EB99499000AC7BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB21F1BC1EB99499000AC7BB /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2176B88952D90FB15A06FEEC /* Pods-InvolvistApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvolvistApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-InvolvistApp/Pods-InvolvistApp.release.xcconfig"; sourceTree = "<group>"; };
 		AB048F5C1EBD273900A3F889 /* WireframeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WireframeButton.swift; sourceTree = "<group>"; };
 		AB048F5F1EBFA16000A3F889 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		AB21F1B91EB99499000AC7BB /* InvolvistApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvolvistApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,6 +38,8 @@
 		ABD78FB61EBCBCFD00E3D5CA /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnderlinedTextField.xib; sourceTree = "<group>"; };
 		ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
+		BEFE78C6EFAA32D9D4DAC618 /* Pods_InvolvistApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InvolvistApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E375DEC1A7A53449A1196512 /* Pods-InvolvistApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvolvistApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InvolvistApp/Pods-InvolvistApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,12 +47,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C3E23F98C49CAA061D6B3E2 /* Pods_InvolvistApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D5B0C4A0EB94E9279E74097 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BEFE78C6EFAA32D9D4DAC618 /* Pods_InvolvistApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33BB41BC5E1A34F2BA7F61D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E375DEC1A7A53449A1196512 /* Pods-InvolvistApp.debug.xcconfig */,
+				2176B88952D90FB15A06FEEC /* Pods-InvolvistApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AB048F5E1EBFA14700A3F889 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +84,8 @@
 			children = (
 				AB21F1BB1EB99499000AC7BB /* InvolvistApp */,
 				AB21F1BA1EB99499000AC7BB /* Products */,
+				33BB41BC5E1A34F2BA7F61D1 /* Pods */,
+				0D5B0C4A0EB94E9279E74097 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,9 +148,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB21F1CB1EB99499000AC7BB /* Build configuration list for PBXNativeTarget "InvolvistApp" */;
 			buildPhases = (
+				04A4D974764E9702968852FC /* [CP] Check Pods Manifest.lock */,
 				AB21F1B51EB99499000AC7BB /* Sources */,
 				AB21F1B61EB99499000AC7BB /* Frameworks */,
 				AB21F1B71EB99499000AC7BB /* Resources */,
+				A261B20A74ED559A4AE26658 /* [CP] Embed Pods Frameworks */,
+				11980E1C34B6B04DE55E080E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -186,6 +213,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04A4D974764E9702968852FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		11980E1C34B6B04DE55E080E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InvolvistApp/Pods-InvolvistApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A261B20A74ED559A4AE26658 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InvolvistApp/Pods-InvolvistApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AB21F1B51EB99499000AC7BB /* Sources */ = {
@@ -320,6 +395,7 @@
 		};
 		AB21F1CC1EB99499000AC7BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E375DEC1A7A53449A1196512 /* Pods-InvolvistApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = InvolvistApp/Info.plist;
@@ -332,6 +408,7 @@
 		};
 		AB21F1CD1EB99499000AC7BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2176B88952D90FB15A06FEEC /* Pods-InvolvistApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = InvolvistApp/Info.plist;
