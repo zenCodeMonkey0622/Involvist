@@ -17,6 +17,8 @@
 		AB21F1C71EB99499000AC7BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB21F1C51EB99499000AC7BB /* LaunchScreen.storyboard */; };
 		AB5393F71EB9952500A00C0B /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB5393F61EB9952500A00C0B /* SignIn.storyboard */; };
 		AB5393FA1EB9957700A00C0B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5393F91EB9957700A00C0B /* Theme.swift */; };
+		ABCE34891EC6C7D90018D57C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE34881EC6C7D90018D57C /* AuthService.swift */; };
+		ABCE348C1EC6C89D0018D57C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE348B1EC6C89D0018D57C /* User.swift */; };
 		ABD78FB71EBCBCFD00E3D5CA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD78FB61EBCBCFD00E3D5CA /* SignInViewController.swift */; };
 		ABD78FBA1EBCD02500E3D5CA /* UnderlinedTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */; };
 		ABD78FBC1EBCD03300E3D5CA /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */; };
@@ -35,6 +37,8 @@
 		AB21F1C81EB99499000AC7BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB5393F61EB9952500A00C0B /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		AB5393F91EB9957700A00C0B /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		ABCE34881EC6C7D90018D57C /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		ABCE348B1EC6C89D0018D57C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ABD78FB61EBCBCFD00E3D5CA /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnderlinedTextField.xib; sourceTree = "<group>"; };
 		ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 		AB21F1BB1EB99499000AC7BB /* InvolvistApp */ = {
 			isa = PBXGroup;
 			children = (
+				ABCE348A1EC6C87D0018D57C /* Model */,
+				ABCE34871EC6C7750018D57C /* ServiceAccessLayer */,
 				AB048F5E1EBFA14700A3F889 /* Localization */,
 				ABD78FB81EBCCFCB00E3D5CA /* Controls */,
 				AB5393F81EB9956100A00C0B /* Theme */,
@@ -129,6 +135,22 @@
 				AB5393F91EB9957700A00C0B /* Theme.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		ABCE34871EC6C7750018D57C /* ServiceAccessLayer */ = {
+			isa = PBXGroup;
+			children = (
+				ABCE34881EC6C7D90018D57C /* AuthService.swift */,
+			);
+			path = ServiceAccessLayer;
+			sourceTree = "<group>";
+		};
+		ABCE348A1EC6C87D0018D57C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ABCE348B1EC6C89D0018D57C /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		ABD78FB81EBCCFCB00E3D5CA /* Controls */ = {
@@ -271,8 +293,10 @@
 				ABD78FB71EBCBCFD00E3D5CA /* SignInViewController.swift in Sources */,
 				AB048F5D1EBD273900A3F889 /* WireframeButton.swift in Sources */,
 				AB5393FA1EB9957700A00C0B /* Theme.swift in Sources */,
+				ABCE348C1EC6C89D0018D57C /* User.swift in Sources */,
 				AB21F1BF1EB99499000AC7BB /* RootNavigationController.swift in Sources */,
 				AB21F1BD1EB99499000AC7BB /* AppDelegate.swift in Sources */,
+				ABCE34891EC6C7D90018D57C /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
