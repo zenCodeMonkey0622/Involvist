@@ -24,10 +24,12 @@ class SignInViewController: UIViewController
         
         self.userNameInput.inputTextField.backgroundColor = UIColor.clear
         self.userNameInput.underlineColor = UIColor.white
+        self.userNameInput.returnKeyType = UIReturnKeyType.done
         
         self.passwordInput.inputTextField.isSecureTextEntry = true
         self.passwordInput.inputTextField.backgroundColor = UIColor.clear
         self.passwordInput.underlineColor = UIColor.white
+        self.userNameInput.returnKeyType = UIReturnKeyType.done
         
         self.logInButton.wireBorderColor = Theme.involvistDark
         self.signUpButton.wireBorderColor = Theme.involvistDark

@@ -18,14 +18,20 @@ class UnderlinedTextField: UIView
     {
         didSet
         {
-            if let uv = underlineView, let tf = inputTextField
-            {
-                uv.backgroundColor = underlineColor;
-                tf.tintColor = underlineColor;
-            }
+            underlineView.backgroundColor = underlineColor
+            inputTextField.tintColor = underlineColor
         }
     }
     
+    var returnKeyType: UIReturnKeyType?
+    {
+        didSet
+        {
+            inputTextField.returnKeyType = self.returnKeyType!
+        }
+    }
+    
+    // needed to be able to incude and load this control in other xibs
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
