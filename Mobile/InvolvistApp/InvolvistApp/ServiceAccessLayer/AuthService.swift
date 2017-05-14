@@ -10,5 +10,5 @@ import Foundation
 
 protocol AuthService: class
 {
-    func authenticate(user: User)
+    func authenticate(user: User, success: @escaping () -> Void, fail: @escaping () -> Void)
 }
