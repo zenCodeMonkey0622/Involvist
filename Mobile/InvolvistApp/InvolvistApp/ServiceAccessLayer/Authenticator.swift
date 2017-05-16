@@ -9,15 +9,16 @@
 import Foundation
 import Alamofire
 
-let AUTH_BASE_URI = "http://localhost/oauth/token"
+let AUTH_BASE_URI = "http://localhost:3000/oauth/token"
 
+// implements the AuthService protocol
 public class Authenticator: AuthService
 {
     func authenticate(user: User, success: @escaping () -> Void, fail: @escaping () -> Void)
     {
         let parameters: Parameters = ["grant_type": "password",
                                       "username": user.loginName,
-                                      "password": user.readablePassword,
+                                      "password": user.clearTextPassword,
                                       "client_id": "1"]
         let headers: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
         

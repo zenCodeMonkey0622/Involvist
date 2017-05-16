@@ -15,7 +15,7 @@ MembershipService.prototype.areUserCredentialsValid = function(userName, passwor
       if (!csResponse.success)
       {
         console.error('Membership service error: ' + csResponse.responseMessage);
-        callback(err, false);
+        callback(null, false);
       }
       else
       {

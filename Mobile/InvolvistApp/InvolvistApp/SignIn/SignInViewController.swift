@@ -11,11 +11,19 @@ import UIKit
 
 class SignInViewController: UIViewController
 {
+    // outlets
     @IBOutlet weak var containerScrollView: UIScrollView!
     @IBOutlet weak var userNameInput: UnderlinedTextField!
     @IBOutlet weak var passwordInput: UnderlinedTextField!
     @IBOutlet weak var logInButton: WireframeButton!
     @IBOutlet weak var signUpButton: WireframeButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    // properties
+    var authProvider: AuthService?
+    
+    // private members
+    fileprivate var userViewModel: User?
     
     override func viewDidLoad()
     {
@@ -32,9 +40,13 @@ class SignInViewController: UIViewController
         self.userNameInput.returnKeyType = UIReturnKeyType.done
         
         self.logInButton.wireBorderColor = Theme.involvistDark
+        self.logInButton.backgroundColor = Theme.involvistDark
+        
         self.signUpButton.wireBorderColor = Theme.involvistDark
+        self.signUpButton.backgroundColor = Theme.involvistDark
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.activityIndicator.isHidden = true
     }
     
     override func viewDidLayoutSubviews()
@@ -45,5 +57,33 @@ class SignInViewController: UIViewController
         // for the container scroll view.
         // http://stackoverflow.com/questions/20101572/ios7-uirefreshcontrol-changes-contentinset
         self.containerScrollView.contentInset = UIEdgeInsets.zero
+    }
+    
+    // ibactions
+    
+    @IBAction func onLoginTapped(_ sender: Any)
+    {
+        guard let ap = self.authProvider else
+        {
+            return
+        }
+        
+        guard let loginName = self.userNameInput.inputTextField.text, let password = self.passwordInput.inputTextField.text else
+        {
+            return
+        }
+        
+        let user = User(loginName: loginName, clearTextPassword: password)
+        ap.authenticate(user: user, success: onLoginSuccess, fail: onLoginFail)
+    }
+    
+    func onLoginSuccess()
+    {
+        
+    }
+    
+    func onLoginFail()
+    {
+        
     }
 }
