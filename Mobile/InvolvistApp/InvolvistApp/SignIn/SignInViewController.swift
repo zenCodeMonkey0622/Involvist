@@ -18,6 +18,8 @@ class SignInViewController: UIViewController
     @IBOutlet weak var logInButton: WireframeButton!
     @IBOutlet weak var signUpButton: WireframeButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!
     
     // properties
     var authProvider: AuthService?
@@ -31,13 +33,15 @@ class SignInViewController: UIViewController
         self.view.backgroundColor = Theme.involvistPrimary
         
         self.userNameInput.inputTextField.backgroundColor = UIColor.clear
-        self.userNameInput.underlineColor = UIColor.white
+        self.userNameInput.underlineColor = Theme.involvistDark
+        self.userNameLabel.textColor = Theme.involvistLight
         self.userNameInput.returnKeyType = UIReturnKeyType.done
         
         self.passwordInput.inputTextField.isSecureTextEntry = true
         self.passwordInput.inputTextField.backgroundColor = UIColor.clear
-        self.passwordInput.underlineColor = UIColor.white
-        self.userNameInput.returnKeyType = UIReturnKeyType.done
+        self.passwordInput.underlineColor = Theme.involvistDark
+        self.passwordLabel.textColor = Theme.involvistLight
+        self.passwordInput.returnKeyType = UIReturnKeyType.done
         
         self.logInButton.wireBorderColor = Theme.involvistDark
         self.logInButton.backgroundColor = Theme.involvistDark

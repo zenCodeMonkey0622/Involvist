@@ -26,8 +26,13 @@ public class Authenticator: AuthService
         Alamofire.request(AUTH_BASE_URI, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON {(response: DataResponse<Any>) in
             
             print("JSON response: \(response)")
+            guard let statusCode = response.response?.statusCode else
+            {
+                fail()
+                return
+            }
             
-            if (response.result.isSuccess)
+            if (statusCode >= 200 && statusCode <= 299)
             {
                 success()
             }
