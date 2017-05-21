@@ -23,9 +23,11 @@ public class Authenticator: AuthService
         let headers: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
         
 
-        Alamofire.request(AUTH_BASE_URI, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON {(response: DataResponse<Any>) in
-            
-            print("JSON response: \(response)")
+        Alamofire.request(AUTH_BASE_URI,
+                          method: .post,
+                          parameters: parameters,
+                          encoding: URLEncoding.default,
+                          headers: headers).responseJSON {(response: DataResponse<Any>) in
             guard let statusCode = response.response?.statusCode else
             {
                 fail()
@@ -34,6 +36,12 @@ public class Authenticator: AuthService
             
             if (statusCode >= 200 && statusCode <= 299)
             {
+                guard let json = response.value as? [String: Any], let authResponse = AuthResponse(json: json) else
+                {
+                    fail()
+                    return
+                }
+                print("\(authResponse)")
                 success()
             }
             else

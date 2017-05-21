@@ -23,6 +23,7 @@
 		ABD78FB71EBCBCFD00E3D5CA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD78FB61EBCBCFD00E3D5CA /* SignInViewController.swift */; };
 		ABD78FBA1EBCD02500E3D5CA /* UnderlinedTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */; };
 		ABD78FBC1EBCD03300E3D5CA /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */; };
+		ABF6C8421ED15B8500ED49BF /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6C8411ED15B8500ED49BF /* AuthResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		ABD78FB61EBCBCFD00E3D5CA /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnderlinedTextField.xib; sourceTree = "<group>"; };
 		ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
+		ABF6C8411ED15B8500ED49BF /* AuthResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		BEFE78C6EFAA32D9D4DAC618 /* Pods_InvolvistApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InvolvistApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E375DEC1A7A53449A1196512 /* Pods-InvolvistApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvolvistApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InvolvistApp/Pods-InvolvistApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				ABCE348B1EC6C89D0018D57C /* User.swift */,
+				ABF6C8411ED15B8500ED49BF /* AuthResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				AB21F1BF1EB99499000AC7BB /* RootNavigationController.swift in Sources */,
 				AB21F1BD1EB99499000AC7BB /* AppDelegate.swift in Sources */,
 				ABCE34891EC6C7D90018D57C /* AuthService.swift in Sources */,
+				ABF6C8421ED15B8500ED49BF /* AuthResponse.swift in Sources */,
 				ABCE348E1EC6CC1F0018D57C /* Authenticator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
