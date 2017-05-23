@@ -20,6 +20,10 @@
 		ABCE34891EC6C7D90018D57C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE34881EC6C7D90018D57C /* AuthService.swift */; };
 		ABCE348C1EC6C89D0018D57C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE348B1EC6C89D0018D57C /* User.swift */; };
 		ABCE348E1EC6CC1F0018D57C /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE348D1EC6CC1F0018D57C /* Authenticator.swift */; };
+		ABD14FB01ED3E108005E6062 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD14FAF1ED3E108005E6062 /* SignUpViewController.swift */; };
+		ABD14FB31ED3EA9D005E6062 /* LocalNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD14FB21ED3EA9D005E6062 /* LocalNavigationDelegate.swift */; };
+		ABD14FB51ED3EB00005E6062 /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD14FB41ED3EB00005E6062 /* DestinationView.swift */; };
+		ABD14FB71ED3EBBA005E6062 /* RootNavigationController+LocalNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD14FB61ED3EBBA005E6062 /* RootNavigationController+LocalNavigationDelegate.swift */; };
 		ABD78FB71EBCBCFD00E3D5CA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD78FB61EBCBCFD00E3D5CA /* SignInViewController.swift */; };
 		ABD78FBA1EBCD02500E3D5CA /* UnderlinedTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */; };
 		ABD78FBC1EBCD03300E3D5CA /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */; };
@@ -42,6 +46,10 @@
 		ABCE34881EC6C7D90018D57C /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		ABCE348B1EC6C89D0018D57C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ABCE348D1EC6CC1F0018D57C /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
+		ABD14FAF1ED3E108005E6062 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		ABD14FB21ED3EA9D005E6062 /* LocalNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNavigationDelegate.swift; sourceTree = "<group>"; };
+		ABD14FB41ED3EB00005E6062 /* DestinationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
+		ABD14FB61ED3EBBA005E6062 /* RootNavigationController+LocalNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootNavigationController+LocalNavigationDelegate.swift"; sourceTree = "<group>"; };
 		ABD78FB61EBCBCFD00E3D5CA /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnderlinedTextField.xib; sourceTree = "<group>"; };
 		ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
@@ -108,6 +116,7 @@
 		AB21F1BB1EB99499000AC7BB /* InvolvistApp */ = {
 			isa = PBXGroup;
 			children = (
+				ABD14FB11ED3EA6D005E6062 /* Navigation */,
 				ABCE348A1EC6C87D0018D57C /* Model */,
 				ABCE34871EC6C7750018D57C /* ServiceAccessLayer */,
 				AB048F5E1EBFA14700A3F889 /* Localization */,
@@ -120,6 +129,7 @@
 				AB21F1C31EB99499000AC7BB /* Assets.xcassets */,
 				AB21F1C51EB99499000AC7BB /* LaunchScreen.storyboard */,
 				AB21F1C81EB99499000AC7BB /* Info.plist */,
+				ABD14FB61ED3EBBA005E6062 /* RootNavigationController+LocalNavigationDelegate.swift */,
 			);
 			path = InvolvistApp;
 			sourceTree = "<group>";
@@ -129,6 +139,7 @@
 			children = (
 				AB5393F61EB9952500A00C0B /* SignIn.storyboard */,
 				ABD78FB61EBCBCFD00E3D5CA /* SignInViewController.swift */,
+				ABD14FAF1ED3E108005E6062 /* SignUpViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -157,6 +168,15 @@
 				ABF6C8411ED15B8500ED49BF /* AuthResponse.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		ABD14FB11ED3EA6D005E6062 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				ABD14FB21ED3EA9D005E6062 /* LocalNavigationDelegate.swift */,
+				ABD14FB41ED3EB00005E6062 /* DestinationView.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		ABD78FB81EBCCFCB00E3D5CA /* Controls */ = {
@@ -295,11 +315,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABD14FB31ED3EA9D005E6062 /* LocalNavigationDelegate.swift in Sources */,
+				ABD14FB01ED3E108005E6062 /* SignUpViewController.swift in Sources */,
 				ABD78FBC1EBCD03300E3D5CA /* UnderlinedTextField.swift in Sources */,
 				ABD78FB71EBCBCFD00E3D5CA /* SignInViewController.swift in Sources */,
+				ABD14FB71ED3EBBA005E6062 /* RootNavigationController+LocalNavigationDelegate.swift in Sources */,
 				AB048F5D1EBD273900A3F889 /* WireframeButton.swift in Sources */,
 				AB5393FA1EB9957700A00C0B /* Theme.swift in Sources */,
 				ABCE348C1EC6C89D0018D57C /* User.swift in Sources */,
+				ABD14FB51ED3EB00005E6062 /* DestinationView.swift in Sources */,
 				AB21F1BF1EB99499000AC7BB /* RootNavigationController.swift in Sources */,
 				AB21F1BD1EB99499000AC7BB /* AppDelegate.swift in Sources */,
 				ABCE34891EC6C7D90018D57C /* AuthService.swift in Sources */,

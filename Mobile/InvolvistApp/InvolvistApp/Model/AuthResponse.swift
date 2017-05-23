@@ -8,8 +8,7 @@
 
 import Foundation
 
-// models the authentication response from the rousr 
-// authenticate user api
+// models the authentication response from the authenticate user api
 public struct AuthResponse
 {
     let accessToken: String

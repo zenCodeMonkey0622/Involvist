@@ -23,6 +23,7 @@ class SignInViewController: UIViewController
     
     // properties
     var authProvider: AuthService?
+    var navDelegate: LocalNavigationDelegate?
     
     // private members
     fileprivate var userViewModel: User?
@@ -64,6 +65,10 @@ class SignInViewController: UIViewController
     }
     
     // ibactions
+    @IBAction func onSignupTapped(_ sender: Any)
+    {
+        navDelegate?.navigateTo(.signUpView)
+    }
     
     @IBAction func onLoginTapped(_ sender: Any)
     {

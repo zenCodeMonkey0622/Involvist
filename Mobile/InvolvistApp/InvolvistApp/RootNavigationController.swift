@@ -29,6 +29,7 @@ class RootNavigationController: UINavigationController
         if let signInVc = signInStoryboard.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
         {
             signInVc.authProvider = self.authenticator
+            signInVc.navDelegate = self
             self.pushViewController(signInVc, animated: true)
         }
         

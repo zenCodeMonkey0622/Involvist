@@ -22,7 +22,6 @@ public class Authenticator: AuthService
                                       "client_id": "1"]
         let headers: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
         
-
         Alamofire.request(AUTH_BASE_URI,
                           method: .post,
                           parameters: parameters,
