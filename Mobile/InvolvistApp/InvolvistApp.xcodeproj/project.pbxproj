@@ -36,7 +36,7 @@
 		AB048F5F1EBFA16000A3F889 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		AB21F1B91EB99499000AC7BB /* InvolvistApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvolvistApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB21F1BC1EB99499000AC7BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AB21F1BE1EB99499000AC7BB /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
+		AB21F1BE1EB99499000AC7BB /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootNavigationController.swift; path = ../RootNavigationController.swift; sourceTree = "<group>"; };
 		AB21F1C11EB99499000AC7BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB21F1C31EB99499000AC7BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB21F1C61EB99499000AC7BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,7 +49,7 @@
 		ABD14FAF1ED3E108005E6062 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		ABD14FB21ED3EA9D005E6062 /* LocalNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNavigationDelegate.swift; sourceTree = "<group>"; };
 		ABD14FB41ED3EB00005E6062 /* DestinationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
-		ABD14FB61ED3EBBA005E6062 /* RootNavigationController+LocalNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootNavigationController+LocalNavigationDelegate.swift"; sourceTree = "<group>"; };
+		ABD14FB61ED3EBBA005E6062 /* RootNavigationController+LocalNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RootNavigationController+LocalNavigationDelegate.swift"; path = "../RootNavigationController+LocalNavigationDelegate.swift"; sourceTree = "<group>"; };
 		ABD78FB61EBCBCFD00E3D5CA /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnderlinedTextField.xib; sourceTree = "<group>"; };
 		ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
@@ -87,6 +87,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AB032E101ED4000B0043B05D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		AB048F5E1EBFA14700A3F889 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +123,7 @@
 		AB21F1BB1EB99499000AC7BB /* InvolvistApp */ = {
 			isa = PBXGroup;
 			children = (
+				AB032E101ED4000B0043B05D /* Extensions */,
 				ABD14FB11ED3EA6D005E6062 /* Navigation */,
 				ABCE348A1EC6C87D0018D57C /* Model */,
 				ABCE34871EC6C7750018D57C /* ServiceAccessLayer */,
@@ -124,12 +132,10 @@
 				AB5393F81EB9956100A00C0B /* Theme */,
 				AB5393F51EB9950F00A00C0B /* SignIn */,
 				AB21F1BC1EB99499000AC7BB /* AppDelegate.swift */,
-				AB21F1BE1EB99499000AC7BB /* RootNavigationController.swift */,
 				AB21F1C01EB99499000AC7BB /* Main.storyboard */,
 				AB21F1C31EB99499000AC7BB /* Assets.xcassets */,
 				AB21F1C51EB99499000AC7BB /* LaunchScreen.storyboard */,
 				AB21F1C81EB99499000AC7BB /* Info.plist */,
-				ABD14FB61ED3EBBA005E6062 /* RootNavigationController+LocalNavigationDelegate.swift */,
 			);
 			path = InvolvistApp;
 			sourceTree = "<group>";
@@ -175,6 +181,8 @@
 			children = (
 				ABD14FB21ED3EA9D005E6062 /* LocalNavigationDelegate.swift */,
 				ABD14FB41ED3EB00005E6062 /* DestinationView.swift */,
+				AB21F1BE1EB99499000AC7BB /* RootNavigationController.swift */,
+				ABD14FB61ED3EBBA005E6062 /* RootNavigationController+LocalNavigationDelegate.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";

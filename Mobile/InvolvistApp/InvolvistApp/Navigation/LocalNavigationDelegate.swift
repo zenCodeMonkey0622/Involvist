@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol LocalNavigationDelegate: class
 {
-    func navigateTo(_: DestinationView)
+    func navigateTo(destinationView: DestinationView)
+    func dismiss(viewController: UIViewController)
 }

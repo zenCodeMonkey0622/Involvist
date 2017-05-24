@@ -10,11 +10,13 @@ import Foundation
 
 public class User
 {
+    var fullName: String
     var loginName: String
     var clearTextPassword: String
     
-    init(loginName: String, clearTextPassword: String)
+    init(fullName: String, loginName: String, clearTextPassword: String)
     {
+        self.fullName = fullName
         self.loginName = loginName
         self.clearTextPassword = clearTextPassword
     }

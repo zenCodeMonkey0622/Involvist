@@ -13,3 +13,12 @@
 "SignUpButtonText" = "sign up";
 "OrText" = "or";
 
+// signup screen
+"SignUpTitleLabel" = "get loud and join the fight";
+"FullNameLabel" = "your full name";
+"EmailLabel" = "your email";
+"ChoosePassword" = "choose a password";
+"VerifyPasswordLabel" = "retype your password";
+"AlreadyHaveAccount" = "i already have an account";
+
+

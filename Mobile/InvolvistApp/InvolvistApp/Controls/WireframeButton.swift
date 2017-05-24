@@ -11,6 +11,15 @@ import UIKit
 
 class WireframeButton: UIButton
 {
+    var isDisabled: Bool = false
+    {
+        didSet
+        {
+            alpha = isDisabled ? 0.3 : 1.0
+            isUserInteractionEnabled = !isDisabled
+        }
+    }
+    
     var wireBorderColor: UIColor = UIColor.black
     {
         didSet

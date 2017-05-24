@@ -14,6 +14,11 @@ let AUTH_BASE_URI = "http://localhost:3000/oauth/token"
 // implements the AuthService protocol
 public class Authenticator: AuthService
 {
+    func register(user: User, success: @escaping () -> Void, fail: @escaping () -> Void)
+    {
+        // todo
+    }
+    
     func authenticate(user: User, success: @escaping () -> Void, fail: @escaping () -> Void)
     {
         let parameters: Parameters = ["grant_type": "password",

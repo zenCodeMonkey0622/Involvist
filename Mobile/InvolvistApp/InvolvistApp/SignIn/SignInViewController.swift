@@ -20,6 +20,7 @@ class SignInViewController: UIViewController
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var orLabel: UILabel!
     
     // properties
     var authProvider: AuthService?
@@ -35,20 +36,25 @@ class SignInViewController: UIViewController
         
         self.userNameInput.inputTextField.backgroundColor = UIColor.clear
         self.userNameInput.underlineColor = Theme.involvistDark
-        self.userNameLabel.textColor = Theme.involvistLight
         self.userNameInput.returnKeyType = UIReturnKeyType.done
+        self.userNameLabel.textColor = Theme.involvistLight
+        self.userNameLabel.text = NSLocalizedString("UserNameLabel", comment: "")
         
         self.passwordInput.inputTextField.isSecureTextEntry = true
         self.passwordInput.inputTextField.backgroundColor = UIColor.clear
         self.passwordInput.underlineColor = Theme.involvistDark
-        self.passwordLabel.textColor = Theme.involvistLight
         self.passwordInput.returnKeyType = UIReturnKeyType.done
+        self.passwordLabel.textColor = Theme.involvistLight
+        self.passwordLabel.text = NSLocalizedString("PasswordLabel", comment: "")
         
-        self.logInButton.wireBorderColor = Theme.involvistDark
-        self.logInButton.backgroundColor = Theme.involvistDark
+        self.logInButton.wireBorderColor = UIColor.white
+        //self.logInButton.backgroundColor = Theme.involvistDark
         
-        self.signUpButton.wireBorderColor = Theme.involvistDark
-        self.signUpButton.backgroundColor = Theme.involvistDark
+        self.orLabel.textColor = Theme.involvistLight
+        self.orLabel.text = NSLocalizedString("OrText", comment: "")
+        
+        self.signUpButton.wireBorderColor = UIColor.white
+        //self.signUpButton.backgroundColor = Theme.involvistDark
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.activityIndicator.isHidden = true
@@ -67,23 +73,20 @@ class SignInViewController: UIViewController
     // ibactions
     @IBAction func onSignupTapped(_ sender: Any)
     {
-        navDelegate?.navigateTo(.signUpView)
+        navDelegate?.navigateTo(destinationView: .signUpView)
     }
     
     @IBAction func onLoginTapped(_ sender: Any)
     {
-        guard let ap = self.authProvider else
-        {
-            return
-        }
-        
         guard let loginName = self.userNameInput.inputTextField.text, let password = self.passwordInput.inputTextField.text else
         {
             return
         }
         
+        /*
         let user = User(loginName: loginName, clearTextPassword: password)
-        ap.authenticate(user: user, success: onLoginSuccess, fail: onLoginFail)
+        self.authProvider?.authenticate(user: user, success: onLoginSuccess, fail: onLoginFail)
+        */
     }
     
     func onLoginSuccess()

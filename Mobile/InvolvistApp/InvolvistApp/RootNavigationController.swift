@@ -32,7 +32,6 @@ class RootNavigationController: UINavigationController
             signInVc.navDelegate = self
             self.pushViewController(signInVc, animated: true)
         }
-        
     }
 
     override func didReceiveMemoryWarning()

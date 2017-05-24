@@ -7,15 +7,27 @@
 //
 
 import Foundation
+import UIKit
 
 extension RootNavigationController: LocalNavigationDelegate
 {
-    func navigateTo(_: DestinationView)
+    func navigateTo(destinationView: DestinationView)
     {
-        // load sign-in view controller
-        if let signUpVc = signInStoryboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
+        switch destinationView
         {
-            self.pushViewController(signUpVc, animated: true)
+            case .signUpView:
+                if let vc = signInStoryboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
+                {
+                    vc.navDelegate = self
+                    vc.authProvider = authenticator
+                    self.pushViewController(vc, animated: true)
+                }
         }
+    }
+    
+    func dismiss(viewController: UIViewController)
+    {
+        // will need more sophisticated logic later....
+        self.popViewController(animated: true);
     }
 }

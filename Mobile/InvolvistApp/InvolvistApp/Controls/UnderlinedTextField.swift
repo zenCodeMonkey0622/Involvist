@@ -14,6 +14,14 @@ class UnderlinedTextField: UIView
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var underlineView: UIView!
     
+    var text: String?
+    {
+        get
+        {
+            return inputTextField.text
+        }
+    }
+    
     var underlineColor: UIColor?
     {
         didSet
@@ -28,6 +36,14 @@ class UnderlinedTextField: UIView
         didSet
         {
             inputTextField.returnKeyType = self.returnKeyType!
+        }
+    }
+    
+    weak var delegate: UITextFieldDelegate?
+    {
+        didSet
+        {
+            inputTextField.delegate = delegate
         }
     }
     
