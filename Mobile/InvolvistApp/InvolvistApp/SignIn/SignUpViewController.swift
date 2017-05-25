@@ -25,7 +25,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var cancelButton: UIButton!
     
     // properties
-    var authProvider: AuthService?
+    var authProvider: AuthServiceDelegate?
+    var userService: UserServiceDelegate?
     var navDelegate: LocalNavigationDelegate?
     
     override func viewDidLoad()
@@ -106,8 +107,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
             return
         }
         
+        activityIndicator.startAnimating()
+        
         let newUser = User(fullName: fn, loginName: em, clearTextPassword: pw)
-        authProvider?.register(user: newUser, success: onSignUpSuccess, fail: onSignUpFail)
+        userService?.register(user: newUser, success: onSignUpSuccess, fail: onSignUpFail)
     }
     
     @IBAction func onCancelButtonTapped(_ sender: Any)
@@ -117,11 +120,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     
     func onSignUpSuccess()
     {
-        
+        activityIndicator.stopAnimating()
     }
     
     func onSignUpFail()
     {
-        
+        activityIndicator.stopAnimating()
     }
 }

@@ -23,7 +23,7 @@ class SignInViewController: UIViewController
     @IBOutlet weak var orLabel: UILabel!
     
     // properties
-    var authProvider: AuthService?
+    var authProvider: AuthServiceDelegate?
     var navDelegate: LocalNavigationDelegate?
     
     // private members

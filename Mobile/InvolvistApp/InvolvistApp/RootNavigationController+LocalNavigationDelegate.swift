@@ -19,7 +19,7 @@ extension RootNavigationController: LocalNavigationDelegate
                 if let vc = signInStoryboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
                 {
                     vc.navDelegate = self
-                    vc.authProvider = authenticator
+                    vc.userService = userService
                     self.pushViewController(vc, animated: true)
                 }
         }

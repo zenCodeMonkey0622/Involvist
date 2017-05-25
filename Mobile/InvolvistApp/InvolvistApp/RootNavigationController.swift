@@ -15,9 +15,14 @@ class RootNavigationController: UINavigationController
         return sb
     }()
     
-    lazy var authenticator: AuthService = {
-        let a = Authenticator()
+    lazy var authService: AuthServiceDelegate = {
+        let a = AuthenticationService()
         return a
+    }()
+    
+    lazy var userService: UserServiceDelegate = {
+        let u = UserService()
+        return u
     }()
     
     override func viewDidLoad()
@@ -28,7 +33,7 @@ class RootNavigationController: UINavigationController
         // load sign-in view controller
         if let signInVc = signInStoryboard.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
         {
-            signInVc.authProvider = self.authenticator
+            signInVc.authProvider = authService
             signInVc.navDelegate = self
             self.pushViewController(signInVc, animated: true)
         }
