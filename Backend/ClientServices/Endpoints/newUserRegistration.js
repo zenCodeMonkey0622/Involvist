@@ -25,14 +25,12 @@ function newUserRegistrationGetHandler(req, res, next)
     if (!csResponse.success)
     {
       console.error('registration endpoint error: ', csResponse.responseMessage);
-      res.statusCode = 400;
-      res.end();
+      res.json(csResponse);
     }
     else
     {
       console.log('registration success!');
-      res.statusCode = 200;
-      res.end('ok');
+      res.json(newUser);
     }
   });
 }

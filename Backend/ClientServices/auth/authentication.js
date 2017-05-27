@@ -4,6 +4,7 @@
 var express = require('express');
 var constants = require('../../Shared/SharedConstants');
 var oauthServer = require('simple-oauth-server');
+const csResponse = require('../DataTransfer/CSResponse');
 var as = require('./OAuthServiceModels/AuthorizationService');
 var authenticationService = new as();
 var cs = require('./OAuthServiceModels/ClientService');
@@ -41,12 +42,14 @@ authRouter.post('/token', function(req, res, next) {
     authServer.grantAccessToken(req, function(error, token) {
         if (error)
         {
-            console.log('error: ', error);
-            res.statusCode = 400;
-            return res.end();
+            var csResp = csResponse(false, error.error_description);
+            res.json(csResp);
         }
-        console.log('authentication service granted token on process id ' + process.pid);
-        res.end(JSON.stringify(token));
+        else
+        {
+          console.log('authentication service granted token on process id ' + process.pid);
+          res.json(token);
+        }
     });
 });
 
