@@ -15,12 +15,18 @@ class PopoverView: UIView
     
     var onDismiss: (() -> ())?
     
-    convenience init(description: String?, onDismiss: (() -> ())?)
+    convenience init?(description: String?, onDismiss: (() -> ())?)
     {
         self.init(frame: .zero)
         
-        //self.descriptionLabel.text = description
-        //self.onDismiss = onDismiss
+        guard let topView = Bundle.main.loadNibNamed("PopoverView", owner: self, options: nil)?[0] as? UIView else
+        {
+            return nil
+        }
+        
+        self.addSubview(topView)
+        self.descriptionLabel.text = description
+        self.onDismiss = onDismiss
     }
     
     override func awakeFromNib()
@@ -30,6 +36,9 @@ class PopoverView: UIView
     
     @IBAction func onDismissTapped(_ sender: Any)
     {
-        // todo
+        if let dismissAction = onDismiss
+        {
+            dismissAction()
+        }
     }
 }
