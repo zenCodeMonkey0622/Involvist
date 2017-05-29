@@ -11,7 +11,7 @@ import Alamofire
 
 class UserService: UserServiceDelegate
 {
-    func register(user: User, success: @escaping () -> Void, fail: @escaping () -> Void)
+    func register(user: User, success: @escaping (_: ClientServiceResponse?) -> Void, fail: @escaping (_: ClientServiceResponse?) -> Void)
     {
         let parameters: Parameters = ["real_name": user.fullName,
                                       "password": user.clearTextPassword,
@@ -23,24 +23,19 @@ class UserService: UserServiceDelegate
                           parameters: parameters,
                           encoding: JSONEncoding.default,
                           headers: headers).responseJSON {(response: DataResponse<Any>) in
-                            guard let statusCode = response.response?.statusCode else
+                            guard let json = response.value as? [String: Any],
+                                let response = ClientServiceResponse(json: json) else
                             {
-                                fail()
+                                fail(nil)
                                 return
                             }
-                            
-                            guard let json = response.value as? [String: Any] else
+                            if (response.success == true)
                             {
-                                fail()
-                                return
-                            }
-                            if (statusCode >= 200 && statusCode <= 299)
-                            {
-                                success()
+                                success(ClientServiceResponse(json: json))
                             }
                             else
                             {
-                                fail()
+                                fail(ClientServiceResponse(json: json))
                             }
         }
     }

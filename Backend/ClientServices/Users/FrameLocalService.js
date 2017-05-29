@@ -62,11 +62,12 @@ FrameLocalService.prototype.registerNewUser = function(realName, password, email
         if (res.statusCode != '200')
         {
           var frErr = frameError(responseData);
-          callback(csResponse(false, frErr.message), null);
+          callback(csResponse(false, frErr.message, null), null);
         }
         else
         {
-          callback(csResponse(true, ''), frameUser(responseData));
+          var user = frameUser(responseData);
+          callback(csResponse(true, '', user), user);
         }
       });
     });
@@ -115,11 +116,12 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
         if (res.statusCode != '200')
         {
           var frErr = frameError(responseData);
-          callback(csResponse(false, frErr.message), null);
+          callback(csResponse(false, frErr.message, null), null);
         }
         else
         {
-          callback(csResponse(true, ''), frameUser(responseData));
+          var user = frameUser(responseData);
+          callback(csResponse(true, '', user), user);
         }
       });
     });

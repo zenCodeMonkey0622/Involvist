@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopoverView" customModule="InvolvistApp" customModuleProvider="target">
+            <connections>
+                <outlet property="descriptionLabel" destination="GOf-nC-G7M" id="2XC-5p-6Rn"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dismiss_30x30" translatesAutoresizingMaskIntoConstraints="NO" id="MzI-Gc-SZJ">
+                    <rect key="frame" x="345" y="0.0" width="30" height="30"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="inK-QV-pJP" userLabel="DismissButton">
+                    <rect key="frame" x="345" y="0.0" width="30" height="30"/>
+                    <connections>
+                        <action selector="onDismissTapped:" destination="-1" eventType="touchUpInside" id="Jn8-Ga-vvC"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yo this just happened" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOf-nC-G7M" userLabel="DescriptionLabel">
+                    <rect key="frame" x="20" y="38" width="335" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="MzI-Gc-SZJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6ax-ag-S7Y"/>
+                <constraint firstAttribute="trailing" secondItem="MzI-Gc-SZJ" secondAttribute="trailing" id="Cmp-S4-H7k"/>
+                <constraint firstItem="inK-QV-pJP" firstAttribute="height" secondItem="MzI-Gc-SZJ" secondAttribute="height" id="G4b-Yo-Jh2"/>
+                <constraint firstItem="GOf-nC-G7M" firstAttribute="top" secondItem="MzI-Gc-SZJ" secondAttribute="bottom" constant="8" symbolic="YES" id="PTt-zg-mbb"/>
+                <constraint firstItem="inK-QV-pJP" firstAttribute="centerX" secondItem="MzI-Gc-SZJ" secondAttribute="centerX" id="W2v-WO-FHm"/>
+                <constraint firstItem="inK-QV-pJP" firstAttribute="width" secondItem="MzI-Gc-SZJ" secondAttribute="width" id="Wmh-F7-wUH"/>
+                <constraint firstAttribute="trailing" secondItem="GOf-nC-G7M" secondAttribute="trailing" constant="20" symbolic="YES" id="XhL-nX-uUq"/>
+                <constraint firstItem="GOf-nC-G7M" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="lze-eq-wwi"/>
+                <constraint firstItem="inK-QV-pJP" firstAttribute="centerY" secondItem="MzI-Gc-SZJ" secondAttribute="centerY" id="yWD-gl-gdX"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="dismiss_30x30" width="30" height="30"/>
+    </resources>
+</document>

@@ -9,7 +9,7 @@
 import Foundation
 
 // models the authentication response from the authenticate user api
-public struct AuthResponse
+struct AuthResponse
 {
     let accessToken: String
     let expiresIn: String

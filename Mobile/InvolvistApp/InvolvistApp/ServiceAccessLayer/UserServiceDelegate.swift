@@ -10,5 +10,5 @@ import Foundation
 
 protocol UserServiceDelegate: class
 {
-    func register(user: User, success: @escaping () -> Void, fail: @escaping () -> Void)
+    func register(user: User, success: @escaping (_: ClientServiceResponse?) -> Void, fail: @escaping (_: ClientServiceResponse?) -> Void)
 }

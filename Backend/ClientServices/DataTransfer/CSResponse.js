@@ -22,13 +22,15 @@ class CSResponse
 /**
 * CSResponse factory method.
 * @param {bool} success - true if request was successful
-* @param {string} message - failure message
+* @param {string} message - descriptive result message
+* @param {object} data - associated data
 **/
-function MakeCSResponse(success, message)
+function MakeCSResponse(success, message, data)
 {
   var resp = new CSResponse();
   resp.success = success;
   resp.responseMessage = message;
+  resp.data = data;
 
   return resp;
 }

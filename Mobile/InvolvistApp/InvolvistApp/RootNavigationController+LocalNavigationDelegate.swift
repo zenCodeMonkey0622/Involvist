@@ -20,7 +20,7 @@ extension RootNavigationController: LocalNavigationDelegate
                 {
                     vc.navDelegate = self
                     vc.userService = userService
-                    self.pushViewController(vc, animated: true)
+                    self.present(vc, animated: true, completion: nil)
                 }
         }
     }

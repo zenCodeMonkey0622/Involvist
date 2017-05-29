@@ -23,6 +23,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var verifyPasswordLabel: UILabel!
     @IBOutlet weak var signUpButton: WireframeButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var fadeView: UIView!
     
     // properties
     var authProvider: AuthServiceDelegate?
@@ -73,6 +74,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.activityIndicator.isHidden = true
+        
     }
     
     override func viewDidLayoutSubviews()
@@ -115,16 +117,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func onCancelButtonTapped(_ sender: Any)
     {
-        navDelegate?.dismiss(viewController: self)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func onSignUpSuccess()
+    func onSignUpSuccess(successResponse: ClientServiceResponse?)
     {
         activityIndicator.stopAnimating()
     }
     
-    func onSignUpFail()
+    func onSignUpFail(failResponse: ClientServiceResponse?)
     {
         activityIndicator.stopAnimating()
+        showError(message: failResponse?.responseMessage)
+    }
+    
+    fileprivate func showError(message: String?)
+    {
+        if let msg = message
+        {
+            //self.fadeView.alpha = 0.7
+
+            let popover = PopoverView(description: msg, onDismiss: nil)
+            Popover.pop(popOver: popover, onViewController: self)
+        }
     }
 }

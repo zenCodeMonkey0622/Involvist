@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="involvist_icon_dismiss_256x256.svg"
+   inkscape:export-filename="/Users/rrojas/Dev/Projects/Bit Technique/OnSite/Design/Inkscape/CoachDismiss/CoachDismiss_30x30@3x.png"
+   inkscape:export-xdpi="31.91"
+   inkscape:export-ydpi="31.91">
+  <defs
+     id="defs4">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4198">
+      <path
+         style="opacity:1;fill:#88ef83;fill-opacity:1;stroke:none;stroke-width:40;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 1.7450718,-0.36737087 184.10237,175.75745 360.22718,-6.5998473 177.86989,-182.72466 1.7450718,-0.36737087 Z M 153.14824,-118.18705 l 69.79642,-0.28801 -0.22726,68.20449 -69.79642,0.288006 0.22726,-68.204486 z"
+         id="path4200"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.2093265"
+     inkscape:cx="110.79196"
+     inkscape:cy="117.92416"
+     inkscape:document-units="px"
+     inkscape:current-layer="g4185"
+     showgrid="true"
+     inkscape:showpageshadow="false"
+     objecttolerance="2"
+     gridtolerance="2"
+     guidetolerance="3"
+     showguides="false"
+     inkscape:snap-from-guide="false"
+     inkscape:window-width="1854"
+     inkscape:window-height="985"
+     inkscape:window-x="1468"
+     inkscape:window-y="53"
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2985"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       spacingx="0.5px"
+       spacingy="0.5px" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-796.36218)"
+     style="display:none">
+    <rect
+       style="fill:#885757;fill-opacity:1;stroke:none"
+       id="rect3782"
+       width="256.18723"
+       height="256.52441"
+       x="-3.0198066e-14"
+       y="795.83777" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="CircleLayer"
+     style="display:inline">
+    <path
+       style="fill:#bc477b;fill-opacity:1;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 38.863644,38.507197 A 126.19004,127.66605 45 0 0 37.820936,218.0115 126.19004,127.66605 45 0 0 217.32386,216.96741 126.19004,127.66605 45 0 0 218.36795,37.464487 126.19004,127.66605 45 0 0 38.863644,38.507197 Z m 11.011257,11.544345 a 25.0025,25.0025 0 0 1 35.871855,-0.01657 l 42.347684,42.347685 42.34769,-42.347684 a 25.0025,25.0025 0 1 1 35.35534,35.355339 l -42.34769,42.347688 42.34769,42.34768 a 25.0025,25.0025 0 1 1 -35.35534,35.35534 L 128.09444,163.09333 85.746756,205.44102 A 25.0025,25.0025 0 1 1 50.391417,170.08568 L 92.739103,127.738 50.391417,85.39031 A 25.0025,25.0025 0 0 1 49.874901,50.051542 Z"
+       id="path4108"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     inkscape:label="XLayer copy"
+     id="g4185"
+     inkscape:groupmode="layer"
+     style="display:inline" />
+  <g
+     style="display:inline"
+     inkscape:groupmode="layer"
+     id="g4203"
+     inkscape:label="XLayer copy copy" />
+</svg>
