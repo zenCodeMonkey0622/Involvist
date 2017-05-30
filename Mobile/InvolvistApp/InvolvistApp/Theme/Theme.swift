@@ -37,4 +37,12 @@ struct Theme
             return UIColor(red: 188.0/255.0, green: 71.0/255.0, blue: 123.0/255.0, alpha: 1.0)
         }
     }
+    
+    static var popoverAlpha: CGFloat
+    {
+        get
+        {
+            return 0.6
+        }
+    }
 }

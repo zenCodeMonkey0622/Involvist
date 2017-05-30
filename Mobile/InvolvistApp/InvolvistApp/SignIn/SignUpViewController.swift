@@ -87,6 +87,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
         self.containerScrollView.contentInset = UIEdgeInsets.zero
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // debug:
+        showError(message: "shit's jacked, yo")
+    }
     func textFieldDidEndEditing(_ textField: UITextField)
     {
         // todo: if this is the verify password textfield, make sure the
@@ -135,10 +141,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     {
         if let msg = message
         {
-            //self.fadeView.alpha = 0.7
+            self.fadeView.alpha = Theme.popoverAlpha
 
-            let popover = PopoverView(description: msg, onDismiss: nil)
-            Popover.pop(popOver: popover, onViewController: self)
+            let popover = PopoverView(description: msg, onDismiss: {() -> () in
+                self.fadeView.alpha = 0.0
+            })
+            
+            Popover.show(popOver: popover, onViewController: self)
         }
     }
 }
