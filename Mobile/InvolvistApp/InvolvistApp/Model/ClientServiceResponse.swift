@@ -24,4 +24,19 @@ struct ClientServiceResponse
         self.success = success
         self.responseMessage = message
     }
+    
+    static func localizedResponse(fromMessage message: String?) -> String
+    {
+        guard let msg = message else
+        {
+            return ""
+        }
+        
+        switch msg {
+        case "Username already in use.":
+            return NSLocalizedString("UsernameAlreadyExists", comment: "")
+        default:
+            return ""
+        }
+    }
 }

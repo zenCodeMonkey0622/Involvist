@@ -21,4 +21,6 @@
 "VerifyPasswordLabel" = "retype your password";
 "AlreadyHaveAccount" = "i already have an account";
 
+// http://localhost:3000/api/v1/registration
+"UsernameAlreadyExists" = "that email address is already being used. try logging in or using another email address.";
 

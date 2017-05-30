@@ -33,48 +33,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = Theme.involvistPrimary
-        
-        self.fullNameInput.inputTextField.backgroundColor = UIColor.clear
-        self.fullNameInput.underlineColor = Theme.involvistDark
-        self.fullNameInput.returnKeyType = UIReturnKeyType.done
-        self.fullNameInput.delegate = self
-        self.fullNameLabel.textColor = Theme.involvistLight
-        self.fullNameLabel.text = NSLocalizedString("FullNameLabel", comment: "")
-        
-        self.emailInput.inputTextField.backgroundColor = UIColor.clear
-        self.emailInput.underlineColor = Theme.involvistDark
-        self.emailInput.returnKeyType = UIReturnKeyType.done
-        self.emailInput.delegate = self
-        self.emailLabel.textColor = Theme.involvistLight
-        self.emailLabel.text = NSLocalizedString("EmailLabel", comment: "")
-        
-        self.passwordInput.inputTextField.isSecureTextEntry = true
-        self.passwordInput.inputTextField.backgroundColor = UIColor.clear
-        self.passwordInput.underlineColor = Theme.involvistDark
-        self.passwordInput.returnKeyType = UIReturnKeyType.done
-        self.passwordInput.delegate = self
-        self.passwordLabel.textColor = Theme.involvistLight
-        self.passwordLabel.text = NSLocalizedString("ChoosePassword", comment: "")
-        
-        self.verifyPasswordInput.inputTextField.isSecureTextEntry = true
-        self.verifyPasswordInput.inputTextField.backgroundColor = UIColor.clear
-        self.verifyPasswordInput.underlineColor = Theme.involvistDark
-        self.verifyPasswordInput.returnKeyType = UIReturnKeyType.done
-        self.verifyPasswordInput.delegate = self
-        self.verifyPasswordLabel.textColor = Theme.involvistLight
-        self.verifyPasswordLabel.text = NSLocalizedString("VerifyPasswordLabel", comment: "")
-        
-        self.signUpButton.wireBorderColor = UIColor.white
-        self.signUpButton.isDisabled = true
-        
-        self.cancelButton.titleLabel?.text = NSLocalizedString("AlreadyHaveAccount", comment: "")
-        self.cancelButton.tintColor = Theme.involvistLight
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.activityIndicator.isHidden = true
-        
+        setContentAndStyle()
     }
     
     override func viewDidLayoutSubviews()
@@ -87,12 +46,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
         self.containerScrollView.contentInset = UIEdgeInsets.zero
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // debug:
-        showError(message: "shit's jacked, yo")
-    }
     func textFieldDidEndEditing(_ textField: UITextField)
     {
         // todo: if this is the verify password textfield, make sure the
@@ -134,17 +87,62 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     func onSignUpFail(failResponse: ClientServiceResponse?)
     {
         activityIndicator.stopAnimating()
-        showError(message: failResponse?.responseMessage)
+        showError(message: ClientServiceResponse.localizedResponse(fromMessage: failResponse?.responseMessage))
+    }
+    
+    fileprivate func setContentAndStyle()
+    {
+        self.view.backgroundColor = Theme.involvistPrimary
+        
+        self.fullNameInput.inputTextField.backgroundColor = UIColor.clear
+        self.fullNameInput.underlineColor = Theme.involvistDark
+        self.fullNameInput.returnKeyType = UIReturnKeyType.done
+        self.fullNameInput.delegate = self
+        self.fullNameLabel.textColor = Theme.involvistLight
+        self.fullNameLabel.text = NSLocalizedString("FullNameLabel", comment: "")
+        
+        self.emailInput.inputTextField.backgroundColor = UIColor.clear
+        self.emailInput.underlineColor = Theme.involvistDark
+        self.emailInput.returnKeyType = UIReturnKeyType.done
+        self.emailInput.delegate = self
+        self.emailLabel.textColor = Theme.involvistLight
+        self.emailLabel.text = NSLocalizedString("EmailLabel", comment: "")
+        
+        self.passwordInput.inputTextField.isSecureTextEntry = true
+        self.passwordInput.inputTextField.backgroundColor = UIColor.clear
+        self.passwordInput.underlineColor = Theme.involvistDark
+        self.passwordInput.returnKeyType = UIReturnKeyType.done
+        self.passwordInput.delegate = self
+        self.passwordLabel.textColor = Theme.involvistLight
+        self.passwordLabel.text = NSLocalizedString("ChoosePassword", comment: "")
+        
+        self.verifyPasswordInput.inputTextField.isSecureTextEntry = true
+        self.verifyPasswordInput.inputTextField.backgroundColor = UIColor.clear
+        self.verifyPasswordInput.underlineColor = Theme.involvistDark
+        self.verifyPasswordInput.returnKeyType = UIReturnKeyType.done
+        self.verifyPasswordInput.delegate = self
+        self.verifyPasswordLabel.textColor = Theme.involvistLight
+        self.verifyPasswordLabel.text = NSLocalizedString("VerifyPasswordLabel", comment: "")
+        
+        self.signUpButton.wireBorderColor = UIColor.white
+        self.signUpButton.isDisabled = true
+        
+        self.cancelButton.titleLabel?.text = NSLocalizedString("AlreadyHaveAccount", comment: "")
+        self.cancelButton.tintColor = Theme.involvistLight
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.activityIndicator.isHidden = true
     }
     
     fileprivate func showError(message: String?)
     {
         if let msg = message
         {
-            self.fadeView.alpha = Theme.popoverAlpha
-
+            self.containerScrollView.isUserInteractionEnabled = false
+            
             let popover = PopoverView(description: msg, onDismiss: {() -> () in
-                self.fadeView.alpha = 0.0
+                Popover.dismissActivePopover()
+                self.containerScrollView.isUserInteractionEnabled = true
             })
             
             Popover.show(popOver: popover, onViewController: self)
