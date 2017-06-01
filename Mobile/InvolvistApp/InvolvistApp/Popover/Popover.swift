@@ -13,6 +13,17 @@ class Popover
 {
     static var blurView: UIVisualEffectView?
     
+    static func show(message: String?, onViewController viewController: UIViewController?, onDismiss: (() -> ())?)
+    {
+        guard let msg = message, let vc = viewController else
+        {
+            return
+        }
+        
+        let popover = PopoverView(description: msg, onDismiss: onDismiss)
+        Popover.show(popOver: popover, onViewController: vc)
+    }
+    
     static func show(popOver: PopoverView?, onViewController viewController: UIViewController?)
     {
         guard let po = popOver, let vc = viewController else

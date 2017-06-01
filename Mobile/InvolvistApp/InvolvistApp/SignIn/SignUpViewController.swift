@@ -139,13 +139,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
         if let msg = message
         {
             self.containerScrollView.isUserInteractionEnabled = false
-            
-            let popover = PopoverView(description: msg, onDismiss: {() -> () in
-                Popover.dismissActivePopover()
-                self.containerScrollView.isUserInteractionEnabled = true
+            Popover.show(message: msg, onViewController: self, onDismiss: {() -> () in
+                self.containerScrollView.isUserInteractionEnabled = true;
             })
-            
-            Popover.show(popOver: popover, onViewController: self)
         }
     }
 }

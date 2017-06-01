@@ -50,6 +50,8 @@ class PopoverView: UIView
     
     @IBAction func onDismissTapped(_ sender: Any)
     {
+        Popover.dismissActivePopover()
+        
         if let dismissAction = onDismiss
         {
             dismissAction()
