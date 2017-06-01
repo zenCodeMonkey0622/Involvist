@@ -48,7 +48,8 @@ authRouter.post('/token', function(req, res, next) {
         else
         {
           console.log('authentication service granted token on process id ' + process.pid);
-          res.json(token);
+          var csResp = csResponse(true, null, token)
+          res.json(csResp);
         }
     });
 });
