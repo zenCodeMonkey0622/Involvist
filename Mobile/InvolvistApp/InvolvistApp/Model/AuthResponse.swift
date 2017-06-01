@@ -15,6 +15,8 @@ struct AuthResponse
     let expiresIn: String
     let tokenType: String
     
+    // initializes a AuthResponse object from
+    // a deserialized json dictionary
     init?(json: [String: Any])
     {
         guard let at = json["access_token"] as? String,

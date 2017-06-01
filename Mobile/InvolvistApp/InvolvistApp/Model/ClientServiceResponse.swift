@@ -13,6 +13,8 @@ struct ClientServiceResponse
     let success: Bool
     let responseMessage: String
     
+    // initializes a ClientServiceResponse object from
+    // a deserialized json dictionary
     init?(json: [String: Any])
     {
         guard let success = json["success"] as? Bool,
@@ -25,6 +27,8 @@ struct ClientServiceResponse
         self.responseMessage = message
     }
     
+    // translates response messages from the services
+    // to localized error messages 
     static func localizedResponse(fromMessage message: String?) -> String
     {
         guard let msg = message else

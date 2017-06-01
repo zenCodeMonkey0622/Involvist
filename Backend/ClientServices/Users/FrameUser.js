@@ -9,6 +9,8 @@ class FrameUser
   constructor()
   {
     this.userName = '';
+    this.realName = '';
+    this.email = '';
   }
 }
 
@@ -22,9 +24,12 @@ function MakeFrameUser(frameResponseData)
   var user = new FrameUser();
 
   const responseObj = JSON.parse(frameResponseData);
-  const reponseUser = responseObj['user'];
+  const responseUser = responseObj['user'];
+  const account = responseUser['roles']['account'];
 
-  user.userName = reponseUser['username'];
+  user.userName = responseUser['username'];
+  user.realName = account['name'];
+  user.email = responseUser['email'];
 
   return user;
 }

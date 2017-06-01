@@ -30,7 +30,7 @@ function newUserRegistrationGetHandler(req, res, next)
     else
     {
       console.log('registration success!');
-      res.json(newUser);
+      res.json(csResponse);
     }
   });
 }
