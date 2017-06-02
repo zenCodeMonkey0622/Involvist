@@ -22,8 +22,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var verifyPasswordInput: UnderlinedTextField!
     @IBOutlet weak var verifyPasswordLabel: UILabel!
     @IBOutlet weak var signUpButton: WireframeButton!
-    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var joinMessageLabel: UILabel!
+    @IBOutlet weak var signUpDisclaimerLabel: UILabel!
+    @IBOutlet weak var termsOfServiceButton: UIButton!
+    @IBOutlet weak var privacyPolicyButton: UIButton!
     
     // properties
     var authProvider: AuthServiceDelegate?
@@ -98,6 +100,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
         }
     }
     
+    @IBAction func onTermsOfServiceTapped(_ sender: Any) {
+    }
+    
+    @IBAction func onPrivacyPolicyTapped(_ sender: Any) {
+    }
+    
     func onSignUpSuccess(successResponse: ClientServiceResponse?)
     {
         activityIndicator.stopAnimating()
@@ -145,11 +153,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
         self.verifyPasswordLabel.textColor = Theme.involvistLight
         self.verifyPasswordLabel.text = NSLocalizedString("VerifyPasswordLabel", comment: "")
         
+        self.signUpDisclaimerLabel.text = NSLocalizedString("SignUpDisclaimer", comment: "");
+        self.termsOfServiceButton.setTitle(NSLocalizedString("TermsOfServiceButtonLabel", comment: ""), for: UIControlState.normal)
+        self.termsOfServiceButton.tintColor = Theme.involvistDark
+        self.privacyPolicyButton.setTitle(NSLocalizedString("PrivacyPolicyButtonLabel", comment: ""), for: UIControlState.normal)
+        self.privacyPolicyButton.tintColor = Theme.involvistDark
+
         self.signUpButton.wireBorderColor = UIColor.white
         self.signUpButton.isDisabled = true
-        
-        self.cancelButton.titleLabel?.text = NSLocalizedString("AlreadyHaveAccount", comment: "")
-        self.cancelButton.tintColor = Theme.involvistLight
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.activityIndicator.isHidden = true

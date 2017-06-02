@@ -174,66 +174,76 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDK-WM-upc" userLabel="ContainerScrollView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dismiss_30x30" translatesAutoresizingMaskIntoConstraints="NO" id="bvc-Fx-3vC" userLabel="DismissImage">
+                                        <rect key="frame" x="327.5" y="20" width="30" height="32"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMi-38-nun" userLabel="DismissButton">
+                                        <rect key="frame" x="327.5" y="20" width="30" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                        <connections>
+                                            <action selector="onCancelButtonTapped:" destination="VpA-aS-oaO" eventType="touchUpInside" id="Fhg-jv-3UD"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="join rousr...." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMF-wp-GSt" userLabel="JoinRousrMessageLabel">
-                                        <rect key="frame" x="37.5" y="65" width="300" height="24"/>
+                                        <rect key="frame" x="37.5" y="75" width="300" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coY-zV-NFk" userLabel="FullNameInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="177" width="300" height="30"/>
+                                        <rect key="frame" x="37.5" y="164" width="300" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="L0U-fQ-MuW"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your full name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNs-YS-hPu" userLabel="FullNameLabel">
-                                        <rect key="frame" x="218.5" y="205" width="118.5" height="24"/>
+                                        <rect key="frame" x="218.5" y="192" width="118.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-Df-jpa" userLabel="EmailInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="242" width="300" height="30"/>
+                                        <rect key="frame" x="37.5" y="229" width="300" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Xpz-bV-1el"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evp-lH-BSW" userLabel="EmailLabel">
-                                        <rect key="frame" x="250" y="270" width="87" height="24"/>
+                                        <rect key="frame" x="250" y="257" width="87" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4q3-ny-pRq" userLabel="PasswordInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="307" width="300" height="30"/>
+                                        <rect key="frame" x="37.5" y="294" width="300" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="v1L-Ig-clI"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="choose a password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUg-PX-eDy" userLabel="PasswordLabel">
-                                        <rect key="frame" x="171.5" y="335" width="165.5" height="24"/>
+                                        <rect key="frame" x="171.5" y="322" width="165.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uZf-VG-pZK" userLabel="VerifyPasswordInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="372" width="300" height="30"/>
+                                        <rect key="frame" x="37.5" y="359" width="300" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="vm1-vQ-RSR"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="retype your password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwO-jV-x9U" userLabel="VerifyPasswordLabel">
-                                        <rect key="frame" x="154.5" y="400" width="182.5" height="24"/>
+                                        <rect key="frame" x="154.5" y="387" width="182.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z0I-zf-AP9" userLabel="SignUpButton" customClass="WireframeButton" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="474" width="300" height="40"/>
+                                        <rect key="frame" x="37.5" y="461" width="300" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="k3S-Yu-ltV"/>
                                         </constraints>
@@ -251,25 +261,41 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMi-38-nun" userLabel="AlreadyHaveAccountButton">
-                                        <rect key="frame" x="37.5" y="522" width="300" height="32"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
-                                        <state key="normal" title="i already have an account"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sign up disclaimer here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weK-Hh-P6s" userLabel="SignUpDisclaimerLabel">
+                                        <rect key="frame" x="109.5" y="521" width="156.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDw-iP-YUb" userLabel="TermsOfServiceButton">
+                                        <rect key="frame" x="121" y="547" width="132" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                        <state key="normal" title="our terns of service"/>
                                         <connections>
-                                            <action selector="onCancelButtonTapped:" destination="VpA-aS-oaO" eventType="touchUpInside" id="wmi-eb-87i"/>
+                                            <action selector="onTermsOfServiceTapped:" destination="VpA-aS-oaO" eventType="touchUpInside" id="XHo-f1-ee4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhD-4d-mqF" userLabel="PrivacyPolicyButton">
+                                        <rect key="frame" x="128" y="577" width="119" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                        <state key="normal" title="our privacy policy"/>
+                                        <connections>
+                                            <action selector="onPrivacyPolicyTapped:" destination="VpA-aS-oaO" eventType="touchUpInside" id="gIn-9K-u4I"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="bhD-4d-mqF" firstAttribute="centerX" secondItem="QDK-WM-upc" secondAttribute="centerX" id="26K-FF-VHa"/>
+                                    <constraint firstItem="tMi-38-nun" firstAttribute="top" secondItem="bvc-Fx-3vC" secondAttribute="top" id="39B-79-utg"/>
                                     <constraint firstItem="hhh-Df-jpa" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="0.2" id="3bA-PX-cwC"/>
-                                    <constraint firstItem="tMi-38-nun" firstAttribute="trailing" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="1.8" id="4DL-rm-luo"/>
+                                    <constraint firstItem="weK-Hh-P6s" firstAttribute="centerX" secondItem="QDK-WM-upc" secondAttribute="centerX" id="5YK-yg-V9o"/>
                                     <constraint firstItem="uZf-VG-pZK" firstAttribute="trailing" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="1.8" id="7D4-sv-frB"/>
-                                    <constraint firstItem="tMi-38-nun" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="0.2" id="8CW-Xu-Gwn"/>
+                                    <constraint firstItem="tMi-38-nun" firstAttribute="height" secondItem="bvc-Fx-3vC" secondAttribute="height" id="8HI-aE-fPA"/>
                                     <constraint firstItem="Eac-2A-vdf" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="leading" id="8JY-kA-536"/>
                                     <constraint firstItem="pwO-jV-x9U" firstAttribute="trailing" secondItem="uZf-VG-pZK" secondAttribute="trailing" id="DEY-Q4-VRI"/>
                                     <constraint firstItem="4q3-ny-pRq" firstAttribute="trailing" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="1.8" id="INO-c4-EKs"/>
-                                    <constraint firstItem="zMF-wp-GSt" firstAttribute="top" secondItem="QDK-WM-upc" secondAttribute="top" constant="65" id="La2-Co-FAV"/>
-                                    <constraint firstItem="tMi-38-nun" firstAttribute="top" secondItem="z0I-zf-AP9" secondAttribute="bottom" constant="8" symbolic="YES" id="MrR-zB-h3b"/>
+                                    <constraint firstItem="zMF-wp-GSt" firstAttribute="top" secondItem="QDK-WM-upc" secondAttribute="top" constant="75" id="La2-Co-FAV"/>
+                                    <constraint firstItem="bhD-4d-mqF" firstAttribute="top" secondItem="WDw-iP-YUb" secondAttribute="bottom" id="M6C-Ni-0QZ"/>
                                     <constraint firstItem="RNs-YS-hPu" firstAttribute="trailing" secondItem="coY-zV-NFk" secondAttribute="trailing" id="MzZ-PB-qLZ"/>
                                     <constraint firstItem="pwO-jV-x9U" firstAttribute="top" secondItem="uZf-VG-pZK" secondAttribute="bottom" constant="-2" id="N4O-1T-dv6"/>
                                     <constraint firstAttribute="trailing" secondItem="Eac-2A-vdf" secondAttribute="trailing" id="O0F-fz-fjK"/>
@@ -278,19 +304,26 @@
                                     <constraint firstItem="BUg-PX-eDy" firstAttribute="top" secondItem="4q3-ny-pRq" secondAttribute="bottom" constant="-2" id="WB2-ns-097"/>
                                     <constraint firstItem="hhh-Df-jpa" firstAttribute="top" secondItem="coY-zV-NFk" secondAttribute="bottom" constant="35" id="WyL-9G-Jsg"/>
                                     <constraint firstItem="4q3-ny-pRq" firstAttribute="top" secondItem="hhh-Df-jpa" secondAttribute="bottom" constant="35" id="aDb-aN-I9c"/>
+                                    <constraint firstItem="bvc-Fx-3vC" firstAttribute="top" secondItem="QDK-WM-upc" secondAttribute="top" constant="20" symbolic="YES" id="aZd-Ev-raB"/>
+                                    <constraint firstItem="bvc-Fx-3vC" firstAttribute="trailing" secondItem="zMF-wp-GSt" secondAttribute="trailing" constant="20" id="aek-yQ-gZV"/>
+                                    <constraint firstItem="tMi-38-nun" firstAttribute="leading" secondItem="bvc-Fx-3vC" secondAttribute="leading" id="bLl-pj-nMK"/>
+                                    <constraint firstItem="WDw-iP-YUb" firstAttribute="top" secondItem="weK-Hh-P6s" secondAttribute="bottom" constant="8" symbolic="YES" id="cl7-Nc-g7n"/>
+                                    <constraint firstItem="weK-Hh-P6s" firstAttribute="top" secondItem="z0I-zf-AP9" secondAttribute="bottom" constant="20" id="eIZ-Bu-V2t"/>
                                     <constraint firstItem="BUg-PX-eDy" firstAttribute="trailing" secondItem="4q3-ny-pRq" secondAttribute="trailing" id="hkL-e0-uHu"/>
                                     <constraint firstItem="z0I-zf-AP9" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="0.2" id="iu3-PA-Thx"/>
                                     <constraint firstItem="uZf-VG-pZK" firstAttribute="top" secondItem="4q3-ny-pRq" secondAttribute="bottom" constant="35" id="iz4-qM-pcI"/>
                                     <constraint firstItem="z0I-zf-AP9" firstAttribute="trailing" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="1.8" id="j9S-Mw-wbY"/>
                                     <constraint firstItem="zMF-wp-GSt" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="0.2" id="kXP-h5-9VN"/>
                                     <constraint firstItem="z0I-zf-AP9" firstAttribute="top" secondItem="pwO-jV-x9U" secondAttribute="bottom" constant="50" id="l6q-wA-BcL"/>
-                                    <constraint firstItem="coY-zV-NFk" firstAttribute="top" secondItem="zMF-wp-GSt" secondAttribute="bottom" constant="88" id="lBA-2e-OjW"/>
+                                    <constraint firstItem="coY-zV-NFk" firstAttribute="top" secondItem="zMF-wp-GSt" secondAttribute="bottom" constant="65" id="lBA-2e-OjW"/>
+                                    <constraint firstItem="tMi-38-nun" firstAttribute="width" secondItem="bvc-Fx-3vC" secondAttribute="width" id="lCa-8w-Hif"/>
                                     <constraint firstItem="uZf-VG-pZK" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="0.2" id="lgw-I4-wBP"/>
                                     <constraint firstItem="coY-zV-NFk" firstAttribute="trailing" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="1.8" id="oLc-fA-ICU"/>
                                     <constraint firstItem="evp-lH-BSW" firstAttribute="top" secondItem="hhh-Df-jpa" secondAttribute="bottom" constant="-2" id="qqa-8E-13y"/>
                                     <constraint firstItem="RNs-YS-hPu" firstAttribute="top" secondItem="coY-zV-NFk" secondAttribute="bottom" constant="-2" id="qzg-DH-1Kp"/>
                                     <constraint firstItem="4q3-ny-pRq" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="0.2" id="sI2-ft-4yk"/>
-                                    <constraint firstAttribute="bottom" secondItem="z0I-zf-AP9" secondAttribute="bottom" constant="40" id="uiW-3w-zqL"/>
+                                    <constraint firstItem="WDw-iP-YUb" firstAttribute="centerX" secondItem="QDK-WM-upc" secondAttribute="centerX" id="uZv-rX-Whh"/>
+                                    <constraint firstAttribute="bottom" secondItem="z0I-zf-AP9" secondAttribute="bottom" id="uiW-3w-zqL"/>
                                     <constraint firstItem="Eac-2A-vdf" firstAttribute="top" secondItem="QDK-WM-upc" secondAttribute="top" constant="67" id="xW2-pN-7Ku"/>
                                     <constraint firstItem="coY-zV-NFk" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="0.2" id="y7l-TL-yze"/>
                                     <constraint firstItem="evp-lH-BSW" firstAttribute="trailing" secondItem="hhh-Df-jpa" secondAttribute="trailing" id="zzf-fr-eHy"/>
@@ -309,7 +342,6 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="hxK-2F-EMF" id="0f8-ZH-ZSX"/>
-                        <outlet property="cancelButton" destination="tMi-38-nun" id="8fK-pu-KpF"/>
                         <outlet property="containerScrollView" destination="QDK-WM-upc" id="HFM-Kb-6WX"/>
                         <outlet property="emailInput" destination="hhh-Df-jpa" id="PLw-R2-abf"/>
                         <outlet property="emailLabel" destination="evp-lH-BSW" id="RTG-5n-1r7"/>
@@ -318,7 +350,10 @@
                         <outlet property="joinMessageLabel" destination="zMF-wp-GSt" id="SOo-Mf-elu"/>
                         <outlet property="passwordInput" destination="4q3-ny-pRq" id="FEA-Zh-v7b"/>
                         <outlet property="passwordLabel" destination="BUg-PX-eDy" id="FxA-Ep-Sk8"/>
+                        <outlet property="privacyPolicyButton" destination="bhD-4d-mqF" id="e1H-pw-7WE"/>
                         <outlet property="signUpButton" destination="z0I-zf-AP9" id="SZ4-g6-YJF"/>
+                        <outlet property="signUpDisclaimerLabel" destination="weK-Hh-P6s" id="5FT-Ny-n9x"/>
+                        <outlet property="termsOfServiceButton" destination="WDw-iP-YUb" id="cD4-5x-fTN"/>
                         <outlet property="verifyPasswordInput" destination="uZf-VG-pZK" id="vCl-Ac-QRr"/>
                         <outlet property="verifyPasswordLabel" destination="pwO-jV-x9U" id="YTp-SJ-Z65"/>
                     </connections>
@@ -337,6 +372,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="dismiss_30x30" width="30" height="30"/>
         <image name="rousr_logo_115x115" width="115" height="115"/>
     </resources>
 </document>

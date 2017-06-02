@@ -19,7 +19,9 @@
 "EmailLabel" = "your email";
 "ChoosePassword" = "choose a password";
 "VerifyPasswordLabel" = "retype your password";
-"AlreadyHaveAccount" = "i already have an account";
+"SignUpDisclaimer" = "by signing up you are agreeing to:";
+"TermsOfServiceButtonLabel" = "our terms of service";
+"PrivacyPolicyButtonLabel" = "our privacy policy";
 
 // http://localhost:3000/api/v1/registration
 "UsernameAlreadyExists" = "that email address is already being used. try logging in or using another email address.";

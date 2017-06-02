@@ -48,13 +48,11 @@ class SignInViewController: UIViewController
         self.passwordLabel.text = NSLocalizedString("PasswordLabel", comment: "")
         
         self.logInButton.wireBorderColor = UIColor.white
-        //self.logInButton.backgroundColor = Theme.involvistDark
         
         self.orLabel.textColor = Theme.involvistLight
         self.orLabel.text = NSLocalizedString("OrText", comment: "")
         
         self.signUpButton.wireBorderColor = UIColor.white
-        //self.signUpButton.backgroundColor = Theme.involvistDark
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.activityIndicator.isHidden = true
