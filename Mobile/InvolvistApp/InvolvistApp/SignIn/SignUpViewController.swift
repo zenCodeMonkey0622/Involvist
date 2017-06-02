@@ -30,6 +30,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     var userService: UserServiceDelegate?
     var navDelegate: LocalNavigationDelegate?
     
+    weak var signUpDelegate: SignUpProgressDelegate?
+    
+    // MARK: Factory
+    
+    static func create() -> SignUpViewController
+    {
+        let sb = UIStoryboard(name: "SignIn", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
+        return vc
+    }
+    
+    // MARK: Lifecycle
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -76,7 +88,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func onCancelButtonTapped(_ sender: Any)
     {
-        self.dismiss(animated: true, completion: nil)
+        if let del = signUpDelegate
+        {
+            del.didCancelSignUp()
+        }
+        else
+        {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     func onSignUpSuccess(successResponse: ClientServiceResponse?)

@@ -73,7 +73,7 @@ class SignInViewController: UIViewController
     // ibactions
     @IBAction func onSignupTapped(_ sender: Any)
     {
-        //navDelegate?.navigateTo(destinationView: .signUpView)
+        navDelegate?.navigateTo(destinationView: .signUpView)
     }
     
     @IBAction func onLoginTapped(_ sender: Any)

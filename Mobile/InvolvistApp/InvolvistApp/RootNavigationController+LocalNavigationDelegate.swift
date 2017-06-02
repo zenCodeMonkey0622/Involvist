@@ -16,12 +16,19 @@ extension RootNavigationController: LocalNavigationDelegate
         switch destinationView
         {
             case .signUpView:
-                if let vc = signInStoryboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
+                if let vc = signInStoryboard.instantiateViewController(withIdentifier: "SignUpPageViewController") as? SignUpPageViewController
                 {
                     vc.navDelegate = self
-                    vc.userService = userService
+                    vc.userServiceDelegate = self.userService
                     self.present(vc, animated: true, completion: nil)
                 }
+                break;
+            case .privacyPolicy:
+                // todo
+                break;
+            case .termsOfService:
+                // todo
+                break;
         }
     }
     

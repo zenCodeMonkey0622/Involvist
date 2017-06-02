@@ -92,7 +92,6 @@
                                         </state>
                                         <connections>
                                             <action selector="onSignupTapped:" destination="HUw-po-2kK" eventType="touchUpInside" id="QUP-DZ-Ho3"/>
-                                            <segue destination="UDZ-Zl-nTc" kind="presentation" id="3Et-v2-x8w"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWN-Jv-oHk" userLabel="PasswordInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">

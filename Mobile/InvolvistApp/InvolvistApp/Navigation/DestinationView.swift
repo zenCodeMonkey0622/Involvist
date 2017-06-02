@@ -12,4 +12,6 @@ import UIKit
 enum DestinationView
 {
     case signUpView
+    case termsOfService
+    case privacyPolicy
 }
