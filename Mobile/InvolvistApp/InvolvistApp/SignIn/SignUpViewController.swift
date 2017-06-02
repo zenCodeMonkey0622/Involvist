@@ -23,7 +23,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var verifyPasswordLabel: UILabel!
     @IBOutlet weak var signUpButton: WireframeButton!
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var fadeView: UIView!
+    @IBOutlet weak var joinMessageLabel: UILabel!
     
     // properties
     var authProvider: AuthServiceDelegate?
@@ -93,6 +93,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     fileprivate func setContentAndStyle()
     {
         self.view.backgroundColor = Theme.involvistPrimary
+        
+        self.joinMessageLabel.text = NSLocalizedString("JoinMessage", comment: "")
         
         self.fullNameInput.inputTextField.backgroundColor = UIColor.clear
         self.fullNameInput.underlineColor = Theme.involvistDark

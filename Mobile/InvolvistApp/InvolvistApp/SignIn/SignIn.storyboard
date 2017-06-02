@@ -174,68 +174,71 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDK-WM-upc" userLabel="ContainerScrollView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rousr_logo_115x115" translatesAutoresizingMaskIntoConstraints="NO" id="v0Y-DO-vKS">
-                                        <rect key="frame" x="129.5" y="20" width="115" height="115"/>
-                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="join rousr...." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMF-wp-GSt" userLabel="JoinRousrMessageLabel">
+                                        <rect key="frame" x="37.5" y="65" width="300" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coY-zV-NFk" userLabel="FullNameInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="195" width="300" height="30"/>
+                                        <rect key="frame" x="37.5" y="177" width="300" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="L0U-fQ-MuW"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your full name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNs-YS-hPu" userLabel="FullNameLabel">
-                                        <rect key="frame" x="218.5" y="223" width="118.5" height="24"/>
+                                        <rect key="frame" x="218.5" y="205" width="118.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-Df-jpa" userLabel="EmailInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="260" width="300" height="30"/>
+                                        <rect key="frame" x="37.5" y="242" width="300" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Xpz-bV-1el"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evp-lH-BSW" userLabel="EmailLabel">
-                                        <rect key="frame" x="250" y="288" width="87" height="24"/>
+                                        <rect key="frame" x="250" y="270" width="87" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4q3-ny-pRq" userLabel="PasswordInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="325" width="300" height="30"/>
+                                        <rect key="frame" x="37.5" y="307" width="300" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="v1L-Ig-clI"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="choose a password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUg-PX-eDy" userLabel="PasswordLabel">
-                                        <rect key="frame" x="171.5" y="353" width="165.5" height="24"/>
+                                        <rect key="frame" x="171.5" y="335" width="165.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uZf-VG-pZK" userLabel="VerifyPasswordInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="390" width="300" height="30"/>
+                                        <rect key="frame" x="37.5" y="372" width="300" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="vm1-vQ-RSR"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="retype your password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwO-jV-x9U" userLabel="VerifyPasswordLabel">
-                                        <rect key="frame" x="154.5" y="418" width="182.5" height="24"/>
+                                        <rect key="frame" x="154.5" y="400" width="182.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z0I-zf-AP9" userLabel="SignUpButton" customClass="WireframeButton" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="492" width="300" height="40"/>
+                                        <rect key="frame" x="37.5" y="474" width="300" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="k3S-Yu-ltV"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="join the fight">
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                        <state key="normal" title="sign up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -249,7 +252,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMi-38-nun" userLabel="AlreadyHaveAccountButton">
-                                        <rect key="frame" x="37.5" y="540" width="300" height="32"/>
+                                        <rect key="frame" x="37.5" y="522" width="300" height="32"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
                                         <state key="normal" title="i already have an account"/>
                                         <connections>
@@ -260,18 +263,17 @@
                                 <constraints>
                                     <constraint firstItem="hhh-Df-jpa" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="0.2" id="3bA-PX-cwC"/>
                                     <constraint firstItem="tMi-38-nun" firstAttribute="trailing" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="1.8" id="4DL-rm-luo"/>
-                                    <constraint firstItem="v0Y-DO-vKS" firstAttribute="centerX" secondItem="QDK-WM-upc" secondAttribute="centerX" id="5Gi-by-ozP"/>
                                     <constraint firstItem="uZf-VG-pZK" firstAttribute="trailing" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="1.8" id="7D4-sv-frB"/>
                                     <constraint firstItem="tMi-38-nun" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="0.2" id="8CW-Xu-Gwn"/>
                                     <constraint firstItem="Eac-2A-vdf" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="leading" id="8JY-kA-536"/>
                                     <constraint firstItem="pwO-jV-x9U" firstAttribute="trailing" secondItem="uZf-VG-pZK" secondAttribute="trailing" id="DEY-Q4-VRI"/>
                                     <constraint firstItem="4q3-ny-pRq" firstAttribute="trailing" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="1.8" id="INO-c4-EKs"/>
+                                    <constraint firstItem="zMF-wp-GSt" firstAttribute="top" secondItem="QDK-WM-upc" secondAttribute="top" constant="65" id="La2-Co-FAV"/>
                                     <constraint firstItem="tMi-38-nun" firstAttribute="top" secondItem="z0I-zf-AP9" secondAttribute="bottom" constant="8" symbolic="YES" id="MrR-zB-h3b"/>
                                     <constraint firstItem="RNs-YS-hPu" firstAttribute="trailing" secondItem="coY-zV-NFk" secondAttribute="trailing" id="MzZ-PB-qLZ"/>
                                     <constraint firstItem="pwO-jV-x9U" firstAttribute="top" secondItem="uZf-VG-pZK" secondAttribute="bottom" constant="-2" id="N4O-1T-dv6"/>
                                     <constraint firstAttribute="trailing" secondItem="Eac-2A-vdf" secondAttribute="trailing" id="O0F-fz-fjK"/>
-                                    <constraint firstItem="v0Y-DO-vKS" firstAttribute="top" secondItem="QDK-WM-upc" secondAttribute="top" constant="20" symbolic="YES" id="OYc-8A-AQM"/>
-                                    <constraint firstItem="coY-zV-NFk" firstAttribute="top" secondItem="v0Y-DO-vKS" secondAttribute="bottom" constant="60" id="OwF-Y7-PAd"/>
+                                    <constraint firstItem="zMF-wp-GSt" firstAttribute="trailing" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="1.8" id="Pzv-VQ-p3q"/>
                                     <constraint firstItem="hhh-Df-jpa" firstAttribute="trailing" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="1.8" id="Vl4-Jb-Z9b"/>
                                     <constraint firstItem="BUg-PX-eDy" firstAttribute="top" secondItem="4q3-ny-pRq" secondAttribute="bottom" constant="-2" id="WB2-ns-097"/>
                                     <constraint firstItem="hhh-Df-jpa" firstAttribute="top" secondItem="coY-zV-NFk" secondAttribute="bottom" constant="35" id="WyL-9G-Jsg"/>
@@ -280,7 +282,9 @@
                                     <constraint firstItem="z0I-zf-AP9" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="0.2" id="iu3-PA-Thx"/>
                                     <constraint firstItem="uZf-VG-pZK" firstAttribute="top" secondItem="4q3-ny-pRq" secondAttribute="bottom" constant="35" id="iz4-qM-pcI"/>
                                     <constraint firstItem="z0I-zf-AP9" firstAttribute="trailing" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="1.8" id="j9S-Mw-wbY"/>
+                                    <constraint firstItem="zMF-wp-GSt" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="0.2" id="kXP-h5-9VN"/>
                                     <constraint firstItem="z0I-zf-AP9" firstAttribute="top" secondItem="pwO-jV-x9U" secondAttribute="bottom" constant="50" id="l6q-wA-BcL"/>
+                                    <constraint firstItem="coY-zV-NFk" firstAttribute="top" secondItem="zMF-wp-GSt" secondAttribute="bottom" constant="88" id="lBA-2e-OjW"/>
                                     <constraint firstItem="uZf-VG-pZK" firstAttribute="leading" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="0.2" id="lgw-I4-wBP"/>
                                     <constraint firstItem="coY-zV-NFk" firstAttribute="trailing" secondItem="QDK-WM-upc" secondAttribute="centerX" multiplier="1.8" id="oLc-fA-ICU"/>
                                     <constraint firstItem="evp-lH-BSW" firstAttribute="top" secondItem="hhh-Df-jpa" secondAttribute="bottom" constant="-2" id="qqa-8E-13y"/>
@@ -292,22 +296,14 @@
                                     <constraint firstItem="evp-lH-BSW" firstAttribute="trailing" secondItem="hhh-Df-jpa" secondAttribute="trailing" id="zzf-fr-eHy"/>
                                 </constraints>
                             </scrollView>
-                            <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uVf-K0-Dve" userLabel="FadeView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.53333333333333333" green="0.054901960784313725" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="QDK-WM-upc" firstAttribute="leading" secondItem="jbH-Vn-bHY" secondAttribute="leading" id="1sG-jH-G7T"/>
-                            <constraint firstItem="wKI-Gk-33g" firstAttribute="top" secondItem="uVf-K0-Dve" secondAttribute="bottom" id="5j3-ni-sxm"/>
                             <constraint firstItem="QDK-WM-upc" firstAttribute="top" secondItem="nKH-Tm-jcb" secondAttribute="bottom" id="9mt-jR-b6r"/>
                             <constraint firstItem="hxK-2F-EMF" firstAttribute="centerY" secondItem="jbH-Vn-bHY" secondAttribute="centerY" id="IXd-nL-JsW"/>
-                            <constraint firstItem="uVf-K0-Dve" firstAttribute="top" secondItem="nKH-Tm-jcb" secondAttribute="bottom" constant="-20" id="JLd-N3-hiQ"/>
                             <constraint firstItem="QDK-WM-upc" firstAttribute="trailing" secondItem="jbH-Vn-bHY" secondAttribute="trailing" id="RI4-QE-zN0"/>
-                            <constraint firstAttribute="trailing" secondItem="uVf-K0-Dve" secondAttribute="trailing" id="YS9-47-HZe"/>
                             <constraint firstItem="hxK-2F-EMF" firstAttribute="centerX" secondItem="jbH-Vn-bHY" secondAttribute="centerX" id="hZR-Vo-s6r"/>
-                            <constraint firstItem="uVf-K0-Dve" firstAttribute="leading" secondItem="jbH-Vn-bHY" secondAttribute="leading" id="p6U-D6-ZTN"/>
                             <constraint firstItem="wKI-Gk-33g" firstAttribute="top" secondItem="QDK-WM-upc" secondAttribute="bottom" id="x7a-fA-8cD"/>
                         </constraints>
                     </view>
@@ -317,9 +313,9 @@
                         <outlet property="containerScrollView" destination="QDK-WM-upc" id="HFM-Kb-6WX"/>
                         <outlet property="emailInput" destination="hhh-Df-jpa" id="PLw-R2-abf"/>
                         <outlet property="emailLabel" destination="evp-lH-BSW" id="RTG-5n-1r7"/>
-                        <outlet property="fadeView" destination="uVf-K0-Dve" id="eDG-lx-Ctt"/>
                         <outlet property="fullNameInput" destination="coY-zV-NFk" id="O9m-hd-8S9"/>
                         <outlet property="fullNameLabel" destination="RNs-YS-hPu" id="YeX-Jv-ouH"/>
+                        <outlet property="joinMessageLabel" destination="zMF-wp-GSt" id="SOo-Mf-elu"/>
                         <outlet property="passwordInput" destination="4q3-ny-pRq" id="FEA-Zh-v7b"/>
                         <outlet property="passwordLabel" destination="BUg-PX-eDy" id="FxA-Ep-Sk8"/>
                         <outlet property="signUpButton" destination="z0I-zf-AP9" id="SZ4-g6-YJF"/>

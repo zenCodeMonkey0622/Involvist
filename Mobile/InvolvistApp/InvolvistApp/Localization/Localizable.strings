@@ -14,7 +14,7 @@
 "OrText" = "or";
 
 // signup screen
-"SignUpTitleLabel" = "get loud and join the fight";
+"JoinMessage" = "join rousr and stay up to date on legislation that matters to you.";
 "FullNameLabel" = "your full name";
 "EmailLabel" = "your email";
 "ChoosePassword" = "choose a password";
