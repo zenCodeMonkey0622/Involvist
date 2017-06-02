@@ -37,6 +37,7 @@
 		ABD78FBA1EBCD02500E3D5CA /* UnderlinedTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */; };
 		ABD78FBC1EBCD03300E3D5CA /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */; };
 		ABF6C8421ED15B8500ED49BF /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6C8411ED15B8500ED49BF /* AuthResponse.swift */; };
+		ABFF86B51EE1B642005C9032 /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFF86B41EE1B642005C9032 /* SignUpPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		ABD78FB91EBCD02500E3D5CA /* UnderlinedTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnderlinedTextField.xib; sourceTree = "<group>"; };
 		ABD78FBB1EBCD03300E3D5CA /* UnderlinedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		ABF6C8411ED15B8500ED49BF /* AuthResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		ABFF86B41EE1B642005C9032 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
 		BEFE78C6EFAA32D9D4DAC618 /* Pods_InvolvistApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InvolvistApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E375DEC1A7A53449A1196512 /* Pods-InvolvistApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvolvistApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InvolvistApp/Pods-InvolvistApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,6 +178,7 @@
 				AB5393F61EB9952500A00C0B /* SignIn.storyboard */,
 				ABD78FB61EBCBCFD00E3D5CA /* SignInViewController.swift */,
 				ABD14FAF1ED3E108005E6062 /* SignUpViewController.swift */,
+				ABFF86B41EE1B642005C9032 /* SignUpPageViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				ABD78FBC1EBCD03300E3D5CA /* UnderlinedTextField.swift in Sources */,
 				ABD78FB71EBCBCFD00E3D5CA /* SignInViewController.swift in Sources */,
 				AB5223B81EDBDA1D006D9CB2 /* Popover.swift in Sources */,
+				ABFF86B51EE1B642005C9032 /* SignUpPageViewController.swift in Sources */,
 				ABD14FB71ED3EBBA005E6062 /* RootNavigationController+LocalNavigationDelegate.swift in Sources */,
 				AB048F5D1EBD273900A3F889 /* WireframeButton.swift in Sources */,
 				AB5393FA1EB9957700A00C0B /* Theme.swift in Sources */,
