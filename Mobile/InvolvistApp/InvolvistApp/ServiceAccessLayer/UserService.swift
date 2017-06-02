@@ -31,11 +31,11 @@ class UserService: UserServiceDelegate
                             }
                             if (response.success == true)
                             {
-                                success(ClientServiceResponse(json: json))
+                                success(response)
                             }
                             else
                             {
-                                fail(ClientServiceResponse(json: json))
+                                fail(response)
                             }
         }
     }
