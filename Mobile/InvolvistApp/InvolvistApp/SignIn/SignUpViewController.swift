@@ -109,6 +109,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     func onSignUpSuccess(successResponse: ClientServiceResponse?)
     {
         activityIndicator.stopAnimating()
+        
+        guard let response = successResponse, let userData = response.data, let newUser = User(json: userData) else
+        {
+            showError(message: "something went wrong with the response data")
+            return
+        }
+        
+        signUpDelegate?.didRegisterUser(newUser: newUser)
     }
     
     func onSignUpFail(failResponse: ClientServiceResponse?)

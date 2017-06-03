@@ -40,6 +40,7 @@
 		ABFF86B51EE1B642005C9032 /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFF86B41EE1B642005C9032 /* SignUpPageViewController.swift */; };
 		ABFF86B71EE1B710005C9032 /* SignUpPageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFF86B61EE1B710005C9032 /* SignUpPageDataSource.swift */; };
 		ABFF86B91EE1C494005C9032 /* SignUpProgressDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFF86B81EE1C494005C9032 /* SignUpProgressDelegate.swift */; };
+		ABFF86BD1EE264DF005C9032 /* SignUpLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFF86BC1EE264DF005C9032 /* SignUpLocatorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		ABFF86B41EE1B642005C9032 /* SignUpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
 		ABFF86B61EE1B710005C9032 /* SignUpPageDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPageDataSource.swift; sourceTree = "<group>"; };
 		ABFF86B81EE1C494005C9032 /* SignUpProgressDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpProgressDelegate.swift; sourceTree = "<group>"; };
+		ABFF86BC1EE264DF005C9032 /* SignUpLocatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpLocatorViewController.swift; sourceTree = "<group>"; };
 		BEFE78C6EFAA32D9D4DAC618 /* Pods_InvolvistApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InvolvistApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E375DEC1A7A53449A1196512 /* Pods-InvolvistApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvolvistApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InvolvistApp/Pods-InvolvistApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +187,7 @@
 				ABFF86B41EE1B642005C9032 /* SignUpPageViewController.swift */,
 				ABFF86B61EE1B710005C9032 /* SignUpPageDataSource.swift */,
 				ABFF86B81EE1C494005C9032 /* SignUpProgressDelegate.swift */,
+				ABFF86BC1EE264DF005C9032 /* SignUpLocatorViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				ABCE348E1EC6CC1F0018D57C /* AuthenticationService.swift in Sources */,
 				AB5223BC1EDBDCA1006D9CB2 /* PopoverView.swift in Sources */,
 				AB5223B41ED68F47006D9CB2 /* ContentType.swift in Sources */,
+				ABFF86BD1EE264DF005C9032 /* SignUpLocatorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

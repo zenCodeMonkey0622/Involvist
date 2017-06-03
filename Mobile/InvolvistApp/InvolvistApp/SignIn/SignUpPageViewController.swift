@@ -23,7 +23,8 @@ class SignUpPageViewController: UIPageViewController, SignUpProgressDelegate
     // data source and delegate object
     var pageDataSource: UIPageViewControllerDataSource?
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         // create the data source and delegate
@@ -31,11 +32,11 @@ class SignUpPageViewController: UIPageViewController, SignUpProgressDelegate
         dataSource = pageDataSource
         delegate = pageDataSource as? UIPageViewControllerDelegate
         
-        let firstVc = SignUpViewController.create()
-        firstVc.signUpDelegate = self
-        firstVc.userService = userServiceDelegate
+        let signupVc = SignUpViewController.create()
+        signupVc.signUpDelegate = self
+        signupVc.userService = userServiceDelegate
         
-        setViewControllers([firstVc], direction: .forward, animated: false, completion: nil)
+        setViewControllers([signupVc], direction: .forward, animated: false, completion: nil)
     }
     
     // MARK: SignUpProgressDelegate
@@ -47,7 +48,11 @@ class SignUpPageViewController: UIPageViewController, SignUpProgressDelegate
     
     func didRegisterUser(newUser: User)
     {
+        let locatorVc = SignUpLocatorViewController.create()
+        locatorVc.newUser = newUser
+        locatorVc.signUpDelegate = self
         
+        setViewControllers([locatorVc], direction: .forward, animated: true, completion: nil)
     }
     
     func didLocateUser()

@@ -362,6 +362,61 @@
             </objects>
             <point key="canvasLocation" x="505" y="-29"/>
         </scene>
+        <!--Sign Up Locator View Controller-->
+        <scene sceneID="vgE-mE-WJj">
+            <objects>
+                <viewController storyboardIdentifier="SignUpLocatorViewController" id="8tM-Vf-6hP" customClass="SignUpLocatorViewController" customModule="InvolvistApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yd9-8d-yXx"/>
+                        <viewControllerLayoutGuide type="bottom" id="kS6-B4-tRM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UyA-P5-zcM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYT-Zo-NIz" userLabel="ContainerScrollView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="InvisibleUsedForFramingScrollViewOnly" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tPb-Kp-QjQ" userLabel="FramingTextField">
+                                        <rect key="frame" x="0.0" y="67" width="278" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="welcome to rousr" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZi-d6-JH0" userLabel="LocatorMessageLabel">
+                                        <rect key="frame" x="37.5" y="75" width="300" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="tPb-Kp-QjQ" firstAttribute="top" secondItem="jYT-Zo-NIz" secondAttribute="top" constant="67" id="JXB-5g-7ih"/>
+                                    <constraint firstItem="tPb-Kp-QjQ" firstAttribute="leading" secondItem="jYT-Zo-NIz" secondAttribute="leading" id="KbA-jB-ZQq"/>
+                                    <constraint firstAttribute="bottom" secondItem="SZi-d6-JH0" secondAttribute="bottom" constant="548" id="LRH-9K-QtN"/>
+                                    <constraint firstAttribute="trailing" secondItem="tPb-Kp-QjQ" secondAttribute="trailing" id="LeH-Sk-rog"/>
+                                    <constraint firstItem="SZi-d6-JH0" firstAttribute="leading" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="0.2" id="PUv-Jm-1r7"/>
+                                    <constraint firstItem="SZi-d6-JH0" firstAttribute="trailing" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="1.8" id="fdU-h6-q3t"/>
+                                    <constraint firstItem="SZi-d6-JH0" firstAttribute="top" secondItem="jYT-Zo-NIz" secondAttribute="top" constant="75" id="lC5-Yi-Ytp"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.53333333333333333" green="0.054901960784313725" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="jYT-Zo-NIz" secondAttribute="trailing" id="2d5-mq-85E"/>
+                            <constraint firstItem="kS6-B4-tRM" firstAttribute="top" secondItem="jYT-Zo-NIz" secondAttribute="bottom" id="93N-z2-Gtb"/>
+                            <constraint firstItem="jYT-Zo-NIz" firstAttribute="leading" secondItem="UyA-P5-zcM" secondAttribute="leading" id="JAH-xo-RLS"/>
+                            <constraint firstItem="jYT-Zo-NIz" firstAttribute="top" secondItem="Yd9-8d-yXx" secondAttribute="bottom" id="x1c-Mz-6H7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="locatorMessageLabel" destination="SZi-d6-JH0" id="DJI-2c-4OU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IAI-Bl-XOU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1282" y="-31"/>
+        </scene>
         <!--SignUpPageViewController-->
         <scene sceneID="Bl0-Xm-FXN">
             <objects>

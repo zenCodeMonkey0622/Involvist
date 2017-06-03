@@ -14,10 +14,38 @@ class User
     var loginName: String
     var clearTextPassword: String
     
+    var firstName: String
+    {
+        get
+        {
+            return getFirstName()
+        }
+    }
+    
     init(fullName: String, loginName: String, clearTextPassword: String)
     {
         self.fullName = fullName
         self.loginName = loginName
         self.clearTextPassword = clearTextPassword
     }
+    
+    // failable initializer that takes a nullable deserialized json object
+    // to construct a User
+    init?(json: Any?)
+    {
+        guard let userData = json as? [String: Any], let fn = userData["realName"] as? String, let ln = userData["userName"] as? String else
+        {
+            return nil
+        }
+        
+        fullName = fn
+        loginName = ln
+        clearTextPassword = ""
+    }
+    
+    fileprivate func getFirstName() -> String
+    {
+        return fullName.components(separatedBy: " ")[0]
+    }
+    
 }

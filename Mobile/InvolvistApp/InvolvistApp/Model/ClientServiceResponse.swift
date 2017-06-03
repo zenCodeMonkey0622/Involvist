@@ -12,6 +12,7 @@ struct ClientServiceResponse
 {
     let success: Bool
     let responseMessage: String
+    let data: Any?
     
     // initializes a ClientServiceResponse object from
     // a deserialized json dictionary
@@ -25,6 +26,7 @@ struct ClientServiceResponse
         
         self.success = success
         self.responseMessage = message
+        self.data = json["data"]
     }
     
     // translates response messages from the services

@@ -30,6 +30,7 @@ class RootNavigationController: UINavigationController
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+    
         // load sign-in view controller
         if let signInVc = signInStoryboard.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
         {
