@@ -363,16 +363,24 @@ var BillRetrieverNamespace = (function () {
 
 		var info = JSON.parse(body);
 
-		if(info.results[0].bills && info.results[0].bills.length > 0){
-			database.updateBills(info.results[0].bills, function(err){
-				if(err) {
-					return next(err);
-				}
-				if (constants.GET_SPECIFIC_BILL_DATA) {
-					var count = 0;
-					return getSpecificBillsData(count, info.results[0].bills, next);
-				}
-			});
+		if (info.results[0].bills && info.results[0].bills.length > 0) {
+            //Only get bills that were introduced during the current congress.
+		    var currentBills = info.results[0].bills.filter((bill) => bill.congress === constants.CURRENT_CONGRESS);
+		    if (currentBills && currentBills.length > 0) {
+		        console.log('bills length: ' + currentBills.length + ' congress: ' + currentBills[0].congress);
+		        database.updateBills(currentBills, function (err) {
+		            if (err) {
+		                return next(err);
+		            }
+		            if (constants.GET_SPECIFIC_BILL_DATA) {
+		                var count = 0;
+		                return getSpecificBillsData(count, info.results[0].bills, next);
+		            }
+		        });
+		    }
+		    else {
+		        next();
+		    }
 		}
 		else {
 			next();

@@ -41,7 +41,7 @@ var BillSchema = new Schema({
     description: String
 });
 
-var Bill = mongoose.model("Bill", BillSchema);
+var Bill = mongoose.model("CurrentBill", BillSchema);
 module.exports.Bill = Bill;
 
 
