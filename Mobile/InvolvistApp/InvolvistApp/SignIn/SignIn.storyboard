@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,12 +29,18 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <textField hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.20000000000000001" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="InvisibleUsedForFramingScrollViewOnly" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FwG-H2-IlC" userLabel="FramingTextField">
-                                        <rect key="frame" x="0.0" y="67" width="278" height="30"/>
+                                        <rect key="frame" x="0.0" y="67" width="374" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rousr_logo_115x115" translatesAutoresizingMaskIntoConstraints="NO" id="9QJ-nW-IhA">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rousrLogoOuter_115x115" translatesAutoresizingMaskIntoConstraints="NO" id="9QJ-nW-IhA" userLabel="LogoOuterImage">
+                                        <rect key="frame" x="129.5" y="20" width="115" height="115"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rousrLogoInner_115x115" translatesAutoresizingMaskIntoConstraints="NO" id="i8U-uv-73A" userLabel="LogoInnerImage">
+                                        <rect key="frame" x="129.5" y="20" width="115" height="115"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rousrLogoR_115x115" translatesAutoresizingMaskIntoConstraints="NO" id="mwp-Dr-DAX" userLabel="LogoRImage">
                                         <rect key="frame" x="129.5" y="20" width="115" height="115"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0y-Ud-04e" userLabel="UserNameInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
@@ -50,13 +56,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kco-gr-obh" userLabel="UserNameLabel">
-                                        <rect key="frame" x="251.5" y="278" width="86" height="24"/>
+                                        <rect key="frame" x="254" y="278" width="83.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ie-3c-I9q" userLabel="PasswordLabel">
-                                        <rect key="frame" x="254.5" y="343" width="83" height="24"/>
+                                        <rect key="frame" x="257" y="343" width="80.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -75,7 +81,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4z-eM-hkf" userLabel="OrLabel">
-                                        <rect key="frame" x="178.5" y="470" width="17.5" height="24"/>
+                                        <rect key="frame" x="179" y="470" width="17" height="24"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -107,23 +113,28 @@
                                     <constraint firstItem="pWN-Jv-oHk" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="0.2" id="5Bs-RE-8jx"/>
                                     <constraint firstItem="C4G-rl-gHB" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="0.2" id="7b9-7n-gEv"/>
                                     <constraint firstItem="D0y-Ud-04e" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="0.2" id="80E-hu-z5L"/>
+                                    <constraint firstItem="9QJ-nW-IhA" firstAttribute="centerX" secondItem="FwG-H2-IlC" secondAttribute="centerX" id="85g-Yb-faU"/>
                                     <constraint firstItem="5Ie-3c-I9q" firstAttribute="trailing" secondItem="pWN-Jv-oHk" secondAttribute="trailing" id="8qn-ML-xXN"/>
                                     <constraint firstAttribute="trailing" secondItem="FwG-H2-IlC" secondAttribute="trailing" id="9tR-AE-G0H"/>
                                     <constraint firstItem="FwG-H2-IlC" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="leading" id="BPr-M8-STF"/>
+                                    <constraint firstItem="i8U-uv-73A" firstAttribute="centerY" secondItem="9QJ-nW-IhA" secondAttribute="centerY" id="DZJ-PC-sAs"/>
                                     <constraint firstItem="C4G-rl-gHB" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.8" id="E3H-rT-Qyp"/>
                                     <constraint firstItem="pWN-Jv-oHk" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.8" id="Hjo-OR-k5N"/>
                                     <constraint firstItem="kco-gr-obh" firstAttribute="top" secondItem="D0y-Ud-04e" secondAttribute="bottom" constant="-2" id="IKR-yf-GTn"/>
                                     <constraint firstItem="pWN-Jv-oHk" firstAttribute="top" secondItem="D0y-Ud-04e" secondAttribute="bottom" constant="35" id="KwC-gH-Goc"/>
+                                    <constraint firstItem="i8U-uv-73A" firstAttribute="centerX" secondItem="9QJ-nW-IhA" secondAttribute="centerX" id="V3I-5o-9du"/>
                                     <constraint firstItem="9QJ-nW-IhA" firstAttribute="top" secondItem="08v-lw-QPd" secondAttribute="top" constant="20" symbolic="YES" id="Vmg-R1-CoJ"/>
                                     <constraint firstItem="5Ie-3c-I9q" firstAttribute="top" secondItem="pWN-Jv-oHk" secondAttribute="bottom" constant="-2" id="bKq-ZN-QS0"/>
                                     <constraint firstItem="uDa-W8-BLb" firstAttribute="top" secondItem="r4z-eM-hkf" secondAttribute="bottom" constant="10" id="cFw-WG-2OC"/>
                                     <constraint firstItem="D0y-Ud-04e" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.8" id="cpb-re-TEZ"/>
                                     <constraint firstAttribute="bottom" secondItem="uDa-W8-BLb" secondAttribute="bottom" constant="79" id="cqN-e7-RiG"/>
                                     <constraint firstItem="r4z-eM-hkf" firstAttribute="top" secondItem="C4G-rl-gHB" secondAttribute="bottom" constant="10" id="gO6-Wv-kvx"/>
+                                    <constraint firstItem="mwp-Dr-DAX" firstAttribute="centerX" secondItem="9QJ-nW-IhA" secondAttribute="centerX" id="gnW-NC-nUD"/>
                                     <constraint firstItem="uDa-W8-BLb" firstAttribute="leading" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="0.2" id="gsl-EI-w5O"/>
                                     <constraint firstItem="C4G-rl-gHB" firstAttribute="top" secondItem="pWN-Jv-oHk" secondAttribute="bottom" constant="75" id="lgm-kC-MS5"/>
                                     <constraint firstItem="FwG-H2-IlC" firstAttribute="top" secondItem="08v-lw-QPd" secondAttribute="top" constant="67" id="pji-6e-YEV"/>
                                     <constraint firstItem="r4z-eM-hkf" firstAttribute="centerX" secondItem="08v-lw-QPd" secondAttribute="centerX" id="rCd-GC-8iQ"/>
+                                    <constraint firstItem="mwp-Dr-DAX" firstAttribute="centerY" secondItem="9QJ-nW-IhA" secondAttribute="centerY" id="sQ7-fL-f5z"/>
                                     <constraint firstItem="kco-gr-obh" firstAttribute="trailing" secondItem="D0y-Ud-04e" secondAttribute="trailing" id="txG-G6-tDl"/>
                                     <constraint firstItem="9QJ-nW-IhA" firstAttribute="centerX" secondItem="08v-lw-QPd" secondAttribute="centerX" id="uCf-Ay-d18"/>
                                     <constraint firstItem="uDa-W8-BLb" firstAttribute="trailing" secondItem="08v-lw-QPd" secondAttribute="centerX" multiplier="1.8" id="uhG-zo-7SH"/>
@@ -144,6 +155,9 @@
                         <outlet property="activityIndicator" destination="ygf-bF-Tew" id="2Eg-g0-Z6a"/>
                         <outlet property="containerScrollView" destination="08v-lw-QPd" id="cJb-3V-EJW"/>
                         <outlet property="logInButton" destination="C4G-rl-gHB" id="haz-cv-4oV"/>
+                        <outlet property="logoInnerImage" destination="i8U-uv-73A" id="cz0-Q7-qpY"/>
+                        <outlet property="logoOuterImage" destination="9QJ-nW-IhA" id="PCb-MG-70d"/>
+                        <outlet property="logoRImage" destination="mwp-Dr-DAX" id="6RP-VD-bW6"/>
                         <outlet property="orLabel" destination="r4z-eM-hkf" id="iiZ-a2-kaQ"/>
                         <outlet property="passwordInput" destination="pWN-Jv-oHk" id="aWs-pF-7JU"/>
                         <outlet property="passwordLabel" destination="5Ie-3c-I9q" id="UM4-6D-RX5"/>
@@ -198,7 +212,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your full name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNs-YS-hPu" userLabel="FullNameLabel">
-                                        <rect key="frame" x="218.5" y="192" width="118.5" height="24"/>
+                                        <rect key="frame" x="221.5" y="192" width="115.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -211,7 +225,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evp-lH-BSW" userLabel="EmailLabel">
-                                        <rect key="frame" x="250" y="257" width="87" height="24"/>
+                                        <rect key="frame" x="252.5" y="257" width="84.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -224,7 +238,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="choose a password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUg-PX-eDy" userLabel="PasswordLabel">
-                                        <rect key="frame" x="171.5" y="322" width="165.5" height="24"/>
+                                        <rect key="frame" x="176" y="322" width="161" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -237,7 +251,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="retype your password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwO-jV-x9U" userLabel="VerifyPasswordLabel">
-                                        <rect key="frame" x="154.5" y="387" width="182.5" height="24"/>
+                                        <rect key="frame" x="159.5" y="387" width="177.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -343,6 +357,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="hxK-2F-EMF" id="0f8-ZH-ZSX"/>
                         <outlet property="containerScrollView" destination="QDK-WM-upc" id="HFM-Kb-6WX"/>
+                        <outlet property="dismissImage" destination="bvc-Fx-3vC" id="2fS-OI-lSO"/>
                         <outlet property="emailInput" destination="hhh-Df-jpa" id="PLw-R2-abf"/>
                         <outlet property="emailLabel" destination="evp-lH-BSW" id="RTG-5n-1r7"/>
                         <outlet property="fullNameInput" destination="coY-zV-NFk" id="O9m-hd-8S9"/>
@@ -428,6 +443,8 @@
     </scenes>
     <resources>
         <image name="dismiss_30x30" width="30" height="30"/>
-        <image name="rousr_logo_115x115" width="115" height="115"/>
+        <image name="rousrLogoInner_115x115" width="115" height="115"/>
+        <image name="rousrLogoOuter_115x115" width="115" height="115"/>
+        <image name="rousrLogoR_115x115" width="115" height="115"/>
     </resources>
 </document>

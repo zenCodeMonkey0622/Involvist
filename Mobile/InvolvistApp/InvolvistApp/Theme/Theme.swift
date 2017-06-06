@@ -11,7 +11,9 @@ import UIKit
 
 struct Theme
 {
-    static var involvistPrimary: UIColor
+    // https://material.io/color/#!/?view.left=0&view.right=1&primary.color=870736&secondary.color=CFD8DC
+    
+    static var primary: UIColor
     {
         get
         {
@@ -20,7 +22,7 @@ struct Theme
         }
     }
     
-    static var involvistDark: UIColor
+    static var primaryDark: UIColor
     {
         get
         {
@@ -29,7 +31,7 @@ struct Theme
         }
     }
     
-    static var involvistLight: UIColor
+    static var primaryLight: UIColor
     {
         get
         {
