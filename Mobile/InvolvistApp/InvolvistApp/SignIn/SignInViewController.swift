@@ -22,6 +22,10 @@ class SignInViewController: UIViewController
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var orLabel: UILabel!
     
+    @IBOutlet weak var logoOuterImage: UIImageView!
+    @IBOutlet weak var logoInnerImage: UIImageView!
+    @IBOutlet weak var logoRImage: UIImageView!
+    
     // properties
     var authProvider: AuthServiceDelegate?
     var navDelegate: LocalNavigationDelegate?
@@ -32,24 +36,27 @@ class SignInViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.view.backgroundColor = Theme.involvistPrimary
+        self.view.backgroundColor = Theme.primary
+        self.logoOuterImage.tintColor = Theme.primaryDark
+        self.logoInnerImage.tintColor = Theme.primaryLight
+        self.logoRImage.tintColor = Theme.primaryLight
         
         self.userNameInput.inputTextField.backgroundColor = UIColor.clear
-        self.userNameInput.underlineColor = Theme.involvistDark
+        self.userNameInput.underlineColor = UIColor.white
         self.userNameInput.returnKeyType = UIReturnKeyType.done
-        self.userNameLabel.textColor = Theme.involvistLight
+        self.userNameLabel.textColor = UIColor.white
         self.userNameLabel.text = NSLocalizedString("UserNameLabel", comment: "")
         
         self.passwordInput.inputTextField.isSecureTextEntry = true
         self.passwordInput.inputTextField.backgroundColor = UIColor.clear
-        self.passwordInput.underlineColor = Theme.involvistDark
+        self.passwordInput.underlineColor = UIColor.white
         self.passwordInput.returnKeyType = UIReturnKeyType.done
-        self.passwordLabel.textColor = Theme.involvistLight
+        self.passwordLabel.textColor = UIColor.white
         self.passwordLabel.text = NSLocalizedString("PasswordLabel", comment: "")
         
         self.logInButton.wireBorderColor = UIColor.white
         
-        self.orLabel.textColor = Theme.involvistLight
+        self.orLabel.textColor = UIColor.white
         self.orLabel.text = NSLocalizedString("OrText", comment: "")
         
         self.signUpButton.wireBorderColor = UIColor.white

@@ -15,6 +15,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var fullNameInput: UnderlinedTextField!
     @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var dismissImage: UIImageView!
+    
     @IBOutlet weak var emailInput: UnderlinedTextField!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var passwordInput: UnderlinedTextField!
@@ -127,45 +129,46 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     
     fileprivate func setContentAndStyle()
     {
-        self.view.backgroundColor = Theme.involvistPrimary
+        self.view.backgroundColor = Theme.primary
+        self.dismissImage.tintColor = Theme.primaryLight
         
         self.joinMessageLabel.text = NSLocalizedString("JoinMessage", comment: "")
         
         self.fullNameInput.inputTextField.backgroundColor = UIColor.clear
-        self.fullNameInput.underlineColor = Theme.involvistDark
+        self.fullNameInput.underlineColor = UIColor.white
         self.fullNameInput.returnKeyType = UIReturnKeyType.done
         self.fullNameInput.delegate = self
-        self.fullNameLabel.textColor = Theme.involvistLight
+        self.fullNameLabel.textColor = UIColor.white
         self.fullNameLabel.text = NSLocalizedString("FullNameLabel", comment: "")
         
         self.emailInput.inputTextField.backgroundColor = UIColor.clear
-        self.emailInput.underlineColor = Theme.involvistDark
+        self.emailInput.underlineColor = UIColor.white
         self.emailInput.returnKeyType = UIReturnKeyType.done
         self.emailInput.delegate = self
-        self.emailLabel.textColor = Theme.involvistLight
+        self.emailLabel.textColor = UIColor.white
         self.emailLabel.text = NSLocalizedString("EmailLabel", comment: "")
         
         self.passwordInput.inputTextField.isSecureTextEntry = true
         self.passwordInput.inputTextField.backgroundColor = UIColor.clear
-        self.passwordInput.underlineColor = Theme.involvistDark
+        self.passwordInput.underlineColor = UIColor.white
         self.passwordInput.returnKeyType = UIReturnKeyType.done
         self.passwordInput.delegate = self
-        self.passwordLabel.textColor = Theme.involvistLight
+        self.passwordLabel.textColor = UIColor.white
         self.passwordLabel.text = NSLocalizedString("ChoosePassword", comment: "")
         
         self.verifyPasswordInput.inputTextField.isSecureTextEntry = true
         self.verifyPasswordInput.inputTextField.backgroundColor = UIColor.clear
-        self.verifyPasswordInput.underlineColor = Theme.involvistDark
+        self.verifyPasswordInput.underlineColor = UIColor.white
         self.verifyPasswordInput.returnKeyType = UIReturnKeyType.done
         self.verifyPasswordInput.delegate = self
-        self.verifyPasswordLabel.textColor = Theme.involvistLight
+        self.verifyPasswordLabel.textColor = UIColor.white
         self.verifyPasswordLabel.text = NSLocalizedString("VerifyPasswordLabel", comment: "")
         
         self.signUpDisclaimerLabel.text = NSLocalizedString("SignUpDisclaimer", comment: "");
         self.termsOfServiceButton.setTitle(NSLocalizedString("TermsOfServiceButtonLabel", comment: ""), for: UIControlState.normal)
-        self.termsOfServiceButton.tintColor = Theme.involvistDark
+        self.termsOfServiceButton.tintColor = Theme.primaryDark
         self.privacyPolicyButton.setTitle(NSLocalizedString("PrivacyPolicyButtonLabel", comment: ""), for: UIControlState.normal)
-        self.privacyPolicyButton.tintColor = Theme.involvistDark
+        self.privacyPolicyButton.tintColor = Theme.primaryDark
 
         self.signUpButton.wireBorderColor = UIColor.white
         self.signUpButton.isDisabled = true
