@@ -12,6 +12,7 @@ import UIKit
 class PopoverView: UIView
 {
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var dismissImage: UIImageView!
     
     var onDismiss: (() -> ())?
     
@@ -41,6 +42,7 @@ class PopoverView: UIView
         
         self.descriptionLabel.text = description
         self.onDismiss = onDismiss
+        self.dismissImage.tintColor = Theme.primaryLight
     }
     
     override func awakeFromNib()

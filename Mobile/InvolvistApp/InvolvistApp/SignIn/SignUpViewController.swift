@@ -130,7 +130,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     fileprivate func setContentAndStyle()
     {
         self.view.backgroundColor = Theme.primary
-        self.dismissImage.tintColor = Theme.primaryDark
+        self.dismissImage.tintColor = Theme.primaryLight
         
         self.joinMessageLabel.text = NSLocalizedString("JoinMessage", comment: "")
         
