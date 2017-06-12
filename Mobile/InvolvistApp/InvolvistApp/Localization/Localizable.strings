@@ -14,17 +14,22 @@
 "OrText" = "or";
 
 // signup screen
-"JoinMessage" = "join rousr and stay up to date on legislation that matters to you.";
+"JoinMessage" = "join rousr";
 "FullNameLabel" = "your full name";
 "EmailLabel" = "your email";
 "ChoosePassword" = "choose a password";
 "VerifyPasswordLabel" = "retype your password";
-"SignUpDisclaimer" = "by signing up you are agreeing to:";
+"SignUpDisclaimer" = "by signing up you are agreeing to";
 "TermsOfServiceButtonLabel" = "our terms of service";
 "PrivacyPolicyButtonLabel" = "our privacy policy";
 
 // signup locator screen
 "WelcomeMessage" = "welcome to rousr";
+"LocateMessage" = "let's figure out your voting district so you can make the greatest impact";
+"AddressLabel" = "street address";
+"CityLabel" = "city";
+"StateLabel" = "state";
+"ZipLabel" = "zip code";
 
 // http://localhost:3000/api/v1/registration
 "UsernameAlreadyExists" = "that email address is already being used. try logging in or using another email address.";

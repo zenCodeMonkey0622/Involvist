@@ -36,12 +36,28 @@ class SignInViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        setContentAndStyle()
+    }
+    
+    override func viewDidLayoutSubviews()
+    {
+        super.viewDidLayoutSubviews()
+        
+        // this is needed b/c without it we get a top content inset created 
+        // for the container scroll view.
+        // http://stackoverflow.com/questions/20101572/ios7-uirefreshcontrol-changes-contentinset
+        self.containerScrollView.contentInset = UIEdgeInsets.zero
+    }
+    
+    fileprivate func setContentAndStyle()
+    {
         self.view.backgroundColor = Theme.primary
         self.logoOuterImage.tintColor = Theme.primaryDark
         self.logoInnerImage.tintColor = Theme.primaryLight
         self.logoRImage.tintColor = Theme.primaryLight
         
         self.userNameInput.inputTextField.backgroundColor = UIColor.clear
+        self.userNameInput.inputTextField.font = Fonts.inputFont
         self.userNameInput.underlineColor = UIColor.white
         self.userNameInput.returnKeyType = UIReturnKeyType.done
         self.userNameLabel.textColor = UIColor.white
@@ -49,6 +65,7 @@ class SignInViewController: UIViewController
         
         self.passwordInput.inputTextField.isSecureTextEntry = true
         self.passwordInput.inputTextField.backgroundColor = UIColor.clear
+        self.passwordInput.inputTextField.font = Fonts.inputFont
         self.passwordInput.underlineColor = UIColor.white
         self.passwordInput.returnKeyType = UIReturnKeyType.done
         self.passwordLabel.textColor = UIColor.white
@@ -63,16 +80,6 @@ class SignInViewController: UIViewController
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.activityIndicator.isHidden = true
-    }
-    
-    override func viewDidLayoutSubviews()
-    {
-        super.viewDidLayoutSubviews()
-        
-        // this is needed b/c without it we get a top content inset created 
-        // for the container scroll view.
-        // http://stackoverflow.com/questions/20101572/ios7-uirefreshcontrol-changes-contentinset
-        self.containerScrollView.contentInset = UIEdgeInsets.zero
     }
     
     // ibactions

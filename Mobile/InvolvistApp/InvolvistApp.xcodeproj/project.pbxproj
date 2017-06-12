@@ -15,6 +15,7 @@
 		AB21F1C21EB99499000AC7BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB21F1C01EB99499000AC7BB /* Main.storyboard */; };
 		AB21F1C41EB99499000AC7BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB21F1C31EB99499000AC7BB /* Assets.xcassets */; };
 		AB21F1C71EB99499000AC7BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB21F1C51EB99499000AC7BB /* LaunchScreen.storyboard */; };
+		AB28F5EC1EEE57CD00D2E756 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB28F5EB1EEE57CD00D2E756 /* Fonts.swift */; };
 		AB5223AE1ED67E94006D9CB2 /* UserServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5223AD1ED67E94006D9CB2 /* UserServiceDelegate.swift */; };
 		AB5223B01ED67F02006D9CB2 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5223AF1ED67F02006D9CB2 /* UserService.swift */; };
 		AB5223B21ED67FA4006D9CB2 /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5223B11ED67FA4006D9CB2 /* ApiEndpoint.swift */; };
@@ -54,6 +55,7 @@
 		AB21F1C31EB99499000AC7BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB21F1C61EB99499000AC7BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB21F1C81EB99499000AC7BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB28F5EB1EEE57CD00D2E756 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		AB5223AD1ED67E94006D9CB2 /* UserServiceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServiceDelegate.swift; sourceTree = "<group>"; };
 		AB5223AF1ED67F02006D9CB2 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		AB5223B11ED67FA4006D9CB2 /* ApiEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				AB5393F91EB9957700A00C0B /* Theme.swift */,
+				AB28F5EB1EEE57CD00D2E756 /* Fonts.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				ABCE348E1EC6CC1F0018D57C /* AuthenticationService.swift in Sources */,
 				AB5223BC1EDBDCA1006D9CB2 /* PopoverView.swift in Sources */,
 				AB5223B41ED68F47006D9CB2 /* ContentType.swift in Sources */,
+				AB28F5EC1EEE57CD00D2E756 /* Fonts.swift in Sources */,
 				ABFF86BD1EE264DF005C9032 /* SignUpLocatorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
