@@ -24,6 +24,7 @@ class WireframeButton: UIButton
     {
         didSet
         {
+            setTitleColor(wireBorderColor, for: .normal)
             setNeedsDisplay()
         }
     }

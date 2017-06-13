@@ -18,8 +18,6 @@ class SignInViewController: UIViewController
     @IBOutlet weak var logInButton: WireframeButton!
     @IBOutlet weak var signUpButton: WireframeButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var orLabel: UILabel!
     
     @IBOutlet weak var logoOuterImage: UIImageView!
@@ -36,9 +34,12 @@ class SignInViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        setContentAndStyle()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setContentAndStyle()
+    }
     override func viewDidLayoutSubviews()
     {
         super.viewDidLayoutSubviews()
@@ -56,27 +57,27 @@ class SignInViewController: UIViewController
         self.logoInnerImage.tintColor = Theme.primaryLight
         self.logoRImage.tintColor = Theme.primaryLight
         
+        self.userNameInput.backgroundColor = UIColor.clear
         self.userNameInput.inputTextField.backgroundColor = UIColor.clear
-        self.userNameInput.inputTextField.font = Fonts.inputFont
-        self.userNameInput.underlineColor = UIColor.white
+        self.userNameInput.inputFont = Fonts.inputFont
+        self.userNameInput.underlineColor = Theme.primaryDark
+        self.userNameInput.hintTextAlignment = .right
+        self.userNameInput.hintText = NSLocalizedString("UserNameLabel", comment: "")
         self.userNameInput.returnKeyType = UIReturnKeyType.done
-        self.userNameLabel.textColor = UIColor.white
-        self.userNameLabel.text = NSLocalizedString("UserNameLabel", comment: "")
         
         self.passwordInput.inputTextField.isSecureTextEntry = true
+        self.passwordInput.backgroundColor = UIColor.clear
         self.passwordInput.inputTextField.backgroundColor = UIColor.clear
-        self.passwordInput.inputTextField.font = Fonts.inputFont
-        self.passwordInput.underlineColor = UIColor.white
+        self.passwordInput.inputFont = Fonts.inputFont
+        self.passwordInput.underlineColor = Theme.primaryDark
+        self.passwordInput.hintTextAlignment = .right
+        self.passwordInput.hintText = NSLocalizedString("PasswordLabel", comment: "")
         self.passwordInput.returnKeyType = UIReturnKeyType.done
-        self.passwordLabel.textColor = UIColor.white
-        self.passwordLabel.text = NSLocalizedString("PasswordLabel", comment: "")
         
-        self.logInButton.wireBorderColor = UIColor.white
-        
-        self.orLabel.textColor = UIColor.white
+        self.logInButton.wireBorderColor = Theme.primaryDark
+        self.signUpButton.wireBorderColor = Theme.primaryDark
+        self.orLabel.textColor = Theme.primaryDark
         self.orLabel.text = NSLocalizedString("OrText", comment: "")
-        
-        self.signUpButton.wireBorderColor = UIColor.white
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.activityIndicator.isHidden = true

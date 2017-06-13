@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
             <connections>
+                <outlet property="hintTextLabel" destination="XEY-tq-0Pq" id="zKx-7w-kKZ"/>
                 <outlet property="inputTextField" destination="2lL-7s-heA" id="nzV-35-myl"/>
                 <outlet property="underlineView" destination="pJb-hR-Twl" id="j1o-p7-5PD"/>
             </connections>
@@ -21,28 +22,36 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2lL-7s-heA" userLabel="InputTextField">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="22"/>
-                    <color key="backgroundColor" red="0.97647058819999999" green="0.6588235294" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="0.0" y="322.5" width="375" height="22"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJb-hR-Twl" userLabel="UnderlineView">
-                    <rect key="frame" x="0.0" y="23" width="375" height="1"/>
+                    <rect key="frame" x="0.0" y="345.5" width="375" height="1"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="jM2-Js-LeC"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEY-tq-0Pq" userLabel="HintTextLabel">
+                    <rect key="frame" x="0.0" y="348.5" width="31" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="2lL-7s-heA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AUy-lP-elS"/>
+                <constraint firstItem="XEY-tq-0Pq" firstAttribute="top" secondItem="pJb-hR-Twl" secondAttribute="bottom" constant="2" id="Ggx-bE-86Y"/>
                 <constraint firstAttribute="trailing" secondItem="pJb-hR-Twl" secondAttribute="trailing" id="JMJ-2Z-QrI"/>
                 <constraint firstAttribute="trailing" secondItem="2lL-7s-heA" secondAttribute="trailing" id="NDi-Fk-MJb"/>
+                <constraint firstItem="XEY-tq-0Pq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" identifier="HintTextHorizontalAlignmentConstraint" id="Pge-Li-hsP"/>
+                <constraint firstItem="2lL-7s-heA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="RdT-f9-vdn"/>
                 <constraint firstItem="pJb-hR-Twl" firstAttribute="top" secondItem="2lL-7s-heA" secondAttribute="bottom" constant="1" id="akm-WU-lJz"/>
                 <constraint firstItem="pJb-hR-Twl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="q9t-V0-Jp2"/>
-                <constraint firstItem="2lL-7s-heA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="z5v-m6-iqV"/>
             </constraints>
         </view>
     </objects>

@@ -31,7 +31,7 @@ class RootNavigationController: UINavigationController
         // Do any additional setup after loading the view, typically from a nib.
         
         // set the theme
-        Theme.setTheme(theme: .Porpyl)
+        Theme.setTheme(theme: .Bolombo)
         
         // load sign-in view controller
         if let signInVc = signInStoryboard.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
