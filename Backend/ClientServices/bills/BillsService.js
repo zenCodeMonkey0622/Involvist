@@ -34,4 +34,40 @@ BillsService.prototype.queryBills = function (req, res, next) {
 	});
 }
 
+/**
+* addTagToBill() - adds a tag to the bill
+* @param <object> billNumber - the bill number of the bill to tag
+* @param <object> tag - the tag to add to the bill
+* @param <function()> next - the next function to call
+*/
+BillsService.prototype.addTagToBill = function (billNumber, tag, next) {
+
+    this.database.tagBill(billNumber, tag, function (err, results) {
+        if (err) {
+            console.error(err);
+            return next(err);
+        }
+
+        return next(err, results);
+    });
+}
+
+/**
+* untagBill() - removes a tag from the bill
+* @param <object> billNumber - the bill number of the bill to untag
+* @param <object> tag - the tag to remove from the bill
+* @param <function()> next - the next function to call
+*/
+BillsService.prototype.untagBill = function (billNumber, tag, next) {
+
+    this.database.untagBill(billNumber, tag, function (err, results) {
+        if (err) {
+            console.error(err);
+            return next(err);
+        }
+
+        return next(err, results);
+    });
+}
+
 module.exports = new BillsService();

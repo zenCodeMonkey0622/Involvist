@@ -5,6 +5,7 @@
 var cluster = require('cluster');
 var express = require('express');
 var gateway = require('./endpoints/gateway');
+const auth = require('./auth/authentication');
 //var numCPUs = require('os').cpus().length;
 //DEBUG CODE: setting numCPUs to 1 to make debugging easier.
 var numCPUs = 1;
@@ -29,6 +30,11 @@ if (cluster.isMaster) {
         }
         next();
     });
+
+    const bodyParser = require('body-parser');
+    
+    app.use(bodyParser.json());
+    app.use('/oauth', auth.AuthenticationRouter);
     
     app.use('/api', gateway);
 

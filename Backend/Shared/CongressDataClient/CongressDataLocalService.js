@@ -126,6 +126,39 @@ MongoDb.prototype.queryMembers = function (query, callback) {
 	});
 }
 
+/**
+* tagBill() - Tag bill
+* @param numbber billNumber - number of bill to tag
+* @param string tag - tag for bill
+* @param <function()> next
+*/
+MongoDb.prototype.tagBill = function (billNumber, tag, callback) {
+    Bill.update({ number: billNumber }, { $addToSet: { tags: tag } }, function (err, results) {
+        if (err) {
+            console.error(err);
+            return callback(err);
+        }
+        return callback(null, results);
+    });
+}
+
+/**
+* untagBill() - unTag bill
+* @param numbber billNumber - number of bill to untag
+* @param string tag - tag for bill
+* @param <function()> next
+*/
+MongoDb.prototype.untagBill = function (billNumber, tag, next) {
+    Bill.update({ number: billNumber }, { $pull: { tags: tag } }, function (err, results) {
+        if (err) {
+            console.error(err);
+            return next(err);
+        }
+
+        return next(null, results);
+    });
+}
+
 
 //A constructor for defining AWS DyanamoDB databaseS
 //PLACE HOLDER for now

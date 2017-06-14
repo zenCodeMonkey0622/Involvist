@@ -4,6 +4,12 @@
 
 const frameLocalSvc = require('../Users/frameLocalService');
 const newUserRegRouter = require('express').Router();
+const involvistUserService = require('../Users/InvolvistUserService');
+
+var bodyParser = require('body-parser');
+newUserRegRouter.use(bodyParser.urlencoded({ extended: false }));
+newUserRegRouter.use(bodyParser.json());
+
 
 const frameLocalService = new frameLocalSvc();
 
@@ -29,8 +35,16 @@ function newUserRegistrationGetHandler(req, res, next)
     }
     else
     {
-      console.log('registration success!');
-      res.json(csResponse);
+        console.log('registration success!');
+
+        //Create and a new Involvist user
+        involvistUserService.newUser(email, realName, email, function (err) {
+            if (err) {
+                return next(err);
+            }
+        });
+
+        res.json(csResponse);
     }
   });
 }

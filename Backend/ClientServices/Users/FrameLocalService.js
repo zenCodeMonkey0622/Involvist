@@ -73,7 +73,8 @@ FrameLocalService.prototype.registerNewUser = function(realName, password, email
     });
 
   frameRequest.on('error', (e) => {
-    console.error('problem with frame request: ' + e.message);
+      console.error('problem with frame request: ' + e.message);
+      callback(e);
   })
 
   frameRequest.write(formData);
@@ -127,7 +128,8 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
     });
 
   frameRequest.on('error', (e) => {
-    console.error('problem with frame request: ' + e.message);
+      console.error('problem with frame request: ' + e.message);
+      callback(e);
   })
 
   frameRequest.write(formData);

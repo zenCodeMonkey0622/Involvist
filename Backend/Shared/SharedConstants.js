@@ -1,7 +1,7 @@
 module.exports = {
     USER_MANAGEMENT_DATA_SOURCE: 'ds147069.mlab.com:47069/projectwoke',
     USER_MANAGEMENT_INTERNAL_API_URI: 'localhost',
-    USER_MANAGEMENT_INTERNAL_API_PORT: 9090,
+    USER_MANAGEMENT_INTERNAL_API_PORT: 9000,
     USER_MANAGEMENT_INTERNAL_API_PATH_PREFIX: '/api/int/frame',
     USER_MANAGEMENT_DATA_SOURCE: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
     USER_MANAGEMENT_COLLECTION: '',
