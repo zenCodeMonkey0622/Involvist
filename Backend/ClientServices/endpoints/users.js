@@ -25,10 +25,10 @@ usersRouter.get('/', involvistUserService.queryUsers, function (req, res) {
 
 //Example - http://localhost:3000/api/v1/users/followingBills
 usersRouter.post('/followingBills', function (req, res, callback) {    
-    var userName = req.body.user_name;
+    var userID = req.body.userID;
     var billNumber = req.body.bill_number;
 
-    involvistUserService.followBill(userName, billNumber, function (err, results) {
+    involvistUserService.followBill(userID, billNumber, function (err, results) {
         if (err) {
             return callback(err);
         }       
@@ -43,10 +43,10 @@ usersRouter.post('/followingBills', function (req, res, callback) {
 
 //Example - http://localhost:3000/api/v1/users/followingBills
 usersRouter.delete('/followingBills', function (req, res, callback) {
-    var userName = req.body.user_name;
+    var userID = req.body.userID;
     var billNumber = req.body.bill_number;
 
-    involvistUserService.unfollowBill(userName, billNumber, function (err, results) {
+    involvistUserService.unfollowBill(userID, billNumber, function (err, results) {
         if (err) {
             return callback(err);
         }

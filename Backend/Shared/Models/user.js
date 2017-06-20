@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 //Create our own user from the FramUser data
 var InvolvistUserSchema = new Schema({
+    userID: String,
     userName: String,
     realName: String,
     email: String,
@@ -15,7 +16,8 @@ var InvolvistUserSchema = new Schema({
     followingBills : []
 });
 
-InvolvistUserSchema.methods.initialize = function (userName, realName, email) {
+InvolvistUserSchema.methods.initialize = function (userName, realName, email, userID) {
+    this.userID = userID;
     this.userName = userName;
     this.realName = realName;
     this.email = email;

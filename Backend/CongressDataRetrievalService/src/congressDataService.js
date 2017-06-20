@@ -361,7 +361,9 @@ var BillRetrieverNamespace = (function () {
 			return next(error);
 		}
 
-		var info = JSON.parse(body);
+        //There is some bad JSON data coming back from the Propublica Congress API, so we need to make sure active has a valid value.
+		var parseBody = body.replace(new RegExp('\"active\": ,', 'g'), '\"active\": \"\",');
+		var info = JSON.parse(parseBody);
 
 		if (info.results[0].bills && info.results[0].bills.length > 0) {
             //Only get bills that were introduced during the current congress.

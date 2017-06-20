@@ -18,10 +18,10 @@ var InvolvistUserService = function () {
 * @param <object> email - the user's email
 * @param <function()> next - the next function to call
 */
-InvolvistUserService.prototype.newUser = function (userName, realName, email, next) {
+InvolvistUserService.prototype.newUser = function (userName, realName, email, userID, next) {
     //Create and save Involvist user to the database
     var user = new InvolvistUser();
-    user.initialize(userName, realName, email);
+    user.initialize(userName, realName, email, userID);
     user.save(function (err) {
         if (err) {
             return callback(err);
@@ -34,13 +34,13 @@ InvolvistUserService.prototype.newUser = function (userName, realName, email, ne
 
 /**
 * followBill() - saves a bill the user wants to follow to the database
-* @param <object> userName - the name of the user
+* @param <object> userID - the ID of the user
 * @param <object> billNumber - the bill number the user wants to follow
 * @param <function()> next - the next function to call
 */
-InvolvistUserService.prototype.followBill = function (userName, billNumber, next) {
+InvolvistUserService.prototype.followBill = function (userID, billNumber, next) {
 
-    InvolvistUser.update({ userName: userName }, { $addToSet: { followingBills: billNumber } }, function (err, results) {
+    InvolvistUser.update({ userID: userID }, { $addToSet: { followingBills: billNumber } }, function (err, results) {
         if (err) {
             console.error(err);
             return next(err);
@@ -52,13 +52,13 @@ InvolvistUserService.prototype.followBill = function (userName, billNumber, next
 
 /**
 * unfollowBill() - unfollows a bill the user was following
-* @param <object> userName - the name of the user
+* @param <object> userID - the ID of the user
 * @param <object> billNumber - the bill number the user wants to unfollow
 * @param <function()> next - the next function to call
 */
-InvolvistUserService.prototype.unfollowBill = function (userName, billNumber, next) {
+InvolvistUserService.prototype.unfollowBill = function (userID, billNumber, next) {
 
-    InvolvistUser.update({ userName: userName }, { $pull: { followingBills: billNumber } }, function (err, results) {
+    InvolvistUser.update({ userID: userID }, { $pull: { followingBills: billNumber } }, function (err, results) {
         if (err) {
             console.error(err);
             return next(err);
