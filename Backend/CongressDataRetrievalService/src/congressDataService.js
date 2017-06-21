@@ -83,6 +83,25 @@ var BillRetrieverNamespace = (function () {
 	*/
 	BillRetriever.prototype.getCongressMembers = function(next)
 	{
+		this.getHouseMembers( () => { 
+			this.getSenateMembers( () => {
+				console.log('Got all congress members');
+				database.updateMembers(congressMembers, function(error) {
+					if(error) 
+					{
+						return next(error);
+					}
+				});
+			}) 
+		});
+	}
+
+	/**
+	 * gets json formatted data on house members for the current congress.
+	 * @param {function} next - the next middleware to call.
+	 */
+	BillRetriever.prototype.getHouseMembers = function(next)
+	{
 		const memberRequest = httpUtility.makeHttpsRequest(constants.CONGRESS_API_HOST_URI,
 		constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/' + 'house/members.json',
 		httpUtility.requestType.GET,
@@ -105,7 +124,8 @@ var BillRetrieverNamespace = (function () {
 				}
 				else
 				{
-					// todo
+					console.log('got house members data');
+					processMembersData(null, responseData, next);
 				}
 			});
 		});
@@ -116,27 +136,48 @@ var BillRetrieverNamespace = (function () {
 		});
 
 		memberRequest.end();
+	}
 
-		/*
-	    getRequest(constants.HOUSE_MEMBERS_URI + '.json', processMembersData, function (houseErr) {
-			if(houseErr) {
-				return next(houseErr);
-			}
-			getRequest(constants.SENATE_MEMBERS_URI + '.json', processMembersData, function (senateErr) {
-				if(senateErr) {
-					return next(senateErr);
+	/**
+	 * gets json formatted data on senate members for the current congress.
+	 * @param {function} next - the next middleware to call.
+	 */
+	BillRetriever.prototype.getSenateMembers = function(next)
+	{
+		const memberRequest = httpUtility.makeHttpsRequest(constants.CONGRESS_API_HOST_URI,
+		constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/' + 'senate/members.json',
+		httpUtility.requestType.GET,
+		this.congressDataAgentSecure,
+		null,
+		httpUtility.contentType.JSON,
+		{'X-API-Key': constants.PROPUBLICA_API_KEY},
+		(res) => {
+			var responseData = '';
+
+			res.on('data', (chunk) => {
+				responseData += chunk;
+			});
+
+			res.on('end', () => {
+				if (res.statusCode != '200')
+				{
+					var frErr = frameError(responseData);
+					return next(frErr);
 				}
-				console.log('Got all congress members');
-				database.updateMembers(congressMembers, function(error){
-					if(error) {
-						return next(error);
-					}
-				});
-
-				next();
+				else
+				{
+					console.log('got senate members data');
+					processMembersData(null, responseData, next);
+				}
 			});
 		});
-		*/
+
+		memberRequest.on('error', (e) => {
+			console.error('problem with get congress members request: ' + e.message);
+			return next(e);
+		});
+
+		memberRequest.end();
 	}
 
 	/**
@@ -374,23 +415,30 @@ var BillRetrieverNamespace = (function () {
 	* @param <{}> body
 	* @param <function()> next
 	*/
-	function processMembersData (error, body, next) {
-	    if (error) {
+	function processMembersData (error, body, next) 
+	{
+	    if (error) 
+		{
 	        console.log(error);
 			//return next(error);
 		}
 
 		var info = JSON.parse(body);
 
-		if(congressMembers.length == 0){
+		if(congressMembers.length == 0)
+		{
 			console.log(info);
 			congressMembers = info.results[0].members;
 		}
-		else{
+		else
+		{
 			congressMembers = congressMembers.concat(info.results[0].members);
 		}
 
-	    next();
+		if (next)
+		{
+	    	next();
+		}
 	}
 
 	/**
