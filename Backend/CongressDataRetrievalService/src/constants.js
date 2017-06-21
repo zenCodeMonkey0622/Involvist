@@ -1,7 +1,9 @@
 ﻿var constants = {};
 
 constants.PROPUBLICA_API_KEY = 'BQ03NR8CIK2paMdsiI2m05hBMiuGyyEY3jXJCLbp';
-constants.BASE_CONGRESS_API_URI ='https://api.propublica.org/congress/v1/';
+constants.CONGRESS_API_HOST_URI = 'api.propublica.org';
+constants.BASE_CONGRESS_API_PATH = '/congress/v1';
+constants.BASE_CONGRESS_API_URI ='api.propublica.org/congress/v1';
 constants.CURRENT_CONGRESS = '115' ;
 constants.BILL_TYPES = ['introduced' , 'updated' , 'passed' , 'major'];
 constants.HOUSE_BILLS_URI = constants.BASE_CONGRESS_API_URI + constants.CURRENT_CONGRESS + '/' + 'house/bills/';
