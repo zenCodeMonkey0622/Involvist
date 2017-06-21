@@ -2,6 +2,9 @@
 
 var BillRetrieverNamespace = (function () {
 
+	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
+	const http = require('http');
+
     module.exports.BillRetriever = new BillRetriever();
 
 	var request = require('request');
@@ -19,11 +22,13 @@ var BillRetrieverNamespace = (function () {
     /**
     * BillRetriever - Gets the latest bills and congress members data
     */
-	function BillRetriever() {
-
+	function BillRetriever() 
+	{
+		this.congressDataAgent = new http.Agent({keepAlive: true});
 	}
 
-	BillRetriever.prototype.startGetCongressMembersBillsSchedule = function() {
+	BillRetriever.prototype.startGetCongressMembersBillsSchedule = function() 
+	{
 		console.log('Congress Data Retrieval Started...');
 		var self = this;
 
@@ -43,7 +48,7 @@ var BillRetrieverNamespace = (function () {
 		var j = schedule.scheduleJob(rule, function(){
   			self.getCongressMembersBills();
 		});
-	},
+	}
 
 	/**
 	* getRecentBills() - Gets the latest bills of each bill type for the house and senate
@@ -69,13 +74,45 @@ var BillRetrieverNamespace = (function () {
 				}
 			});
 		});
-	},
+	}
 
 	/**
 	* getCongressMembers() - Gets the latest information for each Congress member
 	* @param <function()> next
 	*/
-	BillRetriever.prototype.getCongressMembers = function(next){
+	BillRetriever.prototype.getCongressMembers = function(next)
+	{
+		const memberRequest = httpUtility.makeHttpRequest(constants.BASE_CONGRESS_API_URI,
+		null,
+		'/' + constants.CURRENT_CONGRESS + '/' + 'house/members',
+		httpUtility.requestType.GET,
+		this.congressDataAgent,
+		null,
+		null,
+		{'X-API-Key': constants.PROPUBLICA_API_KEY},
+		(resp) => {
+			var responseData = '';
+
+			res.on('data', (chunk) => {
+				responseData += chunk;
+			});
+
+			res.on('end', () => {
+				console.log('registerNewUser response body end: ' + responseData);
+
+				if (res.statusCode != '200')
+				{
+					var frErr = frameError(responseData);
+					return next(frErr);
+				}
+				else
+				{
+					// todo
+				}
+			});
+		});
+
+		/*
 	    getRequest(constants.HOUSE_MEMBERS_URI + '.json', processMembersData, function (houseErr) {
 			if(houseErr) {
 				return next(houseErr);
@@ -94,7 +131,8 @@ var BillRetrieverNamespace = (function () {
 				next();
 			});
 		});
-	},
+		*/
+	}
 
 	/**
 	* getCongressMembersBills() - Gets the latest bill information sponsored by each Congress member
@@ -109,7 +147,7 @@ var BillRetrieverNamespace = (function () {
 			var count = 0;
 			getAllCongressMembersBills(count);
 		});
-	},
+	}
 
 	BillRetriever.prototype.getBill = function(billNumber)
 	{
@@ -117,7 +155,7 @@ var BillRetrieverNamespace = (function () {
 		database.queryBills(query, function(err, docs){
 			return docs;
 		});
-	},
+	}
 
 	BillRetriever.prototype.getMember = function(memberId) {
 		var query = {id: memberId};
