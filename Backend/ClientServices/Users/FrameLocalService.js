@@ -49,6 +49,7 @@ FrameLocalService.prototype.registerNewUser = function(realName, password, email
     frameAgent,
     formData,
     httpUtility.contentType.WWW_FORM_URLENCODED,
+    null,
     (res) => {
       var responseData = '';
 
@@ -104,6 +105,7 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
     frameAgent,
     formData,
     httpUtility.contentType.WWW_FORM_URLENCODED,
+    null,
     (res) => {
       var responseData = '';
 

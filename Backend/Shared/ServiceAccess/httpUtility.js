@@ -25,9 +25,10 @@ module.exports = {
     * @param {http.Agent} agent - an optional http.Agent object for managing connection persistence
     * @param {string} requestData - optional JSON stringified request data
     * @param {httpUtility.contentType} contentType - the type of content.
+    * @param {string:object} headers - passed-in headers
     * @param {Function} callback - an optional callback function to attach to the request
   **/
-  makeHttpRequest: function(hostUri, port, path, method, agent, requestData, contentType, callback)
+  makeHttpRequest: function(hostUri, port, path, method, agent, requestData, contentType, headers, callback)
   {
     // create the options object
     var options = {
@@ -46,6 +47,15 @@ module.exports = {
     if (requestData != null)
     {
       requestHeaders['Content-Length'] = requestData.length;
+    }
+
+    // add any passed-in headers if necessary
+    if (headers != null)
+    {
+      for (key in headers)
+      {
+        requestHeaders[key] = headers[key];
+      }
     }
 
     // add the request headers ot the options
