@@ -39,7 +39,7 @@ if (cluster.isMaster) {
     app.use('/api', gateway);
 
     // debug
-    app.listen('3000', function () {
-        console.log('Yo Yo listening on 3000');
+    app.listen('8000', function () {
+        console.log('Yo Yo listening on 8000');
     });
 }

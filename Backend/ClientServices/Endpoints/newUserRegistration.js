@@ -37,8 +37,10 @@ function newUserRegistrationGetHandler(req, res, next)
     {
         console.log('registration success!');
 
+        console.log(newUser);
+
         //Create and a new Involvist user
-        involvistUserService.newUser(email, realName, email, function (err) {
+        involvistUserService.newUser(email, realName, email, csResponse.data.userID, function (err) {
             if (err) {
                 return next(err);
             }
