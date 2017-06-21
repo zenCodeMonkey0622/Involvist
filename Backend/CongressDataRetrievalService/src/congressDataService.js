@@ -4,6 +4,7 @@ var BillRetrieverNamespace = (function () {
 
 	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
 	const http = require('http');
+	const https = require('https');
 
     module.exports.BillRetriever = new BillRetriever();
 
@@ -24,7 +25,7 @@ var BillRetrieverNamespace = (function () {
     */
 	function BillRetriever() 
 	{
-		this.congressDataAgent = new http.Agent({keepAlive: true});
+		this.congressDataAgentSecure = new https.Agent({keepAlive: true});
 	}
 
 	BillRetriever.prototype.startGetCongressMembersBillsSchedule = function() 
@@ -82,11 +83,10 @@ var BillRetrieverNamespace = (function () {
 	*/
 	BillRetriever.prototype.getCongressMembers = function(next)
 	{
-		const memberRequest = httpUtility.makeHttpRequest(constants.BASE_CONGRESS_API_URI,
-		null,
-		'/' + constants.CURRENT_CONGRESS + '/' + 'house/members',
+		const memberRequest = httpUtility.makeHttpsRequest(constants.CONGRESS_API_HOST_URI,
+		constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/' + 'house/members.json',
 		httpUtility.requestType.GET,
-		this.congressDataAgent,
+		this.congressDataAgentSecure,
 		null,
 		null,
 		{'X-API-Key': constants.PROPUBLICA_API_KEY},
@@ -110,6 +110,11 @@ var BillRetrieverNamespace = (function () {
 					// todo
 				}
 			});
+		});
+
+		memberRequest.on('error', (e) => {
+			console.error('problem with get congress members request: ' + e.message);
+			return next(e);
 		});
 
 		/*
