@@ -88,9 +88,9 @@ var BillRetrieverNamespace = (function () {
 		httpUtility.requestType.GET,
 		this.congressDataAgentSecure,
 		null,
-		null,
+		httpUtility.contentType.JSON,
 		{'X-API-Key': constants.PROPUBLICA_API_KEY},
-		(resp) => {
+		(res) => {
 			var responseData = '';
 
 			res.on('data', (chunk) => {
@@ -98,8 +98,6 @@ var BillRetrieverNamespace = (function () {
 			});
 
 			res.on('end', () => {
-				console.log('registerNewUser response body end: ' + responseData);
-
 				if (res.statusCode != '200')
 				{
 					var frErr = frameError(responseData);
@@ -116,6 +114,8 @@ var BillRetrieverNamespace = (function () {
 			console.error('problem with get congress members request: ' + e.message);
 			return next(e);
 		});
+
+		memberRequest.end();
 
 		/*
 	    getRequest(constants.HOUSE_MEMBERS_URI + '.json', processMembersData, function (houseErr) {
