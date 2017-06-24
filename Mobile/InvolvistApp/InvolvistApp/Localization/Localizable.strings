@@ -25,7 +25,7 @@
 
 // signup locator screen
 "WelcomeMessage" = "welcome to rousr";
-"LocateMessage" = "let's figure out your voting district so you can make the greatest impact";
+"LocateMessage" = "let's figure out your voting district";
 "AddressLabel" = "street address";
 "CityLabel" = "city";
 "StateLabel" = "state";

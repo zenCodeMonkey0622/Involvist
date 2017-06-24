@@ -363,37 +363,64 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9E-ZK-ZwP" userLabel="AddressInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="173" width="300" height="30"/>
+                                        <rect key="frame" x="37.5" y="163" width="300" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Ql6-dj-l2s"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qyn-mx-j6x" userLabel="CityInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="243" width="300" height="30"/>
+                                        <rect key="frame" x="37.5" y="233" width="300" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="7it-Tc-XIG"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFN-p6-ddD" userLabel="StateInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="313" width="300" height="30"/>
+                                        <rect key="frame" x="37.5" y="303" width="300" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="ZzS-ks-avJ"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cer-Ev-2tZ" userLabel="ZipInputView" customClass="UnderlinedTextField" customModule="InvolvistApp" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="383" width="300" height="30"/>
+                                        <rect key="frame" x="37.5" y="373" width="300" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="FkG-yC-6sw"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FML-Mr-epp" userLabel="FindMyDistrictButton" customClass="WireframeButton" customModule="InvolvistApp" customModuleProvider="target">
+                                        <rect key="frame" x="37.5" y="463" width="300" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="BqW-IV-7f9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="22"/>
+                                        <state key="normal" title="find my district">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53E-Nm-sY9" userLabel="NotNowButton">
+                                        <rect key="frame" x="149" y="515" width="76" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="quD-ac-YS9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="23"/>
+                                        <state key="normal" title="not now"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVj-bw-MHz" userLabel="LocationInformationUseButton">
+                                        <rect key="frame" x="56" y="574" width="262" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="Fob-2h-nGb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
+                                        <state key="normal" title="how will you use my information?"/>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Qyn-mx-j6x" firstAttribute="top" secondItem="g9E-ZK-ZwP" secondAttribute="bottom" constant="40" id="191-g1-HZP"/>
                                     <constraint firstItem="VFN-p6-ddD" firstAttribute="trailing" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="1.8" id="AeC-tc-lcu"/>
+                                    <constraint firstItem="53E-Nm-sY9" firstAttribute="centerX" secondItem="jYT-Zo-NIz" secondAttribute="centerX" id="CgA-b1-we7"/>
                                     <constraint firstItem="VFN-p6-ddD" firstAttribute="leading" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="0.2" id="FQk-d4-KUv"/>
                                     <constraint firstItem="g9E-ZK-ZwP" firstAttribute="leading" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="0.2" id="G4l-Dx-tMD"/>
                                     <constraint firstItem="tPb-Kp-QjQ" firstAttribute="top" secondItem="jYT-Zo-NIz" secondAttribute="top" constant="67" id="JXB-5g-7ih"/>
@@ -402,17 +429,23 @@
                                     <constraint firstAttribute="trailing" secondItem="tPb-Kp-QjQ" secondAttribute="trailing" id="LeH-Sk-rog"/>
                                     <constraint firstItem="VFN-p6-ddD" firstAttribute="top" secondItem="Qyn-mx-j6x" secondAttribute="bottom" constant="40" id="NBo-mW-PqA"/>
                                     <constraint firstItem="SZi-d6-JH0" firstAttribute="leading" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="0.2" id="PUv-Jm-1r7"/>
+                                    <constraint firstItem="FML-Mr-epp" firstAttribute="trailing" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="1.8" id="QzO-e3-Wv1"/>
                                     <constraint firstItem="Cer-Ev-2tZ" firstAttribute="trailing" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="1.8" id="VXL-9b-GAz"/>
+                                    <constraint firstItem="53E-Nm-sY9" firstAttribute="top" secondItem="FML-Mr-epp" secondAttribute="bottom" constant="16" id="XcP-hD-K1B"/>
                                     <constraint firstItem="daY-d5-LV7" firstAttribute="trailing" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="1.8" id="bEC-Ua-ROX"/>
                                     <constraint firstItem="Qyn-mx-j6x" firstAttribute="trailing" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="1.8" id="cuw-62-1s5"/>
                                     <constraint firstItem="daY-d5-LV7" firstAttribute="top" secondItem="SZi-d6-JH0" secondAttribute="bottom" constant="20" id="eVF-iQ-CXl"/>
                                     <constraint firstItem="SZi-d6-JH0" firstAttribute="trailing" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="1.8" id="fdU-h6-q3t"/>
                                     <constraint firstItem="SZi-d6-JH0" firstAttribute="top" secondItem="jYT-Zo-NIz" secondAttribute="top" constant="50" id="lC5-Yi-Ytp"/>
                                     <constraint firstItem="daY-d5-LV7" firstAttribute="leading" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="0.2" id="luR-Dk-cQy"/>
+                                    <constraint firstItem="cVj-bw-MHz" firstAttribute="centerX" secondItem="jYT-Zo-NIz" secondAttribute="centerX" id="m64-rs-46v"/>
                                     <constraint firstItem="Qyn-mx-j6x" firstAttribute="leading" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="0.2" id="mDL-Qr-AtN"/>
                                     <constraint firstItem="Cer-Ev-2tZ" firstAttribute="leading" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="0.2" id="rjz-7l-BRs"/>
+                                    <constraint firstItem="FML-Mr-epp" firstAttribute="top" secondItem="Cer-Ev-2tZ" secondAttribute="bottom" constant="60" id="srb-pe-XMb"/>
                                     <constraint firstItem="g9E-ZK-ZwP" firstAttribute="trailing" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="1.8" id="vE0-W7-Bx6"/>
-                                    <constraint firstItem="g9E-ZK-ZwP" firstAttribute="top" secondItem="daY-d5-LV7" secondAttribute="bottom" constant="50" id="wVa-yx-SE3"/>
+                                    <constraint firstItem="g9E-ZK-ZwP" firstAttribute="top" secondItem="daY-d5-LV7" secondAttribute="bottom" constant="40" id="wVa-yx-SE3"/>
+                                    <constraint firstItem="cVj-bw-MHz" firstAttribute="top" secondItem="53E-Nm-sY9" secondAttribute="bottom" constant="41" id="x8D-EK-jMG"/>
+                                    <constraint firstItem="FML-Mr-epp" firstAttribute="leading" secondItem="jYT-Zo-NIz" secondAttribute="centerX" multiplier="0.2" id="yod-2a-5Fk"/>
                                     <constraint firstItem="Cer-Ev-2tZ" firstAttribute="top" secondItem="VFN-p6-ddD" secondAttribute="bottom" constant="40" id="zX3-oV-vId"/>
                                 </constraints>
                             </scrollView>
@@ -428,7 +461,10 @@
                     <connections>
                         <outlet property="addressInputView" destination="g9E-ZK-ZwP" id="lK4-hH-ECt"/>
                         <outlet property="cityInputView" destination="Qyn-mx-j6x" id="MC3-0m-NIH"/>
+                        <outlet property="findMyDistrictButton" destination="FML-Mr-epp" id="Ug6-Co-8mQ"/>
+                        <outlet property="locationInformationUseButton" destination="cVj-bw-MHz" id="Se0-kH-mKP"/>
                         <outlet property="locatorMessageLabel" destination="daY-d5-LV7" id="6Db-EX-ycb"/>
+                        <outlet property="notNowBUtton" destination="53E-Nm-sY9" id="7Qu-RJ-09w"/>
                         <outlet property="stateInputView" destination="VFN-p6-ddD" id="lqm-ht-Gxh"/>
                         <outlet property="welcomeMessageLabel" destination="SZi-d6-JH0" id="JfE-Wg-zqF"/>
                         <outlet property="zipInputView" destination="Cer-Ev-2tZ" id="SQ5-Kg-meo"/>

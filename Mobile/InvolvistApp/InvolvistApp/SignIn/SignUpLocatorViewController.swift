@@ -17,6 +17,9 @@ class SignUpLocatorViewController: UIViewController
     @IBOutlet weak var cityInputView: UnderlinedTextField!
     @IBOutlet weak var stateInputView: UnderlinedTextField!
     @IBOutlet weak var zipInputView: UnderlinedTextField!
+    @IBOutlet weak var findMyDistrictButton: WireframeButton!
+    @IBOutlet weak var notNowBUtton: UIButton!
+    @IBOutlet weak var locationInformationUseButton: UIButton!
     
     weak var newUser: User?
     weak var signUpDelegate: SignUpProgressDelegate?
@@ -77,5 +80,9 @@ class SignUpLocatorViewController: UIViewController
         zipInputView.underlineColor = Theme.primaryDark
         zipInputView.hintTextAlignment = .right
         zipInputView.hintText = NSLocalizedString("ZipLabel", comment: "")
+        
+        findMyDistrictButton.wireBorderColor = Theme.primaryDark;
+        notNowBUtton.tintColor = Theme.primaryDark;
+        locationInformationUseButton.tintColor = Theme.primaryDark;
     }
 }
