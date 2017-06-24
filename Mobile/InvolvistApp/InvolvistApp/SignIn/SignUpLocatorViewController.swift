@@ -43,7 +43,7 @@ class SignUpLocatorViewController: UIViewController
     {
         self.view.backgroundColor = Theme.primary
         
-        var welcomeMessage = NSLocalizedString("WelcomeMessage", comment: "")
+        var welcomeMessage = Text.LocalizedString("WelcomeMessage")
         
         if let user = newUser
         {
@@ -51,35 +51,35 @@ class SignUpLocatorViewController: UIViewController
         }
         
         welcomeMessageLabel.text = welcomeMessage
-        locatorMessageLabel.text = NSLocalizedString("LocateMessage", comment: "")
+        locatorMessageLabel.text = Text.LocalizedString("LocateMessage")
         
         addressInputView.backgroundColor = UIColor.clear
         addressInputView.inputTextField.backgroundColor = UIColor.clear
         addressInputView.inputTextField.font = Fonts.inputFont
         addressInputView.underlineColor = Theme.primaryDark
         addressInputView.hintTextAlignment = .right
-        addressInputView.hintText = NSLocalizedString("AddressLabel", comment: "")
+        addressInputView.hintText = Text.LocalizedString("AddressLabel")
         
         cityInputView.backgroundColor = UIColor.clear
         cityInputView.inputTextField.backgroundColor = UIColor.clear
         cityInputView.inputTextField.font = Fonts.inputFont
         cityInputView.underlineColor = Theme.primaryDark
         cityInputView.hintTextAlignment = .right
-        cityInputView.hintText = NSLocalizedString("CityLabel", comment: "")
+        cityInputView.hintText = Text.LocalizedString("CityLabel")
         
         stateInputView.backgroundColor = UIColor.clear
         stateInputView.inputTextField.backgroundColor = UIColor.clear
         stateInputView.inputTextField.font = Fonts.inputFont
         stateInputView.underlineColor = Theme.primaryDark
         stateInputView.hintTextAlignment = .right
-        stateInputView.hintText = NSLocalizedString("StateLabel", comment: "")
+        stateInputView.hintText = Text.LocalizedString("StateLabel")
         
         zipInputView.backgroundColor = UIColor.clear
         zipInputView.inputTextField.backgroundColor = UIColor.clear
         zipInputView.inputTextField.font = Fonts.inputFont
         zipInputView.underlineColor = Theme.primaryDark
         zipInputView.hintTextAlignment = .right
-        zipInputView.hintText = NSLocalizedString("ZipLabel", comment: "")
+        zipInputView.hintText = Text.LocalizedString("ZipLabel")
         
         findMyDistrictButton.wireBorderColor = Theme.primaryDark
         findMyDistrictButton.setTitle(Text.LocalizedString("FindMyDistrictButtonText"), for: UIControlState.normal)
@@ -88,6 +88,7 @@ class SignUpLocatorViewController: UIViewController
         notNowButton.tintColor = Theme.primaryDark;
         notNowButton.setTitle(Text.LocalizedString("NotNowButtonText"), for: UIControlState.normal)
         
-        locationInformationUseButton.tintColor = Theme.primaryDark;
+        locationInformationUseButton.tintColor = Theme.primaryDark
+        locationInformationUseButton.setTitle(Text.LocalizedString("LocationInformationUseButtonText"), for: UIControlState.normal)
     }
 }

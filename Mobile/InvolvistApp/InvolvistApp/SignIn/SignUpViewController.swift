@@ -128,14 +128,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
         self.view.backgroundColor = Theme.primary
         self.dismissImage.tintColor = Theme.primaryLight
         
-        self.joinMessageLabel.text = NSLocalizedString("JoinMessage", comment: "")
+        self.joinMessageLabel.text = Text.LocalizedString("JoinMessage")
         
         self.fullNameInput.backgroundColor = UIColor.clear
         self.fullNameInput.inputTextField.backgroundColor = UIColor.clear
         self.fullNameInput.inputFont = Fonts.inputFont
         self.fullNameInput.underlineColor = Theme.primaryDark
         self.fullNameInput.hintTextAlignment = .right
-        self.fullNameInput.hintText = NSLocalizedString("FullNameLabel", comment: "")
+        self.fullNameInput.hintText = Text.LocalizedString("FullNameLabel")
         self.fullNameInput.returnKeyType = UIReturnKeyType.done
         self.fullNameInput.delegate = self
         
@@ -144,7 +144,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
         self.emailInput.inputFont = Fonts.inputFont
         self.emailInput.underlineColor = Theme.primaryDark
         self.emailInput.hintTextAlignment = .right
-        self.emailInput.hintText = NSLocalizedString("EmailLabel", comment: "")
+        self.emailInput.hintText = Text.LocalizedString("EmailLabel")
         self.emailInput.returnKeyType = UIReturnKeyType.done
         self.emailInput.delegate = self
         
@@ -154,7 +154,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
         self.passwordInput.inputFont = Fonts.inputFont
         self.passwordInput.underlineColor = Theme.primaryDark
         self.passwordInput.hintTextAlignment = .right
-        self.passwordInput.hintText = NSLocalizedString("ChoosePassword", comment: "")
+        self.passwordInput.hintText = Text.LocalizedString("ChoosePassword")
         self.passwordInput.returnKeyType = UIReturnKeyType.done
         self.passwordInput.delegate = self
         
@@ -164,14 +164,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
         self.verifyPasswordInput.inputFont = Fonts.inputFont
         self.verifyPasswordInput.underlineColor = Theme.primaryDark
         self.verifyPasswordInput.hintTextAlignment = .right
-        self.verifyPasswordInput.hintText = NSLocalizedString("VerifyPasswordLabel", comment: "")
+        self.verifyPasswordInput.hintText = Text.LocalizedString("VerifyPasswordLabel")
         self.verifyPasswordInput.returnKeyType = UIReturnKeyType.done
         self.verifyPasswordInput.delegate = self
         
-        self.signUpDisclaimerLabel.text = NSLocalizedString("SignUpDisclaimer", comment: "");
-        self.termsOfServiceButton.setTitle(NSLocalizedString("TermsOfServiceButtonLabel", comment: ""), for: UIControlState.normal)
+        self.signUpDisclaimerLabel.text = Text.LocalizedString("SignUpDisclaimer")
+        self.termsOfServiceButton.setTitle(Text.LocalizedString("TermsOfServiceButtonLabel"), for: UIControlState.normal)
         self.termsOfServiceButton.tintColor = Theme.primaryDark
-        self.privacyPolicyButton.setTitle(NSLocalizedString("PrivacyPolicyButtonLabel", comment: ""), for: UIControlState.normal)
+        self.privacyPolicyButton.setTitle(Text.LocalizedString("PrivacyPolicyButtonLabel"), for: UIControlState.normal)
         self.privacyPolicyButton.tintColor = Theme.primaryDark
 
         self.signUpButton.wireBorderColor = Theme.primaryDark

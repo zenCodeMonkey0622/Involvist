@@ -36,7 +36,7 @@ class SignUpPageViewController: UIPageViewController, SignUpProgressDelegate
         signupVc.signUpDelegate = self
         signupVc.userService = userServiceDelegate
         
-        setViewControllers([SignUpLocatorViewController.create()], direction: .forward, animated: false, completion: nil)
+        setViewControllers([signupVc], direction: .forward, animated: false, completion: nil)
     }
     
     // MARK: SignUpProgressDelegate

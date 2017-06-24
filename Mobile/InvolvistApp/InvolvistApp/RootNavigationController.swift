@@ -32,7 +32,7 @@ class RootNavigationController: UINavigationController
         
         // set the theme
         Theme.setTheme(theme: .Bolombo)
-        Text.setCapStyle(capStyle: .AllUppercase)
+        Text.setCapStyle(capStyle: .AllLowercased)
         
         // load sign-in view controller
         if let signInVc = signInStoryboard.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
