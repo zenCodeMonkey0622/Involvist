@@ -464,7 +464,7 @@
                         <outlet property="findMyDistrictButton" destination="FML-Mr-epp" id="Ug6-Co-8mQ"/>
                         <outlet property="locationInformationUseButton" destination="cVj-bw-MHz" id="Se0-kH-mKP"/>
                         <outlet property="locatorMessageLabel" destination="daY-d5-LV7" id="6Db-EX-ycb"/>
-                        <outlet property="notNowBUtton" destination="53E-Nm-sY9" id="7Qu-RJ-09w"/>
+                        <outlet property="notNowButton" destination="53E-Nm-sY9" id="AGg-xT-Lje"/>
                         <outlet property="stateInputView" destination="VFN-p6-ddD" id="lqm-ht-Gxh"/>
                         <outlet property="welcomeMessageLabel" destination="SZi-d6-JH0" id="JfE-Wg-zqF"/>
                         <outlet property="zipInputView" destination="Cer-Ev-2tZ" id="SQ5-Kg-meo"/>

@@ -62,7 +62,7 @@ class SignInViewController: UIViewController
         self.userNameInput.inputFont = Fonts.inputFont
         self.userNameInput.underlineColor = Theme.primaryDark
         self.userNameInput.hintTextAlignment = .right
-        self.userNameInput.hintText = NSLocalizedString("UserNameLabel", comment: "")
+        self.userNameInput.hintText = Text.LocalizedString("UserNameLabel")
         self.userNameInput.returnKeyType = UIReturnKeyType.done
         
         self.passwordInput.inputTextField.isSecureTextEntry = true
@@ -71,13 +71,17 @@ class SignInViewController: UIViewController
         self.passwordInput.inputFont = Fonts.inputFont
         self.passwordInput.underlineColor = Theme.primaryDark
         self.passwordInput.hintTextAlignment = .right
-        self.passwordInput.hintText = NSLocalizedString("PasswordLabel", comment: "")
+        self.passwordInput.hintText = Text.LocalizedString("PasswordLabel")
         self.passwordInput.returnKeyType = UIReturnKeyType.done
         
         self.logInButton.wireBorderColor = Theme.primaryDark
+        self.logInButton.setTitle(Text.LocalizedString("LogInButtonText"), for: UIControlState.normal)
+        
         self.signUpButton.wireBorderColor = Theme.primaryDark
+        self.signUpButton.setTitle(Text.LocalizedString("SignUpButtonText"), for: UIControlState.normal)
+        
         self.orLabel.textColor = Theme.primaryDark
-        self.orLabel.text = NSLocalizedString("OrText", comment: "")
+        self.orLabel.text = Text.LocalizedString("OrText")
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.activityIndicator.isHidden = true

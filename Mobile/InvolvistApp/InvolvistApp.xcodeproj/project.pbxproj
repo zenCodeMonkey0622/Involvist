@@ -27,6 +27,8 @@
 		AB5223C01EDD3C73006D9CB2 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5223BF1EDD3C73006D9CB2 /* UIView+Extensions.swift */; };
 		AB5393F71EB9952500A00C0B /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB5393F61EB9952500A00C0B /* SignIn.storyboard */; };
 		AB5393FA1EB9957700A00C0B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5393F91EB9957700A00C0B /* Theme.swift */; };
+		ABCDDB901EFE251600C7B2BA /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDDB8F1EFE251600C7B2BA /* Text.swift */; };
+		ABCDDB921EFE281600C7B2BA /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCDDB911EFE281600C7B2BA /* String+Extensions.swift */; };
 		ABCE34891EC6C7D90018D57C /* AuthServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE34881EC6C7D90018D57C /* AuthServiceDelegate.swift */; };
 		ABCE348C1EC6C89D0018D57C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE348B1EC6C89D0018D57C /* User.swift */; };
 		ABCE348E1EC6CC1F0018D57C /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE348D1EC6CC1F0018D57C /* AuthenticationService.swift */; };
@@ -67,6 +69,8 @@
 		AB5223BF1EDD3C73006D9CB2 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		AB5393F61EB9952500A00C0B /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		AB5393F91EB9957700A00C0B /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		ABCDDB8F1EFE251600C7B2BA /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		ABCDDB911EFE281600C7B2BA /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		ABCE34881EC6C7D90018D57C /* AuthServiceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthServiceDelegate.swift; sourceTree = "<group>"; };
 		ABCE348B1EC6C89D0018D57C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ABCE348D1EC6CC1F0018D57C /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				AB5223BF1EDD3C73006D9CB2 /* UIView+Extensions.swift */,
+				ABCDDB911EFE281600C7B2BA /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 			children = (
 				AB5393F91EB9957700A00C0B /* Theme.swift */,
 				AB28F5EB1EEE57CD00D2E756 /* Fonts.swift */,
+				ABCDDB8F1EFE251600C7B2BA /* Text.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -384,6 +390,7 @@
 				ABFF86B51EE1B642005C9032 /* SignUpPageViewController.swift in Sources */,
 				ABD14FB71ED3EBBA005E6062 /* RootNavigationController+LocalNavigationDelegate.swift in Sources */,
 				AB048F5D1EBD273900A3F889 /* WireframeButton.swift in Sources */,
+				ABCDDB901EFE251600C7B2BA /* Text.swift in Sources */,
 				AB5393FA1EB9957700A00C0B /* Theme.swift in Sources */,
 				AB5223BE1EDBE5B8006D9CB2 /* ClientServiceResponse.swift in Sources */,
 				AB5223C01EDD3C73006D9CB2 /* UIView+Extensions.swift in Sources */,
@@ -397,6 +404,7 @@
 				ABFF86B71EE1B710005C9032 /* SignUpPageDataSource.swift in Sources */,
 				ABF6C8421ED15B8500ED49BF /* AuthResponse.swift in Sources */,
 				ABCE348E1EC6CC1F0018D57C /* AuthenticationService.swift in Sources */,
+				ABCDDB921EFE281600C7B2BA /* String+Extensions.swift in Sources */,
 				AB5223BC1EDBDCA1006D9CB2 /* PopoverView.swift in Sources */,
 				AB5223B41ED68F47006D9CB2 /* ContentType.swift in Sources */,
 				AB28F5EC1EEE57CD00D2E756 /* Fonts.swift in Sources */,
