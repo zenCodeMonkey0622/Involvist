@@ -40,7 +40,7 @@ struct ClientServiceResponse
         
         switch msg {
         case "Username already in use.":
-            return NSLocalizedString("UsernameAlreadyExists", comment: "")
+            return Text.LocalizedString("UsernameAlreadyExists")
         default:
             return ""
         }
