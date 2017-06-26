@@ -6,7 +6,6 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.14.1",
-    "frame": "^0.1.4",
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.5",
     "request": "^2.81.0",

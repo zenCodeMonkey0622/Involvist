@@ -3,4 +3,4 @@ Last Updated: June 07, 2017
 
 1. Verify simple-oauth-server exists in Git/Backend/ClientServices/node_modules. If not, do a ‘nom install’ from the
    ClientServices directory. 
-2. Replace the delivered validateAccessToken.js file from ClientServices/node_modules/simple-oauth-server with this      local one. Be sure to overwrite or save the original elsewhere.
+2. Replace the delivered validateAccessToken.js file from ClientServices/node_modules/simple-oauth-server/lib with this local one. Be sure to overwrite or save the original elsewhere.

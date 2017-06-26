@@ -1,17 +1,14 @@
 Author: Ruben Hansen-Rojas
-Last Updated: June 07, 2017
+Last Updated: June 25, 2017
 
-1. Verify frame exists in Git/Backend/ClientServices/node_modules.
-2. If not, do an ‘npm install’ from the ClientServices directory.
-3. Copy the included 'invConfig.js' file into ClientServices/node_modules/frame.
-4. Copy the included 'invManifest.js' file into ClientServices/node_modules/frame.
-5. Edit ClientServices/node_modules/frame/index.js to use invManifest.js instead of manifest.js
-6. Edit ClientServices/node_modules/frame/invManifest.js to use invConfig.js instead of config.js.
-7. Copy the included 'signup.js' and 'users.js' into ClientServices/node_modules/frame/server/api. Be sure to overwrite
+1. Copy the included 'invConfig.js' file into ClientServices/node_modules/frame.
+2. Copy the included 'invManifest.js' file into ClientServices/node_modules/frame.
+3. Edit ClientServices/node_modules/frame/index.js to use invManifest.js instead of manifest.js
+4. Copy the included 'signup.js' and 'users.js' into ClientServices/node_modules/frame/server/api. Be sure to overwrite
     or save the original elsewhere.
-8. Copy the include 'user.js' into ClientServices/node_modules/frame/server/models. Be sure to overwrite or save
+5. Copy the include 'user.js' into ClientServices/node_modules/frame/server/models. Be sure to overwrite or save
     the original elsewhere.
-9. Copy the included 'mailer.js' into ClientServices/node_modules/frame/server. Be sure to overwrite or save the
+6. Copy the included 'mailer.js' into ClientServices/node_modules/frame/server. Be sure to overwrite or save the
     original elsewhere.
 
 
