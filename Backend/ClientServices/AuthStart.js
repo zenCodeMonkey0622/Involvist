@@ -4,6 +4,7 @@
 const auth = require('./auth/authentication');
 const gateway = require('./endpoints/gateway');
 const express = require('express');
+const http = require('http');
 const bodyParser = require('body-parser');
 
 var app = express();
@@ -11,10 +12,10 @@ var app = express();
 app.use(bodyParser.json());
 app.use('/oauth', auth.AuthenticationRouter);
 
-// todo: launch the api gateway on its own child process?
+// todo: launch the api gateway on its own child process? 
 app.use('/api', gateway);
 
-// debug
-app.listen('3000', function () {
-    console.log('auth app listening on 3000');
+// create the authentication http server
+http.createServer(app).listen(3000, () => {
+    console.log('rouser authentication server listening on port 3000');
 });
