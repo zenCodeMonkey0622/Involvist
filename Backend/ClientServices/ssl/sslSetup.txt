@@ -8,7 +8,7 @@ Source: https://www.sitepoint.com/how-to-use-ssltls-with-node-js/
     Locality Name: Parker
     Org Name: Rousr, LLC
     Org Unit: Dev
-    Common Name: Rousr
+    Common Name: localhost (or the host name)
     Email: <blank>
     [Optional] Challenge password: <blank>
     [Optional] Company name: <blank>
