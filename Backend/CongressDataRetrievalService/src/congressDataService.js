@@ -61,18 +61,18 @@ var BillRetrieverNamespace = (function () {
 		var count = 0;
 		getRecentHouseBills(count, function(houseErr){
 			if(houseErr) {
-					console.error(houseErr);
+					console.error(houseErr.toString());
 			}
 			var senateBillCount = 0;
 			getRecentSenateBills(senateBillCount, function(senateErr) {
 				if(senateErr) {
-					console.error(senateErr);
+				    console.error(senateErr.toString());
 				}
-				if(bills){
+				else if(bills){
 					console.log('Bills Length:  ' + bills.length);
 					database.updateBills(bills, function(err) {
 						if(err) {
-							console.error(err);
+						    console.error(err.toString());
 						}
 					});
 				}
@@ -86,20 +86,22 @@ var BillRetrieverNamespace = (function () {
 	*/
 	BillRetriever.prototype.getCongressMembers = function(next)
 	{
-	    this.getHouseMembers((err) => {
-	        if (err) {
-	            return next(err);
+	    this.getHouseMembers((houseError) => {
+	        if (houseError) {
+	            return next(houseError);
 	        }
-			this.getSenateMembers( () => {
-				console.log('Got all congress members');
-				database.updateMembers(congressMembers, function(error) {
-					if(error) 
-					{
-						return next(error);
-					}
-				});
-				next();
-			})
+	        this.getSenateMembers((senateError) => {
+	            if (senateError) {
+	                return next(senateError);
+	            }
+	            console.log('Got all congress members');
+	            database.updateMembers(congressMembers, function (error) {
+	                if (error) {
+	                    return next(error);
+	                }
+	            });
+	            next();
+	        });
 		});
 	}
 
@@ -129,48 +131,46 @@ var BillRetrieverNamespace = (function () {
 	BillRetriever.prototype.getCongressMembersBills = function () {
 	    billsWithDetails = [];
 	    var self = this;
-
-        //*************** TODO - UNCOMMENT *********************************************
-
-		//this.getCongressMembers(function(err){
-		//	if(err) {
-		//	    return console.error(err.toString());
-		//	}
-		//	self.getAllCongressMembersBills();
-	    //});
+        
+		this.getCongressMembers(function(err){
+			if(err) {
+			    return console.error(err.toString());
+			}
+			self.getAllCongressMembersBills();
+	    });
 
         //test code
-	    database.queryMembers({}, function (err, docs) {
-	        if (err) {
-	            return;
-	        }
+	    //database.queryMembers({}, function (err, docs) {
+	    //    if (err) {
+	    //        return;
+	    //    }
 
-	        if (docs && docs.length > 0) {
-	            self.congressMembers = docs;	                      
-	            self.getAllCongressMembersBills();	            
-	        }	       
-	    });
+	    //    if (docs && docs.length > 0) {
+	    //        self.congressMembers = docs;	                      
+	    //        self.getAllCongressMembersBills();	            
+	    //    }	       
+	    //});
 	}	
 
     /**
 	* getAllCongressMembersBills() - Gets the latest bill information sponsored by a Congress member
 	*/
 	BillRetriever.prototype.getAllCongressMembersBills = function () {
-	    console.log('CongressMembers Length: ' + this.congressMembers.length);
+	    console.log('CongressMembers Length: ' + congressMembers.length);
 	    var updateCount = 0;
 	    var introCount = 0;
-	    for (var i = 0; i < this.congressMembers.length; i++) {
+	    for (var i = 0; i < congressMembers.length; i++) {
 	        
-	        var memberId = this.congressMembers[i].id;	        
+	        var memberId = congressMembers[i].id;	        
 	       
 	        this.getMemberIntroducedBills(memberId, (err) => {
 	            if(err){
-	                console.error(err.toString());
+	                return console.error(err.toString());
 	            }
 	        });
 	        this.getMemberUpdatedBills(memberId, (err) => {
 	            if (err) {
-	                console.error(err.toString());
+	                return console.error(err.toString());
 	            }
 	            updateCount++;
 	            console.log('Update Member count:  ' + updateCount); 
@@ -183,8 +183,7 @@ var BillRetrieverNamespace = (function () {
     */
 	BillRetriever.prototype.getMemberIntroducedBills = function (memberId, next) {
 	    var billsPath = constants.BILLS_BY_MEMBER_URI + memberId + '/bills/introduced.json'	    
-	    this.getRequest(billsPath, this.processMembersBillsData.bind(this), next);
-	   
+	    this.getRequest(billsPath, this.processMembersBillsData.bind(this), next);	   
 	}
 
     /*
@@ -248,15 +247,15 @@ var BillRetrieverNamespace = (function () {
 	BillRetriever.prototype.getSpecificBillsData = function(memberBills, next) {
 	    var self = this;
 	    memberBills.forEach(function (billData) {
-			var billNumber = billData.number.replace(/\./g, "").toLowerCase();
+	        var billNumber = billData.number.replace(/\./g, "").toLowerCase();
 
-			if(!billsWithDetails.includes(billNumber)) {
-			    billsWithDetails.push(billNumber);
-			    console.log('Get Bill Details: ' + billNumber);
-			    var billPath = constants.SPECIFIC_BILL + billNumber + '.json';
-                self.getRequest(billPath, processSpecificBillData, next);				
-			}
-		})
+	        if (!billsWithDetails.includes(billNumber)) {
+	            billsWithDetails.push(billNumber);
+	            console.log('Get Bill Details: ' + billNumber);
+	            var billPath = constants.SPECIFIC_BILL + billNumber + '.json';
+	            self.getRequest(billPath, processSpecificBillData, next);
+	        }
+	    });
 
 		next();
 	}   
@@ -445,18 +444,24 @@ var BillRetrieverNamespace = (function () {
 			}
 		}
 
-		var billInfo = JSON.parse(data);
+	    try {
+	        var parseBody = data.replace(new RegExp('\"active\": ,', 'g'), '\"active\": \"\",');
+	        var billInfo = JSON.parse(parseBody);
 
-		if(billInfo.status === 'OK') {
-			billInfo.results[0].number = billInfo.results[0].bill;
-			database.updateBills(billInfo.results, function(err) {
-				if(err) {
-					return next(err);
-				}
-			});
-		}
+	        if(billInfo.status === 'OK') {
+	            billInfo.results[0].number = billInfo.results[0].bill;
+	            database.updateBills(billInfo.results, function(err) {
+	                if(err) {
+	                    return next(err);
+	                }
+	            });
+	        }
 
-		next();
+	        next();
+	    }
+	    catch (err) {
+	        return next(data);
+	    }
 	}
 
 	/**
