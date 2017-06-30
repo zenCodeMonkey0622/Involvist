@@ -1,20 +1,23 @@
-// authStart.js
+// AuthStart.js
 // main entry-point for involvist client authentication services
 
-const auth = require('./auth/authentication');
-const gateway = require('./endpoints/gateway');
+const https = require('https');
+const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
+const auth = require('./auth/authentication');
 
-var app = express();
+var authApp = express();
 
-app.use(bodyParser.json());
-app.use('/oauth', auth.AuthenticationRouter);
+authApp.use(bodyParser.json());
+authApp.use('/oauth', auth.AuthenticationRouter);
 
-// todo: launch the api gateway on its own child process?
-app.use('/api', gateway);
+// create the authentication https server with ssl options
+var serverOptions = {
+    key: fs.readFileSync('ssl/server.key'),
+    cert: fs.readFileSync('ssl/server.crt')
+};
 
-// debug
-app.listen('3000', function () {
-    console.log('auth app listening on 3000');
+https.createServer(serverOptions, authApp).listen(3443, () => {
+    console.log('rousr authentication server listening on https port 3443');
 });
