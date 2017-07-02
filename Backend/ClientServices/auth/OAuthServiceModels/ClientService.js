@@ -8,7 +8,6 @@ var client = require('../OAuthModels/Client');
 // constructor
 function ClientService(clientDb)
 {
-  console.log('ClientService constructor');
   this.ClientDb = clientDb;
 }
 

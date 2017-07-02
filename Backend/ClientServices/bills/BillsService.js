@@ -2,6 +2,7 @@
 var constants = require('../../Shared/SharedConstants');
 var databaseFactory = require('../../Shared/CongressDataClient/CongressDataLocalService').DatabaseFactory;
 var config = { databaseType: 'mongodb', uri: constants.CONGRESS_DATA_SOURCE };
+const debugUtility = require('../../Shared/Debug/debugUtility');
 
 /**
 * A constructor for defining BillsService
@@ -16,17 +17,25 @@ var BillsService = function() {
 * @param <object> res - response
 * @param <function()> next - the next function to call
 */
-BillsService.prototype.queryBills = function (req, res, next) {
+BillsService.prototype.queryBills = function (req, res, next) 
+{
+    console.log('bills service query bills start: ' + debugUtility.debugTimeNow());
+
     this.database.queryBills(req.query, function (err, docs) {
-		if(err) {
+        console.log('bills service query bills callback start: ' + debugUtility.debugTimeNow());
+		if(err) 
+        {
 			return next (err);
 		}
 
-		if(docs && docs.length > 0) {
-			if(req.bills && req.bills.length > 0) {
+		if(docs && docs.length > 0) 
+        {
+			if(req.bills && req.bills.length > 0) 
+            {
 				req.bills = req.bills.concat(docs);
 			}
-			else {
+			else 
+            {
 				req.bills = docs;
 			}
 		}

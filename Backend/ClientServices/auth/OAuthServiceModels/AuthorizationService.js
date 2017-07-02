@@ -7,7 +7,6 @@ var token = require('../OAuthModels/Token');
 
 function AuthorizationService(authDb)
 {
-  console.log('AuthorizationService constructor');
   this.AuthDb = authDb;
 }
 

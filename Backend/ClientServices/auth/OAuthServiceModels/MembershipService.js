@@ -5,7 +5,6 @@ module.exports = MembershipService;
 
 function MembershipService()
 {
-  console.log('MembershipService constructor');
   frameLocalService = new frameLocalSvc();
 }
 
