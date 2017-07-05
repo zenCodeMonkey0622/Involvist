@@ -42,6 +42,7 @@ var BillSchema = new Schema({
 });
 
 var Bill = mongoose.model("CurrentBill", BillSchema);
+
 module.exports.Bill = Bill;
 
 

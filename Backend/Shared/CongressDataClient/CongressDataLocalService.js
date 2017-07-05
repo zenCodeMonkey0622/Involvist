@@ -24,11 +24,11 @@ function MongoDb(options) {
 
 /**
 * UpdateBills() - Updates bills in the bills collection
-* @param <[{Bill}]> data
+* @param <[{Bill}]> array of Bill objects
 * @param <function()> next
 */
-MongoDb.prototype.updateBills = function (data, next) {
-	data.forEach(function(billData) {
+MongoDb.prototype.updateBills = function (billsToUpdate, next) {
+	billsToUpdate.forEach(function(billData) {
 		Bill.update(
 			{ number: billData.number},
 			{ $set: billData },
@@ -42,6 +42,33 @@ MongoDb.prototype.updateBills = function (data, next) {
 	});
 
 	next();
+}
+
+/**
+ * UpdatePrimarySubjectCache() - upates bills in a primary subject table
+ * @param <mongoose.Model> - the mongoose model object to update
+ * @param <[{SubjectCacheBill}]> - array of subject cache bill objects to update. this collection
+ * is of the same model type (i.e. HealthCacheBill, EnviroCacheBill, etc..)
+ * @param <function()> - next middleware to call
+ */
+MongoDb.prototype.UdpatePrimarySubjectCacheBills = function(subjectCacheModel, subjectCacheData, next)
+{
+    subjectCacheData.forEach( function(cacheData) {
+    
+        subjectCacheModel.update(
+            {primary_subject: cacheData.primary_subject},
+            { $set: subjectCacheData },
+            { upsert: true},
+            function (err, raw) {
+                if (err)
+                {
+                    return next(err);
+                }
+            }
+        );
+    });
+
+    next();
 }
 
 /**
