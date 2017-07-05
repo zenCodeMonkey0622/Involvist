@@ -12,7 +12,7 @@ var procSpawn = require('child_process').spawn;
 var authProcess = procSpawn('node', ['--debug=7000', '--inspect', 'AuthStart.js']);
 
 // todo: remove the debug and inspect flags for prod
-var gwyProcess = procSpawn('node', ['--debug=7001', '--inspect', '--debug-brk', 'GatewayStart.js']);
+var gwyProcess = procSpawn('node', ['--debug=7001', '--inspect', 'GatewayStart.js']);
 
 // change working directory to the frame directory in node_modules since
 // frame is built to execute in such a way as to assume its home directory
