@@ -9,3 +9,4 @@ Run the following commands
 - npm install mongoose --save
 - npm install node-schedule --save
 - node ./src/app.js
+- to debug: node --debug=<port> --inspect --debug-brk ./src/app.js

@@ -1,6 +1,7 @@
 ﻿var constants = {};
 
 constants.PROPUBLICA_API_KEY = 'BQ03NR8CIK2paMdsiI2m05hBMiuGyyEY3jXJCLbp';
+constants.PROPUBLICA_API_KEY_SECOND = 'd9MT6rGU1C9D5U1o32mMvkkeQPjUIZ4K4ZVplu60';
 constants.CONGRESS_API_HOST_URI = 'api.propublica.org';
 constants.BASE_CONGRESS_API_PATH = '/congress/v1';
 constants.BASE_CONGRESS_API_URI ='api.propublica.org/congress/v1';
@@ -14,6 +15,6 @@ constants.BILLS_BY_MEMBER_URI = constants.BASE_CONGRESS_API_PATH + '/members/';
 constants.SPECIFIC_BILL = constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/bills/';
 
 //Setting this to false will make the retrieval of data much faster
-constants.GET_SPECIFIC_BILL_DATA = true;
+constants.GET_SPECIFIC_BILL_DATA = false;
 
 module.exports = constants;

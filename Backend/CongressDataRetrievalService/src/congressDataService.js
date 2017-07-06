@@ -184,6 +184,7 @@ var BillRetrieverNamespace = (function () {
     * getMemberIntroducedBills() - Gets bills introduced by the congress member
     */
 	BillRetriever.prototype.getMemberIntroducedBills = function (memberId, next) {
+
 	    var billsPath = constants.BILLS_BY_MEMBER_URI + memberId + '/bills/introduced.json'	    
 	    this.getRequest(billsPath, this.processMembersBillsData.bind(this), next);	   
 	}
@@ -192,6 +193,7 @@ var BillRetrieverNamespace = (function () {
     * getMemberUpdatedBills() - Gets bills sponsored by the congress member that have been updated recently
     */
 	BillRetriever.prototype.getMemberUpdatedBills = function (memberId, next) {
+
 	    var billsPath = constants.BILLS_BY_MEMBER_URI + memberId + '/bills/updated.json'	   
 	    this.getRequest(billsPath, this.processMembersBillsData.bind(this), next);	    
 	}
@@ -203,7 +205,6 @@ var BillRetrieverNamespace = (function () {
    * @param <function()> next
    */
 	BillRetriever.prototype.processMembersBillsData = function (error, body, next) {
-		console.log('processMembersBillsData start.');
 
 	    if (error) {
 	        return next(error);
@@ -222,7 +223,7 @@ var BillRetrieverNamespace = (function () {
 	            var currentBills = info.results[0].bills.filter((bill) => bill.congress === constants.CURRENT_CONGRESS);
 
 	            if (currentBills && currentBills.length > 0) {
-	                console.log('bills length: ' + currentBills.length + ' congress: ' + currentBills[0].congress);
+	                //console.log('member\'s bills length: ' + currentBills.length + ' congress: ' + currentBills[0].congress);
 	                database.updateBills(currentBills, function (err) {
 	                    if (err) {
 	                        return next(err);
@@ -261,7 +262,7 @@ var BillRetrieverNamespace = (function () {
 
 			primarySubjects.forEach(function(element) {
 
-				console.log('BillRetriever.updateBillSubjectCache found ' + element + ' as primary subject.');
+				//console.log('BillRetriever.updateBillSubjectCache found ' + element + ' as primary subject.');
 
 				if (!primarySubjectBills[element]) {
 					primarySubjectBills[element] = [];
@@ -270,7 +271,7 @@ var BillRetrieverNamespace = (function () {
 			});
 		});
 
-		console.log('BillRetriever.updateBillSubjectCache found ' + primarySubjectBills.length + ' primary subjects.');
+		console.log('BillRetriever.updateBillSubjectCache found ' + Object.keys(primarySubjectBills).length + ' primary subjects.');
 
 		// todo: uncomment when ready to write to mongo collections
 		//database.udpatePrimarySubjectCache(primarySubjectBills);
