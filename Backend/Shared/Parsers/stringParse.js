@@ -1,6 +1,6 @@
 // stringParse.js
 // a string parsing utility
-'ust strict';
+'use strict';
 
 module.exports = {
 

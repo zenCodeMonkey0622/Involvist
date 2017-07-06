@@ -7,7 +7,7 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
-var SubjectCacheBillSchema = new Schema(
+var SubjectCacheBillSchema = new schema(
     {
         primary_subject: String,
         number: String,

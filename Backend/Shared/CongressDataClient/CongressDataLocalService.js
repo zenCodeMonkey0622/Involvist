@@ -50,7 +50,7 @@ MongoDb.prototype.updateBills = function (billsToUpdate, next) {
  * @param <{string, [SubjectCacheBill]}> - subjectCacheBills
  * @param <function()> - next
  */
-MongoDb.prototype.udpatePrimarySubjectCacheBills = function(subjectCacheBills, next)
+MongoDb.prototype.udpatePrimarySubjectCache = function(subjectCacheBills, next)
 {
     for(var key in subjectCacheBills)
     {

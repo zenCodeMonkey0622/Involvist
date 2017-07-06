@@ -3,6 +3,8 @@
 var BillRetrieverNamespace = (function () {
 
 	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
+	const stringParser = require('../../Shared/Parsers/stringParse');
+
 	const http = require('http');
 	const https = require('https');	
 
@@ -228,6 +230,9 @@ var BillRetrieverNamespace = (function () {
 	                    if (constants.GET_SPECIFIC_BILL_DATA) {
 	                        self.getSpecificBillsData(currentBills, next);
 	                    }
+
+						// now build/update the primary subject cache
+						self.updateBillSubjectCache(currentBills, next);
 	                });
 	            } else {
 	                return next();
@@ -246,28 +251,29 @@ var BillRetrieverNamespace = (function () {
 	 * buildSubjectCache() - Creates and/or updates the subject caches of the bills passed in.
 	 * @param <[{Bill}]> - currentBills: an array of Bill data
 	 */
-	BillRetriever.prototype.buildSubjectCache = function(currentBills, next)
+	BillRetriever.prototype.updateBillSubjectCache = function(currentBills, next)
 	{
-		// todo: build a dictionary keyed by the unique primary_subject values found
 		var primarySubjectBills = {};
 
 		currentBills.forEach(function(billData) {
 
-			// extract all possible primary subject values
-			// by splitting on the regex pattern for a comma followed by a space
-			var primSubjField = billData.primary_subject;
+			var primarySubjects = stringParser.parsePrimarySubjects(billData.primary_subject);
 
-			// todo: use a regex to split on comma+space (", ") in order to
-			// naturally trim the resultant substrings
-			var primarySubjects = primSubjField.split(",");
-			if (!primarySubjectBills[billData.primary_subject])
-			{
-				primarySubjectBills[billData.primary_subject] = [];
-			}
-			primarySubjectBills[billData.primary_subject].push(billData);
+			primarySubjects.forEach(function(element) {
+
+				console.log('BillRetriever.updateBillSubjectCache found ' + element + ' as primary subject.');
+
+				if (!primarySubjectBills[element]) {
+					primarySubjectBills[element] = [];
+				}
+				primarySubjectBills[element].push(billData);
+			});
 		});
 
-		database.UdpatePrimarySubjectCacheBills();
+		console.log('BillRetriever.updateBillSubjectCache found ' + primarySubjectBills.length + ' primary subjects.');
+
+		// todo: uncomment when ready to write to mongo collections
+		//database.udpatePrimarySubjectCache(primarySubjectBills);
 	}
 
 	/**
