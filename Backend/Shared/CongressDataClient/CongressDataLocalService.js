@@ -5,6 +5,7 @@ module.exports.DatabaseFactory = new DatabaseFactory();
 var mongoose = require('mongoose');
 var CongressMember = require('../Models/congress').CongressMember;
 var Bill = require('../Models/bill').Bill;
+var SubjectCacheBill = require('../Models/subjectCacheBill').SubjectCacheBillSchema;
 
 /**
 * A constructor for defining new mongoDb database service
@@ -45,28 +46,33 @@ MongoDb.prototype.updateBills = function (billsToUpdate, next) {
 }
 
 /**
- * UpdatePrimarySubjectCache() - upates bills in a primary subject table
- * @param <mongoose.Model> - the mongoose model object to update
- * @param <[{SubjectCacheBill}]> - array of subject cache bill objects to update. this collection
- * is of the same model type (i.e. HealthCacheBill, EnviroCacheBill, etc..)
- * @param <function()> - next middleware to call
+ * updatePrimarySubjectCache() - upates bills in a primary subject table
+ * @param <{string, [SubjectCacheBill]}> - subjectCacheBills
+ * @param <function()> - next
  */
-MongoDb.prototype.UdpatePrimarySubjectCacheBills = function(subjectCacheModel, subjectCacheData, next)
+MongoDb.prototype.udpatePrimarySubjectCacheBills = function(subjectCacheBills, next)
 {
-    subjectCacheData.forEach( function(cacheData) {
-    
-        subjectCacheModel.update(
-            {primary_subject: cacheData.primary_subject},
-            { $set: subjectCacheData },
-            { upsert: true},
-            function (err, raw) {
-                if (err)
-                {
-                    return next(err);
+    for(var key in subjectCacheBills)
+    {
+        // create the mongoose model object based on the key
+        var subjectCacheModel = mongoose.model(key, SubjectCacheBill);
+
+        var cacheBills = subjectCacheBills[key];
+
+        cacheBills.forEach( function(cacheData) {
+            subjectCacheModel.update(
+                {primary_subject: cacheData.primary_subject},
+                { $set: subjectCacheData },
+                { upsert: true},
+                function (err, raw) {
+                    if (err)
+                    {
+                        return next(err);
+                    }
                 }
-            }
-        );
-    });
+            );
+        });
+    }
 
     next();
 }
@@ -186,7 +192,6 @@ MongoDb.prototype.untagBill = function (billNumber, tag, next) {
     });
 }
 
-
 //A constructor for defining AWS DyanamoDB databaseS
 //PLACE HOLDER for now
 function DynamoDb( ){
@@ -197,7 +202,7 @@ function DynamoDb( ){
   //}
 }
 
-// Define a skeleton databas factory
+// Define a skeleton database factory
 function DatabaseFactory() {}
 
 // Define the prototypes and utilities for this factory

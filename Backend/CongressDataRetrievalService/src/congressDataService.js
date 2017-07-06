@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var BillRetrieverNamespace = (function () {
 
@@ -201,6 +201,8 @@ var BillRetrieverNamespace = (function () {
    * @param <function()> next
    */
 	BillRetriever.prototype.processMembersBillsData = function (error, body, next) {
+		console.log('processMembersBillsData start.');
+
 	    if (error) {
 	        return next(error);
 	    }
@@ -208,13 +210,15 @@ var BillRetrieverNamespace = (function () {
 	    var self = this;
 
 	    //There is some bad JSON data coming back from the Propublica Congress API, so we need to make sure active has a valid value.
-	    try{
+	    try
+		{
 	        var parseBody = body.replace(new RegExp('\"active\": ,', 'g'), '\"active\": \"\",');
 	        var info = JSON.parse(parseBody);
 
 	        if (info.results[0].bills && info.results[0].bills.length > 0) {
 	            //Only get bills that were introduced during the current congress.
 	            var currentBills = info.results[0].bills.filter((bill) => bill.congress === constants.CURRENT_CONGRESS);
+
 	            if (currentBills && currentBills.length > 0) {
 	                console.log('bills length: ' + currentBills.length + ' congress: ' + currentBills[0].congress);
 	                database.updateBills(currentBills, function (err) {
@@ -225,18 +229,45 @@ var BillRetrieverNamespace = (function () {
 	                        self.getSpecificBillsData(currentBills, next);
 	                    }
 	                });
-	            }
-	            else {
+	            } else {
 	                return next();
 	            }
-	        }
-	        else {
+	        } else {
 	            return next();
 	        }
 	    }
-	    catch (err) {
+	    catch (err) 
+		{
 	        return next(err);
 	    }
+	}
+
+	/**
+	 * buildSubjectCache() - Creates and/or updates the subject caches of the bills passed in.
+	 * @param <[{Bill}]> - currentBills: an array of Bill data
+	 */
+	BillRetriever.prototype.buildSubjectCache = function(currentBills, next)
+	{
+		// todo: build a dictionary keyed by the unique primary_subject values found
+		var primarySubjectBills = {};
+
+		currentBills.forEach(function(billData) {
+
+			// extract all possible primary subject values
+			// by splitting on the regex pattern for a comma followed by a space
+			var primSubjField = billData.primary_subject;
+
+			// todo: use a regex to split on comma+space (", ") in order to
+			// naturally trim the resultant substrings
+			var primarySubjects = primSubjField.split(",");
+			if (!primarySubjectBills[billData.primary_subject])
+			{
+				primarySubjectBills[billData.primary_subject] = [];
+			}
+			primarySubjectBills[billData.primary_subject].push(billData);
+		});
+
+		database.UdpatePrimarySubjectCacheBills();
 	}
 
 	/**

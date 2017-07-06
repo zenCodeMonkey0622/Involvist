@@ -1,7 +1,7 @@
 {
-  "name": "inv-shared",
+  "name": "rousr-shared",
   "version": "0.0.1",
-  "description": "Internal shared module for the Involvist back-end.",
+  "description": "Internal shared module for the Rousr back-end.",
   "author": "Ryan Crowley",
   "contributors": [
     {

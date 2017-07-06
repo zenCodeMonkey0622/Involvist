@@ -11,6 +11,7 @@ var SubjectCacheBillSchema = new Schema(
     {
         primary_subject: String,
         number: String,
+        title: String
     }
 );
 
