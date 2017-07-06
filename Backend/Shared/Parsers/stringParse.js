@@ -10,7 +10,12 @@ module.exports = {
      */
     parsePrimarySubjects: function(primarySubjectField)
     {
-        // todo: implement
-        return null;
+        if (primarySubjectField == null || primarySubjectField == '')
+            return [];
+        
+        // regex is a comma followed by 0 or more spaces
+        const regEx = /,\s*/g;
+
+        return primarySubjectField.split(regEx)
     }
 }

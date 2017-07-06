@@ -30,33 +30,55 @@ describe('stringParse', function() {
         });
 
         it('should return two elements when the value is a comma-delimited string', function() {
-            var expectedSubject = ['Health', 'Technology'];
+            var expectedResult = ['Health', 'Technology'];
             var actualResult = testParser.parsePrimarySubjects('Health, Technology');
             assert.notEqual(actualResult, null);
-            assert.equal(actualResult.length, 2);
+            assert.equal(actualResult.length, expectedResult.length);
 
-            expectedSubject.forEach( function(subject) {
-                assert.equal(actualResult[0], subject);
+            expectedResult.forEach( function(element, index, array) {
+                assert.equal(actualResult[index], element);
             });
         });
 
         it('should return two elements when the value is a comma-delimited string with no spaces', function() {
-            var expectedSubject = ['Health', 'Technology'];
+            var expectedResult = ['Health', 'Technology'];
             var actualResult = testParser.parsePrimarySubjects('Health,Technology');
             assert.notEqual(actualResult, null);
-            assert.equal(actualResult.length, 2);
+            assert.equal(actualResult.length, expectedResult.length);
 
-            expectedSubject.forEach( function(subject) {
-                assert.equal(actualResult[0], subject);
+            expectedResult.forEach( function(element, index, array) {
+                assert.equal(actualResult[index], element);
+            });
+        });
+
+        it('should return two elements when the value is a comma-delimited string with various amounts of whitespace', function() {
+            var expectedResult = ['Health', 'Technology', 'Environment', 'Space', 'Culture'];
+            var actualResult = testParser.parsePrimarySubjects('Health,    Technology,Environment, Space,      Culture');
+            assert.notEqual(actualResult, null);
+            assert.equal(actualResult.length, expectedResult.length);
+
+            expectedResult.forEach( function(element, index, array) {
+                assert.equal(actualResult[index], element);
             });
         });
 
         it('should return one elements when the value is a space-delimited string', function() {
-            var expectedSubject = 'Media and Communications';
-            var actualResult = testParser.parsePrimarySubjects(expectedSubject);
+            var expectedResult = 'Media and Communications';
+            var actualResult = testParser.parsePrimarySubjects(expectedResult);
             assert.notEqual(actualResult, null);
             assert.equal(actualResult.length, 1);
-            assert.equal(actualResult[0], expectedSubject);
+            assert.equal(actualResult[0], expectedResult);
+        });
+
+        it('should return two elements when the value is a comma-delimited string composed of space-delimited substrings', function() {
+            var expectedResult = ['Health and Society', 'Computers and Technology'];
+            var actualResult = testParser.parsePrimarySubjects('Health and Society,Computers and Technology');
+            assert.notEqual(actualResult, null);
+            assert.equal(actualResult.length, expectedResult.length);
+
+            expectedResult.forEach( function(element, index, array) {
+                assert.equal(actualResult[index], element);
+            });
         });
 
     });
