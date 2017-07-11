@@ -117,12 +117,23 @@ MongoDb.prototype.queryBills = function (reqQuery, callback) {
     var billKeys = Object.keys(Bill.schema.paths);
     var query = {};
 
+    // by default we use regex
+    var useRegex = true;
+
+    // if the 'exact' parameter is passed, set the useRegex
+    // based on the value
+    if (keys.indexOf('exact') >= 0)
+    {
+        useRegex = !reqQuery.exact
+    }
+
     for (var i = 0; i < keys.length; i++) {
         if (billKeys.indexOf(keys[i]) !== -1) {
             var filterParam = keys[i];
             var queryValue = reqQuery[filterParam];
-            //'$' is to search for the exact value.  For example looking for h.r.300 and not every number containing h.r.300, such as h.r.3002
-            query[filterParam] = { '$regex': queryValue + '$', '$options': 'i' };
+            // if using regex, '$' is to search for the exact value.  For example looking for h.r.300 and not every number containing h.r.300, such as h.r.3002
+            // otherwise, just use an exact match
+            query[filterParam] = useRegex ? { '$regex': queryValue + '$', '$options': 'i' } : queryValue;
         }
     }
 
@@ -130,12 +141,12 @@ MongoDb.prototype.queryBills = function (reqQuery, callback) {
         query = {
             $and: [
                 {
-                    $or: [  { 'number': { '$regex': reqQuery.q, '$options': 'i' } },
-                            { 'title': { '$regex': reqQuery.q, '$options': 'i' } },
-                            { 'primary_subject': { '$regex': reqQuery.q, '$options': 'i' } },
-                            { 'description': { '$regex': reqQuery.q, '$options': 'i' } },
-                            { 'summary': { '$regex': reqQuery.q, '$options': 'i' } },
-                            { 'tags': { '$regex': reqQuery.q, '$options': 'i' } }
+                    $or: [  { 'number': useRegex ? { '$regex': reqQuery.q, '$options': 'i' } : reqQuery.q },
+                            { 'title': useRegex ? { '$regex': reqQuery.q, '$options': 'i' } : reqQuery.q },
+                            { 'primary_subject': useRegex ? { '$regex': reqQuery.q, '$options': 'i' } : reqQuery.q },
+                            { 'description': useRegex ? { '$regex': reqQuery.q, '$options': 'i' } : reqQuery.q },
+                            { 'summary': useRegex ? { '$regex': reqQuery.q, '$options': 'i' } : reqQuery.q },
+                            { 'tags': useRegex ? { '$regex': reqQuery.q, '$options': 'i' } : reqQuery.q }
                     ]
                 },
                 query
