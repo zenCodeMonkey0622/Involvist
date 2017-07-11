@@ -147,6 +147,9 @@ MongoDb.prototype.queryBills = function (reqQuery, callback) {
 		if(err){
 			return callback(err);
 		}
+
+        console.log('queryBills found ' + docs.length + ' results');
+        
 		callback(null, docs);
 	});
 }

@@ -2,17 +2,21 @@
 //The endpoints for the bills
 'use strict'
 
-var express = require('express');
-var billsRouter = express.Router();
-var billsService = require('../bills/BillsService');
+const express = require('express');
+const billsRouter = express.Router();
+const billsService = require('../bills/BillsService');
 const csResponse = require('../DataTransfer/CSResponse');
-var bodyParser = require('body-parser')
-billsRouter.use(bodyParser.json());       // to support JSON-encoded bodies
-billsRouter.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+const bodyParser = require('body-parser');
+
+// to support JSON-encoded bodies
+billsRouter.use(bodyParser.json());
+
+// to support URL-encoded bodies
+billsRouter.use(bodyParser.urlencoded({     
     extended: true
 }));
 
-//Using .bind(billsService) so the callse will be in the scope of the billsService
+//Using .bind(billsService) so the calls will be in the scope of the billsService
 //Example of a search - http://localhost:3000/api/v1/bills?q=dog&congress=115
 billsRouter.get('/', billsService.queryBills.bind(billsService), function(req, res) {
     var currentBills = null;
