@@ -1,0 +1,1 @@
+db.currentbills.find({primary_subjects: "Immigration"}).explain("executionStats")

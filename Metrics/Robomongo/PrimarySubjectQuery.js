@@ -1,0 +1,1 @@
+db.currentbills.find({primary_subject: {$regex: "health$", $options: "i"}}).explain("executionStats")
