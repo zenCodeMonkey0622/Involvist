@@ -4,17 +4,15 @@ var BillRetrieverNamespace = (function () {
 
 	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
 	const stringParser = require('../../Shared/Parsers/stringParse');
-
 	const http = require('http');
 	const https = require('https');	
+	const request = require('request');
+	const schedule = require('node-schedule');
+	const databaseFactory = require('../../Shared/CongressDataClient/CongressDataLocalService').DatabaseFactory;
+	const config = require('./config');
+	const constants = require('./constants');
 
     module.exports.BillRetriever = new BillRetriever();
-
-	var request = require('request');
-	var schedule = require('node-schedule');
-	var databaseFactory = require('../../Shared/CongressDataClient/CongressDataLocalService').DatabaseFactory;
-	var config = require('./config');
-	var constants = require('./constants');
 
 	var bills = [];
 	var congressMembers = [];
