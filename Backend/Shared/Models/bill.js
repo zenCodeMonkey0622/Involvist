@@ -37,6 +37,7 @@ var BillSchema = new Schema({
 	versions: [],
 	actions: [{}],
 	//Added 
+	primary_subjects: [],
 	tags: [],
     description: String
 });

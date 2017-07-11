@@ -2,10 +2,11 @@
 
 module.exports.DatabaseFactory = new DatabaseFactory();
 
-var mongoose = require('mongoose');
-var CongressMember = require('../Models/congress').CongressMember;
-var Bill = require('../Models/bill').Bill;
-var SubjectCacheBill = require('../Models/subjectCacheBill').SubjectCacheBillSchema;
+const stringParser = require('../../Shared/Parsers/stringParse');
+const mongoose = require('mongoose');
+const CongressMember = require('../Models/congress').CongressMember;
+const Bill = require('../Models/bill').Bill;
+const SubjectCacheBill = require('../Models/subjectCacheBill').SubjectCacheBillSchema;
 
 /**
 * A constructor for defining new mongoDb database service
@@ -30,6 +31,11 @@ function MongoDb(options) {
 */
 MongoDb.prototype.updateBills = function (billsToUpdate, next) {
 	billsToUpdate.forEach(function(billData) {
+
+        // parse the primary_subject string into components and
+        // set the added primary_subjects array
+        billData.primary_subjects = stringParser.parsePrimarySubjects(billData.primary_subject);
+
 		Bill.update(
 			{ number: billData.number},
 			{ $set: billData },
