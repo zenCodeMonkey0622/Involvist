@@ -1,0 +1,1 @@
+db.currentbills.createIndex({primary_subjects: 1}, {sparse: true})
