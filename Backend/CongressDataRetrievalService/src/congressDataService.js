@@ -7,7 +7,7 @@ var BillRetrieverNamespace = (function () {
 	const https = require('https');	
 	const request = require('request');
 	const schedule = require('node-schedule');
-	const databaseFactory = require('../../Shared/CongressDataClient/CongressDataLocalService').DatabaseFactory;
+	const databaseService = require('../../Shared/CongressDataClient/CongressDataLocalService').CongressDatabaseService;
 	const config = require('./config');
 	const constants = require('./constants');
 
@@ -17,7 +17,7 @@ var BillRetrieverNamespace = (function () {
 	var congressMembers = [];
 	var billsWithDetails = [];
 	
-	var database = databaseFactory.createDatabase(config);
+	var database = databaseService.createDatabase(config);
 
     /**
     * BillRetriever - Gets the latest bills and congress members data

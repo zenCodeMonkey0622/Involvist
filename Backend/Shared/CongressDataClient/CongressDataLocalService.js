@@ -1,12 +1,11 @@
 'use strict'
 
-module.exports.DatabaseFactory = new DatabaseFactory();
+module.exports.CongressDatabaseService = new CongressDatabaseService();
 
 const stringParser = require('../../Shared/Parsers/stringParse');
 const mongoose = require('mongoose');
 const CongressMember = require('../Models/congress').CongressMember;
 const Bill = require('../Models/bill').Bill;
-const SubjectCacheBill = require('../Models/subjectCacheBill').SubjectCacheBillSchema;
 
 /**
 * A constructor for defining new mongoDb database service
@@ -49,38 +48,6 @@ MongoDb.prototype.updateBills = function (billsToUpdate, next) {
 	});
 
 	next();
-}
-
-/**
- * updatePrimarySubjectCache() - upates bills in a primary subject table
- * @param <{string, [SubjectCacheBill]}> - subjectCacheBills
- * @param <function()> - next
- */
-MongoDb.prototype.udpatePrimarySubjectCache = function(subjectCacheBills, next)
-{
-    for(var key in subjectCacheBills)
-    {
-        // create the mongoose model object based on the key
-        var subjectCacheModel = mongoose.model(key, SubjectCacheBill);
-
-        var cacheBills = subjectCacheBills[key];
-
-        cacheBills.forEach( function(cacheData) {
-            subjectCacheModel.update(
-                {primary_subject: cacheData.primary_subject},
-                { $set: subjectCacheData },
-                { upsert: true},
-                function (err, raw) {
-                    if (err)
-                    {
-                        return next(err);
-                    }
-                }
-            );
-        });
-    }
-
-    next();
 }
 
 /**
@@ -223,15 +190,15 @@ function DynamoDb( ){
 }
 
 // Define a skeleton database factory
-function DatabaseFactory() {}
+function CongressDatabaseService() {}
 
 // Define the prototypes and utilities for this factory
 
 // Our default databaseClass is MongoDb
-DatabaseFactory.prototype.databaseClass = MongoDb;
+CongressDatabaseService.prototype.databaseClass = MongoDb;
 
 // Our Factory method for creating new Database instances
-DatabaseFactory.prototype.createDatabase = function ( options ) {
+CongressDatabaseService.prototype.createDatabase = function ( options ) {
 
   switch(options.databaseType){
     case 'mongodb':
