@@ -3,7 +3,6 @@
 var BillRetrieverNamespace = (function () {
 
 	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
-	const stringParser = require('../../Shared/Parsers/stringParse');
 	const http = require('http');
 	const https = require('https');	
 	const request = require('request');
@@ -229,9 +228,6 @@ var BillRetrieverNamespace = (function () {
 	                    if (constants.GET_SPECIFIC_BILL_DATA) {
 	                        self.getSpecificBillsData(currentBills, next);
 	                    }
-
-						// now build/update the primary subject cache
-						self.updateBillSubjectCache(currentBills, next);
 	                });
 	            } else {
 	                return next();
@@ -244,35 +240,6 @@ var BillRetrieverNamespace = (function () {
 		{
 	        return next(err);
 	    }
-	}
-
-	/**
-	 * buildSubjectCache() - Creates and/or updates the subject caches of the bills passed in.
-	 * @param <[{Bill}]> - currentBills: an array of Bill data
-	 */
-	BillRetriever.prototype.updateBillSubjectCache = function(currentBills, next)
-	{
-		var primarySubjectBills = {};
-
-		currentBills.forEach(function(billData) {
-
-			var primarySubjects = stringParser.parsePrimarySubjects(billData.primary_subject);
-
-			primarySubjects.forEach(function(element) {
-
-				//console.log('BillRetriever.updateBillSubjectCache found ' + element + ' as primary subject.');
-
-				if (!primarySubjectBills[element]) {
-					primarySubjectBills[element] = [];
-				}
-				primarySubjectBills[element].push(billData);
-			});
-		});
-
-		console.log('BillRetriever.updateBillSubjectCache found ' + Object.keys(primarySubjectBills).length + ' primary subjects.');
-
-		// todo: uncomment when ready to write to mongo collections
-		//database.udpatePrimarySubjectCache(primarySubjectBills);
 	}
 
 	/**
