@@ -26,6 +26,6 @@ RousrUserSchema.methods.initialize = function (userName, realName, email, userID
     this.email = email;
 }
 
-var rousrUser = mongoose.model("rousr_user", RousrUserSchema);
+var rousrUser = mongoose.model("rsr_user", RousrUserSchema);
 module.exports.InvolvistUser = rousrUser;
 

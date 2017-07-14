@@ -42,7 +42,7 @@ var BillSchema = new Schema({
     description: String
 });
 
-var Bill = mongoose.model("current_bill", BillSchema);
+var Bill = mongoose.model("rsr_current_bill", BillSchema);
 
 module.exports.Bill = Bill;
 

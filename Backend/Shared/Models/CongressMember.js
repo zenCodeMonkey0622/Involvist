@@ -33,6 +33,6 @@ var CongressMemberSchema = new Schema ({
   	congress: String
 });
 
-var CongressMember = mongoose.model("congress_member", CongressMemberSchema);
+var CongressMember = mongoose.model("rsr_congress_member", CongressMemberSchema);
 module.exports.CongressMember = CongressMember;
 

@@ -32,8 +32,8 @@ class AdminGroup extends MongoModels {
     }
 }
 
-// rousr mod: changed 'adminGroups' to 'admin_groups'
-AdminGroup.collection = 'admin_groups';
+
+AdminGroup.collection = 'adminGroups';
 
 
 AdminGroup._idClass = String;
