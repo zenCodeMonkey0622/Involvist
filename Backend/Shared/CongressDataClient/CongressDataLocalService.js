@@ -4,7 +4,7 @@ module.exports.CongressDatabaseService = new CongressDatabaseService();
 
 const stringParser = require('../../Shared/Parsers/stringParse');
 const mongoose = require('mongoose');
-const CongressMember = require('../Models/congress').CongressMember;
+const CongressMember = require('../Models/CongressMember').CongressMember;
 const Bill = require('../Models/bill').Bill;
 
 /**

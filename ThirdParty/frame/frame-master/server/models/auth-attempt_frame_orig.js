@@ -58,8 +58,8 @@ class AuthAttempt extends MongoModels {
     }
 }
 
-// rousr mod: change name from 'authAttempts' to 'auth_attempts'
-AuthAttempt.collection = 'auth_attempts';
+
+AuthAttempt.collection = 'authAttempts';
 
 
 AuthAttempt.schema = Joi.object().keys({

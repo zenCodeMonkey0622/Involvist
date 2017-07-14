@@ -1,7 +1,7 @@
 'use strict'
 
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 //Obtained from List of Members...Get Specific Member has other data
 var CongressMemberSchema = new Schema ({
@@ -33,6 +33,6 @@ var CongressMemberSchema = new Schema ({
   	congress: String
 });
 
-var CongressMember = mongoose.model("CongressMember", CongressMemberSchema);
+var CongressMember = mongoose.model("congress_member", CongressMemberSchema);
 module.exports.CongressMember = CongressMember;
 
