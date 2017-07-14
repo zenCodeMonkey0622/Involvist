@@ -1,6 +1,6 @@
 // BillsService.js
 var constants = require('../../Shared/SharedConstants');
-var databaseFactory = require('../../Shared/CongressDataClient/CongressDataLocalService').DatabaseFactory;
+var databaseService = require('../../Shared/CongressDataClient/CongressDataLocalService').CongressDatabaseService;
 var config = { databaseType: 'mongodb', uri: constants.CONGRESS_DATA_SOURCE };
 const debugUtility = require('../../Shared/Debug/debugUtility');
 
@@ -8,7 +8,7 @@ const debugUtility = require('../../Shared/Debug/debugUtility');
 * A constructor for defining BillsService
 */
 var BillsService = function() {
-	this.database = databaseFactory.createDatabase(config);
+	this.database = databaseService.createDatabase(config);
 }
 
 /**

@@ -2,7 +2,7 @@
 var constants = require('../../Shared/SharedConstants');
 var databaseFactory = require('../../Shared/CongressDataClient/CongressDataLocalService').DatabaseFactory;
 var config = { databaseType: 'mongodb', uri: constants.CONGRESS_DATA_SOURCE };
-var InvolvistUser = require('../../Shared/Models/user').InvolvistUser;
+var InvolvistUser = require('../../Shared/Models/RousrUser').RousrUser;
 
 /**
 * A constructor for defining InvolvistUserService
