@@ -1,3 +1,7 @@
+// congressDataService.js
+// responsible for retrieving publically available legislative data
+// via the ProPublica Congress API
+
 'use strict';
 
 var BillRetrieverNamespace = (function () {
@@ -54,30 +58,31 @@ var BillRetrieverNamespace = (function () {
 	}
 
 	/**
-	* getRecentBills() - Gets the latest bills of each bill type for the house and senate
+	* getCongressMembersBills() - Gets the latest bill information sponsored by each Congress member
 	*/
-	BillRetriever.prototype.getRecentBills = function (){
-		var count = 0;
-		getRecentHouseBills(count, function(houseErr){
-			if(houseErr) {
-					console.error(houseErr.toString());
+	BillRetriever.prototype.getCongressMembersBills = function () {
+	    billsWithDetails = [];
+	    var self = this;
+        
+		this.getCongressMembers(function(err){
+			if(err) {
+			    return console.error(err.toString());
 			}
-			var senateBillCount = 0;
-			getRecentSenateBills(senateBillCount, function(senateErr) {
-				if(senateErr) {
-				    console.error(senateErr.toString());
-				}
-				else if(bills){
-					console.log('Bills Length:  ' + bills.length);
-					database.updateBills(bills, function(err) {
-						if(err) {
-						    console.error(err.toString());
-						}
-					});
-				}
-			});
-		});
-	}
+			self.getAllCongressMembersBills();
+	    });
+
+        //test code
+	    //database.queryMembers({}, function (err, docs) {
+	    //    if (err) {
+	    //        return;
+	    //    }
+
+	    //    if (docs && docs.length > 0) {
+	    //        self.congressMembers = docs;	                      
+	    //        self.getAllCongressMembersBills();	            
+	    //    }	       
+	    //});
+	}	
 
 	/**
 	* getCongressMembers() - Gets the latest information for each Congress member
@@ -105,53 +110,6 @@ var BillRetrieverNamespace = (function () {
 	}
 
 	/**
-	 * gets json formatted data on house members for the current congress.
-	 * @param {function} next - the next middleware to call.
-	 */
-	BillRetriever.prototype.getHouseMembers = function(next)
-	{
-	    const getHouseMembersPath = constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/' + 'house/members.json';
-	    this.getRequest(getHouseMembersPath, processMembersData, next);		
-	}
-
-	/**
-	 * gets json formatted data on senate members for the current congress.
-	 * @param {function} next - the next middleware to call.
-	 */
-	BillRetriever.prototype.getSenateMembers = function(next)
-	{
-	    const getSenateMembersPath = constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/' + 'senate/members.json';
-	    this.getRequest(getSenateMembersPath, processMembersData, next);
-	}
-    	
-    /**
-	* getCongressMembersBills() - Gets the latest bill information sponsored by each Congress member
-	*/
-	BillRetriever.prototype.getCongressMembersBills = function () {
-	    billsWithDetails = [];
-	    var self = this;
-        
-		this.getCongressMembers(function(err){
-			if(err) {
-			    return console.error(err.toString());
-			}
-			self.getAllCongressMembersBills();
-	    });
-
-        //test code
-	    //database.queryMembers({}, function (err, docs) {
-	    //    if (err) {
-	    //        return;
-	    //    }
-
-	    //    if (docs && docs.length > 0) {
-	    //        self.congressMembers = docs;	                      
-	    //        self.getAllCongressMembersBills();	            
-	    //    }	       
-	    //});
-	}	
-
-    /**
 	* getAllCongressMembersBills() - Gets the latest bill information sponsored by a Congress member
 	*/
 	BillRetriever.prototype.getAllCongressMembersBills = function () {
@@ -177,7 +135,59 @@ var BillRetrieverNamespace = (function () {
 	    }       
 	}	
 
-    /*
+	/**
+	 * gets json formatted data on house members for the current congress.
+	 * @param {function} next - the next middleware to call.
+	 */
+	BillRetriever.prototype.getHouseMembers = function(next)
+	{
+	    const getHouseMembersPath = constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/' + 'house/members.json';
+	    this.getRequest(getHouseMembersPath, processMembersData, next);		
+	}
+
+	/**
+	 * gets json formatted data on senate members for the current congress.
+	 * @param {function} next - the next middleware to call.
+	 */
+	BillRetriever.prototype.getSenateMembers = function(next)
+	{
+	    const getSenateMembersPath = constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/' + 'senate/members.json';
+	    this.getRequest(getSenateMembersPath, processMembersData, next);
+	}
+
+	/**
+	* processMembersData() - Processes the response from the get members request
+	* @param <Error> error
+	* @param <{}> body
+	* @param <function()> next
+	*/
+	function processMembersData (error, body, next) 
+	{
+	    if (error) 
+		{
+	        console.log(error);
+		    return next(error);
+		}
+
+		var info = JSON.parse(body);
+
+		if(congressMembers.length == 0)
+		{
+			console.log(info);
+			congressMembers = info.results[0].members;
+		}
+		else
+		{
+			congressMembers = congressMembers.concat(info.results[0].members);
+		}
+
+		if (next)
+		{
+	    	next();
+		}
+	}	
+
+	/*
     * getMemberIntroducedBills() - Gets bills introduced by the congress member
     */
 	BillRetriever.prototype.getMemberIntroducedBills = function (memberId, next) {
@@ -195,7 +205,7 @@ var BillRetrieverNamespace = (function () {
 	    this.getRequest(billsPath, this.processMembersBillsData.bind(this), next);	    
 	}
 
-   /**
+	/**
    * processMembersBillsData() - Processes the response from the get bills sponsored by each member of congress request
    * @param <Error> error
    * @param <{}> body
@@ -263,69 +273,41 @@ var BillRetrieverNamespace = (function () {
 		next();
 	}   
 
-    /**
-	* getRecentHouseBills() - Gets the latest bills from the house
-	* @param <number> count - index of the current bill type
+	/**
+	* processSpecificBillData() - Processes the response from the get specific details of a bill request
+	* @param <Error> error
+	* @param <{}> data
+	* @param <function()> next
 	*/
-	BillRetriever.prototype.getRecentHouseBills = function(count, next) {
-	    if (count < constants.BILL_TYPES.length) {
-	        console.log('HOUSE BILLS for type: ' + constants.BILL_TYPES[count]);
-	        getRequest(constants.HOUSE_BILLS_URI + constants.BILL_TYPES[count] + '.json', processRecentBillsData, function () {
-	            var newCount = count + 1;
-	            console.log('Count:  ' + newCount);
-	            getRecentHouseBills(newCount, next);
-	        });
-	    }
-	    else {
+	function processSpecificBillData(error, data, next) {
+		if(error) {
+			if(next) {
+				return next(error);
+			}
+			else {
+				return	console.error(error);
+			}
+		}
+
+	    try {
+	        var parseBody = data.replace(new RegExp('\"active\": ,', 'g'), '\"active\": \"\",');
+	        var billInfo = JSON.parse(parseBody);
+
+	        if(billInfo.status === 'OK') {
+	            billInfo.results[0].number = billInfo.results[0].bill;
+	            database.updateBills(billInfo.results, function(err) {
+	                if(err) {
+	                    return next(err);
+	                }
+	            });
+	        }
+
 	        next();
 	    }
-	}
-
-    /**
-	* getRecentSenateBills() - Gets the latest bills from the senate
-	* @param <number> count - index of the current bill type
-	*/
-	BillRetriever.prototype.getRecentSenateBills = function(count, next) {
-	    if (count < constants.BILL_TYPES.length) {
-	        console.log('SENATE BILLS: ' + constants.BILL_TYPES[count]);
-	        getRequest(constants.SENATE_BILLS_URI + constants.BILL_TYPES[count] + '.json', processRecentBillsData, function (err) {
-	            if (err) {
-	                return next(err);
-	            }
-	            var newCount = count + 1;
-	            console.log('Count:  ' + newCount);
-	            getRecentSenateBills(newCount, next);
-	        });
-	    }
-	    else {
-	        next();
+	    catch (err) {
+	        return next(data);
 	    }
 	}
-
-    /**
-   * getBill() - Gets the bill
-   * @param <number> billNumber - the bill number
-   */
-	BillRetriever.prototype.getBill = function (billNumber) {
-	    var query = { number: billNumber };
-	    database.queryBills(query, function (err, docs) {
-	        return docs;
-	    });
-	}
-
-    /**
-   * getMember() - Gets the congress member
-   * @param <number> memberId - the ID of the congress member
-   */
-	BillRetriever.prototype.getMember = function (memberId) {
-	    var query = { id: memberId };
-	    database.queryMembers(query, function (err, docs) {
-	        return docs;
-	    });
-	}
-
-    //***************** Helper  Functons ********************
-    //*******************************************************
 
 	/**
 	* getRequest() - Makes a http get request to the URI passed in
@@ -374,98 +356,124 @@ var BillRetrieverNamespace = (function () {
 	    httpRequest.end();
 	}    
 
+
+
+
+
+
+	/** The following methods are not being used. Commenting out. -RR. */
+
+	/**
+	* getRecentBills() - Gets the latest bills of each bill type for the house and senate
+	*/
+	// BillRetriever.prototype.getRecentBills = function (){
+	// 	var count = 0;
+	// 	getRecentHouseBills(count, function(houseErr){
+	// 		if(houseErr) {
+	// 				console.error(houseErr.toString());
+	// 		}
+	// 		var senateBillCount = 0;
+	// 		getRecentSenateBills(senateBillCount, function(senateErr) {
+	// 			if(senateErr) {
+	// 			    console.error(senateErr.toString());
+	// 			}
+	// 			else if(bills){
+	// 				console.log('Bills Length:  ' + bills.length);
+	// 				database.updateBills(bills, function(err) {
+	// 					if(err) {
+	// 					    console.error(err.toString());
+	// 					}
+	// 				});
+	// 			}
+	// 		});
+	// 	});
+	// }
+
+    /**
+	* getRecentHouseBills() - Gets the latest bills from the house
+	* @param <number> count - index of the current bill type
+	*/
+	// BillRetriever.prototype.getRecentHouseBills = function(count, next) {
+	//     if (count < constants.BILL_TYPES.length) {
+	//         console.log('HOUSE BILLS for type: ' + constants.BILL_TYPES[count]);
+	//         getRequest(constants.HOUSE_BILLS_URI + constants.BILL_TYPES[count] + '.json', processRecentBillsData, function () {
+	//             var newCount = count + 1;
+	//             console.log('Count:  ' + newCount);
+	//             getRecentHouseBills(newCount, next);
+	//         });
+	//     }
+	//     else {
+	//         next();
+	//     }
+	// }
+
+    /**
+	* getRecentSenateBills() - Gets the latest bills from the senate
+	* @param <number> count - index of the current bill type
+	*/
+	// BillRetriever.prototype.getRecentSenateBills = function(count, next) {
+	//     if (count < constants.BILL_TYPES.length) {
+	//         console.log('SENATE BILLS: ' + constants.BILL_TYPES[count]);
+	//         getRequest(constants.SENATE_BILLS_URI + constants.BILL_TYPES[count] + '.json', processRecentBillsData, function (err) {
+	//             if (err) {
+	//                 return next(err);
+	//             }
+	//             var newCount = count + 1;
+	//             console.log('Count:  ' + newCount);
+	//             getRecentSenateBills(newCount, next);
+	//         });
+	//     }
+	//     else {
+	//         next();
+	//     }
+	// }
+
+    /**
+   * getBill() - Gets the bill
+   * @param <number> billNumber - the bill number
+   */
+	// BillRetriever.prototype.getBill = function (billNumber) {
+	//     var query = { number: billNumber };
+	//     database.queryBills(query, function (err, docs) {
+	//         return docs;
+	//     });
+	// }
+
+    /**
+   * getMember() - Gets the congress member
+   * @param <number> memberId - the ID of the congress member
+   */
+	// BillRetriever.prototype.getMember = function (memberId) {
+	//     var query = { id: memberId };
+	//     database.queryMembers(query, function (err, docs) {
+	//         return docs;
+	//     });
+	// }
+
 	/**
 	* processRecentBillsData() - Processes the response from the get recent bills request
 	* @param <Error> error
 	* @param <{}> body
 	* @param <function()> next
 	*/
-	function processRecentBillsData (error, body, next) {
-		if(error) {
-			return next(error);
-		}
+	// function processRecentBillsData (error, body, next) {
+	// 	if(error) {
+	// 		return next(error);
+	// 	}
 
-		var info = JSON.parse(body);
+	// 	var info = JSON.parse(body);
 
-		if(bills.length == 0){
-			bills = info.results[0].bills;
-		}
-		else{
-			bills = bills.concat(info.results[0].bills);
-		}
+	// 	if(bills.length == 0){
+	// 		bills = info.results[0].bills;
+	// 	}
+	// 	else{
+	// 		bills = bills.concat(info.results[0].bills);
+	// 	}
 
-	   	bills.sort(sortBills);
+	//    	bills.sort(sortBills);
 
-	    next();
-	}
-
-	/**
-	* processMembersData() - Processes the response from the get members request
-	* @param <Error> error
-	* @param <{}> body
-	* @param <function()> next
-	*/
-	function processMembersData (error, body, next) 
-	{
-	    if (error) 
-		{
-	        console.log(error);
-		    return next(error);
-		}
-
-		var info = JSON.parse(body);
-
-		if(congressMembers.length == 0)
-		{
-			console.log(info);
-			congressMembers = info.results[0].members;
-		}
-		else
-		{
-			congressMembers = congressMembers.concat(info.results[0].members);
-		}
-
-		if (next)
-		{
-	    	next();
-		}
-	}	
-
-	/**
-	* processSpecificBillData() - Processes the response from the get specific details of a bill request
-	* @param <Error> error
-	* @param <{}> data
-	* @param <function()> next
-	*/
-	function processSpecificBillData(error, data, next) {
-		if(error) {
-			if(next) {
-				return next(error);
-			}
-			else {
-				return	console.error(error);
-			}
-		}
-
-	    try {
-	        var parseBody = data.replace(new RegExp('\"active\": ,', 'g'), '\"active\": \"\",');
-	        var billInfo = JSON.parse(parseBody);
-
-	        if(billInfo.status === 'OK') {
-	            billInfo.results[0].number = billInfo.results[0].bill;
-	            database.updateBills(billInfo.results, function(err) {
-	                if(err) {
-	                    return next(err);
-	                }
-	            });
-	        }
-
-	        next();
-	    }
-	    catch (err) {
-	        return next(data);
-	    }
-	}
+	//     next();
+	// }
 
 	/**
 	* sortBills() - sorts the bills by introduced_data
@@ -476,10 +484,10 @@ var BillRetrieverNamespace = (function () {
 	*	0 no change
 	*	+ positive a after b
 	*/
-	function sortBills(a, b) {
-		var bDate = new Date(b.introduced_date);
-		var aDate = new Date(a.introduced_date);
-		return bDate - aDate;
-	}
+	// function sortBills(a, b) {
+	// 	var bDate = new Date(b.introduced_date);
+	// 	var aDate = new Date(a.introduced_date);
+	// 	return bDate - aDate;
+	// }
 
 })();
