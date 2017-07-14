@@ -6,6 +6,8 @@ var cluster = require('cluster');
 var express = require('express');
 var gateway = require('./endpoints/gateway');
 const auth = require('./auth/authentication');
+const debugUtil = require('../Shared/Debug/debugUtility');
+
 //var numCPUs = require('os').cpus().length;
 //DEBUG CODE: setting numCPUs to 1 to make debugging easier.
 var numCPUs = 1;
@@ -40,6 +42,6 @@ if (cluster.isMaster) {
 
     // debug
     app.listen('3000', function () {
-        console.log('Listening on 3000');
+        debugUtil.debugLog('Listening on 3000');
     });
 }

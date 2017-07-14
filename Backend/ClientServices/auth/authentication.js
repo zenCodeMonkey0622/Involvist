@@ -13,6 +13,7 @@ var ms = require('./OAuthServiceModels/MembershipService');
 var membershipService = new ms();
 var ts = require('./OAuthServiceModels/TokenService');
 var tokenService = new ts();
+const debugUtil = require('../Shared/Debug/debugUtility');
 
 var authRouter = express.Router();
 var authServer = new oauthServer(clientService,

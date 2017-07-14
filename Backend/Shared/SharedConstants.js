@@ -16,6 +16,7 @@ module.exports = {
     
     DEBUG: {
     AUTH_CLIENT_ID: 1,
-    AUTH_CLIENT_SECRET: 'fefifofum'
+    AUTH_CLIENT_SECRET: 'fefifofum',
+    ENABLE_LOG_OUTPUT: true
     }
 }
