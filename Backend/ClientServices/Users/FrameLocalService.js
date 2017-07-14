@@ -4,6 +4,7 @@
 
 module.exports = FrameLocalService;
 
+const debugUtil = require('../../Shared/Debug/debugUtility');
 const constants = require('../../Shared/SharedConstants');
 const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
 const frameUser = require('./FrameUser');
@@ -58,7 +59,7 @@ FrameLocalService.prototype.registerNewUser = function(realName, password, email
       });
 
       res.on('end', () => {
-        console.log('registerNewUser response body end: ' + responseData);
+        debugUtil.debugLog('registerNewUser response body end: ' + responseData);
 
         if (res.statusCode != '200')
         {
@@ -114,7 +115,7 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
       });
 
       res.on('end', () => {
-        console.log('frame response body end: ' + responseData);
+        debugUtil.debugLog('frame response body end: ' + responseData);
 
         if (res.statusCode != '200')
         {

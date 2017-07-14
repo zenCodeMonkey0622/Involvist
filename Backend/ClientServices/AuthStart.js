@@ -6,6 +6,7 @@ const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const auth = require('./auth/authentication');
+const debugUtil = require('../Shared/Debug/debugUtility');
 
 var authApp = express();
 
@@ -19,5 +20,5 @@ var serverOptions = {
 };
 
 https.createServer(serverOptions, authApp).listen(3443, () => {
-    console.log('rousr authentication server listening on https port 3443');
+    debugUtil.debugLog('rousr authentication server listening on https port 3443');
 });

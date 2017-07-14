@@ -2,9 +2,11 @@
 // launches back-end client service processes
 // use --debug-brk to break on start...
 
+const debugUtil = require('../Shared/Debug/debugUtility');
+
 // set the appropriate environment variables
 process.env.NODE_ENV = 'test';
-console.log('bootstrap NODE_ENV = ' + process.env.NODE_ENV);
+debugUtil.debugLog('bootstrap NODE_ENV = ' + process.env.NODE_ENV);
 
 var procSpawn = require('child_process').spawn;
 
@@ -24,30 +26,30 @@ var frameProcess = procSpawn('node', ['--debug=7002', '--inspect', 'server.js'])
 
 // bootstrap process will listen to auth process's stdout
 authProcess.stdout.on('data', (data) => {
-  console.log('auth server: ' + data);
+  debugUtil.debugLog('auth server: ' + data);
 });
 
 // bootstrap process will listen to auth process's stderr
 authProcess.stderr.on('data', (data) => {
-  console.log('auth server err: ' + data);
+  debugUtil.debugLog('auth server err: ' + data);
 });
 
 // bootstrap process will listen to auth process's stdout
 gwyProcess.stdout.on('data', (data) => {
-  console.log('gateway server: ' + data);
+  debugUtil.debugLog('gateway server: ' + data);
 });
 
 // bootstrap process will listen to auth process's stderr
 gwyProcess.stderr.on('data', (data) => {
-  console.log('gateway server err: ' + data);
+  debugUtil.debugLog('gateway server err: ' + data);
 });
 
 // bootstrap process will listen to usr mngmnt process's stdoutq
 frameProcess.stdout.on('data', (data) => {
-  console.log('frame server: ' + data);
+  debugUtil.debugLog('frame server: ' + data);
 });
 
 // bootstrap process will listen to usr mngmnt process's stderr
 frameProcess.stderr.on('data', (data) => {
-  console.log('frame server err: ' + data);
+  debugUtil.debugLog('frame server err: ' + data);
 });

@@ -1,5 +1,6 @@
 // MembershipService.js
 const frameLocalSvc = require('../../Users/frameLocalService');
+const debugUtil = require('../../../Shared/Debug/debugUtility');
 
 module.exports = MembershipService;
 
@@ -18,7 +19,7 @@ MembershipService.prototype.areUserCredentialsValid = function(userName, passwor
       }
       else
       {
-        console.log('Membershp service returned valid user ' + frameUser.userName)
+        debugUtil.debugLog('Membershp service returned valid user ' + frameUser.userName)
         callback(null, true);
       }
     });

@@ -2,8 +2,9 @@
 
 module.exports = ClientService;
 
-var constants = require('../../../Shared/SharedConstants');
-var client = require('../OAuthModels/Client');
+const debugUtil = require('../../../Shared/Debug/debugUtility');
+const constants = require('../../../Shared/SharedConstants');
+const client = require('../OAuthModels/Client');
 
 // constructor
 function ClientService(clientDb)
@@ -23,7 +24,7 @@ ClientService.prototype.getById = function(id, callback)
       this.ClientDb.collection(constants.CLIENTS_COLLECTION).findOne({id: parseInt(id)}, function(err, result) {
       if (err)
       {
-        console.log(err);
+        debugUtil.debugLog(err);
       }
       else
       {

@@ -1,19 +1,19 @@
 // authentication.js
 // defines the routes for oauth 2.0 authentication
 
-var express = require('express');
-var constants = require('../../Shared/SharedConstants');
-var oauthServer = require('simple-oauth-server');
+const debugUtil = require('../../Shared/Debug/debugUtility');
+const express = require('express');
+const constants = require('../../Shared/SharedConstants');
+const oauthServer = require('simple-oauth-server');
 const csResponse = require('../DataTransfer/CSResponse');
-var as = require('./OAuthServiceModels/AuthorizationService');
-var authenticationService = new as();
-var cs = require('./OAuthServiceModels/ClientService');
-var clientService = new cs(null);
-var ms = require('./OAuthServiceModels/MembershipService');
-var membershipService = new ms();
-var ts = require('./OAuthServiceModels/TokenService');
-var tokenService = new ts();
-const debugUtil = require('../Shared/Debug/debugUtility');
+const as = require('./OAuthServiceModels/AuthorizationService');
+const authenticationService = new as();
+const cs = require('./OAuthServiceModels/ClientService');
+const clientService = new cs(null);
+const ms = require('./OAuthServiceModels/MembershipService');
+const membershipService = new ms();
+const ts = require('./OAuthServiceModels/TokenService');
+const tokenService = new ts();
 
 var authRouter = express.Router();
 var authServer = new oauthServer(clientService,
@@ -29,11 +29,11 @@ var mongoUri = 'mongodb://root:g0ld0ntheceiling@' + constants.CLIENTS_DATA_SOURC
 mongoClient.connect(mongoUri, function (err, db) {
   if (err)
   {
-    console.log('error trying to connect to mongo: ', err);
+    debugUtil.debugLog('error trying to connect to mongo: ', err);
   }
   else
   {
-    console.log('authentication module successfully connected to mongo!');
+    debugUtil.debugLog('authentication module successfully connected to mongo!');
     clientService.ClientDb = db;
     authenticationService.AuthDb = db;
   }
@@ -49,7 +49,7 @@ authRouter.post('/token', function(req, res, next) {
         }
         else
         {
-          console.log('authentication service granted token on process id ' + process.pid);
+          debugUtil.debugLog('authentication service granted token on process id ' + process.pid);
           var csResp = csResponse(true, null, token)
           res.json(csResp);
         }

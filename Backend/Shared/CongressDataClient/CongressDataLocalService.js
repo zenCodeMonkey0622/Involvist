@@ -2,6 +2,7 @@
 
 module.exports.CongressDatabaseService = new CongressDatabaseService();
 
+const debugUtil = require('../../Shared/Debug/debugUtility');
 const stringParser = require('../../Shared/Parsers/stringParse');
 const mongoose = require('mongoose');
 const CongressMember = require('../Models/CongressMember').CongressMember;
@@ -19,7 +20,7 @@ function MongoDb(options) {
     });
 
     db.once('open', function(){
-        console.log('DB connection: ' + options.uri + ' successful');
+        debugUtil.debugLog('DB connection: ' + options.uri + ' successful');
     });
 }
 
@@ -126,7 +127,7 @@ MongoDb.prototype.queryBills = function (reqQuery, callback) {
 			return callback(err);
 		}
 
-        console.log('queryBills found ' + docs.length + ' results');
+        debugUtil.debugLog('queryBills found ' + docs.length + ' results');
         
 		callback(null, docs);
 	});

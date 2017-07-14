@@ -6,6 +6,7 @@
 
 var BillRetrieverNamespace = (function () {
 
+	const debugUtil = require('../Shared/Debug/debugUtility');
 	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
 	const http = require('http');
 	const https = require('https');	
@@ -36,7 +37,7 @@ var BillRetrieverNamespace = (function () {
    */
 	BillRetriever.prototype.startGetCongressMembersBillsSchedule = function() 
 	{
-		console.log('Congress Data Retrieval Started...');
+		debugUtil.debugLog('Congress Data Retrieval Started...');
 		var self = this;
 
 		if(config.dataRetrieval.retrieveDataOnStartup) {
@@ -50,7 +51,7 @@ var BillRetrieverNamespace = (function () {
 
 		var minuteString = rule.minute < 10 ? '0' + rule.minute : rule.minute;
 
-		console.log('Retrieval scheduled for:  ' + rule.hour + ':' + minuteString);
+		debugUtil.debugLog('Retrieval scheduled for:  ' + rule.hour + ':' + minuteString);
 
 		var j = schedule.scheduleJob(rule, function(){
   			self.getCongressMembersBills();
@@ -98,7 +99,7 @@ var BillRetrieverNamespace = (function () {
 	            if (senateError) {
 	                return next(senateError);
 	            }
-	            console.log('Got all congress members');
+	            debugUtil.debugLog('Got all congress members');
 	            database.updateMembers(congressMembers, function (error) {
 	                if (error) {
 	                    return next(error);
@@ -113,7 +114,7 @@ var BillRetrieverNamespace = (function () {
 	* getAllCongressMembersBills() - Gets the latest bill information sponsored by a Congress member
 	*/
 	BillRetriever.prototype.getAllCongressMembersBills = function () {
-	    console.log('CongressMembers Length: ' + congressMembers.length);
+	    debugUtil.debugLog('CongressMembers Length: ' + congressMembers.length);
 	    var updateCount = 0;
 	    var introCount = 0;
 	    for (var i = 0; i < congressMembers.length; i++) {
@@ -130,7 +131,7 @@ var BillRetrieverNamespace = (function () {
 	                return console.error(err.toString());
 	            }
 	            updateCount++;
-	            console.log('Update Member count:  ' + updateCount); 
+	            debugUtil.debugLog('Update Member count:  ' + updateCount); 
 	        });
 	    }       
 	}	
@@ -165,7 +166,7 @@ var BillRetrieverNamespace = (function () {
 	{
 	    if (error) 
 		{
-	        console.log(error);
+	        debugUtil.debugLog(error);
 		    return next(error);
 		}
 
@@ -173,7 +174,7 @@ var BillRetrieverNamespace = (function () {
 
 		if(congressMembers.length == 0)
 		{
-			console.log(info);
+			debugUtil.debugLog(info);
 			congressMembers = info.results[0].members;
 		}
 		else
@@ -230,7 +231,7 @@ var BillRetrieverNamespace = (function () {
 	            var currentBills = info.results[0].bills.filter((bill) => bill.congress === constants.CURRENT_CONGRESS);
 
 	            if (currentBills && currentBills.length > 0) {
-	                //console.log('member\'s bills length: ' + currentBills.length + ' congress: ' + currentBills[0].congress);
+	                //debugUtil.debugLog('member\'s bills length: ' + currentBills.length + ' congress: ' + currentBills[0].congress);
 	                database.updateBills(currentBills, function (err) {
 	                    if (err) {
 	                        return next(err);
@@ -264,7 +265,7 @@ var BillRetrieverNamespace = (function () {
 
 	        if (!billsWithDetails.includes(billNumber)) {
 	            billsWithDetails.push(billNumber);
-	            console.log('Get Bill Details: ' + billNumber);
+	            debugUtil.debugLog('Get Bill Details: ' + billNumber);
 	            var billPath = constants.SPECIFIC_BILL + billNumber + '.json';
 	            self.getRequest(billPath, processSpecificBillData, next);
 	        }
@@ -378,7 +379,7 @@ var BillRetrieverNamespace = (function () {
 	// 			    console.error(senateErr.toString());
 	// 			}
 	// 			else if(bills){
-	// 				console.log('Bills Length:  ' + bills.length);
+	// 				debugUtil.debugLog('Bills Length:  ' + bills.length);
 	// 				database.updateBills(bills, function(err) {
 	// 					if(err) {
 	// 					    console.error(err.toString());
@@ -395,10 +396,10 @@ var BillRetrieverNamespace = (function () {
 	*/
 	// BillRetriever.prototype.getRecentHouseBills = function(count, next) {
 	//     if (count < constants.BILL_TYPES.length) {
-	//         console.log('HOUSE BILLS for type: ' + constants.BILL_TYPES[count]);
+	//         debugUtil.debugLog('HOUSE BILLS for type: ' + constants.BILL_TYPES[count]);
 	//         getRequest(constants.HOUSE_BILLS_URI + constants.BILL_TYPES[count] + '.json', processRecentBillsData, function () {
 	//             var newCount = count + 1;
-	//             console.log('Count:  ' + newCount);
+	//             debugUtil.debugLog('Count:  ' + newCount);
 	//             getRecentHouseBills(newCount, next);
 	//         });
 	//     }
@@ -413,13 +414,13 @@ var BillRetrieverNamespace = (function () {
 	*/
 	// BillRetriever.prototype.getRecentSenateBills = function(count, next) {
 	//     if (count < constants.BILL_TYPES.length) {
-	//         console.log('SENATE BILLS: ' + constants.BILL_TYPES[count]);
+	//         debugUtil.debugLog('SENATE BILLS: ' + constants.BILL_TYPES[count]);
 	//         getRequest(constants.SENATE_BILLS_URI + constants.BILL_TYPES[count] + '.json', processRecentBillsData, function (err) {
 	//             if (err) {
 	//                 return next(err);
 	//             }
 	//             var newCount = count + 1;
-	//             console.log('Count:  ' + newCount);
+	//             debugUtil.debugLog('Count:  ' + newCount);
 	//             getRecentSenateBills(newCount, next);
 	//         });
 	//     }

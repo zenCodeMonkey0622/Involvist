@@ -1,8 +1,10 @@
 ﻿// InvolvistUserService.js
-var constants = require('../../Shared/SharedConstants');
-var databaseFactory = require('../../Shared/CongressDataClient/CongressDataLocalService').DatabaseFactory;
-var config = { databaseType: 'mongodb', uri: constants.CONGRESS_DATA_SOURCE };
-var InvolvistUser = require('../../Shared/Models/RousrUser').RousrUser;
+
+const debugUtil = require('../../Shared/Debug/debugUtility');
+const constants = require('../../Shared/SharedConstants');
+const databaseFactory = require('../../Shared/CongressDataClient/CongressDataLocalService').DatabaseFactory;
+const config = { databaseType: 'mongodb', uri: constants.CONGRESS_DATA_SOURCE };
+const RousrUser = require('../../Shared/Models/RousrUser').RousrUser;
 
 /**
 * A constructor for defining InvolvistUserService
@@ -20,14 +22,14 @@ var InvolvistUserService = function () {
 */
 InvolvistUserService.prototype.newUser = function (userName, realName, email, userID, next) {
     //Create and save Involvist user to the database
-    var user = new InvolvistUser();
+    var user = new RousrUser();
     user.initialize(userName, realName, email, userID);
     user.save(function (err) {
         if (err) {
             return callback(err);
         }
 
-        console.log('Involvist User saved: ' + userName);
+        debugUtil.debugLog('Involvist User saved: ' + userName);
         return next();
     });
 }
@@ -40,7 +42,7 @@ InvolvistUserService.prototype.newUser = function (userName, realName, email, us
 */
 InvolvistUserService.prototype.followBill = function (userID, billNumber, next) {
 
-    InvolvistUser.update({ userID: userID }, { $addToSet: { followingBills: billNumber } }, function (err, results) {
+    RousrUser.update({ userID: userID }, { $addToSet: { followingBills: billNumber } }, function (err, results) {
         if (err) {
             console.error(err);
             return next(err);
@@ -58,7 +60,7 @@ InvolvistUserService.prototype.followBill = function (userID, billNumber, next) 
 */
 InvolvistUserService.prototype.unfollowBill = function (userID, billNumber, next) {
 
-    InvolvistUser.update({ userID: userID }, { $pull: { followingBills: billNumber } }, function (err, results) {
+    RousrUser.update({ userID: userID }, { $pull: { followingBills: billNumber } }, function (err, results) {
         if (err) {
             console.error(err);
             return next(err);
@@ -76,7 +78,7 @@ InvolvistUserService.prototype.unfollowBill = function (userID, billNumber, next
 */
 InvolvistUserService.prototype.queryUsers = function (req, res, next) {
     var keys = Object.keys(req.query);
-    var userKeys = Object.keys(InvolvistUser.schema.paths);
+    var userKeys = Object.keys(RousrUser.schema.paths);
     var query = {};
 
     for (var i = 0; i < keys.length; i++) {
@@ -88,7 +90,7 @@ InvolvistUserService.prototype.queryUsers = function (req, res, next) {
         }
     }
     
-    InvolvistUser.find(query, function (err, docs) {
+    RousrUser.find(query, function (err, docs) {
         if (err) {
             return next(err);
         }

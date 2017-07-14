@@ -2,8 +2,9 @@
 
 module.exports = AuthorizationService;
 
-var constants = require('../../../Shared/SharedConstants');
-var token = require('../OAuthModels/Token');
+const debugUtil = require('../../../Shared/Debug/debugUtility');
+const constants = require('../../../Shared/SharedConstants');
+const token = require('../OAuthModels/Token');
 
 function AuthorizationService(authDb)
 {
@@ -35,7 +36,7 @@ AuthorizationService.prototype.saveAccessToken = function(tokenData, callback)
   this.AuthDb.collection(constants.TOKEN_COLLECTION).insertOne(newToken, function(err, result) {
     if (err)
     {
-      console.log(err);
+      debugUtil.debugLog(err);
     }
     else
     {
@@ -61,7 +62,7 @@ AuthorizationService.prototype.getAccessToken = function(tokenData, callback)
   this.AuthDb.collection(constants.TOKEN_COLLECTION).findOne({access_token: tokenData}, function(err, result) {
     if (err)
     {
-      console.log(err);
+      debugUtil.debugLog(err);
     }
     else
     {

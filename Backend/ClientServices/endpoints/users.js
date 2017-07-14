@@ -2,11 +2,13 @@
 //The endpoints for the users
 'use strict'
 
-var express = require('express');
-var usersRouter = express.Router();
-var involvistUserService = require('../Users/InvolvistUserService');
+const debugUtil = require('../../Shared/Debug/debugUtility');
+const express = require('express');
+const usersRouter = express.Router();
+const involvistUserService = require('../Users/InvolvistUserService');
 const csResponse = require('../DataTransfer/CSResponse');
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
+
 usersRouter.use(bodyParser.json());       // to support JSON-encoded bodies
 usersRouter.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
@@ -15,7 +17,7 @@ usersRouter.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 //Example of a search - http://localhost:3000/api/v1/users?userName=MrCool
 usersRouter.get('/', involvistUserService.queryUsers, function (req, res) {
     var users = null;
-    console.log('users: ' + req.users);
+    debugUtil.debugLog('users: ' + req.users);
     if (req.users) {
         users = req.users;            
     }

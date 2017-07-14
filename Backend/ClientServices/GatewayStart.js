@@ -6,6 +6,7 @@ const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const gateway = require('./endpoints/gateway');
+const debugUtil = require('../Shared/Debug/debugUtility');
 
 var gatewayApp = express();
 
@@ -19,5 +20,5 @@ var serverOptions = {
 };
 
 https.createServer(serverOptions, gatewayApp).listen(4443, () => {
-    console.log('rousr gateway server listening on https port 4443');
+    debugUtil.debugLog('rousr gateway server listening on https port 4443');
 });

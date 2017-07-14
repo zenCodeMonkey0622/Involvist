@@ -5,6 +5,8 @@
 
 module.exports = MakeCSResponse;
 
+const debugUtil = require('../../Shared/Debug/debugUtility');
+
 class CSResponse
 {
     constructor()
@@ -15,7 +17,7 @@ class CSResponse
 
     toString()
     {
-      console.log('success: ', this.success, 'response message: ', this.responseMessage);
+      debugUtil.debugLog('success: ', this.success, 'response message: ', this.responseMessage);
     }
 }
 

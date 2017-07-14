@@ -7,6 +7,7 @@ const endpointBills = require('./bills');
 const authServer = require('../auth/authentication').AuthenticationServer;
 const endpointErrors = require('./errors');
 const endpointUsers = require('./users');
+const debugUtil = require('../../Shared/Debug/debugUtility');
 
 /**
 * helper function to exclude a particular route from
@@ -35,7 +36,7 @@ function unless(path, middleware)
 **/
 function tokenCheck(req, res, next)
 {
-  console.log('checking authentication token for ', req.path);
+  debugUtil.debugLog('checking authentication token for ', req.path);
   // verify access token
   authServer.validateAccessToken(req, function(error, validationResult) {
       if(error)

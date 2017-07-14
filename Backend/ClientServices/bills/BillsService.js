@@ -19,10 +19,10 @@ var BillsService = function() {
 */
 BillsService.prototype.queryBills = function (req, res, next) 
 {
-    console.log('bills service query bills start: ' + debugUtility.debugTimeNow());
+    debugUtil.debugLog('bills service query bills start: ' + debugUtility.debugTimeNow());
 
     this.database.queryBills(req.query, function (err, docs) {
-        console.log('bills service query bills callback start: ' + debugUtility.debugTimeNow());
+        debugUtil.debugLog('bills service query bills callback start: ' + debugUtility.debugTimeNow());
 		if(err) 
         {
 			return next (err);

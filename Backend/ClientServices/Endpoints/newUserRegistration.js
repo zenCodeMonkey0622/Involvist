@@ -5,6 +5,7 @@
 const frameLocalSvc = require('../Users/frameLocalService');
 const newUserRegRouter = require('express').Router();
 const involvistUserService = require('../Users/InvolvistUserService');
+const debugUtil = require('../../Shared/Debug/debugUtility');
 
 var bodyParser = require('body-parser');
 newUserRegRouter.use(bodyParser.urlencoded({ extended: false }));
@@ -35,9 +36,9 @@ function newUserRegistrationGetHandler(req, res, next)
     }
     else
     {
-        console.log('registration success!');
+        debugUtil.debugLog('registration success!');
 
-        console.log(newUser);
+        debugUtil.debugLog(newUser);
 
         //Create and a new Involvist user
         involvistUserService.newUser(email, realName, email, csResponse.data.userID, function (err) {
