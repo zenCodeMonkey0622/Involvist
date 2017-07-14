@@ -1,5 +1,6 @@
 'use strict'
 
+const sharedConstants = require('../SharedConstants');
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -33,6 +34,6 @@ var CongressMemberSchema = new Schema ({
   	congress: String
 });
 
-var CongressMember = mongoose.model("rsr_congress_member", CongressMemberSchema);
+var CongressMember = mongoose.model("rsr_congress_member_" + sharedConstants.CURRENT_CONGRESS, CongressMemberSchema);
 module.exports.CongressMember = CongressMember;
 

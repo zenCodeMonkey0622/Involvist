@@ -1,7 +1,8 @@
 'use strict'
 
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const sharedConstants = require('../SharedConstants');
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 //Information from get Bills by congressman and specific details
 var BillSchema = new Schema({
@@ -42,7 +43,7 @@ var BillSchema = new Schema({
     description: String
 });
 
-var Bill = mongoose.model("rsr_current_bill", BillSchema);
+var Bill = mongoose.model("rsr_current_bill_" + sharedConstants.CURRENT_CONGRESS, BillSchema);
 
 module.exports.Bill = Bill;
 
