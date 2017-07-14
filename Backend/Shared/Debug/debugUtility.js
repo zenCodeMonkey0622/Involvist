@@ -15,12 +15,12 @@ module.exports = {
     /**
      * Logs a message to the console if we're in a debug enviro.
      */
-    debugLog: function(message, ...optionalParams)
+    debugLog: function(message)
     {
         if (!sharedConstants.DEBUG.ENABLE_LOG_OUTPUT)
             return;
 
-        console.log(message, optionalParams);
+        console.log(message);
     }
 
 }
