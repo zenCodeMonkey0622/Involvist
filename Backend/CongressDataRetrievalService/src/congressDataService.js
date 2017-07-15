@@ -6,7 +6,7 @@
 
 var BillRetrieverNamespace = (function () {
 
-	const debugUtil = require('../Shared/Debug/debugUtility');
+	const debugUtil = require('../../Shared/Debug/debugUtility');
 	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
 	const http = require('http');
 	const https = require('https');	
