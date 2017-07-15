@@ -1,6 +1,7 @@
 'use strict'
 
 const sharedConstants = require('../SharedConstants');
+// we use mongoose for mongoDb object modeling
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 

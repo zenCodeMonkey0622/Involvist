@@ -4,6 +4,7 @@ module.exports.CongressDatabaseService = new CongressDatabaseService();
 
 const debugUtil = require('../../Shared/Debug/debugUtility');
 const stringParser = require('../../Shared/Parsers/stringParse');
+// we use mongoose for mongoDb object modeling
 const mongoose = require('mongoose');
 const CongressMember = require('../Models/CongressMember').CongressMember;
 const Bill = require('../Models/bill').Bill;
