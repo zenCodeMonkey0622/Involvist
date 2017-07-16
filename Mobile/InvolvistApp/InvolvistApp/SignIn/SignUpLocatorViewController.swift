@@ -41,7 +41,7 @@ class SignUpLocatorViewController: UIViewController
     
     fileprivate func setContentAndStyle()
     {
-        self.view.backgroundColor = Theme.primary
+        self.view.backgroundColor = Theme.background
         
         var welcomeMessage = Text.LocalizedString("WelcomeMessage")
         

@@ -59,6 +59,11 @@ struct Theme
         get { return primaryLights[currentTheme]! }
     }
     
+    static var background: UIColor
+    {
+        get { return primaries[currentTheme]! }
+    }
+    
     static var popoverAlpha: CGFloat
     {
         get { return 0.7 }

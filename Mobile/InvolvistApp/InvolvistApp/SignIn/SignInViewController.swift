@@ -52,7 +52,7 @@ class SignInViewController: UIViewController
     
     fileprivate func setContentAndStyle()
     {
-        self.view.backgroundColor = Theme.primary
+        self.view.backgroundColor = Theme.background
         self.logoOuterImage.tintColor = Theme.primaryDark
         self.logoInnerImage.tintColor = Theme.primaryLight
         self.logoRImage.tintColor = Theme.primaryLight

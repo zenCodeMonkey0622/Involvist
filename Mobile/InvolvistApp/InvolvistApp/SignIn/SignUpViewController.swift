@@ -125,7 +125,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate
     
     fileprivate func setContentAndStyle()
     {
-        self.view.backgroundColor = Theme.primary
+        self.view.backgroundColor = Theme.background
         self.dismissImage.tintColor = Theme.primaryLight
         
         self.joinMessageLabel.text = Text.LocalizedString("JoinMessage")

@@ -31,7 +31,7 @@ class RootNavigationController: UINavigationController
         // Do any additional setup after loading the view, typically from a nib.
         
         // set the theme
-        Theme.setTheme(theme: .Bolombo)
+        Theme.setTheme(theme: .Pepaglint)
         Text.setCapStyle(capStyle: .AllLowercased)
         
         // load sign-in view controller
