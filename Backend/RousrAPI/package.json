@@ -1,7 +1,7 @@
 {
-  "name": "inv-client-svc",
+  "name": "rousr-api",
   "version": "0.0.1",
-  "description": "Involvist client services.",
+  "description": "Rousr API services.",
   "author": "Ruben Hansen-Rojas <ruben.rojas1979@gmail.com>",
   "dependencies": {
     "body-parser": "^1.17.1",
