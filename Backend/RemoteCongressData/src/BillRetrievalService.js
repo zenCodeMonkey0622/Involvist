@@ -1,17 +1,17 @@
-// congressDataService.js
+// BillRetrievalService.js
 // responsible for retrieving publically available legislative data
 // via the ProPublica Congress API
 
 'use strict';
 
-var BillRetrieverNamespace = (function () {
+var BillRetrievalNamespace = (function () {
 
-	const debugUtil = require('../../Shared/Debug/debugUtility');
-	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
 	const http = require('http');
 	const https = require('https');	
 	const request = require('request');
 	const schedule = require('node-schedule');
+	const debugUtil = require('../../Shared/Debug/debugUtility');
+	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
 	const databaseService = require('../../Shared/CongressDataClient/CongressDataLocalService').CongressDatabaseService;
 	const config = require('./config');
 	const constants = require('./constants');
