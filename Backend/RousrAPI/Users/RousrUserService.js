@@ -30,7 +30,7 @@ RousrUserService.prototype.registerNewUser = function (userName, realName, email
             return callback(err);
         }
 
-        debugUtil.debugLog('Involvist User saved: ' + userName);
+        debugUtil.debugLog('Rousr user created: ' + userName);
         return next();
     });
 }
