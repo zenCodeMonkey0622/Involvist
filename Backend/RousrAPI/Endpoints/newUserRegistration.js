@@ -41,7 +41,7 @@ function newUserRegistrationGetHandler(req, res, next)
         debugUtil.debugLog(newUser);
 
         //Create and a new Involvist user
-        rsrUserService.newUser(email, realName, email, csResponse.data.userID, function (err) {
+        rsrUserService.registerNewUser(email, realName, email, csResponse.data.userID, function (err) {
             if (err) {
                 return next(err);
             }

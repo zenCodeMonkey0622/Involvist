@@ -1,0 +1,15 @@
+{
+  "name": "inv-client-svc",
+  "version": "0.0.1",
+  "description": "Involvist client services.",
+  "author": "Ruben Hansen-Rojas <ruben.rojas1979@gmail.com>",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.14.1",
+    "mongodb": "^2.2.25",
+    "mongoose": "^4.9.5",
+    "request": "^2.81.0",
+    "simple-oauth-server": "^1.0.6",
+    "uuid": "^3.0.1"
+  }
+}
