@@ -1,6 +1,10 @@
+// RousrCongressDataService.js
+// Defines an interface to the Rousr Congress Data repository, including
+// access to legislation and congress members
+
 'use strict'
 
-module.exports.CongressDatabaseService = new CongressDatabaseService();
+module.exports.RousrCongressDataService = new RousrCongressDataService();
 
 const debugUtil = require('../../Shared/Debug/debugUtility');
 const stringParser = require('../../Shared/Parsers/stringParse');
@@ -192,15 +196,15 @@ function DynamoDb( ){
 }
 
 // Define a skeleton database factory
-function CongressDatabaseService() {}
+function RousrCongressDataService() {}
 
 // Define the prototypes and utilities for this factory
 
 // Our default databaseClass is MongoDb
-CongressDatabaseService.prototype.databaseClass = MongoDb;
+RousrCongressDataService.prototype.databaseClass = MongoDb;
 
 // Our Factory method for creating new Database instances
-CongressDatabaseService.prototype.createDatabase = function ( options ) {
+RousrCongressDataService.prototype.createDatabase = function ( options ) {
 
   switch(options.databaseType){
     case 'mongodb':
