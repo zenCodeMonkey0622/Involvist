@@ -13,8 +13,8 @@ var BillRetrievalNamespace = (function () {
 	const debugUtil = require('../../Shared/Debug/debugUtility');
 	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
 	const databaseService = require('../../Shared/RousrCongressData/CongressDataLocalService').CongressDatabaseService;
-	const config = require('./config');
-	const constants = require('./constants');
+	const billRetrieveConfig = require('./config');
+	const billRetrieveConstants = require('./constants');
 
     module.exports.BillRetriever = new BillRetriever();
 
@@ -22,7 +22,7 @@ var BillRetrievalNamespace = (function () {
 	var congressMembers = [];
 	var billsWithDetails = [];
 	
-	var database = databaseService.createDatabase(config);
+	var database = databaseService.createDatabase(billRetrieveConfig);
 
     /**
     * BillRetriever - Gets the latest bills and congress members data
@@ -40,14 +40,14 @@ var BillRetrievalNamespace = (function () {
 		debugUtil.debugLog('Congress Data Retrieval Started...');
 		var self = this;
 
-		if(config.dataRetrieval.retrieveDataOnStartup) {
+		if(billRetrieveConfig.dataRetrieval.retrieveDataOnStartup) {
 			self.getCongressMembersBills();
 		}
 
 		var rule = new schedule.RecurrenceRule();
 		rule.dayOfWeek = [new schedule.Range(0, 6)];
-		rule.hour = config.dataRetrieval.schedule.hour || 6;
-		rule.minute = config.dataRetrieval.schedule.minute || 0;
+		rule.hour = billRetrieveConfig.dataRetrieval.schedule.hour || 6;
+		rule.minute = billRetrieveConfig.dataRetrieval.schedule.minute || 0;
 
 		var minuteString = rule.minute < 10 ? '0' + rule.minute : rule.minute;
 
@@ -142,7 +142,7 @@ var BillRetrievalNamespace = (function () {
 	 */
 	BillRetriever.prototype.getHouseMembers = function(next)
 	{
-	    const getHouseMembersPath = constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/' + 'house/members.json';
+	    const getHouseMembersPath = billRetrieveConstants.BASE_CONGRESS_API_PATH + '/' + billRetrieveConstants.CURRENT_CONGRESS + '/' + 'house/members.json';
 	    this.getRequest(getHouseMembersPath, processMembersData, next);		
 	}
 
@@ -152,7 +152,7 @@ var BillRetrievalNamespace = (function () {
 	 */
 	BillRetriever.prototype.getSenateMembers = function(next)
 	{
-	    const getSenateMembersPath = constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/' + 'senate/members.json';
+	    const getSenateMembersPath = billRetrieveConstants.BASE_CONGRESS_API_PATH + '/' + billRetrieveConstants.CURRENT_CONGRESS + '/' + 'senate/members.json';
 	    this.getRequest(getSenateMembersPath, processMembersData, next);
 	}
 
@@ -193,7 +193,7 @@ var BillRetrievalNamespace = (function () {
     */
 	BillRetriever.prototype.getMemberIntroducedBills = function (memberId, next) {
 
-	    var billsPath = constants.BILLS_BY_MEMBER_URI + memberId + '/bills/introduced.json'	    
+	    var billsPath = billRetrieveConstants.BILLS_BY_MEMBER_URI + memberId + '/bills/introduced.json'	    
 	    this.getRequest(billsPath, this.processMembersBillsData.bind(this), next);	   
 	}
 
@@ -202,7 +202,7 @@ var BillRetrievalNamespace = (function () {
     */
 	BillRetriever.prototype.getMemberUpdatedBills = function (memberId, next) {
 
-	    var billsPath = constants.BILLS_BY_MEMBER_URI + memberId + '/bills/updated.json'	   
+	    var billsPath = billRetrieveConstants.BILLS_BY_MEMBER_URI + memberId + '/bills/updated.json'	   
 	    this.getRequest(billsPath, this.processMembersBillsData.bind(this), next);	    
 	}
 
@@ -228,7 +228,7 @@ var BillRetrievalNamespace = (function () {
 
 	        if (info.results[0].bills && info.results[0].bills.length > 0) {
 	            //Only get bills that were introduced during the current congress.
-	            var currentBills = info.results[0].bills.filter((bill) => bill.congress === constants.CURRENT_CONGRESS);
+	            var currentBills = info.results[0].bills.filter((bill) => bill.congress === billRetrieveConstants.CURRENT_CONGRESS);
 
 	            if (currentBills && currentBills.length > 0) {
 	                //debugUtil.debugLog('member\'s bills length: ' + currentBills.length + ' congress: ' + currentBills[0].congress);
@@ -236,7 +236,7 @@ var BillRetrievalNamespace = (function () {
 	                    if (err) {
 	                        return next(err);
 	                    }
-	                    if (constants.GET_SPECIFIC_BILL_DATA) {
+	                    if (billRetrieveConstants.GET_SPECIFIC_BILL_DATA) {
 	                        self.getSpecificBillsData(currentBills, next);
 	                    }
 	                });
@@ -266,7 +266,7 @@ var BillRetrievalNamespace = (function () {
 	        if (!billsWithDetails.includes(billNumber)) {
 	            billsWithDetails.push(billNumber);
 	            debugUtil.debugLog('Get Bill Details: ' + billNumber);
-	            var billPath = constants.SPECIFIC_BILL + billNumber + '.json';
+	            var billPath = billRetrieveConstants.SPECIFIC_BILL + billNumber + '.json';
 	            self.getRequest(billPath, processSpecificBillData, next);
 	        }
 	    });
@@ -317,13 +317,13 @@ var BillRetrievalNamespace = (function () {
 	* @param <function()> next
 	*/	
 	BillRetriever.prototype.getRequest = function(path, processDataFunction, next) {
-	    const httpRequest = httpUtility.makeHttpsRequest(constants.CONGRESS_API_HOST_URI,
+	    const httpRequest = httpUtility.makeHttpsRequest(billRetrieveConstants.CONGRESS_API_HOST_URI,
 		path,
 		httpUtility.requestType.GET,
 		this.congressDataAgentSecure,
 		null,
 		httpUtility.contentType.JSON,
-		{ 'X-API-Key': constants.PROPUBLICA_API_KEY },
+		{ 'X-API-Key': billRetrieveConstants.PROPUBLICA_API_KEY },
 		(res) => {
 		    var responseData = '';
 
