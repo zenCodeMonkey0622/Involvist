@@ -1,5 +1,5 @@
 // MembershipService.js
-const frameLocalSvc = require('../../Users/frameLocalService');
+const frameLocalSvc = require('../../Users/Frame/FrameLocalService');
 const debugUtil = require('../../../Shared/Debug/debugUtility');
 
 module.exports = MembershipService;

@@ -4,12 +4,12 @@
 
 module.exports = FrameLocalService;
 
-const debugUtil = require('../../Shared/Debug/debugUtility');
-const constants = require('../../Shared/SharedConstants');
-const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
-const frameUser = require('./Frame/FrameUser');
-const frameError = require('./Frame/FrameError');
-const csResponse = require('../DataTransfer/CSResponse');
+const debugUtil = require('../../../Shared/Debug/debugUtility');
+const constants = require('../../../Shared/SharedConstants');
+const httpUtility = require('../../../Shared/ServiceAccess/httpUtility');
+const frameUser = require('./FrameUser');
+const frameError = require('./FrameError');
+const csResponse = require('../../DataTransfer/CSResponse');
 
 const http = require('http');
 const request = require('request');

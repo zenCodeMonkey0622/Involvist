@@ -2,7 +2,7 @@
 // client services api endpoint for providing new user registration for
 // involvist services
 
-const frameLocalSvc = require('../Users/frameLocalService');
+const frameLocalSvc = require('../Users/Frame/FrameLocalService');
 const newUserRegRouter = require('express').Router();
 const rsrUserService = require('../Users/RousrUserService');
 const debugUtil = require('../../Shared/Debug/debugUtility');
