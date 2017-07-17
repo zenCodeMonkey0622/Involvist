@@ -12,7 +12,7 @@ var BillRetrievalNamespace = (function () {
 	const schedule = require('node-schedule');
 	const debugUtil = require('../../Shared/Debug/debugUtility');
 	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
-	const databaseService = require('../../Shared/CongressDataClient/CongressDataLocalService').CongressDatabaseService;
+	const databaseService = require('../../Shared/RousrCongressData/CongressDataLocalService').CongressDatabaseService;
 	const config = require('./config');
 	const constants = require('./constants');
 
