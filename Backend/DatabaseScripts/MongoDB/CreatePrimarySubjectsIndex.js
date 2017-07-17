@@ -1,1 +1,1 @@
-db.currentbills.createIndex({primary_subjects: 1}, {sparse: true})
+db.rsr_current_bill_115.createIndex({primary_subjects: 1}, {sparse: true})
