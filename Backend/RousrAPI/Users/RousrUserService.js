@@ -4,7 +4,7 @@
 const debugUtil = require('../../Shared/Debug/debugUtility');
 const constants = require('../../Shared/SharedConstants');
 const databaseFactory = require('../../Shared/RousrCongressData/RousrCongressDataService').DatabaseFactory;
-const config = { databaseType: 'mongodb', uri: constants.CONGRESS_DATA_SOURCE };
+const config = { databaseType: 'mongodb', uri: constants.ROUSR_CONGRESS_DATA_SOURCE };
 const RousrUser = require('../../Shared/Models/RousrUser').RousrUser;
 
 /**

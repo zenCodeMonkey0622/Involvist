@@ -33,7 +33,7 @@ AuthorizationService.prototype.saveAccessToken = function(tokenData, callback)
                             tokenData.refresh_token,
                             tokenData.expires_in);
 
-  this.AuthDb.collection(constants.TOKEN_COLLECTION).insertOne(newToken, function(err, result) {
+  this.AuthDb.collection(constants.ROUSR_API_TOKEN_COLLECTION).insertOne(newToken, function(err, result) {
     if (err)
     {
       debugUtil.debugLog(err);
@@ -59,7 +59,7 @@ AuthorizationService.prototype.getAccessToken = function(tokenData, callback)
     return;
   }
 
-  this.AuthDb.collection(constants.TOKEN_COLLECTION).findOne({access_token: tokenData}, function(err, result) {
+  this.AuthDb.collection(constants.ROUSR_API_TOKEN_COLLECTION).findOne({access_token: tokenData}, function(err, result) {
     if (err)
     {
       debugUtil.debugLog(err);
