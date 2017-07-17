@@ -30,33 +30,6 @@ function MongoDb(options) {
 }
 
 /**
-* UpdateBills() - Updates bills in the bills collection
-* @param <[{Bill}]> array of Bill objects
-* @param <function()> next
-*/
-MongoDb.prototype.updateBills = function (billsToUpdate, next) {
-	billsToUpdate.forEach(function(billData) {
-
-        // parse the primary_subject string into components and
-        // set the added primary_subjects array
-        billData.primary_subjects = stringParser.parsePrimarySubjects(billData.primary_subject);
-
-		Bill.update(
-			{ number: billData.number},
-			{ $set: billData },
-			{ upsert: true},
-			function (err, raw) {
-				if (err){
-				  	return next(err);
-				}
-			}
-		);
-	});
-
-	next();
-}
-
-/**
 * UpdateMembers() - Updates members in the congressMembers collection
 * @param <[{CongressMember}]> data
 * @param <function()> next
@@ -79,6 +52,47 @@ MongoDb.prototype.updateMembers = function (data, callback) {
 }
 
 /**
+* QueryMembers() - Queries the congressMembers collection
+* @param <object> query - example {id: memberId}
+* @param <function()> callback
+*/
+MongoDb.prototype.queryMembers = function (query, callback) {
+    CongressMember.find(query, function(err, docs){
+        if(err){
+            return callback(err);
+        }
+        callback(null, docs);
+    });
+}
+
+/**
+* UpdateBills() - Updates bills in the bills collection
+* @param <[{Bill}]> array of Bill objects
+* @param <function()> next
+*/
+MongoDb.prototype.updateBills = function (billsToUpdate, next) {
+    billsToUpdate.forEach(function(billData) {
+
+        // parse the primary_subject string into components and
+        // set the added primary_subjects array
+        billData.primary_subjects = stringParser.parsePrimarySubjects(billData.primary_subject);
+
+        Bill.update(
+			{ number: billData.number},
+			{ $set: billData },
+			{ upsert: true},
+			function (err, raw) {
+			    if (err){
+			        return next(err);
+			    }
+			}
+		);
+    });
+
+    next();
+}
+
+/**
 * QueryBills() - Queries the bills collection.
 * @param <object> reqQuery - example {number: billNum}. If 'q' is one of the parameters then its string value
 * will be looked for in the number, title, primary_subject, and description.  If there are other query params,
@@ -95,8 +109,7 @@ MongoDb.prototype.queryBills = function (reqQuery, callback) {
 
     // if the 'exact' parameter is passed, set the useRegex
     // based on the value
-    if (keys.indexOf('exact') >= 0)
-    {
+    if (keys.indexOf('exact') >= 0) {
         useRegex = !reqQuery.exact
     }
 
@@ -104,9 +117,9 @@ MongoDb.prototype.queryBills = function (reqQuery, callback) {
         if (billKeys.indexOf(keys[i]) !== -1) {
             var filterParam = keys[i];
             var queryValue = reqQuery[filterParam];
-            // if using regex, '$' is to search for the exact value.  For example looking for h.r.300 and not every number containing h.r.300, such as h.r.3002
+            // if using regex, search is not the exact value.  For example looking for h.r.300 and not every number containing h.r.300, such as h.r.3002
             // otherwise, just use an exact match
-            query[filterParam] = useRegex ? { '$regex': queryValue + '$', '$options': 'i' } : queryValue;
+            query[filterParam] = useRegex ? { '$regex': queryValue, '$options': 'i' } : queryValue;
         }
     }
 
@@ -114,7 +127,7 @@ MongoDb.prototype.queryBills = function (reqQuery, callback) {
         query = {
             $and: [
                 {
-                    $or: [  { 'number': useRegex ? { '$regex': reqQuery.q, '$options': 'i' } : reqQuery.q },
+                    $or: [{ 'number': useRegex ? { '$regex': reqQuery.q, '$options': 'i' } : reqQuery.q },
                             { 'title': useRegex ? { '$regex': reqQuery.q, '$options': 'i' } : reqQuery.q },
                             { 'primary_subject': useRegex ? { '$regex': reqQuery.q, '$options': 'i' } : reqQuery.q },
                             { 'description': useRegex ? { '$regex': reqQuery.q, '$options': 'i' } : reqQuery.q },
@@ -127,29 +140,81 @@ MongoDb.prototype.queryBills = function (reqQuery, callback) {
         }
     }
 
-	Bill.find(query, function(err, docs){
-		if(err){
-			return callback(err);
-		}
+    var findQuery = Bill.find();
+    findQuery.where(query);
+    findQuery.select({
+        number: 1,
+        bill_uri: 1,
+        title: 1,
+        sponsor_id: 1,
+        sponsor_uri: 1,
+        gpo_pdf_uri: 1,
+        congressdotgov_url: 1,
+        govtrack_url: 1,
+        introduced_date: 1,
+        active: 1,
+        primary_subject: 1,
+        summary: 1,
+        latest_major_action_date: 1,
+        latest_major_action: 1
+    });
+
+    findQuery.exec(function (err, docs) {
+        if (err) {
+            return callback(err);
+        }
 
         debugUtil.debugLog('queryBills found ' + docs.length + ' results');
-        
-		callback(null, docs);
-	});
+        callback(null, docs);
+    });
 }
 
 /**
-* QueryMembers() - Queries the congressMembers collection
-* @param <object> query - example {id: memberId}
+* getBillsByName() - Queries the bills collection by name.
+* @param <object> reqQuery - has a name field, which will be alphanumeric, and an optional exact field
 * @param <function()> callback
 */
-MongoDb.prototype.queryMembers = function (query, callback) {
-	CongressMember.find(query, function(err, docs){
-		if(err){
-			return callback(err);
-		}
-		callback(null, docs);
-	});
+MongoDb.prototype.getBillsByName = function (reqQuery, callback) {
+    var billName = reqQuery.name;
+    var keys = Object.keys(reqQuery);
+    
+    // by default we use regex
+    var useRegex = true;
+
+    // if the 'exact' parameter is passed, set the useRegex
+    // based on the value
+    if (keys.indexOf('exact') >= 0) {
+        useRegex = !reqQuery.exact
+    }
+
+    var findQuery = Bill.find();
+    findQuery.where({ 'name': useRegex ? { '$regex': billName.toLowerCase() } : billName.toLowerCase() });
+    findQuery.select({
+        number: 1,
+        bill_uri: 1,
+        title: 1,
+        sponsor_id: 1,
+        sponsor_uri: 1,
+        gpo_pdf_uri: 1,
+        congressdotgov_url: 1,
+        govtrack_url: 1,
+        introduced_date: 1,
+        active: 1,
+        primary_subject: 1,
+        summary: 1,
+        latest_major_action_date: 1,
+        latest_major_action: 1
+    });
+
+    findQuery.exec(function (err, docs) {
+        if (err) {
+            return callback(err);
+        }
+
+        debugUtil.debugLog('getBillsByName found ' + docs.length + ' results');
+
+        callback(null, docs);
+    });
 }
 
 /**

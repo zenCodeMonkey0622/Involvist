@@ -41,7 +41,8 @@ var BillSchema = new Schema({
 	//Added 
 	primary_subjects: [],
 	tags: [],
-    description: String
+	description: String,
+    name: String
 });
 
 var Bill = mongoose.model("rsr_current_bill_" + sharedConstants.CURRENT_CONGRESS, BillSchema);
