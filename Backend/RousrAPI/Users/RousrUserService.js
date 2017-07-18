@@ -71,7 +71,7 @@ RousrUserService.prototype.queryUsers = function (req, res, next) {
 * @param <function()> next - the next function to call
 */
 RousrUserService.prototype.followBill = function (userID, billNumber, next) {
-
+    console.log('billNumber: ' + billNumber);
     RousrUser.update({ userID: userID }, { $addToSet: { followingBills: billNumber } }, function (err, results) {
         if (err) {
             console.error(err);

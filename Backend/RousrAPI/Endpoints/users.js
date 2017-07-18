@@ -14,21 +14,102 @@ usersRouter.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
 
-//Example of a search - http://localhost:3000/api/v1/users?userName=MrCool
+//WARNING:  This route is only for debugging.  We don't want to provide a way for someone to get all of our users.
+//Example of a search -https://<api.server.host>:<api_port>/v1/users?userName=MrCool@gmail.com
 usersRouter.get('/', rsrUserService.queryUsers, function (req, res) {
     var users = null;
     debugUtil.debugLog('users: ' + req.users);
+
     if (req.users) {
-        users = req.users;            
+        users = req.users.map(function (user) {
+            return {
+                userID: user.userID,
+                userName: user.userName,
+                realName: user.realName,
+                email: user.email,
+                city: user.city,
+                state: user.state,
+                zipCode: user.zipCode,
+                followingBills: user.followingBills
+            };
+        });
+    }
+    var csResp = csResponse(true, null, users);
+    res.json(csResp);    
+});
+
+usersRouter.param('name', function (req, res, next, userName) {
+    req.query.userName = userName;
+    next();
+});
+
+usersRouter.param('userID', function (req, res, next, userID) {
+    req.query.userID = userID;    
+    next();
+});
+
+//Example - https://<api.server.host>:<api_port>/v1/users/name/MrAwesome@gmail.com
+usersRouter.get('/name/:name', rsrUserService.queryUsers, function (req, res) {
+    var users = null;
+    debugUtil.debugLog('users: ' + req.users);
+
+    if (req.users) {
+        users = req.users.map(function (user) {
+            return {
+                userID: user.userID,
+                userName: user.userName,
+                realName: user.realName,
+                email: user.email,
+                city: user.city,
+                state: user.state,
+                zipCode: user.zipCode,
+                followingBills: user.followingBills
+            };
+        });        
     }
     var csResp = csResponse(true, null, users);
     res.json(csResp);
 });
 
-//Example - http://localhost:3000/api/v1/users/followingBills
-usersRouter.post('/followingBills', function (req, res, callback) {    
-    var userID = req.body.userID;
-    var billNumber = req.body.bill_number;
+//Example - https://<api.server.host>:<api_port>/v1/users/59694b9de61e342680869c57
+usersRouter.get('/:userID', rsrUserService.queryUsers, function (req, res) {
+    var users = null;
+    debugUtil.debugLog('users: ' + req.users);
+
+    if (req.users) {
+        users = req.users.map(function (user) {
+            return {
+                userID: user.userID,
+                userName: user.userName,
+                realName: user.realName,
+                email: user.email,
+                city: user.city,
+                state: user.state,
+                zipCode: user.zipCode,
+                followingBills: user.followingBills
+            };
+        });
+    }
+    var csResp = csResponse(true, null, users);
+    res.json(csResp);
+});
+
+//Example - https://<api.server.host>:<api_port>/v1/users/followingBills
+usersRouter.get('/:userID/followingBills', rsrUserService.queryUsers, function (req, res) {
+    var followingBills = null;
+    debugUtil.debugLog('users: ' + req.users);
+
+    if (req.users && req.users.length > 0) {
+        followingBills = req.users[0].followingBills;
+    }
+    var csResp = csResponse(true, null, followingBills);
+    res.json(csResp);
+});
+
+//Example - https://<api.server.host>:<api_port>/v1/users/followingBills
+usersRouter.post('/:userID/followingBills', function (req, res, callback) {
+    var userID = req.query.userID;
+    var billNumber = req.body.bill_number;   
 
     rsrUserService.followBill(userID, billNumber, function (err, results) {
         if (err) {
@@ -43,9 +124,9 @@ usersRouter.post('/followingBills', function (req, res, callback) {
     });
 });
 
-//Example - http://localhost:3000/api/v1/users/followingBills
-usersRouter.delete('/followingBills', function (req, res, callback) {
-    var userID = req.body.userID;
+//Example - https://<api.server.host>:<api_port>/v1/users/followingBills
+usersRouter.delete('/:userID/followingBills', function (req, res, callback) {
+    var userID = req.query.userID;
     var billNumber = req.body.bill_number;
 
     rsrUserService.unfollowBill(userID, billNumber, function (err, results) {
