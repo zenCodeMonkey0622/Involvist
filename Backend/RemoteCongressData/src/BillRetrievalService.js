@@ -15,13 +15,14 @@ var BillRetrievalNamespace = (function () {
 	const databaseService = require('../../Shared/RousrCongressData/RousrCongressDataService').RousrCongressDataService;
 	const billRetrieveConfig = require('./config');
 	const billRetrieveConstants = require('./constants');
+	const MAX_RETRY_REQUESTS = 5;
 
     module.exports.BillRetriever = new BillRetriever();
 
 	var bills = [];
 	var congressMembers = [];
 	var billsWithDetails = [];
-	
+	var retryRequestAttempts = 0;	
 	var database = databaseService.createDatabase(billRetrieveConfig);
 
     /**
@@ -70,19 +71,7 @@ var BillRetrievalNamespace = (function () {
 			    return console.error(err.toString());
 			}
 			self.getAllCongressMembersBills();
-	    });
-
-        //test code
-	    //database.queryMembers({}, function (err, docs) {
-	    //    if (err) {
-	    //        return;
-	    //    }
-
-	    //    if (docs && docs.length > 0) {
-	    //        self.congressMembers = docs;	                      
-	    //        self.getAllCongressMembersBills();	            
-	    //    }	       
-	    //});
+	    });       
 	}	
 
 	/**
@@ -123,12 +112,12 @@ var BillRetrievalNamespace = (function () {
 	       
 	        this.getMemberIntroducedBills(memberId, (err) => {
 	            if(err){
-	                return console.error(err.toString());
+	                console.error(err.toString());
 	            }
 	        });
 	        this.getMemberUpdatedBills(memberId, (err) => {
 	            if (err) {
-	                return console.error(err.toString());
+	                console.error(err.toString());
 	            }
 	            updateCount++;
 	            debugUtil.debugLog('Update Member count:  ' + updateCount); 
@@ -231,7 +220,7 @@ var BillRetrievalNamespace = (function () {
 	            var currentBills = info.results[0].bills.filter((bill) => bill.congress === billRetrieveConstants.CURRENT_CONGRESS);
 
 	            if (currentBills && currentBills.length > 0) {
-	                //debugUtil.debugLog('member\'s bills length: ' + currentBills.length + ' congress: ' + currentBills[0].congress);
+	                //debugUtil.debugLog('member\'s bills length: ' + currentBills.length + ' sponsor_id: ' + currentBills[0].sponsor_id);
 	                database.updateBills(currentBills, function (err) {
 	                    if (err) {
 	                        return next(err);
@@ -248,7 +237,7 @@ var BillRetrievalNamespace = (function () {
 	        }
 	    }
 	    catch (err) 
-		{
+	    {	        
 	        return next(err);
 	    }
 	}
@@ -296,6 +285,8 @@ var BillRetrievalNamespace = (function () {
 
 	        if(billInfo.status === 'OK') {
 	            billInfo.results[0].number = billInfo.results[0].bill;
+	            billInfo.results[0].name = billInfo.results[0].number.replace(/\./g, "").toLowerCase();
+
 	            database.updateBills(billInfo.results, function(err) {
 	                if(err) {
 	                    return next(err);
@@ -333,11 +324,14 @@ var BillRetrievalNamespace = (function () {
 
 		    res.on('end', () => {		        
 		        if (res.statusCode === 408) {
-		            console.error('Request Timeout:  ' + getUri + 'trying again...');
-
-		            //TODO: Need to set a limit on how many times to make request again.
+		            console.error('Request Timeout:  ' + path + 'trying again...');
+		            
 		            //Request timed out...try the call again
-		            return getRequest(path, processDataFunction, next);
+		            if (retryRequestAttempts < MAX_RETRY_REQUESTS) {
+		                retryRequestAttempts++;
+		                return getRequest(path, processDataFunction, next);
+		            }
+		            retryRequestAttempts = 0;                    
 		        }
 		        else if (res.statusCode != 200) {		            
 		            var err = new Error(responseData);		            

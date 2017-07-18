@@ -179,7 +179,7 @@ billsRouter.get('/subject/:subject', function (req, res, next) {
     });
 })
 
-billsRouter.get('/:number/tags', function (req, res, next) {    
+billsRouter.get('number/:number/tags', function (req, res, next) {    
     billsService.queryBills(req, res, function (err) {
         if (err) {
             next(err);
@@ -200,7 +200,7 @@ billsRouter.get('/:number/tags', function (req, res, next) {
 //Adds a tag to the bill
 //Example - https://<api.server.host>:<api_port>/api/v1/bills/H.R.4881/tags
 //The req.body will have json with a field called tag that will be the tag name
-billsRouter.post('/:number/tags', function (req, res, next) {    
+billsRouter.post('number/:number/tags', function (req, res, next) {    
     billsService.addTagToBill(req.query.number, req.body.tag, function (err, results) {
         if (err) {
             return next(err);
@@ -215,7 +215,7 @@ billsRouter.post('/:number/tags', function (req, res, next) {
 
 //Gets all the tags for the bill
 //Example - https://<api.server.host>:<api_port>/api/v1/bills/H.R.4881/tags
-billsRouter.delete('/:number/tags', function (req, res, next) {
+billsRouter.delete('number/:number/tags', function (req, res, next) {
     billsService.untagBill(req.query.number, req.body.tag, function (err, results) {
         if (err) {
             return next(err);
