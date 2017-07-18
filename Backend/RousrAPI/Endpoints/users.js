@@ -18,18 +18,14 @@ usersRouter.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 //Example of a search -https://<api.server.host>:<api_port>/v1/users?userName=MrCool@gmail.com
 usersRouter.get('/', rsrUserService.queryUsers, function (req, res) {
     var users = null;
-    debugUtil.debugLog('users: ' + req.users);
-
+    
     if (req.users) {
         users = req.users.map(function (user) {
             return {
                 userID: user.userID,
                 userName: user.userName,
                 realName: user.realName,
-                email: user.email,
-                city: user.city,
-                state: user.state,
-                zipCode: user.zipCode,
+                email: user.email,                
                 followingBills: user.followingBills
             };
         });
@@ -51,18 +47,14 @@ usersRouter.param('userID', function (req, res, next, userID) {
 //Example - https://<api.server.host>:<api_port>/v1/users/name/MrAwesome@gmail.com
 usersRouter.get('/name/:name', rsrUserService.queryUsers, function (req, res) {
     var users = null;
-    debugUtil.debugLog('users: ' + req.users);
-
+    
     if (req.users) {
         users = req.users.map(function (user) {
             return {
                 userID: user.userID,
                 userName: user.userName,
                 realName: user.realName,
-                email: user.email,
-                city: user.city,
-                state: user.state,
-                zipCode: user.zipCode,
+                email: user.email,                
                 followingBills: user.followingBills
             };
         });        
@@ -74,18 +66,14 @@ usersRouter.get('/name/:name', rsrUserService.queryUsers, function (req, res) {
 //Example - https://<api.server.host>:<api_port>/v1/users/59694b9de61e342680869c57
 usersRouter.get('/:userID', rsrUserService.queryUsers, function (req, res) {
     var users = null;
-    debugUtil.debugLog('users: ' + req.users);
-
+    
     if (req.users) {
         users = req.users.map(function (user) {
             return {
                 userID: user.userID,
                 userName: user.userName,
                 realName: user.realName,
-                email: user.email,
-                city: user.city,
-                state: user.state,
-                zipCode: user.zipCode,
+                email: user.email,                
                 followingBills: user.followingBills
             };
         });
@@ -96,8 +84,7 @@ usersRouter.get('/:userID', rsrUserService.queryUsers, function (req, res) {
 
 //Example - https://<api.server.host>:<api_port>/v1/users/followingBills
 usersRouter.get('/:userID/followingBills', rsrUserService.queryUsers, function (req, res) {
-    var followingBills = null;
-    debugUtil.debugLog('users: ' + req.users);
+    var followingBills = null;    
 
     if (req.users && req.users.length > 0) {
         followingBills = req.users[0].followingBills;
@@ -106,7 +93,7 @@ usersRouter.get('/:userID/followingBills', rsrUserService.queryUsers, function (
     res.json(csResp);
 });
 
-//Example - https://<api.server.host>:<api_port>/v1/users/followingBills
+//Example - https://<api.server.host>:<api_port>/v1/users/59694b9de61e342680869c57/followingBills
 usersRouter.post('/:userID/followingBills', function (req, res, callback) {
     var userID = req.query.userID;
     var billNumber = req.body.bill_number;   
@@ -124,7 +111,7 @@ usersRouter.post('/:userID/followingBills', function (req, res, callback) {
     });
 });
 
-//Example - https://<api.server.host>:<api_port>/v1/users/followingBills
+//Example - https://<api.server.host>:<api_port>/v1/users/59694b9de61e342680869c57/followingBills
 usersRouter.delete('/:userID/followingBills', function (req, res, callback) {
     var userID = req.query.userID;
     var billNumber = req.body.bill_number;
