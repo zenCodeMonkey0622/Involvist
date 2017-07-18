@@ -60,6 +60,9 @@ billsRouter.param('name', function (req, res, next, billName) {
 });
 
 billsRouter.param('subject', function (req, res, next, primarySubject) {
+
+    // query the bill model's primary_subjects array.
+    // this is an indexed query.
     req.query.primary_subjects = primarySubject;
     req.query.exact = 1;
     next();
