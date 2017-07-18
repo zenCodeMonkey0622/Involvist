@@ -59,7 +59,7 @@ billsRouter.param('name', function (req, res, next, billName) {
     next();
 });
 
-//Example - http://localhost:3000/api/v1/bills/H.R.4881
+//Example - http://localhost:3000/api/v1/bills/name/hr4881
 billsRouter.get('/name/:name', function (req, res, next) {
     billsService.getBillsByName(req, res, function (err) {
         if (err) {
@@ -96,8 +96,8 @@ billsRouter.get('/name/:name', function (req, res, next) {
     });
 });
 
-//Example - http://localhost:3000/api/v1/bills/H.R.4881
-billsRouter.get('/:number', function (req, res, next) {    
+//Example - http://localhost:3000/api/v1/bills/number/H.R.4881
+billsRouter.get('/number/:number', function (req, res, next) {    
     billsService.queryBills(req, res, function (err) {
         if (err) {
             next(err);
