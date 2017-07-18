@@ -17,7 +17,7 @@ billsRouter.use(bodyParser.urlencoded({
 }));
 
 //Using .bind(billsService) so the calls will be in the scope of the billsService
-//Example of a search - http://localhost:3000/api/v1/bills?q=dog&congress=115
+//Example of a search - https://<api.server.host>:<api_port>/api/v1/bills?q=dog&congress=115
 billsRouter.get('/', billsService.queryBills.bind(billsService), function(req, res) {
     var currentBills = null;
     if (req.bills) {
@@ -59,7 +59,13 @@ billsRouter.param('name', function (req, res, next, billName) {
     next();
 });
 
-//Example - http://localhost:3000/api/v1/bills/name/hr4881
+billsRouter.param('subject', function (req, res, next, primarySubject) {
+    req.query.primary_subjects = primarySubject;
+    req.query.exact = 1;
+    next();
+});
+
+//Example - https://<api.server.host>:<api_port>/v1/bills/name/hr4881
 billsRouter.get('/name/:name', function (req, res, next) {
     billsService.getBillsByName(req, res, function (err) {
         if (err) {
@@ -96,7 +102,7 @@ billsRouter.get('/name/:name', function (req, res, next) {
     });
 });
 
-//Example - http://localhost:3000/api/v1/bills/number/H.R.4881
+//Example - https://<api.server.host>:<api_port>/api/v1/bills/number/H.R.4881
 billsRouter.get('/number/:number', function (req, res, next) {    
     billsService.queryBills(req, res, function (err) {
         if (err) {
@@ -133,6 +139,43 @@ billsRouter.get('/number/:number', function (req, res, next) {
     });
 });
 
+// Example - https://<api.server.host>:<api_port>/api/v1/bills/subject/Health
+billsRouter.get('/subject/:subject', function (req, res, next) {
+    billsService.queryBills(req, res, function (err) {
+        if (err) {
+            next(err);
+        }
+        var currentBills = null;
+        if (req.bills) {
+            currentBills = req.bills.map(function (bill) {
+                return {
+                    "number": bill.number,
+                    "congress": bill.congress,
+                    "bill_uri": bill.bill_uri,
+                    "title": bill.title,
+                    "sponsor_id": bill.sponsor_id,
+                    "sponsor_uri": bill.sponsor_uri,
+                    "gpo_pdf_uri": bill.gpo_pdf_uri,
+                    "congressdotgov_url": bill.congressdotgov_url,
+                    "govtrack_url": bill.govtrack_url,
+                    "introduced_date": bill.introduced_date,
+                    "active": bill.active,
+                    "summary": bill.summary,
+                    "primary_subject": bill.primary_subject,
+                    "latest_major_action_date": bill.latest_major_action_date,
+                    "latest_major_action": bill.latest_major_action,
+                    "sponsor": bill.sponsor,
+                    "sponsor_party": bill.sponsor_party,
+                    "sponsor_state": bill.sponsor_state,
+                    "tags": bill.tags
+                }
+            });
+        }
+        var csResp = csResponse(true, null, currentBills);
+        res.json(csResp);
+    });
+})
+
 billsRouter.get('/:number/tags', function (req, res, next) {    
     billsService.queryBills(req, res, function (err) {
         if (err) {
@@ -152,7 +195,7 @@ billsRouter.get('/:number/tags', function (req, res, next) {
 });
 
 //Adds a tag to the bill
-//Example - http://localhost:3000/api/v1/bills/H.R.4881/tags
+//Example - https://<api.server.host>:<api_port>/api/v1/bills/H.R.4881/tags
 //The req.body will have json with a field called tag that will be the tag name
 billsRouter.post('/:number/tags', function (req, res, next) {    
     billsService.addTagToBill(req.query.number, req.body.tag, function (err, results) {
@@ -168,7 +211,7 @@ billsRouter.post('/:number/tags', function (req, res, next) {
 });
 
 //Gets all the tags for the bill
-//Example - http://localhost:3000/api/v1/bills/H.R.4881/tags
+//Example - https://<api.server.host>:<api_port>/api/v1/bills/H.R.4881/tags
 billsRouter.delete('/:number/tags', function (req, res, next) {
     billsService.untagBill(req.query.number, req.body.tag, function (err, results) {
         if (err) {
