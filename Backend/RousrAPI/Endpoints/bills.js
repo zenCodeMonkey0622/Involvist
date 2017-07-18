@@ -68,6 +68,12 @@ billsRouter.param('subject', function (req, res, next, primarySubject) {
     next();
 });
 
+billsRouter.param('sponsor', function (req, res, next, sponsor) {
+    req.query.sponsor_id = sponsor;
+    req.query.exact = 1;
+    next();
+});
+
 //Example - https://<api.server.host>:<api_port>/v1/bills/name/hr4881
 billsRouter.get('/name/:name', function (req, res, next) {
     billsService.getBillsByName(req, res, function (err) {
@@ -178,6 +184,43 @@ billsRouter.get('/subject/:subject', function (req, res, next) {
         res.json(csResp);
     });
 })
+
+//Example - https://<api.server.host>:<api_port>/v1/bills/name/hr4881
+billsRouter.get('/sponsor/:sponsor', function (req, res, next) {
+    billsService.queryBills(req, res, function (err) {
+        if (err) {
+            next(err);
+        }
+        var currentBills = null;
+        if (req.bills) {
+            currentBills = req.bills.map(function (bill) {
+                return {
+                    "number": bill.number,
+                    "congress": bill.congress,
+                    "bill_uri": bill.bill_uri,
+                    "title": bill.title,
+                    "sponsor_id": bill.sponsor_id,
+                    "sponsor_uri": bill.sponsor_uri,
+                    "gpo_pdf_uri": bill.gpo_pdf_uri,
+                    "congressdotgov_url": bill.congressdotgov_url,
+                    "govtrack_url": bill.govtrack_url,
+                    "introduced_date": bill.introduced_date,
+                    "active": bill.active,
+                    "summary": bill.summary,
+                    "primary_subject": bill.primary_subject,
+                    "latest_major_action_date": bill.latest_major_action_date,
+                    "latest_major_action": bill.latest_major_action,
+                    "sponsor": bill.sponsor,
+                    "sponsor_party": bill.sponsor_party,
+                    "sponsor_state": bill.sponsor_state,
+                    "tags": bill.tags
+                }
+            });
+        }
+        var csResp = csResponse(true, null, currentBills);
+        res.json(csResp);
+    });
+});
 
 billsRouter.get('number/:number/tags', function (req, res, next) {    
     billsService.queryBills(req, res, function (err) {
