@@ -308,14 +308,16 @@ var BillRetrievalNamespace = (function () {
 	* @param <function()> next
 	*/	
 	BillRetriever.prototype.getRequest = function(path, processDataFunction, next) {
-	    const httpRequest = httpUtility.makeHttpsRequest(billRetrieveConstants.CONGRESS_API_HOST_URI,
-		path,
-		httpUtility.requestType.GET,
-		this.congressDataAgentSecure,
-		null,
-		httpUtility.contentType.JSON,
-		{ 'X-API-Key': billRetrieveConstants.PROPUBLICA_API_KEY },
-		(res) => {
+
+		const httpRequest = httpUtility.makeHttpsRequest(billRetrieveConstants.CONGRESS_API_HOST_URI,
+			null,
+			path,
+			httpUtility.requestType.GET,
+			this.congressDataAgentSecure,
+			null,
+			httpUtility.contentType.JSON,
+			{ 'X-API-Key': billRetrieveConstants.PROPUBLICA_API_KEY },
+			(res) => {
 		    var responseData = '';
 
 		    res.on('data', (chunk) => {
@@ -353,6 +355,9 @@ var BillRetrievalNamespace = (function () {
 
 
 
+
+
+	
 
 
 
