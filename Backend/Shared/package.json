@@ -12,12 +12,13 @@
     }
   ],
   "dependencies": {
+    "confidence": "^3.0.2",
     "mongoose": "^4.9.5"
   },
   "devDependencies": {
     "mocha": "^3.4.2"
   },
-  "scripts":{
+  "scripts": {
     "test": "./node_modules/mocha/bin/mocha"
   }
 }
