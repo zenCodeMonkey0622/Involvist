@@ -22,7 +22,7 @@ module.exports = {
     * @param {string} hostUri - the host URI
     * @param {int} port - the port
     * @param {string} path - the resource path
-    * @param {string} method - the REST method
+    * @param {httpUtility.requestType} method - the REST method
     * @param {http.Agent} agent - an optional http.Agent object for managing connection persistence
     * @param {string} requestData - optional JSON stringified request data
     * @param {httpUtility.contentType} contentType - the type of content.
@@ -68,15 +68,16 @@ module.exports = {
   /**
     * creates an https.ClientRequest object for a REST request over SSL
     * @param {string} hostUri - the host URI
+    * @param {int} port - the port. if null defaults to 443.
     * @param {string} path - the resource path
-    * @param {string} method - the REST method
+    * @param {httpUtility.requestType} method - the REST method
     * @param {http.Agent} agent - an optional http.Agent object for managing connection persistence
     * @param {string} requestData - optional JSON stringified request data
     * @param {httpUtility.contentType} contentType - the type of content.
     * @param {string:object} headers - passed-in headers
     * @param {Function} callback - an optional callback function to attach to the request
   **/
-  makeHttpsRequest: function(hostUri, path, method, agent, requestData, contentType, headers, callback)
+  makeHttpsRequest: function(hostUri, port, path, method, agent, requestData, contentType, headers, callback)
   {
     // create the options object
     var options = {
@@ -84,6 +85,10 @@ module.exports = {
       path: path,
       method: method,
       agent: agent
+    }
+
+    if (port != null) {
+      options.port = port;
     }
 
     // form the request headers
