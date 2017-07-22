@@ -70,7 +70,8 @@ var BillRetrievalNamespace = (function () {
 			if(err) {
 			    return console.error(err.toString());
 			}
-			self.getAllCongressMembersBills();
+			var count = 0;
+			self.getAllCongressMembersBills(count);
 	    });       
 	}	
 
@@ -102,28 +103,25 @@ var BillRetrievalNamespace = (function () {
 	/**
 	* getAllCongressMembersBills() - Gets the latest bill information sponsored by a Congress member
 	*/
-	BillRetriever.prototype.getAllCongressMembersBills = function () {
-	    debugUtil.debugLog('CongressMembers Length: ' + congressMembers.length);
-	    var updateCount = 0;
-	    var introCount = 0;
-	    for (var i = 0; i < congressMembers.length; i++) {
-	        
-	        var memberId = congressMembers[i].id;	        
-	       
+	BillRetriever.prototype.getAllCongressMembersBills = function (count) {	    
+	    if (count < congressMembers.length) {
+	        var memberId = congressMembers[count].id;
 	        this.getMemberIntroducedBills(memberId, (err) => {
-	            if(err){
-	                console.error(err.toString());
-	            }
-	        });
-	        this.getMemberUpdatedBills(memberId, (err) => {
 	            if (err) {
-	                console.error(err.toString());
+	                debugUtil.debugLog(err.toString());
 	            }
-	            updateCount++;
-	            debugUtil.debugLog('Update Member count:  ' + updateCount); 
+	            this.getMemberUpdatedBills(memberId, (err) => {
+	                if (err) {
+	                    debugUtil.debugLog(err.toString());
+	                }
+	                var newCount = count + 1;
+	                debugUtil.debugLog('Member Count:  ' + newCount);
+	                debugUtil.debugLog(congressMembers[count].first_name + ' ' + congressMembers[count].last_name);
+	                this.getAllCongressMembersBills(newCount);
+	            });
 	        });
-	    }       
-	}	
+	    }
+	}
 
 	/**
 	 * gets json formatted data on house members for the current congress.
@@ -201,8 +199,7 @@ var BillRetrievalNamespace = (function () {
    * @param <{}> body
    * @param <function()> next
    */
-	BillRetriever.prototype.processMembersBillsData = function (error, body, next) {
-
+	BillRetriever.prototype.processMembersBillsData = function (error, body, next) {	   
 	    if (error) {
 	        return next(error);
 	    }
@@ -219,8 +216,7 @@ var BillRetrievalNamespace = (function () {
 	            //Only get bills that were introduced during the current congress.
 	            var currentBills = info.results[0].bills.filter((bill) => bill.congress === billRetrieveConstants.CURRENT_CONGRESS);
 
-	            if (currentBills && currentBills.length > 0) {
-	                //debugUtil.debugLog('member\'s bills length: ' + currentBills.length + ' sponsor_id: ' + currentBills[0].sponsor_id);
+	            if (currentBills && currentBills.length > 0) {	                
 	                database.updateBills(currentBills, function (err) {
 	                    if (err) {
 	                        return next(err);
@@ -228,11 +224,16 @@ var BillRetrievalNamespace = (function () {
 	                    if (billRetrieveConstants.GET_SPECIFIC_BILL_DATA) {
 	                        self.getSpecificBillsData(currentBills, next);
 	                    }
+	                    else {
+	                        return next();
+	                    }
 	                });
-	            } else {
+	            }
+	            else {
 	                return next();
 	            }
-	        } else {
+	        }
+	        else {
 	            return next();
 	        }
 	    }
@@ -293,8 +294,6 @@ var BillRetrievalNamespace = (function () {
 	                }
 	            });
 	        }
-
-	        next();
 	    }
 	    catch (err) {
 	        return next(data);
@@ -314,7 +313,7 @@ var BillRetrievalNamespace = (function () {
 		this.congressDataAgentSecure,
 		null,
 		httpUtility.contentType.JSON,
-		{ 'X-API-Key': billRetrieveConstants.PROPUBLICA_API_KEY },
+		{ 'X-API-Key': billRetrieveConstants.PROPUBLICA_API_KEY_SECOND },
 		(res) => {
 		    var responseData = '';
 
