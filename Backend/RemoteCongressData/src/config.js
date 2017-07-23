@@ -1,4 +1,4 @@
-var sharedConstants = require('../../Shared/SharedConstants');
+const sharedConfig = require('../Config/SharedConfig');
 
 var config = {};
 
@@ -11,6 +11,6 @@ config.dataRetrieval.schedule.hour = 06;
 config.dataRetrieval.schedule.minute = 00;
 
 config.databaseType = 'mongodb';
-config.uri = sharedConstants.ROUSR_CONGRESS_DATA_SOURCE;
+config.uri = sharedConfig.get('/rousrApi/congressDataSource');
 
 module.exports = config;

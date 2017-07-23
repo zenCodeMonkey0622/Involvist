@@ -7,6 +7,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const gateway = require('./endpoints/gateway');
 const debugUtil = require('../Shared/Debug/debugUtility');
+const sharedConfig = require('../Shared/Config/SharedConfig');
 
 var gatewayApp = express();
 
@@ -19,6 +20,7 @@ var serverOptions = {
     cert: fs.readFileSync('ssl/server.crt')
 };
 
-https.createServer(serverOptions, gatewayApp).listen(4443, () => {
-    debugUtil.debugLog('rousr gateway server listening on https port 4443');
+const port = sharedConfig.get('/gatewaySvcPort');
+https.createServer(serverOptions, gatewayApp).listen(port, () => {
+    debugUtil.debugLog('rousr gateway server listening on https port ' + port);
 });

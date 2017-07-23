@@ -5,7 +5,7 @@
 module.exports = FrameLocalService;
 
 const debugUtil = require('../../../Shared/Debug/debugUtility');
-const constants = require('../../../Shared/SharedConstants');
+const sharedConfig = require('../../../Shared/Config/SharedConfig');
 const httpUtility = require('../../../Shared/ServiceAccess/httpUtility');
 const frameUser = require('./FrameUser');
 const frameError = require('./FrameError');
@@ -43,9 +43,9 @@ FrameLocalService.prototype.registerNewUser = function(realName, password, email
 
   const formData = querystring.stringify(form);
 
-  const frameRequest = httpUtility.makeHttpRequest(constants.USER_MANAGEMENT_INTERAL_API_URI,
-    constants.USER_MANAGEMENT_INTERNAL_API_PORT,
-    constants.USER_MANAGEMENT_INTERNAL_API_PATH_PREFIX + '/signup',
+  const frameRequest = httpUtility.makeHttpRequest(sharedConfig.get('/userManagementInternalApi/uri'),
+    sharedConfig.get('/userManagementInternalApi/port'),
+    sharedConfig.get('/userManagementInternalApi/pathPrefix') + '/signup',
     httpUtility.requestType.POST,
     frameAgent,
     formData,
@@ -99,9 +99,9 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
 
   const formData = querystring.stringify(form);
 
-  const frameRequest = httpUtility.makeHttpRequest(constants.USER_MANAGEMENT_INTERAL_API_URI,
-    constants.USER_MANAGEMENT_INTERNAL_API_PORT,
-    constants.USER_MANAGEMENT_INTERNAL_API_PATH_PREFIX + '/login',
+  const frameRequest = httpUtility.makeHttpRequest(sharedConfig.get('/userManagementInternalApi/uri'),
+    sharedConfig.get('/userManagementInternalApi/port'),
+    sharedConfig.get('/userManagementInternalApi/pathPrefix') + '/login',
     httpUtility.requestType.POST,
     frameAgent,
     formData,

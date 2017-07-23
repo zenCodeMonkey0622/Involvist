@@ -2,9 +2,9 @@
 // Manages Rousr users
 
 const debugUtil = require('../../Shared/Debug/debugUtility');
-const constants = require('../../Shared/SharedConstants');
+const sharedConfig = require('../../Shared/Config/SharedConfig');
 const databaseFactory = require('../../Shared/RousrCongressData/RousrCongressDataService').DatabaseFactory;
-const config = { databaseType: 'mongodb', uri: constants.ROUSR_CONGRESS_DATA_SOURCE };
+const config = { databaseType: 'mongodb', uri: sharedConfig.get('/rousrApi/congressDataSource') };
 const RousrUser = require('../../Shared/Models/RousrUser').RousrUser;
 
 /**

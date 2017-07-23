@@ -1,5 +1,6 @@
+// debugUtility.js
+// methods for useful for debugging
 
-const sharedConstants = require('../SharedConstants');
 const sharedConfig = require('../Config/SharedConfig');
 
 module.exports = {
@@ -18,14 +19,9 @@ module.exports = {
      */
     debugLog: function(message)
     {
-        console.log('confidence enable log output: ', sharedConfig.get('/debug/enableLogOutput'));
-        
         if (sharedConfig.get('/debug/enableLogOutput')) {
             console.log(message);
         }
-        // if (!sharedConstants.DEBUG.ENABLE_LOG_OUTPUT)
-        //     return;
-        // console.log(message);
     }
 
 }

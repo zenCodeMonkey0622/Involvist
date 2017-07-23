@@ -1,7 +1,7 @@
 // BillsService.js
-const constants = require('../../Shared/SharedConstants');
+const sharedConfig = require('../../Shared/Config/SharedConfig');
 const databaseService = require('../../Shared/RousrCongressData/RousrCongressDataService').RousrCongressDataService;
-const config = { databaseType: 'mongodb', uri: constants.ROUSR_CONGRESS_DATA_SOURCE };
+const config = { databaseType: 'mongodb', uri: sharedConfig.get('/rousrApi/congressDataSource') };
 const debugUtility = require('../../Shared/Debug/debugUtility');
 
 /**

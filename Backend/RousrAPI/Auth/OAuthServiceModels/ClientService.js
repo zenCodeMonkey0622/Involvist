@@ -3,7 +3,7 @@
 module.exports = ClientService;
 
 const debugUtil = require('../../../Shared/Debug/debugUtility');
-const constants = require('../../../Shared/SharedConstants');
+const sharedConfig = require('../../../Shared/Config/SharedConfig');
 const client = require('../OAuthModels/Client');
 
 // constructor
@@ -21,7 +21,7 @@ ClientService.prototype.getById = function(id, callback)
 {
   if (this.ClientDb != null)
   {
-      this.ClientDb.collection(constants.ROUSR_API_CLIENTS_COLLECTION).findOne({id: parseInt(id)}, function(err, result) {
+      this.ClientDb.collection(sharedConfig.get('/rousrApi/clientsCollection')).findOne({id: parseInt(id)}, function(err, result) {
       if (err)
       {
         debugUtil.debugLog(err);

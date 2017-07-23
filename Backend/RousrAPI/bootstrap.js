@@ -2,10 +2,11 @@
 // launches back-end client service processes
 // use --debug-brk to break on start...
 
-const debugUtil = require('../Shared/Debug/debugUtility');
-
 // set the appropriate environment variables
 process.env.NODE_ENV = 'test';
+
+const debugUtil = require('../Shared/Debug/debugUtility');
+
 debugUtil.debugLog('bootstrap NODE_ENV = ' + process.env.NODE_ENV);
 
 var procSpawn = require('child_process').spawn;

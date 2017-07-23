@@ -3,7 +3,7 @@
 
 const debugUtil = require('../../Shared/Debug/debugUtility');
 const express = require('express');
-const constants = require('../../Shared/SharedConstants');
+const sharedConfig = require('../../Shared/Config/SharedConfig');
 const oauthServer = require('simple-oauth-server');
 const csResponse = require('../DataTransfer/CSResponse');
 const as = require('./OAuthServiceModels/AuthorizationService');
@@ -25,7 +25,7 @@ var authServer = new oauthServer(clientService,
 
 // we use mongodb as our driver to the mongo database
 const mongoClient = require('mongodb').MongoClient;
-const mongoUri = 'mongodb://root:g0ld0ntheceiling@' + constants.ROUSR_API_CLIENTS_DATA_SOURCE;
+const mongoUri = 'mongodb://root:g0ld0ntheceiling@' + sharedConfig.get('/rousrApi/clientsDataSource');
 
 mongoClient.connect(mongoUri, function (err, db) {
   if (err)

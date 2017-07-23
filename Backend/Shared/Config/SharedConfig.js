@@ -17,21 +17,18 @@ const config = {
         enableLogOutput: {
             $filter: 'env',
             test: true,
-            production: false,
-            $default: true
+            production: false
         }
     },
     authSvcPort: {
         $filter: 'env',
         test: 4443,
-        production: 443,
-        $default: 4443
+        production: 443
     },
     gatewaySvcPort: {
         $filter: 'env',
         test: 3443,
-        production: 443,
-        $default: 3443
+        production: 443
     },
     userManagementInternalApi: {
         $meta: 'where our internal frame process is running',
@@ -44,8 +41,7 @@ const config = {
         port: {
             $filter: 'env',
             test: 9090,
-            production: 9090,
-            $default: 9090
+            production: 9090
         },
         pathPrefix: '/api/int/frame'
     },
@@ -53,18 +49,18 @@ const config = {
         clientsDataSource: {
             $filter: 'env',
             test: 'ds147069.mlab.com:47069/projectwoke',
-            production: '',
-            $default: 'ds147069.mlab.com:47069/projectwoke'
+            production: ''
         },
         clientsCollection: 'clients',
         tokenDataSource: {
             $filter: 'env',
             test: 'ds147069.mlab.com:47069/projectwoke',
-            production: '',
-            $default: 'ds147069.mlab.com:47069/projectwoke'
+            production: ''
         },
         tokenCollection: 'tokens',
+        congressDataSource: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke'
     },
+    
     currentCongress: '115',
 };
 

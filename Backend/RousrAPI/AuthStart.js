@@ -7,6 +7,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const auth = require('./auth/authentication');
 const debugUtil = require('../Shared/Debug/debugUtility');
+const sharedConfig = require('../Shared/Config/SharedConfig');
 
 var authApp = express();
 
@@ -19,6 +20,7 @@ var serverOptions = {
     cert: fs.readFileSync('ssl/server.crt')
 };
 
-https.createServer(serverOptions, authApp).listen(3443, () => {
-    debugUtil.debugLog('rousr authentication server listening on https port 3443');
+const port = sharedConfig.get('/authSvcPort');
+https.createServer(serverOptions, authApp).listen(port, () => {
+    debugUtil.debugLog('rousr authentication server listening on https port ' + port);
 });
