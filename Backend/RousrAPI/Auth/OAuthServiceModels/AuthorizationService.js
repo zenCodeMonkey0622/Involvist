@@ -3,7 +3,7 @@
 module.exports = AuthorizationService;
 
 const debugUtil = require('../../../Shared/Debug/debugUtility');
-const sharedConfig = require('../../Shared/Config/SharedConfig');
+const sharedConfig = require('../../../Shared/Config/SharedConfig');
 const token = require('../OAuthModels/Token');
 
 function AuthorizationService(authDb)
