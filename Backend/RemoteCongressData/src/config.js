@@ -1,4 +1,4 @@
-const sharedConfig = require('../Config/SharedConfig');
+const sharedConfig = require('../../Shared/Config/SharedConfig');
 
 var config = {};
 
