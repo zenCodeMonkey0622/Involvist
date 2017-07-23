@@ -20,6 +20,15 @@ const config = {
             production: false
         }
     },
+    security: {
+        certificate: {
+            isSelfSigned: {
+                $filter: 'env',
+                test: true,
+                production: false
+            }
+        }
+    },
     authSvcPort: {
         $filter: 'env',
         test: 4443,

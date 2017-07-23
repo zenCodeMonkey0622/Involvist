@@ -2,6 +2,7 @@
 // provides utility functions for http service requests
 const http = require('http');
 const https = require('https');
+const debugUtil = require('../Debug/debugUtility');
 
 module.exports = {
 
@@ -75,12 +76,13 @@ module.exports = {
     * @param {string} requestData - optional JSON stringified request data
     * @param {httpUtility.contentType} contentType - the type of content.
     * @param {string:object} headers - passed-in headers
+    * @param {string:object} options - passed-in options
     * @param {Function} callback - an optional callback function to attach to the request
   **/
-  makeHttpsRequest: function(hostUri, port, path, method, agent, requestData, contentType, headers, callback)
+  makeHttpsRequest: function(hostUri, port, path, method, agent, requestData, contentType, headers, options, callback)
   {
     // create the options object
-    var options = {
+    var requestOptions = {
       host: hostUri,
       path: path,
       method: method,
@@ -88,31 +90,35 @@ module.exports = {
     }
 
     if (port != null) {
-      options.port = port;
+      requestOptions.port = port;
     }
 
+    // append user-provided options
+    if (options != null) {
+      for (key in options) {
+        requestOptions[key] = options[key];
+      }
+    }
+    
     // form the request headers
     var requestHeaders = {
       'Content-Type': contentType
     }
 
-    if (requestData != null)
-    {
+    if (requestData != null) {
       requestHeaders['Content-Length'] = requestData.length;
     }
 
     // add any passed-in headers if necessary
-    if (headers != null)
-    {
-      for (key in headers)
-      {
+    if (headers != null) {
+      for (key in headers) {
         requestHeaders[key] = headers[key];
       }
     }
 
     // add the request headers ot the options
-    options.headers = requestHeaders;
+    requestOptions.headers = requestHeaders;
 
-    return https.request(options, callback);
+    return https.request(requestOptions, callback);
   }
 }

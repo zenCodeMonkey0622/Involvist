@@ -315,6 +315,7 @@ var BillRetrievalNamespace = (function () {
 			null,
 			httpUtility.contentType.JSON,
 			{ 'X-API-Key': billRetrieveConstants.PROPUBLICA_API_KEY },
+			null,
 			(res) => {
 
 		    var responseData = '';
