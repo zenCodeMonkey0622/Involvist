@@ -1,0 +1,3 @@
+Capturing localhost traffic with Wireshark:
+- Monitor loopback
+- Filter on 'http'

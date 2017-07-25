@@ -29,15 +29,21 @@ const config = {
             }
         }
     },
-    authSvcPort: {
-        $filter: 'env',
-        test: 4443,
-        production: 443
+    auth: {
+        svcPort: {
+            $filter: 'env',
+            test: 4443,
+            production: 443
+        },
+        ssl: false
     },
-    gatewaySvcPort: {
-        $filter: 'env',
-        test: 3443,
-        production: 443
+    gateway: {
+        svcPort: {
+            $filter: 'env',
+            test: 3443,
+            production: 443
+        },
+        ssl: false
     },
     userManagementInternalApi: {
         $meta: 'where our internal frame process is running',

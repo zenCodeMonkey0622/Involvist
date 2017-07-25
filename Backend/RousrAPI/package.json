@@ -16,6 +16,6 @@
     "mocha": "^3.4.2"
   },
   "scripts":{
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "./node_modules/mocha/bin/mocha --inspect --debug-brk --debug=4000"
   }
 }
