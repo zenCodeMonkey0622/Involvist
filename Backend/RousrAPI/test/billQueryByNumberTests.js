@@ -77,7 +77,7 @@ before( function(done) {
 
 describe('Rousr API', function() {
 
-    describe('Bill Query By Name', function() {
+    describe('Bill Query By Number', function() {
 
         // 'done' parameter used on async code. call done() after
         // last assert so mocha knows it needs to wait before executing
@@ -116,7 +116,7 @@ describe('Rousr API', function() {
                 queryRequest.end();
         });
 
-        it('should return one bill matching the name', function() {
+        it('should return one bill matching the number', function() {
 
             const expectedResponseCode = '200';
             const expectedReturnCount = 1;
@@ -154,7 +154,7 @@ describe('Rousr API', function() {
                 queryRequest.end();
         });
 
-        it('should return zero bills', function() {
+        it('should return zero bills matching the number', function() {
 
             const expectedResponseCode = '200';
             const expectedReturnCount = 0;
