@@ -35,7 +35,7 @@ const config = {
             test: 4443,
             production: 443
         },
-        ssl: false
+        ssl: true
     },
     gateway: {
         svcPort: {
@@ -43,7 +43,7 @@ const config = {
             test: 3443,
             production: 443
         },
-        ssl: false
+        ssl: true
     },
     userManagementInternalApi: {
         $meta: 'where our internal frame process is running',
