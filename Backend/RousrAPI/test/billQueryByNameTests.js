@@ -18,7 +18,7 @@ var testAuthToken = '';
 // options to allow self-signed ssl communication
 const options = {rejectUnauthorized: !sharedConfig.get('/security/certificate/isSelfSigned')};
 
-const billNumber = 'H.R.3114'
+const billName = 'HR3114'
 
 /**
  * before() - runs code before all tests are loaded
@@ -87,7 +87,7 @@ after( function() {
 
 describe('Rousr API', function() {
 
-    describe('Bill Query By Number', function() {
+    describe('Bill Query By Name', function() {
 
         // 'done' parameter used on async code. call done() after
         // last assert so mocha knows it needs to wait before executing
@@ -98,7 +98,7 @@ describe('Rousr API', function() {
 
             const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_CONGRESS_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
-                testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNUMBER_PATH + billNumber,
+                testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNAME_PATH + billName,
                 httpUtil.requestType.GET,
                 secureAgent,
                 null,
@@ -119,14 +119,14 @@ describe('Rousr API', function() {
                 });
 
                 queryRequest.on('error', (e) => {
-                    assert.fail(null, null, 'problem with bill query number request: ' + e);
+                    assert.fail(null, null, 'problem with bill query name request: ' + e);
                     done();
                 });
 
                 queryRequest.end();
         });
 
-        it('should return one bill matching the number', function(done) {
+        it('should return one bill matching the name', function(done) {
 
             const expectedResponseCode = '200';
             const expectedReturnCount = 1;
@@ -135,7 +135,7 @@ describe('Rousr API', function() {
 
             const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_CONGRESS_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
-                testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNUMBER_PATH + billNumber,
+                testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNAME_PATH + billName,
                 httpUtil.requestType.GET,
                 secureAgent,
                 null,
@@ -154,10 +154,10 @@ describe('Rousr API', function() {
 
                         const responseObj = JSON.parse(responseData);
 
-                        if (responseObj.data != null) {
+                        if (responseObj.data != null){
                             assert.equal(responseObj.data.length, expectedReturnCount, 'response count mismatch');
                             var billData = responseObj.data[0];
-                            assert.equal(billData.number, billNumber, 'did not return expected bill');
+                            assert.equal(billData.name, billName, 'did not return expected bill');
                         }
                         else {
                             assert.fail(null, null, 'response data was null');
@@ -174,14 +174,14 @@ describe('Rousr API', function() {
                 queryRequest.end();
         });
 
-        it('should return zero bills matching the number', function(done) {
+        it('should return zero bills matching the name', function(done) {
 
             const expectedResponseCode = '200';
             const expectedReturnCount = 0;
 
             const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_CONGRESS_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
-                testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNUMBER_PATH + 'feefifofum',
+                testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNAME_PATH + 'feefifofum',
                 httpUtil.requestType.GET,
                 secureAgent,
                 null,
@@ -206,7 +206,7 @@ describe('Rousr API', function() {
                 });
 
                 queryRequest.on('error', (e) => {
-                    assert.fail(null, null, 'problem with bill query number request: ' + e);
+                    assert.fail(null, null, 'problem with bill query name request: ' + e);
                     done();
                 });
 
