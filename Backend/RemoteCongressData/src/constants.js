@@ -1,5 +1,4 @@
-﻿const sharedConstants = require('../../Shared/SharedConstants')
-
+﻿const sharedConfig = require('../../Shared/Config/SharedConfig');
 var constants = {};
 
 // todo: register propublica API key to Rousr, LLC
@@ -11,7 +10,7 @@ constants.PROPUBLICA_API_KEY_SECOND = 'd9MT6rGU1C9D5U1o32mMvkkeQPjUIZ4K4ZVplu60'
 constants.CONGRESS_API_HOST_URI = 'api.propublica.org';
 constants.BASE_CONGRESS_API_PATH = '/congress/v1';
 constants.BASE_CONGRESS_API_URI = 'api.propublica.org/congress/v1';
-constants.CURRENT_CONGRESS = sharedConstants.CURRENT_CONGRESS;
+constants.CURRENT_CONGRESS = sharedConfig.get('/currentCongress');
 constants.BILL_TYPES = ['introduced' , 'updated' , 'passed' , 'major'];
 constants.HOUSE_BILLS_URI = constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/' + 'house/bills/';
 constants.SENATE_BILLS_URI = constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/' + 'senate/bills/';

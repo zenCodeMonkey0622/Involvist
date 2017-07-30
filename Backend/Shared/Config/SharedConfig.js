@@ -18,6 +18,16 @@ const config = {
             $filter: 'env',
             test: true,
             production: false
+        },
+        authClientId: {
+            $filter: 'env',
+            test: 1,
+            production: 1
+        },
+        authClientSecret: {
+            $filter: 'env',
+            test: 'fefifofum',
+            production: ''
         }
     },
     security: {

@@ -13,11 +13,5 @@ module.exports = {
 
     ROUSR_CONGRESS_DATA_SOURCE: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
 
-    CURRENT_CONGRESS: '115',
-    
-    DEBUG: {
-    AUTH_CLIENT_ID: 1,
-    AUTH_CLIENT_SECRET: 'fefifofum',
-    ENABLE_LOG_OUTPUT: true
-    }
+    GOOGLE_GEOCODING_API_KEY: 'AIzaSyCKLqVw0eUgQ51hBtuyo3HXBTzllNSrGCU'
 }

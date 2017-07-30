@@ -1,6 +1,7 @@
 'use strict'
 
-const sharedConstants = require('../SharedConstants');
+const sharedConfig = require('../Config/SharedConfig');
+
 // we use mongoose for mongoDb object modeling
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
@@ -45,7 +46,7 @@ var BillSchema = new Schema({
     name: String
 });
 
-var Bill = mongoose.model("rsr_current_bill_" + sharedConstants.CURRENT_CONGRESS, BillSchema);
+var Bill = mongoose.model("rsr_current_bill_" + sharedConfig.get('/currentCongress'), BillSchema);
 
 module.exports.Bill = Bill;
 
