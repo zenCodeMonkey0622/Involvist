@@ -29,15 +29,12 @@ function newUserRegistrationGetHandler(req, res, next)
   var email = req.body.email;
 
   frameLocalService.registerNewUser(realName, password, email, (csResponse, newUser) => {
-    if (!csResponse.success)
-    {
+    if (!csResponse.success) {
       console.error('registration endpoint error: ', csResponse.responseMessage);
       res.json(csResponse);
     }
-    else
-    {
+    else {
         debugUtil.debugLog('registration success!');
-
         debugUtil.debugLog(newUser);
 
         //Create and a new Involvist user

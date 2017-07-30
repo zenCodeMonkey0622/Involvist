@@ -7,6 +7,7 @@ const endpointBills = require('./bills');
 const authServer = require('../auth/authentication').AuthenticationServer;
 const endpointErrors = require('./errors');
 const endpointUsers = require('./users');
+const endpointLocation = require('./locations');
 const debugUtil = require('../../Shared/Debug/debugUtility');
 
 /**
@@ -55,6 +56,7 @@ gatewayRouter.use('/v1', unless('/registration', tokenCheck));
 gatewayRouter.use('/v1/registration', newUserReg);
 gatewayRouter.use('/v1/bills', endpointBills);
 gatewayRouter.use('/v1/users', endpointUsers);
+gatewayRouter.use('/v1/locations', endpointLocation)
 gatewayRouter.use(endpointErrors);
 
 module.exports = gatewayRouter;
