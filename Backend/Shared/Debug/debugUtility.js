@@ -17,11 +17,15 @@ module.exports = {
     /**
      * Logs a message to the console if we're in a debug enviro.
      */
-    debugLog: function(message)
-    {
+    debugLog: function(message) {
         if (sharedConfig.get('/debug/enableLogOutput')) {
             console.log(message);
         }
-    }
+    },
 
+    debugErrorLog: function(message) {
+        if (sharedConfig.get('/debug/enableLogOutput')) {
+            console.error(message);
+        }
+    }
 }

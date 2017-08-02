@@ -8,6 +8,7 @@ const querystring = require('querystring');
 const sharedConstants = require('../../Shared/SharedConstants');
 const geoCoord = require('./GeoCoordinate');
 const httpUtil = require('../../Shared/ServiceAccess/httpUtility');
+const debugUtil = require('../../Shared/Debug/debugUtility');
 
 // Public
 
@@ -71,16 +72,16 @@ function googleGeocodeTransform(addressToCode, callback) {
                     return callback(null, coords);
                 }
                 else {
-                    return callback(null, null);
+                    return callback(new Error('Unable to get valid geocode response.'), null);
                 }
             });
         });
 
     queryRequest.on('error', (e) => {
-        console.error('error during googleGeocodeTransform: ', e.message);
+        debugUtil.debugErrorLog('error during google geocode api: ' + e.message);
+        return callback(new Error(e.message, null));
     });
 
-    //queryRequest.write(formData);
     queryRequest.end();
 };
 
