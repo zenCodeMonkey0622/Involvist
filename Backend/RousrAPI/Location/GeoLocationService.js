@@ -6,6 +6,7 @@
 const https = require('https');	
 const querystring = require('querystring');
 const sharedConstants = require('../../Shared/SharedConstants');
+const sharedConfig = require('../../Shared/Config/SharedConfig');
 const geoCoord = require('./GeoCoordinate');
 const httpUtil = require('../../Shared/ServiceAccess/httpUtility');
 const debugUtil = require('../../Shared/Debug/debugUtility');
@@ -49,9 +50,9 @@ function googleGeocodeTransform(addressToCode, callback) {
 
     const formData = querystring.stringify(form);
 
-    const queryRequest = httpUtil.makeHttpsRequest('maps.googleapis.com', 
+    const queryRequest = httpUtil.makeHttpsRequest(sharedConfig.get('/geoCodeApi/host'), 
         null, 
-        '/maps/api/geocode/json?' + formData,
+        sharedConfig.get('/geoCodeApi/path') + formData,
         httpUtil.requestType.GET, 
         null, 
         null, 

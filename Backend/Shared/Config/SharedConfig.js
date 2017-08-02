@@ -85,7 +85,18 @@ const config = {
         tokenCollection: 'tokens',
         congressDataSource: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke'
     },
-    
+    geoCodeApi: {
+        host : {
+            $filter: 'env',
+            test: 'maps.googleapis.com',
+            production: 'maps.googleapis.com'
+        },
+        path: {
+            $filter: 'env',
+            test: '/maps/api/geocode/json?',
+            production: '/maps/api/geocode/json?'
+        }
+    },
     currentCongress: '115',
 };
 
