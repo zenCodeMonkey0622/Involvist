@@ -3,6 +3,8 @@
 // note: using newer ES6 specification, which should be fine since no browser
 // will be running this.
 
+'using strict';
+
 module.exports = MakeCSResponse;
 
 const debugUtil = require('../../Shared/Debug/debugUtility');

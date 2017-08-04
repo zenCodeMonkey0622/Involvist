@@ -3,11 +3,10 @@
 
 'using strict';
 
-module.exports = makeCivicData;
-
 class CivicData {
     constructor() {
-        this.congressionalDistrict = '';
+        this.state = '';
+        this.districtNumber = -1;
     }
 }
 
@@ -17,19 +16,19 @@ module.exports = {
      * factory method for creating a null CivicData object
      */
     makeNullCivicData: function() {
-        var cd = new CivicData();
-
-        return cd;
+        return new CivicData();
     },
 
     /**
      * factory method for creating a CivicData object
-     * @param {string} congressionalDistrict 
+     * @param {string} state
+     * @param {int} districtNumber 
      */
-    makeCivicData: function(congressionalDistrict)
+    makeCivicData: function(state, districtNumber)
     {
         var cd = new CivicData();
-        cd.congressionalDistrict = congressionalDistrict
+        cd.districtNumber = districtNumber;
+        cd.state = state
 
         return cd;
     }

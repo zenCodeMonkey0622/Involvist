@@ -9,9 +9,12 @@ const Geocodio = require('geocodio');
 
 const sharedConstants = require('../../Shared/SharedConstants');
 const sharedConfig = require('../../Shared/Config/SharedConfig');
-const geoCoord = require('./GeoCoordinate');
 const httpUtil = require('../../Shared/ServiceAccess/httpUtility');
 const debugUtil = require('../../Shared/Debug/debugUtility');
+
+const geoCoord = require('./GeoCoordinate');
+const civicData = require('./CivicData');
+const civicGeocode = require('./CivicGeocode');
 
 // Public
 
@@ -42,16 +45,32 @@ GeoLocationService.prototype.geocodeAddress = function(address, callback) {
  * @param {function(err, GeoCoordinate)} callback 
  */
 function geocodioMapToDistrict(addressToMap, callback) {
+
     var config = {
         api_key: sharedConstants.GEOCODIO_API_KEY
     }
 
     var geocodio = new Geocodio(config);
 
-    geocodio.get('geocode', {q: addressToMap, fields: ['cd']}, function(err, response){
-    if (err) return callback(new Error(err.message), null);
+    geocodio.get('geocode', {q: addressToMap, fields: 'cd'}, function(err, response){
 
-});
+        if (err) return callback(new Error(err.message), null);
+
+        // deserialize the response
+        const result = JSON.parse(response);
+
+        // grab the geo coordinates
+        const loc = result.results[0].location;
+        const coords = geoCoord.makeGeoCoordinate(loc.lat, loc.lng);
+
+        // grab the civic data
+        const state = result.input.address_components.state;
+        const districtNum = result.results[0].fields.congressional_district.district_number;
+        const civData = civicData.makeCivicData(state, districtNum);
+
+        // build the civic geocode
+        const civGeocode = civicGeocode(coords, civData);
+    });
 }
 
 /**

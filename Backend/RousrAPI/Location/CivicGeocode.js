@@ -3,7 +3,7 @@
 
 'using strict';
 
-module.exports = new makeCivicGeocode();
+module.exports = makeCivicGeocode();
 
 const geoCoord = using('./GeoCoordinate');
 const civicData = using('./CivicData');
@@ -14,7 +14,7 @@ const civicData = using('./CivicData');
 class CivicGeocode {
     constructor() {
         this.geoCoordinate = geoCoord.makeNullCoordinate();
-        this.civicData = civicData.makeNullCoordinate();
+        this.civicData = civicData.makeNullCivicData();
     }
 }
 
