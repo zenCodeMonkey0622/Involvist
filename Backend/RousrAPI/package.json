@@ -6,6 +6,7 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.14.1",
+    "geocodio": "^2.0.0",
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.5",
     "request": "^2.81.0",
@@ -15,7 +16,7 @@
   "devDependencies": {
     "mocha": "^3.4.2"
   },
-  "scripts":{
+  "scripts": {
     "//": "to debug tests add the following switches after 'mocha': --inspect --debug-brk --debug=4000",
     "test": "./node_modules/mocha/bin/mocha"
   }

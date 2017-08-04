@@ -1,7 +1,7 @@
 // GeoCoordinate.js
 // represents a geographic coordinate
 
-//module.exports = geoCoordinateFactory;
+'using strict';
 
 /**
  * represents a geographic coordinate
@@ -24,11 +24,7 @@ module.exports = {
      * geo coordinate object
      */
     makeNullCoordinate: function() {
-        var coord = new GeoCoordinate();
-        coord.latitude = 0.0;
-        coord.longitude = 0.0;
-
-        return coord;
+        return new GeoCoordinate();
     },
 
     /**

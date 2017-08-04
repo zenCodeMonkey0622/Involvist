@@ -88,8 +88,8 @@ const config = {
     geoCodeApi: {
         host : {
             $filter: 'env',
-            test: 'maps.googleapis.com',
-            production: 'maps.googleapis.com'
+            test: 'api.geocod.io',
+            production: 'api.geocod.io'
         },
         path: {
             $filter: 'env',

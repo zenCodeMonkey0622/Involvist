@@ -5,6 +5,8 @@
 
 const https = require('https');	
 const querystring = require('querystring');
+const Geocodio = require('geocodio');
+
 const sharedConstants = require('../../Shared/SharedConstants');
 const sharedConfig = require('../../Shared/Config/SharedConfig');
 const geoCoord = require('./GeoCoordinate');
@@ -26,12 +28,31 @@ var GeoLocationService = function() {
  */
 GeoLocationService.prototype.geocodeAddress = function(address, callback) {
     
-    googleGeocodeTransform(address, (err, geocode) => {
-        return callback(null, geocode);
+    geocodioMapToDistrict(address, (err, geocode) => {
+        if (err) return callback(err, null);
     });
 }
 
 // Private
+
+/**
+ * geocodioMapToDistrict - converts a u.s. street address to lat/long with
+ * congressional district data
+ * @param {string} addressToMap 
+ * @param {function(err, GeoCoordinate)} callback 
+ */
+function geocodioMapToDistrict(addressToMap, callback) {
+    var config = {
+        api_key: sharedConstants.GEOCODIO_API_KEY
+    }
+
+    var geocodio = new Geocodio(config);
+
+    geocodio.get('geocode', {q: addressToMap, fields: ['cd']}, function(err, response){
+    if (err) return callback(new Error(err.message), null);
+
+});
+}
 
 /**
  * googleGeocodeTransform - converts a standard street address to a lat/long equiv
@@ -80,7 +101,7 @@ function googleGeocodeTransform(addressToCode, callback) {
 
     queryRequest.on('error', (e) => {
         debugUtil.debugErrorLog('error during google geocode api: ' + e.message);
-        return callback(new Error(e.message, null));
+        return callback(new Error(e.message), null);
     });
 
     queryRequest.end();

@@ -13,5 +13,7 @@ module.exports = {
 
     ROUSR_CONGRESS_DATA_SOURCE: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
 
-    GOOGLE_GEOCODING_API_KEY: 'AIzaSyCKLqVw0eUgQ51hBtuyo3HXBTzllNSrGCU'
+    GOOGLE_GEOCODING_API_KEY: 'AIzaSyCKLqVw0eUgQ51hBtuyo3HXBTzllNSrGCU',
+
+    GEOCODIO_API_KEY: '2729309f772979a2395823e5a26a2e3827285e8'
 }

@@ -2,6 +2,7 @@
 // the gateway through which all requests to the Involvist APIs routes
 
 const gatewayRouter = require('express').Router();
+const csResponse = require('../DataTransfer/CSResponse');
 const newUserReg = require('./newUserRegistration');
 const endpointBills = require('./bills');
 const authServer = require('../auth/authentication').AuthenticationServer;
@@ -40,13 +41,10 @@ function tokenCheck(req, res, next)
   debugUtil.debugLog('checking authentication token for ', req.path);
   // verify access token
   authServer.validateAccessToken(req, function(error, validationResult) {
-      if(error)
-      {
-          res.statusCode = 401;
-          return res.end(JSON.stringify({'error': error.message}));
+      if(error) {
+          return res.json(csResponse(false, error.error, null));
       }
-      else
-      {
+      else {
         next();
       }
   });
