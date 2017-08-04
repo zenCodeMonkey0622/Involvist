@@ -23,13 +23,13 @@ locationsRouter.param('address', function (req, res, next, address) {
 });
 
 locationsRouter.get('/congress/district', function (req, res, next) {
-    geoLocationService.geocodeAddress(req.query.address, (err, geocode) => {
+    geoLocationService.geocodeAddress(req.query.address, (err, civicGeocode) => {
         
         if (err) {
             return next(err);
         }
 
-        res.json(csResponse(true, '', geocode));
+        res.json(csResponse(true, '', civicGeocode));
     });
 });
 

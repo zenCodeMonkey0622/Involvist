@@ -3,10 +3,10 @@
 
 'using strict';
 
-module.exports = makeCivicGeocode();
+module.exports = makeCivicGeocode;
 
-const geoCoord = using('./GeoCoordinate');
-const civicData = using('./CivicData');
+const geoCoord = require('./GeoCoordinate');
+const civicData = require('./CivicData');
 
 /**
  * represents a geographic location's civic data

@@ -27,12 +27,12 @@ var GeoLocationService = function() {
 /**
  * geocodeAddress - converts a standard street address to a lat/long equivalent
  * @param {string} address - standard u.s. street address, city, and state
- * @param {function(err, GeoCoordinate)} - callback function
+ * @param {function(err, CivicGeocode)} - callback function
  */
 GeoLocationService.prototype.geocodeAddress = function(address, callback) {
     
-    geocodioMapToDistrict(address, (err, geocode) => {
-        if (err) return callback(err, null);
+    geocodioMapToDistrict(address, (err, civicGeocode) => {
+        return callback(err, civicGeocode);
     });
 }
 
@@ -42,7 +42,7 @@ GeoLocationService.prototype.geocodeAddress = function(address, callback) {
  * geocodioMapToDistrict - converts a u.s. street address to lat/long with
  * congressional district data
  * @param {string} addressToMap 
- * @param {function(err, GeoCoordinate)} callback 
+ * @param {function(err, CivicGeocode)} callback 
  */
 function geocodioMapToDistrict(addressToMap, callback) {
 
@@ -70,6 +70,8 @@ function geocodioMapToDistrict(addressToMap, callback) {
 
         // build the civic geocode
         const civGeocode = civicGeocode(coords, civData);
+
+        callback(null, civGeocode);
     });
 }
 
