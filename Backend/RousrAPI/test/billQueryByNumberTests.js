@@ -11,12 +11,10 @@ const querystring = require('querystring');
 const testConfig = require('./testConfig');
 const httpUtil = require('../../Shared/ServiceAccess/httpUtility');
 const sharedConfig = require('../../Shared/Config/SharedConfig');
+const testHelpers = require('./apiTestHelpers');
 const secureAgent = new https.Agent({keepAlive: true});
 
 var testAuthToken = '';
-
-// options to allow self-signed ssl communication
-const options = {rejectUnauthorized: !sharedConfig.get('/security/certificate/isSelfSigned')};
 
 const billNumber = 'H.R.3114'
 
@@ -26,55 +24,17 @@ const billNumber = 'H.R.3114'
  */
 before( function(done) {
 
-    const form = {
-        grant_type: 'password',
-        client_id: testConfig.TEST_CLIENT_ID,
-        username: testConfig.TEST_USER,
-        password: testConfig.TEST_PASSWORD
-    };
-
-    const formData = querystring.stringify(form);
-
-    // get an authentication token for this test
-    const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_AUTH_URI,
-        sharedConfig.get('/auth/svcPort'),
-        testConfig.TEST_AUTH_ENDPOINT,
-        httpUtil.requestType.POST,
-        secureAgent,
-        formData,
-        httpUtil.contentType.JSON,
-        null,
-        options,
-        (res) => {
-            var responseData = '';
-
-            res.on('data', (chunk) => {
-                responseData += chunk;
-            });
-
-            res.on('end', () => {
-                if (res.statusCode == '200') {
-                    // parse the json
-                    var response = JSON.parse(responseData);
-                    assert.equal(response.success, true, 'response success not true');
-                    assert.equal(response.data.token_type, 'Bearer', 'token type mismatch');
-                    assert.notEqual(response.data.access_token.length, 0, 'invalid access token');
-                    testAuthToken = response.data.access_token;
-                }
-                else {
-                    assert.fail(null, null, 'authentication response not 200');
-                }
-                done();
-            });
-        });
-
-        queryRequest.on('error', (e) => {
-            assert.fail(null, null, 'problem with authentication request: ' + e);
+    testHelpers.getAuthToken(testConfig.TEST_USER,
+        testConfig.TEST_PASSWORD,
+        (err, token) => {
+            if (err) {
+                assert.fail('unable to get authentication token');
+            }
+            else {
+                testAuthToken = token;
+            }
             done();
         });
-
-        queryRequest.write(formData);
-        queryRequest.end();
 });
 
 /**

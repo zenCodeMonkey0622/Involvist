@@ -3,6 +3,8 @@
 
 'use strict';
 
+const sharedConfig = require('../../Shared/Config/SharedConfig');
+
 module.exports = {
     TEST_AUTH_URI: 'localhost',
     TEST_AUTH_ENDPOINT: '/oauth/token',
@@ -14,4 +16,9 @@ module.exports = {
     TEST_CONGRESS_BILLS_QUERYSUBJECT_PATH: '/subject/',
     TEST_USER: 'rhr@rousr.io',
     TEST_PASSWORD: 'feefifofum',
+
+    // options to allow self-signed ssl communication
+    TEST_HTTP_OPTIONS: {
+        rejectUnauthorized: !sharedConfig.get('/security/certificate/isSelfSigned')
+    }
 }

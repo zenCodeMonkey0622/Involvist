@@ -29,7 +29,7 @@ var GeoLocationService = function() {
  * @param {string} address - standard u.s. street address, city, and state
  * @param {function(err, CivicGeocode)} - callback function
  */
-GeoLocationService.prototype.geocodeAddress = function(address, callback) {
+GeoLocationService.prototype.addressToDistrict = function(address, callback) {
     
     geocodioMapToDistrict(address, (err, civicGeocode) => {
         return callback(err, civicGeocode);
