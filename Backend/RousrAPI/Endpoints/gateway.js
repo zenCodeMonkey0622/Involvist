@@ -42,7 +42,8 @@ function tokenCheck(req, res, next)
   // verify access token
   authServer.validateAccessToken(req, function(error, validationResult) {
       if(error) {
-          return res.json(csResponse(false, error.error, null));
+        res.statusCode = 401;
+        return res.json(csResponse(false, error.error, null));
       }
       else {
         next();

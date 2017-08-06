@@ -64,7 +64,7 @@ describe('Rousr API', function() {
                 null,
                 httpUtil.contentType.JSON,
                 {'Authorization': null},
-                options,
+                testConfig.TEST_HTTP_OPTIONS,
                 (res) => {
                     var responseData = '';
 
@@ -104,7 +104,7 @@ describe('Rousr API', function() {
                 null,
                 httpUtil.contentType.JSON,
                 {'Authorization': 'Bearer ' + testAuthToken},
-                options,
+                testConfig.TEST_HTTP_OPTIONS,
                 (res) => {
                     var responseData = '';
 
@@ -148,7 +148,7 @@ describe('Rousr API', function() {
                 null,
                 httpUtil.contentType.JSON,
                 {'Authorization': 'Bearer ' + testAuthToken},
-                options,
+                testConfig.TEST_HTTP_OPTIONS,
                 (res) => {
                     var responseData = '';
 
