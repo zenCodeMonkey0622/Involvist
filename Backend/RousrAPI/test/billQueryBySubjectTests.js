@@ -73,7 +73,8 @@ describe('Rousr API', function() {
                     });
 
                     res.on('end', () => {
-                        assert.equal(res.statusCode, expectedResponseCode, 'did not return ' + expectedResponseCode);
+                        assert.equal(res.statusCode, expectedResponseCode, 
+                            'expected ' + expectedResponseCode + ' but received ' + res.statusCode);
                         done();
                     });
                 });

@@ -56,6 +56,8 @@ describe('Rousr API', function() {
 
             const expectedResponseCode = '401';
 
+            debugger;
+
             const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
                 testConfig.TEST_ADDRESS_TO_DISTRICT_PATH,
@@ -73,7 +75,8 @@ describe('Rousr API', function() {
                     });
 
                     res.on('end', () => {
-                        assert.equal(res.statusCode, expectedResponseCode, 'did not return ' + expectedResponseCode);
+                        assert.equal(res.statusCode, expectedResponseCode, 
+                            'expected ' + expectedResponseCode + ' but received ' + res.statusCode);
                         done();
                     });
                 });

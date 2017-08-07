@@ -19,6 +19,11 @@ const config = {
             test: true,
             production: false
         },
+        enableDebugApiLayer: {
+            $filter: 'env',
+            test: true,
+            production: false
+        },
         authClientId: {
             $filter: 'env',
             test: 1,

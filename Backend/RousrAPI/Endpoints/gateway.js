@@ -1,15 +1,19 @@
 // endpointsGateway.js
 // the gateway through which all requests to the Involvist APIs routes
 
+'use strict';
+
+const sharedConfig = require('../../Shared/Config/SharedConfig');
+const debugUtil = require('../../Shared/Debug/debugUtility');
 const gatewayRouter = require('express').Router();
 const csResponse = require('../DataTransfer/CSResponse');
+const endpointDebug = require('./debug.js');
 const newUserReg = require('./newUserRegistration');
 const endpointBills = require('./bills');
 const authServer = require('../auth/authentication').AuthenticationServer;
 const endpointErrors = require('./errors');
 const endpointUsers = require('./users');
 const endpointLocation = require('./locations');
-const debugUtil = require('../../Shared/Debug/debugUtility');
 
 /**
 * helper function to exclude a particular route from
@@ -49,6 +53,11 @@ function tokenCheck(req, res, next)
         next();
       }
   });
+}
+
+// debug middleware
+if (sharedConfig.get('/debug/enableDebugApiLayer')) {
+  gatewayRouter.use('/', endpointDebug);
 }
 
 gatewayRouter.use('/v1', unless('/registration', tokenCheck));
