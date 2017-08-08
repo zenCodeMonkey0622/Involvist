@@ -24,11 +24,14 @@ const billSubject = 'Health'
  */
 before( function(done) {
 
+    // increase the timeout for this query
+    this.timeout(5000);
+
     testHelpers.getAuthToken(testConfig.TEST_USER,
         testConfig.TEST_PASSWORD,
         (err, token) => {
             if (err) {
-                assert.fail('unable to get authentication token');
+                assert.fail('unable to get authentication token ' + err);
             }
             else {
                 testAuthToken = token;
@@ -56,7 +59,7 @@ describe('Rousr API', function() {
 
             const expectedResponseCode = '401';
 
-            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_CONGRESS_API_URI,
+            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
                 testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYSUBJECT_PATH + billSubject,
                 httpUtil.requestType.GET,
@@ -87,17 +90,17 @@ describe('Rousr API', function() {
                 queryRequest.end();
         });
 
-        it('should return 426 bills matching the subject', function(done) {
+        it('should return at least one bill matching the primary subject ' + billSubject, function(done) {
 
-             // increase the timeout for this query
+            // increase the timeout for this query
             this.timeout(5000);
 
             const expectedResponseCode = '200';
-            const expectedReturnCount = 426;
+            const expectedReturnCount = 557;
 
             debugger;
 
-            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_CONGRESS_API_URI,
+            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
                 testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYSUBJECT_PATH + billSubject,
                 httpUtil.requestType.GET,
@@ -118,8 +121,13 @@ describe('Rousr API', function() {
 
                         const responseObj = JSON.parse(responseData);
 
+                        if (responseObj == null) {
+                            assert.fail('deserialization failure');
+                            done();
+                        }
+
                         if (responseObj.data != null) {
-                            assert.equal(responseObj.data.length, expectedReturnCount, 'response count mismatch');
+                            assert.equal(responseObj.data.length, expectedReturnCount, 'expected ' + expectedReturnCount + ' bills but received ' + responseObj.data.length);
                         }
                         else {
                             assert.fail(null, null, 'response data was null');
@@ -136,12 +144,12 @@ describe('Rousr API', function() {
                 queryRequest.end();
         });
 
-        it('should return zero bills matching the subject', function(done) {
+        it('should return zero bills matching the primary subject ' + billSubject, function(done) {
 
             const expectedResponseCode = '200';
             const expectedReturnCount = 0;
 
-            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_CONGRESS_API_URI,
+            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
                 testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYSUBJECT_PATH + 'feefifofum',
                 httpUtil.requestType.GET,
@@ -161,6 +169,12 @@ describe('Rousr API', function() {
                         assert.equal(res.statusCode, expectedResponseCode, 'did not return ' + expectedResponseCode);
 
                         const responseObj = JSON.parse(responseData);
+
+                        if (responseObj == null) {
+                            assert.fail('deserialization failure');
+                            done();
+                        }
+
                         assert.equal(responseObj.data, null, 'response data mismatch');
 
                         done();

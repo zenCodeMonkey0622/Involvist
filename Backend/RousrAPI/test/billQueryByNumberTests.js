@@ -24,11 +24,14 @@ const billNumber = 'H.R.3114'
  */
 before( function(done) {
 
+    // increase the timeout for this query
+    this.timeout(5000);
+    
     testHelpers.getAuthToken(testConfig.TEST_USER,
         testConfig.TEST_PASSWORD,
         (err, token) => {
             if (err) {
-                assert.fail('unable to get authentication token');
+                assert.fail('unable to get authentication token ' + err);
             }
             else {
                 testAuthToken = token;
@@ -56,7 +59,7 @@ describe('Rousr API', function() {
 
             const expectedResponseCode = '401';
 
-            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_CONGRESS_API_URI,
+            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
                 testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNUMBER_PATH + billNumber,
                 httpUtil.requestType.GET,
@@ -94,7 +97,7 @@ describe('Rousr API', function() {
 
             debugger;
 
-            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_CONGRESS_API_URI,
+            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
                 testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNUMBER_PATH + billNumber,
                 httpUtil.requestType.GET,
@@ -114,6 +117,11 @@ describe('Rousr API', function() {
                         assert.equal(res.statusCode, expectedResponseCode, 'did not return ' + expectedResponseCode);
 
                         const responseObj = JSON.parse(responseData);
+
+                        if (responseObj == null) {
+                            assert.fail('deserialization failure');
+                            done();
+                        }
 
                         if (responseObj.data != null) {
                             assert.equal(responseObj.data.length, expectedReturnCount, 'response count mismatch');
@@ -140,7 +148,7 @@ describe('Rousr API', function() {
             const expectedResponseCode = '200';
             const expectedReturnCount = 0;
 
-            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_CONGRESS_API_URI,
+            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
                 testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNUMBER_PATH + 'feefifofum',
                 httpUtil.requestType.GET,
@@ -160,8 +168,13 @@ describe('Rousr API', function() {
                         assert.equal(res.statusCode, expectedResponseCode, 'did not return ' + expectedResponseCode);
 
                         const responseObj = JSON.parse(responseData);
-                        assert.equal(responseObj.data, null, 'response data mismatch');
 
+                        if (responseObj == null) {
+                            assert.fail('deserialization failure');
+                            done();
+                        }
+
+                        assert.equal(responseObj.data, null, 'response data mismatch');
                         done();
                     });
                 });

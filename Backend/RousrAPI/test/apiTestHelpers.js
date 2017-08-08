@@ -3,6 +3,9 @@
 
 'use strict';
 
+// set the appropriate environment variables
+process.env.NODE_ENV = 'test';
+
 const https = require('https');	
 const querystring = require('querystring');
 const testConfig = require('./testConfig');

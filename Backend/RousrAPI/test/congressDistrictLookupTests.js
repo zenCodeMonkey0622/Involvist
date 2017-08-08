@@ -1,5 +1,6 @@
-// billQueryByNumberTests.js
-// unit testing suite for Rousr API bill query by bill number
+// congressDistrictLookupTests.js
+// unit test for address to congressional district API
+
 'use strict';
 
 // set the appropriate environment variables
@@ -12,11 +13,10 @@ const testConfig = require('./testConfig');
 const httpUtil = require('../../Shared/ServiceAccess/httpUtility');
 const sharedConfig = require('../../Shared/Config/SharedConfig');
 const testHelpers = require('./apiTestHelpers');
+
 const secureAgent = new https.Agent({keepAlive: true});
 
 var testAuthToken = '';
-
-const billName = 'HR3114'
 
 /**
  * before() - runs code before all tests are loaded
@@ -31,7 +31,7 @@ before( function(done) {
         testConfig.TEST_PASSWORD,
         (err, token) => {
             if (err) {
-                assert.fail('unable to get authentication token ' + err);
+                assert.fail('unable to get authentication token');
             }
             else {
                 testAuthToken = token;
@@ -50,7 +50,7 @@ after( function() {
 
 describe('Rousr API', function() {
 
-    describe('Bill Query By Name', function() {
+    describe('Congressional District by Address', function() {
 
         // 'done' parameter used on async code. call done() after
         // last assert so mocha knows it needs to wait before executing
@@ -61,7 +61,7 @@ describe('Rousr API', function() {
 
             const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
-                testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNAME_PATH + billName,
+                testConfig.TEST_ADDRESS_TO_DISTRICT_PATH,
                 httpUtil.requestType.GET,
                 secureAgent,
                 null,
@@ -90,16 +90,26 @@ describe('Rousr API', function() {
                 queryRequest.end();
         });
 
-        it('should return one bill matching the name ' + billName, function(done) {
+        it('should return CO district 4', function(done) {
+
+            // increase the timeout for this query
+            this.timeout(5000);
 
             const expectedResponseCode = '200';
-            const expectedReturnCount = 1;
+            const expectedState = 'CO';
+            const expectedDistrict = 4;
+
+            const form = {
+                address: '10808 McClellan Rd, Parker, CO'
+            };
+        
+            const formData = querystring.stringify(form);
 
             debugger;
 
             const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
-                testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNAME_PATH + billName,
+                testConfig.TEST_ADDRESS_TO_DISTRICT_PATH,
                 httpUtil.requestType.GET,
                 secureAgent,
                 null,
@@ -114,7 +124,7 @@ describe('Rousr API', function() {
                     });
 
                     res.on('end', () => {
-                        assert.equal(res.statusCode, expectedResponseCode, 'did not return ' + expectedResponseCode);
+                        assert.equal(res.statusCode, expectedResponseCode, 'expected ' + expectedResponseCode + ' but received ' + res.statusCode);
 
                         const responseObj = JSON.parse(responseData);
 
@@ -122,69 +132,44 @@ describe('Rousr API', function() {
                             assert.fail('deserialization failure');
                             done();
                         }
+                        
+                        assert.equal(responseObj.success, true, 'did not receive successful response');
 
-                        if (responseObj.data != null){
-                            assert.equal(responseObj.data.length, expectedReturnCount, 'response count mismatch');
-                            var billData = responseObj.data[0];
-                            assert.equal(billData.name, billName, 'did not return expected bill');
+                        if (responseObj.data == null) {
+                            assert.fail('response data was null');
+                            done();
                         }
-                        else {
-                            assert.fail(null, null, 'response data was null');
-                        }
-                        done();
-                    });
-                });
-
-                queryRequest.on('error', (e) => {
-                    assert.fail(null, null, 'problem with bill query name request: ' + e);
-                    done();
-                });
-
-                queryRequest.end();
-        });
-
-        it('should return zero bills matching the name feefifofum', function(done) {
-
-            const expectedResponseCode = '200';
-            const expectedReturnCount = 0;
-
-            const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
-                sharedConfig.get('/gateway/svcPort'),
-                testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNAME_PATH + 'feefifofum',
-                httpUtil.requestType.GET,
-                secureAgent,
-                null,
-                httpUtil.contentType.JSON,
-                {'Authorization': 'Bearer ' + testAuthToken},
-                testConfig.TEST_HTTP_OPTIONS,
-                (res) => {
-                    var responseData = '';
-
-                    res.on('data', (chunk) => {
-                        responseData += chunk;
-                    });
-
-                    res.on('end', () => {
-                        assert.equal(res.statusCode, expectedResponseCode, 'did not return ' + expectedResponseCode);
-
-                        const responseObj = JSON.parse(responseData);
-
-                        if (responseObj == null) {
-                            assert.fail('deserialization failure');
+                        
+                        if (responseObj.data.geoCoordinate == null) {
+                            assert.fail('response data geoCoordinate was null');
                             done();
                         }
 
-                        assert.equal(responseObj.data, null, 'response data mismatch');
+                        if (responseObj.data.civicData == null) {
+                            assert.fail('response data civicData was null');
+                            done();
+                        }
+
+                        const actualState = responseObj.data.civicData.state;
+                        const actualDistrict = responseObj.data.civicData.districtNumber;
+
+                        assert.equal(actualState, expectedState, 'expected ' + expectedState + ' but received ' + actualState);
+                        assert.equal(actualDistrict, expectedDistrict, 'expected ' + expectedDistrict + ' but received ' + actualDistrict);
+
                         done();
                     });
                 });
 
+                queryRequest.querystring = formData;
+
                 queryRequest.on('error', (e) => {
-                    assert.fail(null, null, 'problem with bill query name request: ' + e);
+                    assert.fail(null, null, 'congress district lookup request: ' + e);
                     done();
                 });
 
+                //queryRequest.write(formData);
                 queryRequest.end();
         });
+
     });
 });
