@@ -19,7 +19,7 @@ class CSResponse
 
     toString()
     {
-      debugUtil.debugLog('success: ', this.success, 'response message: ', this.responseMessage);
+      debugUtil.debugLog('success: ' + this.success + 'response message: ' + this.responseMessage);
     }
 }
 

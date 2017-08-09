@@ -46,6 +46,8 @@ GeoLocationService.prototype.addressToDistrict = function(address, callback) {
  */
 function geocodioMapToDistrict(addressToMap, callback) {
 
+    debugUtil.debugLog('looking up congressional district for ' + addressToMap);
+    
     var config = {
         api_key: sharedConstants.GEOCODIO_API_KEY
     }

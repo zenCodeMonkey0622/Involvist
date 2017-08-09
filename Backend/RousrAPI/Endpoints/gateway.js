@@ -42,7 +42,7 @@ function unless(path, middleware)
 **/
 function tokenCheck(req, res, next)
 {
-  debugUtil.debugLog('checking authentication token for ', req.path);
+  debugUtil.debugLog('checking authentication token for ' + req.path);
   // verify access token
   authServer.validateAccessToken(req, function(error, validationResult) {
       if(error) {

@@ -30,7 +30,7 @@ const mongoUri = 'mongodb://root:g0ld0ntheceiling@' + sharedConfig.get('/rousrAp
 mongoClient.connect(mongoUri, function (err, db) {
   if (err)
   {
-    debugUtil.debugLog('error trying to connect to mongo: ', err);
+    debugUtil.debugLog('error trying to connect to mongo: ' + err);
   }
   else
   {

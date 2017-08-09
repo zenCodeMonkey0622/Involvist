@@ -19,13 +19,16 @@ module.exports = {
      */
     debugLog: function(message) {
         if (sharedConfig.get('/debug/enableLogOutput')) {
-            console.log(message);
+            console.log(module.exports.debugTimeNow() + ': ' +  message);
         }
     },
 
+    /**
+     * Logs a message to the error console if in a debug enviro.
+     */
     debugErrorLog: function(message) {
         if (sharedConfig.get('/debug/enableLogOutput')) {
-            console.error(message);
+            console.error(module.exports.debugTimeNow() + message);
         }
     }
 }

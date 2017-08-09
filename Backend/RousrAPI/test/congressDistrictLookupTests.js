@@ -112,7 +112,7 @@ describe('Rousr API', function() {
                 testConfig.TEST_ADDRESS_TO_DISTRICT_PATH,
                 httpUtil.requestType.GET,
                 secureAgent,
-                null,
+                formData,
                 httpUtil.contentType.JSON,
                 {'Authorization': 'Bearer ' + testAuthToken},
                 testConfig.TEST_HTTP_OPTIONS,
@@ -160,14 +160,11 @@ describe('Rousr API', function() {
                     });
                 });
 
-                queryRequest.querystring = formData;
-
                 queryRequest.on('error', (e) => {
                     assert.fail(null, null, 'congress district lookup request: ' + e);
                     done();
                 });
 
-                //queryRequest.write(formData);
                 queryRequest.end();
         });
 

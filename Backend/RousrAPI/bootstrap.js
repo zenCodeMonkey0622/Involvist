@@ -27,30 +27,30 @@ var frameProcess = procSpawn('node', ['--debug=7002', '--inspect', 'server.js'])
 
 // bootstrap process will listen to auth process's stdout
 authProcess.stdout.on('data', (data) => {
-  debugUtil.debugLog('auth server: ' + data);
+  console.log('[auth server] ' + data);
 });
 
 // bootstrap process will listen to auth process's stderr
 authProcess.stderr.on('data', (data) => {
-  debugUtil.debugLog('auth server err: ' + data);
+  console.error('[auth server err] ' + data);
 });
 
 // bootstrap process will listen to auth process's stdout
 gwyProcess.stdout.on('data', (data) => {
-  debugUtil.debugLog('gateway server: ' + data);
+  console.log('[gateway server] ' + data);
 });
 
 // bootstrap process will listen to auth process's stderr
 gwyProcess.stderr.on('data', (data) => {
-  debugUtil.debugLog('gateway server err: ' + data);
+  console.error('[gateway server err] ' + data);
 });
 
 // bootstrap process will listen to usr mngmnt process's stdoutq
 frameProcess.stdout.on('data', (data) => {
-  debugUtil.debugLog('frame server: ' + data);
+  console.log('[frame server] ' + data);
 });
 
 // bootstrap process will listen to usr mngmnt process's stderr
 frameProcess.stderr.on('data', (data) => {
-  debugUtil.debugLog('frame server err: ' + data);
+  console.error('[frame server err] ' + data);
 });

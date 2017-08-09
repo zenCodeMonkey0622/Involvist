@@ -19,6 +19,6 @@
   "scripts": {
     "//": "to debug tests add the following switches after 'mocha': --inspect --debug-brk --debug=4000",
     "//": "to run only specific tests, add '--grep <pattern>', where <pattern> exists in describe() or it()",
-    "test": "./node_modules/mocha/bin/mocha --grep 'Congressional District by Address' --inspect --debug-brk --debug=4000"
+    "test": "./node_modules/mocha/bin/mocha --grep 'Congressional District by Address'"
   }
 }
