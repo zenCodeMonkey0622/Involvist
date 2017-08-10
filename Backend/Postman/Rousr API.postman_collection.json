@@ -1,0 +1,293 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Rousr API",
+		"_postman_id": "e51ee57c-c3e5-b7bc-5e08-d81a4f8ebaec",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SSL-NewUserRegistration",
+			"request": {
+				"url": "https://localhost:3443/api/v1/registration",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"real_name\": \"Ruben Hansen-Rojas\",\n\t\"password\": \"feefifofum\",\n\t\"email\": \"rhr@rousr.io\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SSL-Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"access_token\", jsonData.data.access_token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://localhost:4443/oauth/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "rhr@rousr.io",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "feefifofum",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SSL-Bills_Query",
+			"request": {
+				"url": {
+					"raw": "https://localhost:3443/api/v1/bills?q=health",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"api",
+						"v1",
+						"bills"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "health",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"user_name\" : \"ryan.crowley1976@gmail.com\",\n\t\"bill_number\": \"H.R.35\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SSL-Bills_PrimarySubject",
+			"request": {
+				"url": "https://localhost:3443/api/v1/bills/subject/Health",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"user_name\" : \"ryan.crowley1976@gmail.com\",\n\t\"bill_number\": \"H.R.35\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SSL-Bills_Name",
+			"request": {
+				"url": "https://localhost:3443/api/v1/bills/name/HR3114",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"user_name\" : \"ryan.crowley1976@gmail.com\",\n\t\"bill_number\": \"H.R.35\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SSL-Bills_Number",
+			"request": {
+				"url": "https://localhost:3443/api/v1/bills/number/H.R.3114",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"user_name\" : \"ryan.crowley1976@gmail.com\",\n\t\"bill_number\": \"H.R.35\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SSL-CongressDistrict",
+			"request": {
+				"url": {
+					"raw": "https://localhost:3443/api/v1/locations/congress/district/?address=155+Whisperwood+Ln,+Madison,+AL",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"api",
+						"v1",
+						"locations",
+						"congress",
+						"district",
+						""
+					],
+					"query": [
+						{
+							"key": "address",
+							"value": "155+Whisperwood+Ln,+Madison,+AL",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"user_name\" : \"ryan.crowley1976@gmail.com\",\n\t\"bill_number\": \"H.R.35\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SSL-Google_Geocode",
+			"request": {
+				"url": {
+					"raw": "https://maps.googleapis.com/maps/api/geocode/json?address=10808+McClellan+Rd,+Parker,+CO&key=AIzaSyCKLqVw0eUgQ51hBtuyo3HXBTzllNSrGCU",
+					"protocol": "https",
+					"host": [
+						"maps",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"geocode",
+						"json"
+					],
+					"query": [
+						{
+							"key": "address",
+							"value": "10808+McClellan+Rd,+Parker,+CO",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "key",
+							"value": "AIzaSyCKLqVw0eUgQ51hBtuyo3HXBTzllNSrGCU",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"user_name\" : \"ryan.crowley1976@gmail.com\",\n\t\"bill_number\": \"H.R.35\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
