@@ -20,6 +20,6 @@ constants.BILLS_BY_MEMBER_URI = constants.BASE_CONGRESS_API_PATH + '/members/';
 constants.SPECIFIC_BILL = constants.BASE_CONGRESS_API_PATH + '/' + constants.CURRENT_CONGRESS + '/bills/';
 
 //Setting this to false will make the retrieval of data much faster
-constants.GET_SPECIFIC_BILL_DATA = false;
+constants.GET_SPECIFIC_BILL_DATA = true;
 
 module.exports = constants;

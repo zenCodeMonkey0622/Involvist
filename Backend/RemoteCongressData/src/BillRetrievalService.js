@@ -13,8 +13,9 @@ var BillRetrievalNamespace = (function () {
 	const debugUtil = require('../../Shared/Debug/debugUtility');
 	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
 	const databaseService = require('../../Shared/RousrCongressData/RousrCongressDataService').RousrCongressDataService;
+	const billDiffernator = require('../../Shared/RousrCongressData/BillDiffernator').BillDiffernator;
 	const billRetrieveConfig = require('./config');
-	const billRetrieveConstants = require('./constants');
+	const billRetrieveConstants = require('./constants');	
 	const MAX_RETRY_REQUESTS = 5;
 
     module.exports.BillRetriever = new BillRetriever();
@@ -24,25 +25,29 @@ var BillRetrievalNamespace = (function () {
 	var billsWithDetails = [];
 	var retryRequestAttempts = 0;	
 	var database = databaseService.createDatabase(billRetrieveConfig);
+	
 
     /**
     * BillRetriever - Gets the latest bills and congress members data
     */
 	function BillRetriever() 
 	{
-		this.congressDataAgentSecure = new https.Agent({keepAlive: true});
+	    this.congressDataAgentSecure = new https.Agent({ keepAlive: true });	    
 	}
 
     /**
    * startGetCongressMembersBillsSchedule - starts the bill scheduler
    */
 	BillRetriever.prototype.startGetCongressMembersBillsSchedule = function() 
-	{
-		debugUtil.debugLog('Congress Data Retrieval Started...');
+	{	   
+	    debugUtil.debugLog('Congress Data Retrieval Started...');
+	 
 		var self = this;
 
-		if(billRetrieveConfig.dataRetrieval.retrieveDataOnStartup) {
-			self.getCongressMembersBills();
+		if (billRetrieveConfig.dataRetrieval.retrieveDataOnStartup) {
+		    billDiffernator.loadBillsCache(() => {
+		        self.getCongressMembersBills();
+		    });
 		}
 
 		var rule = new schedule.RecurrenceRule();
@@ -55,7 +60,9 @@ var BillRetrievalNamespace = (function () {
 		debugUtil.debugLog('Retrieval scheduled for:  ' + rule.hour + ':' + minuteString);
 
 		var j = schedule.scheduleJob(rule, function(){
-  			self.getCongressMembersBills();
+		    billDiffernator.loadBillsCache(() => {
+		        self.getCongressMembersBills();
+		    });
 		});
 	}
 
@@ -216,18 +223,20 @@ var BillRetrievalNamespace = (function () {
 	            //Only get bills that were introduced during the current congress.
 	            var currentBills = info.results[0].bills.filter((bill) => bill.congress === billRetrieveConstants.CURRENT_CONGRESS);
 
-	            if (currentBills && currentBills.length > 0) {	                
-	                database.updateBills(currentBills, function (err) {
-	                    if (err) {
-	                        return next(err);
-	                    }
-	                    if (billRetrieveConstants.GET_SPECIFIC_BILL_DATA) {
-	                        self.getSpecificBillsData(currentBills, next);
-	                    }
-	                    else {
-	                        return next();
-	                    }
-	                });
+	            if (currentBills && currentBills.length > 0) {
+	                if (billRetrieveConstants.GET_SPECIFIC_BILL_DATA) {
+	                    self.getSpecificBillsData(currentBills, next);
+	                }
+	                else {
+	                    database.updateBills(currentBills, function (err) {
+	                        if (err) {
+	                            return next(err);
+	                        }	                        
+	                        else {
+	                            return next();
+	                        }
+	                    });
+	                }	                
 	            }
 	            else {
 	                return next();
@@ -255,9 +264,15 @@ var BillRetrievalNamespace = (function () {
 
 	        if (!billsWithDetails.includes(billNumber)) {
 	            billsWithDetails.push(billNumber);
-	            debugUtil.debugLog('Get Bill Details: ' + billNumber);
-	            var billPath = billRetrieveConstants.SPECIFIC_BILL + billNumber + '.json';
-	            self.getRequest(billPath, processSpecificBillData, next);
+
+                //Only get specific bill data if the latest action dat has changed.  
+	            billDiffernator.hasBillLatestActionChanged(billData, (changed) => {
+	                if (changed) {
+	                    debugUtil.debugLog('Get Bill Details: ' + billNumber);
+	                    var billPath = billRetrieveConstants.SPECIFIC_BILL + billNumber + '.json';
+	                    self.getRequest(billPath, processSpecificBillData, next);
+	                }
+	            });	            
 	        }
 	    });
 
@@ -285,13 +300,22 @@ var BillRetrievalNamespace = (function () {
 	        var billInfo = JSON.parse(parseBody);
 
 	        if(billInfo.status === 'OK') {
-	            billInfo.results[0].number = billInfo.results[0].bill;
+	            billInfo.results[0].number = billInfo.results[0].bill;	           
 	            billInfo.results[0].name = billInfo.results[0].number.replace(/\./g, "").toLowerCase();
 
-	            database.updateBills(billInfo.results, function(err) {
-	                if(err) {
-	                    return next(err);
+	            billDiffernator.onBillUpdated(billInfo.results[0], function (updatedBillData) {
+	                if (updatedBillData != null && Object.keys(updatedBillData).length !== 0) {
+	                    updatedBillData.number = billInfo.results[0].number;
+	                    var dateNow = new Date();
+	                    updatedBillData.time_stamp = dateNow.toUTCString();
+	                    billDiffernator.addBillUpdates(updatedBillData);
 	                }
+
+	                database.updateBills(billInfo.results, function (err) {
+	                    if (err) {
+	                        return next(err);
+	                    }
+	                });
 	            });
 	        }
 	    }
@@ -335,7 +359,7 @@ var BillRetrievalNamespace = (function () {
 		            }
 		            retryRequestAttempts = 0;                    
 		        }
-		        else if (res.statusCode != 200) {		            
+		        else if (res.statusCode != 200) {                    
 		            var err = new Error(responseData);		            
 		            return next(err);
 		        }
@@ -351,15 +375,7 @@ var BillRetrievalNamespace = (function () {
 	    });
 
 	    httpRequest.end();
-	}    
-
-
-
-
-
-	
-
-
+	}
 
 	/** The following methods are not being used. Commenting out. -RR. */
 
