@@ -1,0 +1,1 @@
+db.getCollection('rsr_current_bill_115').find( {"active": "false"})
