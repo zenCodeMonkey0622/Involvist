@@ -16,47 +16,54 @@ const config = {
     debug: {
         enableLogOutput: {
             $filter: 'env',
+            dev: true,
             test: true,
-            production: false
+            prod: false
         },
         enableDebugApiLayer: {
             $filter: 'env',
+            dev: true,
             test: true,
-            production: false
+            prod: false
         },
         authClientId: {
             $filter: 'env',
+            dev: 1,
             test: 1,
-            production: 1
+            prod: 1
         },
         authClientSecret: {
             $filter: 'env',
+            dev: 'fefifofum',
             test: 'fefifofum',
-            production: ''
+            prod: ''
         }
     },
     security: {
         certificate: {
             isSelfSigned: {
                 $filter: 'env',
+                dev: true,
                 test: true,
-                production: false
+                prod: false
             }
         }
     },
     auth: {
         svcPort: {
             $filter: 'env',
+            dev: 4443,
             test: 4443,
-            production: 443
+            prod: 443
         },
         ssl: true
     },
     gateway: {
         svcPort: {
             $filter: 'env',
+            dev: 3443,
             test: 3443,
-            production: 443
+            prod: 443
         },
         ssl: true
     },
@@ -64,42 +71,59 @@ const config = {
         $meta: 'where our internal frame process is running',
         uri: {
             $filter: 'env',
+            dev: 'localhost',
             test: 'localhost',
-            production: '',
+            prod: '',
             $default: 'localhost'
         },
         port: {
             $filter: 'env',
+            dev: 9090,
             test: 9090,
-            production: 9090
+            prod: 9090
         },
         pathPrefix: '/api/int/frame'
     },
     rousrApi: {
+        rousrUserDataSource: {
+            $filter: 'env',
+            dev: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
+            test: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
+            prod: ''
+        },
         clientsDataSource: {
             $filter: 'env',
+            dev: 'ds147069.mlab.com:47069/projectwoke',
             test: 'ds147069.mlab.com:47069/projectwoke',
-            production: ''
+            prod: ''
         },
         clientsCollection: 'clients',
         tokenDataSource: {
             $filter: 'env',
+            dev: 'ds147069.mlab.com:47069/projectwoke',
             test: 'ds147069.mlab.com:47069/projectwoke',
-            production: ''
+            prod: ''
         },
         tokenCollection: 'tokens',
-        congressDataSource: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke'
+        congressDataSource: {
+            $filter: 'env',
+            dev: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
+            test: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
+            prod: ''
+        } 
     },
     geoCodeApi: {
         host : {
             $filter: 'env',
+            dev: 'api.geocod.io',
             test: 'api.geocod.io',
-            production: 'api.geocod.io'
+            prod: 'api.geocod.io'
         },
         path: {
             $filter: 'env',
+            dev: '/maps/api/geocode/json?',
             test: '/maps/api/geocode/json?',
-            production: '/maps/api/geocode/json?'
+            prod: '/maps/api/geocode/json?'
         }
     },
     currentCongress: '115',

@@ -1,7 +1,7 @@
 'use strict';
 const Confidence = require('confidence');
 const Dotenv = require('dotenv');
-const constants = require('../../../Shared/SharedConstants');
+const rsrSharedConfig = require('../../../Shared/Config/SharedConfig.js');
 
 Dotenv.config({ silent: true });
 
@@ -17,6 +17,7 @@ const config = {
             $filter: 'env',
             test: 9090,
             production: process.env.PORT,
+            dev: 9090,
             $default: 9000
         }
     },
@@ -34,7 +35,8 @@ const config = {
             uri: {
                 $filter: 'env',
                 production: process.env.MONGODB_URI,
-                test: constants.USER_MANAGEMENT_DATA_SOURCE,
+                test: rsrSharedConfig.get('/rousrApi/rousrUserDataSource'),
+                dev: rsrSharedConfig.get('/rousrApi/rousrUserDataSource'),
                 $default: 'mongodb://localhost:27017/frame'
             }
         },

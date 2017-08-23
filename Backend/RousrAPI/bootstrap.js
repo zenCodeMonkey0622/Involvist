@@ -3,7 +3,7 @@
 // use --debug-brk to break on start...
 
 // set the appropriate environment variables
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = 'dev';
 
 const debugUtil = require('../Shared/Debug/debugUtility');
 
