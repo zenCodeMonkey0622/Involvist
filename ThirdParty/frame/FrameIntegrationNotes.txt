@@ -1,16 +1,16 @@
 Author: Ruben Hansen-Rojas
-Last Updated: June 25, 2017
+Last Updated: August 23, 2017
 
-1. Copy the included 'invConfig.js' file into ClientServices/node_modules/frame.
-2. Copy the included 'invManifest.js' file into ClientServices/node_modules/frame.
-3. Edit ClientServices/node_modules/frame/index.js to use invManifest.js instead of manifest.js
-4. Copy the included 'signup.js' and 'users.js' into ClientServices/node_modules/frame/server/api. Be sure to overwrite
+1. Copy the included 'invConfig.js' file into RousrAPI/node_modules/frame.
+2. Copy the included 'invManifest.js' file into RousrAPI/node_modules/frame.
+3. Edit RousrAPI/node_modules/frame/index.js to use invManifest.js instead of manifest.js
+4. Copy the included 'signup.js' and 'users.js' into RousrAPI/node_modules/frame/server/api. Be sure to overwrite
     or save the original elsewhere.
-5. Copy the include 'user.js' into ClientServices/node_modules/frame/server/models. Be sure to overwrite or save
+5. Copy the include 'user.js' into RousrAPI/node_modules/frame/server/models. Be sure to overwrite or save
     the original elsewhere.
-6. Copy the included 'mailer.js' into ClientServices/node_modules/frame/server. Be sure to overwrite or save the
+6. Copy the included 'mailer.js' into RousrAPI/node_modules/frame/server. Be sure to overwrite or save the
     original elsewhere.
-
+7. To set up the Frame MongoDB collections necessary on a clean Mongo DB instance, run RousrAPI/node_modules/frame/first-time-setup.js.
 
 Miscellaneous:
 

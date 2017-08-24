@@ -88,27 +88,27 @@ const config = {
         rousrUserDataSource: {
             $filter: 'env',
             dev: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
-            test: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
+            test: 'mongodb://root:traficand0rimas@ds151433.mlab.com:51433/rsrtest',
             prod: ''
         },
         clientsDataSource: {
             $filter: 'env',
             dev: 'ds147069.mlab.com:47069/projectwoke',
-            test: 'ds147069.mlab.com:47069/projectwoke',
+            test: 'ds151433.mlab.com:51433/rsrtest',
             prod: ''
         },
         clientsCollection: 'clients',
         tokenDataSource: {
             $filter: 'env',
             dev: 'ds147069.mlab.com:47069/projectwoke',
-            test: 'ds147069.mlab.com:47069/projectwoke',
+            test: 'ds151433.mlab.com:51433/rsrtest',
             prod: ''
         },
         tokenCollection: 'tokens',
         congressDataSource: {
             $filter: 'env',
             dev: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
-            test: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
+            test: 'mongodb://root:traficand0rimas@ds151433.mlab.com:51433/rsrtest',
             prod: ''
         } 
     },
