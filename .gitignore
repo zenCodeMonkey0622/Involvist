@@ -2,3 +2,8 @@
 **/rrojas.xcuserdatad
 **/Pods
 **/Mobile/Assets/*.png
+
+# ignore everything in backups except the backup script
+Backend/Backups/**
+!Backend/Backups/rousr_mongo_backup.sh
+
