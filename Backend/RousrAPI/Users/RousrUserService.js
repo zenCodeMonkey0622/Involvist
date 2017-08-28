@@ -3,7 +3,6 @@
 
 const debugUtil = require('../../Shared/Debug/debugUtility');
 const sharedConfig = require('../../Shared/Config/SharedConfig');
-const databaseFactory = require('../../Shared/RousrCongressData/RousrCongressDataService').DatabaseFactory;
 const config = { databaseType: 'mongodb', uri: sharedConfig.get('/rousrApi/congressDataSource') };
 const RousrUser = require('../../Shared/Models/RousrUser').RousrUser;
 
