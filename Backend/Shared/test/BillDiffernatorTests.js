@@ -2,7 +2,7 @@
 // unit tests against stringParse.js methods
 'use strict';
 
-const billDiffernator = require('../RousrCongressData/BillDiffernator').BillDiffernator;
+const billDiffernator = require('../RousrData/BillDiffernator').BillDiffernator;
 const assert = require('assert');
 
 describe('BillDiffernator', function () {
