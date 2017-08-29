@@ -12,7 +12,7 @@ var BillRetrievalNamespace = (function () {
 	const schedule = require('node-schedule');
 	const debugUtil = require('../../Shared/Debug/debugUtility');
 	const httpUtility = require('../../Shared/ServiceAccess/httpUtility');
-	const rousrDataSource = require('../../Shared/RousrData/RousrDataSource').RousrDataSource;
+	const dataSource = require('../../Shared/RousrData/RousrDataSource').RousrDataSource;
 	const billDiffernator = require('../../Shared/RousrData/BillDiffernator').BillDiffernator;
 	const billRetrieveConfig = require('./config');
 	const billRetrieveConstants = require('./constants');	
@@ -24,8 +24,7 @@ var BillRetrievalNamespace = (function () {
 	var congressMembers = [];
 	var billsWithDetails = [];
 	var retryRequestAttempts = 0;	
-	var rousrData = rousrDataSource.createDatabase(billRetrieveConfig);
-	
+	var rousrDataSource = dataSource.create(billRetrieveConfig);
 
     /**
     * BillRetriever - Gets the latest bills and congress members data
@@ -97,7 +96,7 @@ var BillRetrievalNamespace = (function () {
 	                return next(senateError);
 	            }
 	            debugUtil.debugLog('Got all congress members');
-	            rousrData.updateMembers(congressMembers, function (error) {
+	            rousrDataSource.updateMembers(congressMembers, function (error) {
 	                if (error) {
 	                    return next(error);
 	                }
@@ -228,7 +227,7 @@ var BillRetrievalNamespace = (function () {
 	                    self.getSpecificBillsData(currentBills, next);
 	                }
 	                else {
-	                    rousrData.updateBills(currentBills, function (err) {
+	                    rousrDataSource.updateBills(currentBills, function (err) {
 	                        if (err) {
 	                            return next(err);
 	                        }	                        
@@ -311,7 +310,7 @@ var BillRetrievalNamespace = (function () {
 	                    billDiffernator.addBillUpdates(updatedBillData);
 	                }
 
-	                rousrData.updateBills(billInfo.results, function (err) {
+	                rousrDataSource.updateBills(billInfo.results, function (err) {
 	                    if (err) {
 	                        return next(err);
 	                    }

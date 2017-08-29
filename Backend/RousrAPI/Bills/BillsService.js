@@ -1,6 +1,6 @@
 // BillsService.js
 const sharedConfig = require('../../Shared/Config/SharedConfig');
-const databaseService = require('../../Shared/RousrData/RousrDataSource').RousrDataSource;
+const dataSource = require('../../Shared/RousrData/RousrDataSource');
 const config = { databaseType: 'mongodb', uri: sharedConfig.get('/rousrApi/congressDataSource') };
 const debugUtility = require('../../Shared/Debug/debugUtility');
 
@@ -8,7 +8,7 @@ const debugUtility = require('../../Shared/Debug/debugUtility');
 * A constructor for defining BillsService
 */
 var BillsService = function() {
-	this.database = databaseService.createDatabase(config);
+	this.rousrDataSource = dataSource.create(config);
 }
 
 /**
@@ -21,7 +21,7 @@ BillsService.prototype.queryBills = function (req, res, next)
 {
     debugUtility.debugLog('bills service query bills start: ' + debugUtility.debugTimeNow());
 
-    this.database.queryBills(req.query, function (err, docs) {
+    this.rousrDataSource.queryBills(req.query, function (err, docs) {
         debugUtility.debugLog('bills service query bills callback start: ' + debugUtility.debugTimeNow());
 		if(err) 
         {
@@ -52,7 +52,7 @@ BillsService.prototype.queryBills = function (req, res, next)
 BillsService.prototype.getBillsByName = function (req, res, next) {
     debugUtility.debugLog('bills service get bills by name for: ' + req.query.name + ' start: ' + debugUtility.debugTimeNow());
 
-    this.database.getBillsByName(req.query, function (err, docs) {
+    this.rousrDataSource.getBillsByName(req.query, function (err, docs) {
         debugUtility.debugLog('bills service get bills by name callback end: ' + debugUtility.debugTimeNow());
         if (err) {
             return next(err);
@@ -78,7 +78,7 @@ BillsService.prototype.getBillsByName = function (req, res, next) {
 */
 BillsService.prototype.addTagToBill = function (billNumber, tag, next) {
 
-    this.database.tagBill(billNumber, tag, function (err, results) {
+    this.rousrDataSource.tagBill(billNumber, tag, function (err, results) {
         if (err) {
             console.error(err);
             return next(err);
@@ -96,7 +96,7 @@ BillsService.prototype.addTagToBill = function (billNumber, tag, next) {
 */
 BillsService.prototype.untagBill = function (billNumber, tag, next) {
 
-    this.database.untagBill(billNumber, tag, function (err, results) {
+    this.rousrDataSource.untagBill(billNumber, tag, function (err, results) {
         if (err) {
             console.error(err);
             return next(err);
