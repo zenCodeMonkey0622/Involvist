@@ -25,7 +25,10 @@ var authServer = new oauthServer(clientService,
 
 // we use mongodb as our driver to the mongo database
 const mongoClient = require('mongodb').MongoClient;
-const mongoUri = 'mongodb://root:g0ld0ntheceiling@' + sharedConfig.get('/rousrApi/clientsDataSource');
+const mongoUri = 'mongodb://' + 
+                  sharedConfig.get('/rousrApi/clientsDataSource/authCreds/user') + 
+                  ':' + sharedConfig.get('/rousrApi/clientsDataSource/authCreds/password') + 
+                  '@' + sharedConfig.get('/rousrApi/clientsDataSource/uri');
 
 mongoClient.connect(mongoUri, function (err, db) {
   if (err)

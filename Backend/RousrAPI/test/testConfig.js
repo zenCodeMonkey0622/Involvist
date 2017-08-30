@@ -16,7 +16,7 @@ module.exports = {
     TEST_CONGRESS_BILLS_QUERYSUBJECT_PATH: '/subject/',
     TEST_ADDRESS_TO_DISTRICT_PATH: '/api/v1/locations/congress/district/',
     TEST_USER: 'rhr@rousr.io',
-    TEST_PASSWORD: 'feefifofum',
+    TEST_PASSWORD: 'traficand0rimas',
 
     // options to allow self-signed ssl communication
     TEST_HTTP_OPTIONS: {

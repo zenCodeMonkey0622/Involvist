@@ -11,6 +11,9 @@ config.dataRetrieval.schedule.hour = 06;
 config.dataRetrieval.schedule.minute = 00;
 
 config.databaseType = 'mongodb';
-config.uri = sharedConfig.get('/rousrApi/congressDataSource');
+config.uri = 'mongodb://' + 
+                sharedConfig.get('/rousrApi/congressDataSource/authCreds/user') + 
+                ':' + sharedConfig.get('/rousrApi/congressDataSource/authCreds/password') + 
+                '@' + sharedConfig.get('/rousrApi/congressDataSource/uri');
 
 module.exports = config;

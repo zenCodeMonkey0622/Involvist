@@ -92,10 +92,26 @@ const config = {
             prod: ''
         },
         clientsDataSource: {
-            $filter: 'env',
-            dev: 'ds147069.mlab.com:47069/projectwoke',
-            test: 'ds151433.mlab.com:51433/rsrtest',
-            prod: ''
+            uri: {
+                $filter: 'env',
+                dev: 'ds147069.mlab.com:47069/projectwoke',
+                test: 'ds151433.mlab.com:51433/rsrtest',
+                prod: ''
+            },
+            authCreds: {
+                user: {
+                    $filter: 'env',
+                    dev: 'root',
+                    test: 'root',
+                    prod: ''
+                },
+                password: {
+                    $filter: 'env',
+                    dev: 'g0ld0ntheceiling',
+                    test: 'traficand0rimas',
+                    prod: ''
+                }
+            }
         },
         clientsCollection: 'clients',
         tokenDataSource: {
@@ -106,10 +122,26 @@ const config = {
         },
         tokenCollection: 'tokens',
         congressDataSource: {
-            $filter: 'env',
-            dev: 'mongodb://root:g0ld0ntheceiling@ds147069.mlab.com:47069/projectwoke',
-            test: 'mongodb://root:traficand0rimas@ds151433.mlab.com:51433/rsrtest',
-            prod: ''
+            uri: {
+                $filter: 'env',
+                dev: 'ds147069.mlab.com:47069/projectwoke',
+                test: 'ds151433.mlab.com:51433/rsrtest',
+                prod: ''
+            },
+            authCreds: {
+                user: {
+                    $filter: 'env',
+                    dev: 'root',
+                    test: 'root',
+                    prod: ''
+                },
+                password: {
+                    $filter: 'env',
+                    dev: 'g0ld0ntheceiling',
+                    test: 'traficand0rimas',
+                    prod: ''
+                }
+            }
         } 
     },
     geoCodeApi: {

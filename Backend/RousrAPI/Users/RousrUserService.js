@@ -3,7 +3,11 @@
 
 const debugUtil = require('../../Shared/Debug/debugUtility');
 const sharedConfig = require('../../Shared/Config/SharedConfig');
-const config = { databaseType: 'mongodb', uri: sharedConfig.get('/rousrApi/congressDataSource') };
+const config = { databaseType: 'mongodb', 
+                 uri: 'mongodb://' + 
+                    sharedConfig.get('/rousrApi/congressDataSource/authCreds/user') + 
+                    ':' + sharedConfig.get('/rousrApi/congressDataSource/authCreds/password') + 
+                    '@' + sharedConfig.get('/rousrApi/congressDataSource/uri') };
 const RousrUser = require('../../Shared/Models/RousrUser').RousrUser;
 
 /**

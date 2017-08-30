@@ -1,7 +1,11 @@
 // BillsService.js
 const sharedConfig = require('../../Shared/Config/SharedConfig');
 const dataSource = require('../../Shared/RousrData/RousrDataSource');
-const config = { databaseType: 'mongodb', uri: sharedConfig.get('/rousrApi/congressDataSource') };
+const config = { databaseType: 'mongodb', 
+                 uri: 'mongodb://' + 
+                    sharedConfig.get('/rousrApi/congressDataSource/authCreds/user') + 
+                    ':' + sharedConfig.get('/rousrApi/congressDataSource/authCreds/password') + 
+                    '@' + sharedConfig.get('/rousrApi/congressDataSource/uri') };
 const debugUtility = require('../../Shared/Debug/debugUtility');
 
 /**
