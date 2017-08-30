@@ -1,7 +1,6 @@
 'use strict'
 
-const sharedConstants = require('../SharedConstants');
-// we use mongoose for mongoDb object modeling
+const sharedConfig = require('../Config/SharedConfig');
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -35,6 +34,8 @@ var CongressMemberSchema = new Schema ({
   	congress: String
 });
 
-var CongressMember = mongoose.model("rsr_congress_member_" + sharedConstants.CURRENT_CONGRESS, CongressMemberSchema);
+const currentCongress = sharedConfig.get('/currentCongress');
+
+var CongressMember = mongoose.model("rsr_congress_member_" + currentCongress, CongressMemberSchema);
 module.exports.CongressMember = CongressMember;
 
