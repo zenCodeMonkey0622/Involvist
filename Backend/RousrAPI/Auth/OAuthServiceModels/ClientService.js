@@ -22,12 +22,13 @@ ClientService.prototype.getById = function(id, callback)
   if (this.ClientDb != null)
   {
       this.ClientDb.collection(sharedConfig.get('/rousrApi/clientsCollection')).findOne({id: parseInt(id)}, function(err, result) {
-      if (err)
-      {
+      if (err) {
         debugUtil.debugLog(err);
       }
-      else
-      {
+      else if (result == null) {
+        callback(new Error("rousr client not found, sorry bro."));
+      }
+      else {
         callback(null, new client(result.id, result.secret, result.grant_types));
       }
     });

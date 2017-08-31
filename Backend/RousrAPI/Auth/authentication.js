@@ -47,8 +47,8 @@ authRouter.post('/token', function(req, res, next) {
     authServer.grantAccessToken(req, function(error, token) {
         if (error)
         {
-            console.error(error.error_description);
-            var csResp = csResponse(false, error.error_description, null);
+            console.error(error.message);
+            var csResp = csResponse(false, error.message, null);
             res.json(csResp);
         }
         else
