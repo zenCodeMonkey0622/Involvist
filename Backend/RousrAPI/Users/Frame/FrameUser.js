@@ -26,10 +26,13 @@ function MakeFrameUser(frameResponseData)
 
   const responseObj = JSON.parse(frameResponseData);
   const responseUser = responseObj['user'];  
+
+  // user could have either admin or account roles
+  const admin = responseUser['roles']['admin'];
   const account = responseUser['roles']['account'];
 
   user.userName = responseUser['username'];
-  user.realName = account['name'];
+  user.realName = admin != null ? admin['name'] : account['name'];
   user.email = responseUser['email'];
   user.userID = responseUser['_id'];
 

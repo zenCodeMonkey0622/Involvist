@@ -17,11 +17,11 @@ function ClientService(clientDb)
 * the callback. queries client objects by passed in 'id'
 * parameter
 */
-ClientService.prototype.getById = function(id, callback)
+ClientService.prototype.getById = function(clientUuid, callback)
 {
   if (this.ClientDb != null)
   {
-      this.ClientDb.collection(sharedConfig.get('/rousrApi/clientsCollection')).findOne({id: parseInt(id)}, function(err, result) {
+      this.ClientDb.collection(sharedConfig.get('/rousrApi/clientsCollection')).findOne({id: clientUuid}, function(err, result) {
       if (err) {
         debugUtil.debugLog(err);
       }
