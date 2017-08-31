@@ -26,17 +26,19 @@ const config = {
             test: true,
             prod: false
         },
-        authClientId: {
-            $filter: 'env',
-            dev: 1,
-            test: 1,
-            prod: 1
-        },
-        authClientSecret: {
-            $filter: 'env',
-            dev: 'fefifofum',
-            test: 'fefifofum',
-            prod: ''
+        rousrAppClient: {
+            id: {
+                $filter: 'env',
+                dev: '37fb2716-2b11-4eae-80ef-1a39b248cfc9',
+                test: 'ddbd5b0c-f892-4361-83c6-286ae4fca58f',
+                prod: ''
+            },
+            secret: {
+                $filter: 'env',
+                dev: '96c1bb82-6d49-4f1c-a0cc-753afbdb3dc8',
+                test: 'cd989f8c-b1b7-4e96-936e-72aaf7cc5406',
+                prod: ''
+            }
         }
     },
     security: {
@@ -158,7 +160,7 @@ const config = {
             prod: '/maps/api/geocode/json?'
         }
     },
-    currentCongress: '115',
+    currentCongress: '115'
 };
 
 const store = new Confidence.Store(config);
