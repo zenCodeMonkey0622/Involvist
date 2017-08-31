@@ -36,7 +36,10 @@
 						"type": "text/javascript",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);",
-							"postman.setEnvironmentVariable(\"access_token\", jsonData.data.access_token);"
+							"if (jsonData.data !== null) {",
+							"    postman.setEnvironmentVariable(\"access_token\", jsonData.data.access_token);",
+							"}",
+							""
 						]
 					}
 				}
@@ -67,7 +70,7 @@
 						},
 						{
 							"key": "password",
-							"value": "feefifofum",
+							"value": "traficand0rimas",
 							"type": "text"
 						},
 						{
