@@ -65,17 +65,17 @@
 						},
 						{
 							"key": "username",
-							"value": "rhr@rousr.io",
+							"value": "{{rousrAppUser}}",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "traficand0rimas",
+							"value": "{{rousrAppPassword}}",
 							"type": "text"
 						},
 						{
 							"key": "client_id",
-							"value": "1",
+							"value": "{{rousrAppClientId}}",
 							"type": "text"
 						}
 					]
