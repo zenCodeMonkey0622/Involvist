@@ -174,7 +174,7 @@ describe('Rousr API', function() {
 
             const expectedResponseCode = '200';
             const expectedState = 'TX';
-            const expectedDistrict = 35;
+            const expectedDistrict = 21;
 
             const form = {
                 address: '115 Sandra Muraida Way, Austin, TX'

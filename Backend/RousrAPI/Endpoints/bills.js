@@ -24,6 +24,7 @@ billsRouter.get('/', billsService.queryBills.bind(billsService), function(req, r
         currentBills = req.bills.map(function (bill) {
             return {
                 "number": bill.number,
+                "name": bill.name,
                 "congress": bill.congress,
                 "bill_uri": bill.bill_uri,
                 "title": bill.title,
@@ -85,6 +86,7 @@ billsRouter.get('/name/:name', function (req, res, next) {
             currentBills = req.bills.map(function (bill) {
                 return {
                     "number": bill.number,
+                    "name": bill.name,
                     "congress": bill.congress,
                     "bill_uri": bill.bill_uri,
                     "title": bill.title,
@@ -122,6 +124,7 @@ billsRouter.get('/number/:number', function (req, res, next) {
             currentBills = req.bills.map(function (bill) {
                 return {
                     "number": bill.number,
+                    "name": bill.name,
                     "congress": bill.congress,
                     "bill_uri": bill.bill_uri,
                     "title": bill.title,
@@ -159,6 +162,7 @@ billsRouter.get('/subject/:subject', function (req, res, next) {
             currentBills = req.bills.map(function (bill) {
                 return {
                     "number": bill.number,
+                    "name": bill.name,
                     "congress": bill.congress,
                     "bill_uri": bill.bill_uri,
                     "title": bill.title,
@@ -196,6 +200,7 @@ billsRouter.get('/sponsor/:sponsor', function (req, res, next) {
             currentBills = req.bills.map(function (bill) {
                 return {
                     "number": bill.number,
+                    "name": bill.name,
                     "congress": bill.congress,
                     "bill_uri": bill.bill_uri,
                     "title": bill.title,

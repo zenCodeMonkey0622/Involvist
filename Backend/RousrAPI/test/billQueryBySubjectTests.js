@@ -89,10 +89,10 @@ describe('Rousr API', function() {
                 queryRequest.end();
         });
 
-        it('should return at least one bill matching the primary subject ' + billSubject, function(done) {
+        it('should return 600 bills matching the primary subject ' + billSubject, function(done) {
 
             // increase the timeout for this query
-            this.timeout(5000);
+            this.timeout(7000);
 
             const expectedResponseCode = '200';
             const expectedReturnCount = 600;

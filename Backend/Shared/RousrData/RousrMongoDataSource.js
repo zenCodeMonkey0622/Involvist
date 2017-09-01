@@ -142,6 +142,7 @@ RousrMongoDataSource.prototype.queryBills = function (reqQuery, callback) {
     findQuery.where(query);
     findQuery.select({
         number: 1,
+        name: 1,
         bill_uri: 1,
         title: 1,
         sponsor_id: 1,
@@ -189,6 +190,7 @@ RousrMongoDataSource.prototype.getBillsByName = function (reqQuery, callback) {
     findQuery.where({ 'name': useRegex ? { '$regex': billName.toLowerCase() } : billName.toLowerCase() });
     findQuery.select({
         number: 1,
+        name: 1,
         bill_uri: 1,
         title: 1,
         sponsor_id: 1,
