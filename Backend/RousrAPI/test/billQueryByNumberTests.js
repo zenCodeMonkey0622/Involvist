@@ -2,8 +2,7 @@
 // unit testing suite for Rousr API bill query by bill number
 'use strict';
 
-// set the appropriate environment variables
-process.env.NODE_ENV = 'test';
+const env = require('./testEnv').setTestEnv();
 
 const https = require('https');	
 const assert = require('assert');
@@ -90,7 +89,7 @@ describe('Rousr API', function() {
                 queryRequest.end();
         });
 
-        it('should return one bill matching the number', function(done) {
+        it('should return one bill matching the number ' + billNumber, function(done) {
 
             const expectedResponseCode = '200';
             const expectedReturnCount = 1;
@@ -143,7 +142,7 @@ describe('Rousr API', function() {
                 queryRequest.end();
         });
 
-        it('should return zero bills matching the number', function(done) {
+        it('should return zero bills matching the number feefifofum', function(done) {
 
             const expectedResponseCode = '200';
             const expectedReturnCount = 0;

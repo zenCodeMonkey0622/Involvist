@@ -3,8 +3,7 @@
 
 'use strict';
 
-// set the appropriate environment variables
-process.env.NODE_ENV = 'test';
+const env = require('./testEnv').setTestEnv();
 
 const https = require('https');	
 const assert = require('assert');

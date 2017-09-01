@@ -8,7 +8,7 @@ const sharedConfig = require('../../Shared/Config/SharedConfig');
 module.exports = {
     TEST_AUTH_URI: 'localhost',
     TEST_AUTH_ENDPOINT: '/oauth/token',
-    TEST_CLIENT_ID: '1',
+    TEST_CLIENT_ID: sharedConfig.get('/debug/rousrAppClient/id'),
     TEST_ROUSR_API_URI: 'localhost',
     TEST_CONGRESS_BILLS_ENDPOINT: '/api/v1/bills',
     TEST_CONGRESS_BILLS_QUERYNAME_PATH: '/name/',

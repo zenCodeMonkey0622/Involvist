@@ -2,8 +2,7 @@
 // unit testing suite for Rousr API bill query by bill number
 'use strict';
 
-// set the appropriate environment variables
-process.env.NODE_ENV = 'test';
+const env = require('./testEnv').setTestEnv();
 
 const https = require('https');	
 const assert = require('assert');
@@ -96,7 +95,7 @@ describe('Rousr API', function() {
             this.timeout(5000);
 
             const expectedResponseCode = '200';
-            const expectedReturnCount = 557;
+            const expectedReturnCount = 600;
 
             debugger;
 
