@@ -72,8 +72,8 @@ RousrMongoDataSource.prototype.updateBills = function (billsToUpdate, next) {
     billsToUpdate.forEach(function(billData) {
 
         // parse the primary_subject string into components and
-        // set the added primary_subjects array
-        billData.primary_subjects = stringParser.parsePrimarySubjects(billData.primary_subject);
+        // set the added rsr_primary_subjects array
+        billData.rsr_primary_subjects = stringParser.parsePrimarySubjects(billData.primary_subject);
 
         Bill.update(
 			{ number: billData.number},
@@ -142,7 +142,7 @@ RousrMongoDataSource.prototype.queryBills = function (reqQuery, callback) {
     findQuery.where(query);
     findQuery.select({
         number: 1,
-        name: 1,
+        rsr_name: 1,
         bill_uri: 1,
         title: 1,
         sponsor_id: 1,
@@ -187,10 +187,10 @@ RousrMongoDataSource.prototype.getBillsByName = function (reqQuery, callback) {
     }
 
     var findQuery = Bill.find();
-    findQuery.where({ 'name': useRegex ? { '$regex': billName.toLowerCase() } : billName.toLowerCase() });
+    findQuery.where({ 'rsr_name': useRegex ? { '$regex': billName.toLowerCase() } : billName.toLowerCase() });
     findQuery.select({
         number: 1,
-        name: 1,
+        rsr_name: 1,
         bill_uri: 1,
         title: 1,
         sponsor_id: 1,

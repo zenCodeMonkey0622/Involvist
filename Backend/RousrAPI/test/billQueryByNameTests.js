@@ -125,7 +125,7 @@ describe('Rousr API', function() {
                         if (responseObj.data != null){
                             assert.equal(responseObj.data.length, expectedReturnCount, 'response count mismatch');
                             var billData = responseObj.data[0];
-                            assert.equal(billData.name.toUpperCase(), billName, 'did not return expected bill');
+                            assert.equal(billData.rsr_name.toUpperCase(), billName, 'did not return expected bill');
                         }
                         else {
                             assert.fail(null, null, 'response data was null');

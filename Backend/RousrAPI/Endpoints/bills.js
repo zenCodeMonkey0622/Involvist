@@ -62,9 +62,9 @@ billsRouter.param('name', function (req, res, next, billName) {
 
 billsRouter.param('subject', function (req, res, next, primarySubject) {
 
-    // query the bill model's primary_subjects array.
+    // query the bill model's rsr_primary_subjects array.
     // this is an indexed query.
-    req.query.primary_subjects = primarySubject;
+    req.query.rsr_primary_subjects = primarySubject;
     req.query.exact = 1;
     next();
 });
@@ -86,7 +86,7 @@ billsRouter.get('/name/:name', function (req, res, next) {
             currentBills = req.bills.map(function (bill) {
                 return {
                     "number": bill.number,
-                    "name": bill.name,
+                    "rsr_name": bill.rsr_name,
                     "congress": bill.congress,
                     "bill_uri": bill.bill_uri,
                     "title": bill.title,
@@ -124,7 +124,7 @@ billsRouter.get('/number/:number', function (req, res, next) {
             currentBills = req.bills.map(function (bill) {
                 return {
                     "number": bill.number,
-                    "name": bill.name,
+                    "rsr_name": bill.rsr_name,
                     "congress": bill.congress,
                     "bill_uri": bill.bill_uri,
                     "title": bill.title,
@@ -162,7 +162,7 @@ billsRouter.get('/subject/:subject', function (req, res, next) {
             currentBills = req.bills.map(function (bill) {
                 return {
                     "number": bill.number,
-                    "name": bill.name,
+                    "rsr_name": bill.rsr_name,
                     "congress": bill.congress,
                     "bill_uri": bill.bill_uri,
                     "title": bill.title,
@@ -200,7 +200,7 @@ billsRouter.get('/sponsor/:sponsor', function (req, res, next) {
             currentBills = req.bills.map(function (bill) {
                 return {
                     "number": bill.number,
-                    "name": bill.name,
+                    "rsr_name": bill.rsr_name,
                     "congress": bill.congress,
                     "bill_uri": bill.bill_uri,
                     "title": bill.title,
