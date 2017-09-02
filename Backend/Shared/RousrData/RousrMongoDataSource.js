@@ -8,8 +8,8 @@ module.exports = RousrMongoDataSource;
 const mongoose = require('mongoose');
 const debugUtil = require('../../Shared/Debug/debugUtility');
 const stringParser = require('../../Shared/Parsers/stringParse');
-const CongressMember = require('../Models/CongressMember').CongressMember;
-const Bill = require('../Models/bill').Bill;
+const CongressMember = require('../Entities/CongressMember').CongressMember;
+const Bill = require('../Entities/Bill').Bill;
 
 /**
 * A constructor for defining new mongoDb database service

@@ -8,7 +8,7 @@ const config = { databaseType: 'mongodb',
                     sharedConfig.get('/rousrApi/congressDataSource/authCreds/user') + 
                     ':' + sharedConfig.get('/rousrApi/congressDataSource/authCreds/password') + 
                     '@' + sharedConfig.get('/rousrApi/congressDataSource/uri') };
-const RousrUser = require('../../Shared/Models/RousrUser').RousrUser;
+const RousrUser = require('../../Shared/Entities/RousrUser').RousrUser;
 
 /**
 * A constructor for defining the RouserUserService

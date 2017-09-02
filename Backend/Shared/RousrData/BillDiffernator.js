@@ -3,8 +3,8 @@
 
 'use strict';
 const sharedConfig = require('../Config/SharedConfig');
-const Bill = require('../Models/bill').Bill;
-const BillUpdates = require('../Models/BillUpdates').BillUpdates;
+const Bill = require('../Entities/Bill').Bill;
+const BillUpdates = require('../Entities/BillUpdates').BillUpdates;
 
 var BillDiffernator = (function () {
     module.exports.BillDiffernator = new BillDiffernator;

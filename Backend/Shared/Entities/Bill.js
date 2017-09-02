@@ -40,10 +40,10 @@ var BillSchema = new Schema({
 	versions: [],
 	actions: [{}],
 	//Added 
-	primary_subjects: [],
-	tags: [],
-	description: String,
-    name: String
+	rsr_primary_subjects: [],
+	rsr_tags: [],
+	rsr_description: String,
+    rsr_name: String
 });
 
 var Bill = mongoose.model("rsr_current_bill_" + sharedConfig.get('/currentCongress'), BillSchema);
