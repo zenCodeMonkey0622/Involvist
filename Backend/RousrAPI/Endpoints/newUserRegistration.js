@@ -34,17 +34,17 @@ function newUserRegistrationGetHandler(req, res, next)
       res.json(csResponse);
     }
     else {
-        debugUtil.debugLog('registration success!');
-        debugUtil.debugLog(newUser);
+      debugUtil.debugLog('registration success!');
+      debugUtil.debugLog(newUser);
 
-        //Create and a new Involvist user
-        rsrUserService.registerNewUser(email, realName, email, csResponse.data.userID, function (err) {
-            if (err) {
-                return next(err);
-            }
-        });
+      //Create and a new Involvist user
+      rsrUserService.registerNewUser(email, realName, email, csResponse.data.userID, function (err, rsrUser) {
+          if (err) {
+              return next(err);
+          }
 
-        res.json(csResponse);
+          res.json(rsrUser);
+      });
     }
   });
 }

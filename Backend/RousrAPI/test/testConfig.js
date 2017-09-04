@@ -15,6 +15,8 @@ module.exports = {
     TEST_CONGRESS_BILLS_QUERYNUMBER_PATH: '/number/',
     TEST_CONGRESS_BILLS_QUERYSUBJECT_PATH: '/subject/',
     TEST_ADDRESS_TO_DISTRICT_PATH: '/api/v1/locations/congress/district/',
+    TEST_USER_ENDPOINT: '/api/v1/users',
+    TEST_USER_FOLLOWINGBILLS_PATH: '/bills',
     TEST_USER: 'rhr@rousr.io',
     TEST_PASSWORD: 'traficand0rimas',
 

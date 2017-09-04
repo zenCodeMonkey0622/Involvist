@@ -47,14 +47,51 @@ after( function() {
     secureAgent.destroy();
 });
 
+// 'done' parameter used on async code. call done() after
+// last assert so mocha knows it needs to wait before executing
+// other tests
+
 describe('Rousr API', function() {
     
         describe('User Follows Bill', function() {
     
-            // 'done' parameter used on async code. call done() after
-            // last assert so mocha knows it needs to wait before executing
-            // other tests
-            it('should return 401 Unauthorized', function(done) {
+            it('get should return 401 Unauthorized', function(done) {
+
+                const expectedResponseCode = '401';
+                const rsrUid = '';
+
+                const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
+                    sharedConfig.get('/gateway/svcPort'),
+                    testConfig.TEST_USER_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNAME_PATH + billName,
+                    httpUtil.requestType.GET,
+                    secureAgent,
+                    null,
+                    httpUtil.contentType.JSON,
+                    {'Authorization': null},
+                    testConfig.TEST_HTTP_OPTIONS,
+                    (res) => {
+                        var responseData = '';
+    
+                        res.on('data', (chunk) => {
+                            responseData += chunk;
+                        });
+    
+                        res.on('end', () => {
+                            assert.equal(res.statusCode, expectedResponseCode, 
+                                'expected ' + expectedResponseCode + ' but received ' + res.statusCode);
+                            done();
+                        });
+                    });
+    
+                    queryRequest.on('error', (e) => {
+                        assert.fail(null, null, 'problem with bill query name request: ' + e);
+                        done();
+                    });
+    
+                    queryRequest.end();
+            });
+
+            it('should return unknown user response', function(done) {
                 assert.fail(null, null, 'unit test not implemented');
             });
 

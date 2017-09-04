@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
 
 //Create our own user from the FramUser data
 var RousrUserSchema = new Schema({
-    userID: String,
+    rsrUid: String,
     userName: String,
     realName: String,
     email: String,    
@@ -19,8 +19,8 @@ var RousrUserSchema = new Schema({
     followingBills : []
 });
 
-RousrUserSchema.methods.initialize = function (userName, realName, email, userID) {
-    this.userID = userID;
+RousrUserSchema.methods.initialize = function (userName, realName, email, assignedUid) {
+    this.rsrUid = assignedUid;
     this.userName = userName;
     this.realName = realName;
     this.email = email;

@@ -22,19 +22,22 @@ var RousrUserService = function () {
 * @param <object> userName - the name of the user
 * @param <object> realName - the user's real name
 * @param <object> email - the user's email
-* @param <function()> next - the next function to call
+* @param <string> assignedUid - the user's assigned unique id
+* @param <function(err, rsrUser)> callback - the callback
 */
-RousrUserService.prototype.registerNewUser = function (userName, realName, email, userID, next) {
-    //Create and save Involvist user to the database
-    var user = new RousrUser();
-    user.initialize(userName, realName, email, userID);
-    user.save(function (err) {
+RousrUserService.prototype.registerNewUser = function (userName, realName, email, assignedUid, callback) {
+
+    //Create and save Rousr user to the database
+    var newRsrUser = new RousrUser();
+    newRsrUser.initialize(userName, realName, email, assignedUid);
+    newRsrUser.save(function (err) {
         if (err) {
-            return callback(err);
+            debugUtil.debugErrorLog('error registering new rousr user: ' +err);
+            return callback(err, null);
         }
 
         debugUtil.debugLog('Rousr user created: ' + userName);
-        return next();
+        return callback(null, newRsrUser);
     });
 }
 
@@ -69,13 +72,13 @@ RousrUserService.prototype.queryUsers = function (req, res, next) {
 
 /**
 * followBill() - saves a bill the user wants to follow to the database
-* @param <object> userID - the ID of the user
+* @param <object> assignedUid - the user's assigned unique id
 * @param <object> billNumber - the bill number the user wants to follow
 * @param <function()> next - the next function to call
 */
-RousrUserService.prototype.followBill = function (userID, billNumber, next) {
+RousrUserService.prototype.followBill = function (assignedUid, billNumber, next) {
     console.log('billNumber: ' + billNumber);
-    RousrUser.update({ userID: userID }, { $addToSet: { followingBills: billNumber } }, function (err, results) {
+    RousrUser.update({ rsrUid: assignedUid }, { $addToSet: { followingBills: billNumber } }, function (err, results) {
         if (err) {
             console.error(err);
             return next(err);
@@ -87,13 +90,13 @@ RousrUserService.prototype.followBill = function (userID, billNumber, next) {
 
 /**
 * unfollowBill() - unfollows a bill the user was following
-* @param <object> userID - the ID of the user
+* @param <object> assignedUid - the user's assigned unique id
 * @param <object> billNumber - the bill number the user wants to unfollow
 * @param <function()> next - the next function to call
 */
-RousrUserService.prototype.unfollowBill = function (userID, billNumber, next) {
+RousrUserService.prototype.unfollowBill = function (assignedUid, billNumber, next) {
 
-    RousrUser.update({ userID: userID }, { $pull: { followingBills: billNumber } }, function (err, results) {
+    RousrUser.update({ rsrUid: assignedUid }, { $pull: { followingBills: billNumber } }, function (err, results) {
         if (err) {
             console.error(err);
             return next(err);

@@ -61,13 +61,11 @@ FrameLocalService.prototype.registerNewUser = function(realName, password, email
       res.on('end', () => {
         debugUtil.debugLog('registerNewUser response body end: ' + responseData);
 
-        if (res.statusCode != '200')
-        {
+        if (res.statusCode != '200') {
           var frErr = frameError(responseData);
           callback(csResponse(false, frErr.message, null), null);
         }
-        else
-        {
+        else {
           var user = frameUser(responseData);
           callback(csResponse(true, '', user), user);
         }
@@ -117,13 +115,11 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
       res.on('end', () => {
         debugUtil.debugLog('frame response body end: ' + responseData);
 
-        if (res.statusCode != '200')
-        {
+        if (res.statusCode != '200') {
           var frErr = frameError(responseData);
           callback(csResponse(false, frErr.message, null), null);
         }
-        else
-        {
+        else {
           var user = frameUser(responseData);
           callback(csResponse(true, '', user), user);
         }
