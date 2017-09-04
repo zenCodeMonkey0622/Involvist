@@ -7,4 +7,4 @@ authDb="rsrtest"
 user="root"
 pw="traficand0rimas"
 
-mongo $host/$authDb -u $user -p $pw loadUserFollowsBillsTestsData.js
+mongo $host/$authDb -u $user -p $pw loadUserFollowsBillTestsData.js

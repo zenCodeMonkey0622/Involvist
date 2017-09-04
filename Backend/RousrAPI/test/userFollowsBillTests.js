@@ -55,14 +55,14 @@ describe('Rousr API', function() {
     
         describe('User Follows Bill', function() {
     
-            it('get should return 401 Unauthorized', function(done) {
+            it('GET should return 401 Unauthorized', function(done) {
 
                 const expectedResponseCode = '401';
-                const rsrUid = '';
+                const rsrUid = 'tst_userfollows_unauth_rsruid';
 
                 const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                     sharedConfig.get('/gateway/svcPort'),
-                    testConfig.TEST_USER_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNAME_PATH + billName,
+                    testConfig.TEST_USER_ENDPOINT + '/' + rsrUid + testConfig.TEST_USER_FOLLOWINGBILLS_PATH,
                     httpUtil.requestType.GET,
                     secureAgent,
                     null,
@@ -84,7 +84,79 @@ describe('Rousr API', function() {
                     });
     
                     queryRequest.on('error', (e) => {
-                        assert.fail(null, null, 'problem with bill query name request: ' + e);
+                        assert.fail(null, null, 'problem with user follows bills request: ' + e);
+                        done();
+                    });
+    
+                    queryRequest.end();
+            });
+
+            it('POST should return 401 Unauthorized', function(done) {
+                
+                const expectedResponseCode = '401';
+                const rsrUid = 'tst_userfollows_unauth_rsruid';
+
+                const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
+                    sharedConfig.get('/gateway/svcPort'),
+                    testConfig.TEST_USER_ENDPOINT + '/' + rsrUid + testConfig.TEST_USER_FOLLOWINGBILLS_PATH,
+                    httpUtil.requestType.POST,
+                    secureAgent,
+                    null,
+                    httpUtil.contentType.JSON,
+                    {'Authorization': null},
+                    testConfig.TEST_HTTP_OPTIONS,
+                    (res) => {
+                        var responseData = '';
+    
+                        res.on('data', (chunk) => {
+                            responseData += chunk;
+                        });
+    
+                        res.on('end', () => {
+                            assert.equal(res.statusCode, expectedResponseCode, 
+                                'expected ' + expectedResponseCode + ' but received ' + res.statusCode);
+                            done();
+                        });
+                    });
+    
+                    queryRequest.on('error', (e) => {
+                        assert.fail(null, null, 'problem with user follows bills request: ' + e);
+                        done();
+                    });
+    
+                    queryRequest.end();
+            });
+
+            it('DELETE should return 401 Unauthorized', function(done) {
+                
+                const expectedResponseCode = '401';
+                const rsrUid = 'tst_userfollows_unauth_rsruid';
+
+                const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
+                    sharedConfig.get('/gateway/svcPort'),
+                    testConfig.TEST_USER_ENDPOINT + '/' + rsrUid + testConfig.TEST_USER_FOLLOWINGBILLS_PATH,
+                    httpUtil.requestType.DELETE,
+                    secureAgent,
+                    null,
+                    httpUtil.contentType.JSON,
+                    {'Authorization': null},
+                    testConfig.TEST_HTTP_OPTIONS,
+                    (res) => {
+                        var responseData = '';
+    
+                        res.on('data', (chunk) => {
+                            responseData += chunk;
+                        });
+    
+                        res.on('end', () => {
+                            assert.equal(res.statusCode, expectedResponseCode, 
+                                'expected ' + expectedResponseCode + ' but received ' + res.statusCode);
+                            done();
+                        });
+                    });
+    
+                    queryRequest.on('error', (e) => {
+                        assert.fail(null, null, 'problem with user follows bills request: ' + e);
                         done();
                     });
     
@@ -110,5 +182,11 @@ describe('Rousr API', function() {
             it('should not create more than one relationship meta object', function(done) {
                 assert.fail(null, null, 'unit test not implemented');
             });
+
+            // todo: remove a bill from a user
+
+            // todo: remove a bill from a user that is not following tha tbill
+
+            // todo: remove a bill should remove meta object
         });
     });
