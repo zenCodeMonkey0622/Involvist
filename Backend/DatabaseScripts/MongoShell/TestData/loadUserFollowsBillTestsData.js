@@ -26,5 +26,21 @@ db.getCollection("rsr_users").insert([
         userName: 'tst_userfollows_addbilltwice_username',
         rsrUid: 'tst_userfollows_addbilltwice_rsruid',
         followingBills: []
+    },
+    {
+        _id: 'tst_userfollows_createmeta_rsruid',
+        email: 'tst_userfollows_createmeta@rsr.io',
+        realName: 'tst_userfollows_createmeta_realname',
+        userName: 'tst_userfollows_createmeta_username',
+        rsrUid: 'tst_userfollows_createmeta_rsruid',
+        followingBills: []
+    },
+    {
+        _id: 'tst_userfollows_onlyonemeta_rsruid',
+        email: 'tst_userfollows_onlyonemeta@rsr.io',
+        realName: 'tst_userfollows_onlyonemeta_realname',
+        userName: 'tst_userfollows_onlyonemeta_username',
+        rsrUid: 'tst_userfollows_onlyonemeta_rsruid',
+        followingBills: []
     }
 ])

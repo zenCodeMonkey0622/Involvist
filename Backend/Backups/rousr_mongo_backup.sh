@@ -1,6 +1,8 @@
 #!/bin/bash
 
 today=$(date +%F)
+backupName="rsr_mongo_congress_core"
+
 rsrEnv=$1
 
 if ! [ -d $1 ]; then
@@ -26,7 +28,7 @@ else
     exit -1
 fi
 
-mongodump -h $host -d $authDb -u $user -p $pw -o "rsr_mongo_backup"
-cp -r "rsr_mongo_backup" "$1/$today"
-mv "rsr_mongo_backup" "$1"
+mongodump -h $host -d $authDb -u $user -p $pw -o $backupName
+cp -r $backupName "$1/$today"
+mv $backupName "$1"
 
