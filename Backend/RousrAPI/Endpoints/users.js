@@ -99,39 +99,53 @@ usersRouter.get('/:userID/bills', rsrUserService.queryUsers, function (req, res,
 });
 
 //Example - https://<api.server.host>:<api_port>/v1/users/59694b9de61e342680869c57/bills
-usersRouter.post('/:userID/bills', function (req, res, callback) {
-    var userID = req.query.userID;
-    var billNumber = req.body.bill_number;   
+usersRouter.post('/:userID/bills', rsrUserService.queryUsers, function (req, res, callback) {
 
-    rsrUserService.followBill(userID, billNumber, function (err, results) {
-        if (err) {
-            return callback(err);
-        }       
+    if (req.users && req.users.length > 0) {
+        var userID = req.query.userID;
+        var billNumber = req.body.bill_number;   
 
-        if (results) {
-            var csResp = csResponse(true, null, results);
-            res.json(csResp);
-        }
+        rsrUserService.followBill(userID, billNumber, function (err, results) {
+            if (err) {
+                return callback(err);
+            }       
 
-    });
+            if (results) {
+                var csResp = csResponse(true, null, results);
+                res.json(csResp);
+            }
+
+        });
+    }
+    else {
+        httpUtil.setResponse404Json(res, csResponse(false, "User not found.", null));
+        next();
+    }
 });
 
 //Example - https://<api.server.host>:<api_port>/v1/users/59694b9de61e342680869c57/bills
-usersRouter.delete('/:userID/bills', function (req, res, callback) {
-    var userID = req.query.userID;
-    var billNumber = req.body.bill_number;
+usersRouter.delete('/:userID/bills', rsrUserService.queryUsers, function (req, res, callback) {
 
-    rsrUserService.unfollowBill(userID, billNumber, function (err, results) {
-        if (err) {
-            return callback(err);
-        }
+    if (req.users && req.users.length > 0) {
+        var userID = req.query.userID;
+        var billNumber = req.body.bill_number;
 
-        if (results) {
-            var csResp = csResponse(true, null, results);
-            res.json(csResp);
-        }
+        rsrUserService.unfollowBill(userID, billNumber, function (err, results) {
+            if (err) {
+                return callback(err);
+            }
 
-    });
+            if (results) {
+                var csResp = csResponse(true, null, results);
+                res.json(csResp);
+            }
+
+        });
+    }
+    else {
+        httpUtil.setResponse404Json(res, csResponse(false, "User not found.", null));
+        next();
+    }
 });
 
 module.exports = usersRouter;
