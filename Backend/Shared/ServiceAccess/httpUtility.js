@@ -2,7 +2,7 @@
 // provides utility functions for http service requests
 const http = require('http');
 const https = require('https');
-const debugUtil = require('../Debug/debugUtility');
+const debugUtil = require('../Debug/debugUtility');;
 
 module.exports = {
 
@@ -129,5 +129,15 @@ module.exports = {
   {
     const requestOptions = module.exports.makeRequestOptions(hostUri, port, path, method, agent, requestData, contentType, additionalHeaders, additionalOptions);
     return https.request(requestOptions, callback);
+  },
+
+  /**
+   * sets the 404 response content to the passed in http response.
+   * @param {http.ServerResponse} httpResponse - the response to modify
+   * @param {object} body - the object that needs JSON stringification
+   */
+  setResponse404Json: function(httpResponse, body) {
+    httpResponse.writeHead(404, {'Content-Type': 'application/json'});
+    httpResponse.write(JSON.stringify(body));
   }
 }

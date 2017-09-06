@@ -163,8 +163,117 @@ describe('Rousr API', function() {
                     queryRequest.end();
             });
 
-            it('should return unknown user response', function(done) {
-                assert.fail(null, null, 'unit test not implemented');
+            it('GET should return 404 user not found', function(done) {
+
+                const expectedResponseCode = '404';
+                const rsrUid = 'tst_unknownuser_rsruid';
+
+                debugger;
+
+                const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
+                    sharedConfig.get('/gateway/svcPort'),
+                    testConfig.TEST_USER_ENDPOINT + '/' + rsrUid + testConfig.TEST_USER_FOLLOWINGBILLS_PATH,
+                    httpUtil.requestType.GET,
+                    secureAgent,
+                    null,
+                    httpUtil.contentType.JSON,
+                    {'Authorization': 'Bearer ' + testAuthToken},
+                    testConfig.TEST_HTTP_OPTIONS,
+                    (res) => {
+                        var responseData = '';
+    
+                        res.on('data', (chunk) => {
+                            responseData += chunk;
+                        });
+    
+                        res.on('end', () => {
+
+                            const responseObj = JSON.parse(responseData);
+
+                            assert.equal(res.statusCode, expectedResponseCode, 
+                                'expected ' + expectedResponseCode + ' but received ' + res.statusCode);
+                            done();
+                        });
+                    });
+    
+                    queryRequest.on('error', (e) => {
+                        assert.fail(null, null, 'problem with user follows bills request: ' + e);
+                        done();
+                    });
+    
+                    queryRequest.end();
+            });
+
+            it('POST should return 404 user not found', function(done) {
+                
+                const expectedResponseCode = '404';
+                const rsrUid = 'tst_unknownuser_rsruid';
+
+                const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
+                    sharedConfig.get('/gateway/svcPort'),
+                    testConfig.TEST_USER_ENDPOINT + '/' + rsrUid + testConfig.TEST_USER_FOLLOWINGBILLS_PATH,
+                    httpUtil.requestType.POST,
+                    secureAgent,
+                    null,
+                    httpUtil.contentType.JSON,
+                    {'Authorization': 'Bearer ' + testAuthToken},
+                    testConfig.TEST_HTTP_OPTIONS,
+                    (res) => {
+                        var responseData = '';
+    
+                        res.on('data', (chunk) => {
+                            responseData += chunk;
+                        });
+    
+                        res.on('end', () => {
+                            assert.equal(res.statusCode, expectedResponseCode, 
+                                'expected ' + expectedResponseCode + ' but received ' + res.statusCode);
+                            done();
+                        });
+                    });
+    
+                    queryRequest.on('error', (e) => {
+                        assert.fail(null, null, 'problem with user follows bills request: ' + e);
+                        done();
+                    });
+    
+                    queryRequest.end();
+            });
+
+            it('DELETE should return 404 user not found', function(done) {
+
+                const expectedResponseCode = '404';
+                const rsrUid = 'tst_unknownuser_rsruid';
+
+                const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
+                    sharedConfig.get('/gateway/svcPort'),
+                    testConfig.TEST_USER_ENDPOINT + '/' + rsrUid + testConfig.TEST_USER_FOLLOWINGBILLS_PATH,
+                    httpUtil.requestType.DELETE,
+                    secureAgent,
+                    null,
+                    httpUtil.contentType.JSON,
+                    {'Authorization': 'Bearer ' + testAuthToken},
+                    testConfig.TEST_HTTP_OPTIONS,
+                    (res) => {
+                        var responseData = '';
+    
+                        res.on('data', (chunk) => {
+                            responseData += chunk;
+                        });
+    
+                        res.on('end', () => {
+                            assert.equal(res.statusCode, expectedResponseCode, 
+                                'expected ' + expectedResponseCode + ' but received ' + res.statusCode);
+                            done();
+                        });
+                    });
+    
+                    queryRequest.on('error', (e) => {
+                        assert.fail(null, null, 'problem with user follows bills request: ' + e);
+                        done();
+                    });
+    
+                    queryRequest.end();
             });
 
             it('should add bill id to user object', function(done) {

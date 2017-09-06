@@ -2,12 +2,14 @@
 //The endpoints for the users
 'use strict'
 
-const debugUtil = require('../../Shared/Debug/debugUtility');
 const express = require('express');
 const usersRouter = express.Router();
+const bodyParser = require('body-parser')
+
+const httpUtil = require('../../Shared/ServiceAccess/httpUtility');
+const debugUtil = require('../../Shared/Debug/debugUtility');
 const rsrUserService = require('../Users/RousrUserService');
 const csResponse = require('../DataTransfer/CSResponse');
-const bodyParser = require('body-parser')
 
 usersRouter.use(bodyParser.json());       // to support JSON-encoded bodies
 usersRouter.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -40,18 +42,18 @@ usersRouter.param('name', function (req, res, next, userName) {
 });
 
 usersRouter.param('userID', function (req, res, next, userID) {
-    req.query.userID = userID;    
+    req.query.rsrUid = userID;    
     next();
 });
 
 //Example - https://<api.server.host>:<api_port>/v1/users/name/MrAwesome@gmail.com
-usersRouter.get('/name/:name', rsrUserService.queryUsers, function (req, res) {
+usersRouter.get('/name/:name', rsrUserService.queryUsers, function (req, res, next) {
     var users = null;
     
     if (req.users) {
         users = req.users.map(function (rousrUser) {
             return {
-                userID: rousrUser.userID,
+                rsrUid: rousrUser.rsrUid,
                 userName: rousrUser.userName,
                 realName: rousrUser.realName,
                 email: rousrUser.email,                
@@ -64,13 +66,13 @@ usersRouter.get('/name/:name', rsrUserService.queryUsers, function (req, res) {
 });
 
 //Example - https://<api.server.host>:<api_port>/v1/users/59694b9de61e342680869c57
-usersRouter.get('/:userID', rsrUserService.queryUsers, function (req, res) {
+usersRouter.get('/:userID', rsrUserService.queryUsers, function (req, res, next) {
     var users = null;
     
     if (req.users) {
         users = req.users.map(function (rousrUser) {
             return {
-                userID: rousrUser.userID,
+                rsrUid: rousrUser.rsrUid,
                 userName: rousrUser.userName,
                 realName: rousrUser.realName,
                 email: rousrUser.email,                
@@ -83,14 +85,17 @@ usersRouter.get('/:userID', rsrUserService.queryUsers, function (req, res) {
 });
 
 //Example - https://<api.server.host>:<api_port>/v1/users/bills
-usersRouter.get('/:userID/bills', rsrUserService.queryUsers, function (req, res) {
+usersRouter.get('/:userID/bills', rsrUserService.queryUsers, function (req, res, next) {
     var followingBills = null;    
 
     if (req.users && req.users.length > 0) {
         followingBills = req.users[0].followingBills;
+        res.json(csResponse(true, null, followingBills));
     }
-    var csResp = csResponse(true, null, followingBills);
-    res.json(csResp);
+    else {
+        httpUtil.setResponse404Json(res, csResponse(false, "User not found.", null));
+        next();
+    }
 });
 
 //Example - https://<api.server.host>:<api_port>/v1/users/59694b9de61e342680869c57/bills
