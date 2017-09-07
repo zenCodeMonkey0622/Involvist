@@ -1,6 +1,12 @@
 // the test data is rousr users. we don't need to create associated
 // frame users since these tests are more concerned with rousr entiteis
-// and not authentication (password data unneeded)
+// and not authentication (password data unneeded).
+
+// the {ordered: false} option specifies that if there is a problem with one document
+// it will skip and attempt the remainder. we use this b/c mongo will throw a
+// duplicate id error if we try to add the same document again. we want to
+// continue the insertion in the case of adding another item to the list without
+// needing to scrub the entire array of documents from the db.
 
 db.getCollection("rsr_users").insert([
     {
@@ -42,5 +48,13 @@ db.getCollection("rsr_users").insert([
         userName: 'tst_userfollows_onlyonemeta_username',
         rsrUid: 'tst_userfollows_onlyonemeta_rsruid',
         followingBills: []
+    },
+    {
+        _id: 'tst_userfollows_invalidbill_rsruid',
+        email: 'tst_userfollows_invalidbill@rsr.io',
+        realName: 'tst_userfollows_invalidbill_realname',
+        userName: 'tst_userfollows_invalidbill_username',
+        rsrUid: 'tst_userfollows_invalidbill_rsruid',
+        followingBills: []
     }
-])
+], { ordered: false })

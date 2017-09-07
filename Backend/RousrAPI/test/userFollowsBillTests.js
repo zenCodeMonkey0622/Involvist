@@ -276,6 +276,49 @@ describe('Rousr API', function() {
                     queryRequest.end();
             });
 
+            it('POST should return 404 bill not found', function(done) {
+                
+                const expectedResponseCode = '404';
+                const rsrUid = 'tst_userfollows_invalidbill_rsruid';
+                const invalidBillNumber = 'a.c.360';
+
+                const form = {
+                    bill_number: invalidBillNumber
+                };
+            
+                const formData = querystring.stringify(form);
+
+                const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
+                    sharedConfig.get('/gateway/svcPort'),
+                    testConfig.TEST_USER_ENDPOINT + '/' + rsrUid + testConfig.TEST_USER_FOLLOWINGBILLS_PATH,
+                    httpUtil.requestType.POST,
+                    secureAgent,
+                    formData,
+                    httpUtil.contentType.JSON,
+                    {'Authorization': 'Bearer ' + testAuthToken},
+                    testConfig.TEST_HTTP_OPTIONS,
+                    (res) => {
+                        var responseData = '';
+    
+                        res.on('data', (chunk) => {
+                            responseData += chunk;
+                        });
+    
+                        res.on('end', () => {
+                            assert.equal(res.statusCode, expectedResponseCode, 
+                                'expected ' + expectedResponseCode + ' but received ' + res.statusCode);
+                            done();
+                        });
+                    });
+    
+                    queryRequest.on('error', (e) => {
+                        assert.fail(null, null, 'problem with user follows bills request: ' + e);
+                        done();
+                    });
+    
+                    queryRequest.end();
+            });
+
             it('should add bill id to user object', function(done) {
                 assert.fail(null, null, 'unit test not implemented');
             });

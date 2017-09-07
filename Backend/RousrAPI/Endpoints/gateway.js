@@ -42,7 +42,7 @@ function unless(path, middleware)
 **/
 function tokenCheck(req, res, next)
 {
-  debugUtil.debugLog('checking authentication token for ' + req.path);
+  debugUtil.debugLog('checking authentication permissions for resource ' + req.path);
   // verify access token
   authServer.validateAccessToken(req, function(error, validationResult) {
       if(error) {
@@ -50,6 +50,7 @@ function tokenCheck(req, res, next)
         return res.json(csResponse(false, error.error, null));
       }
       else {
+        debugUtil.debugLog('access to ' + req.path + ' granted.');
         next();
       }
   });
