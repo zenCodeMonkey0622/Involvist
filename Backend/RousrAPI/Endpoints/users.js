@@ -102,7 +102,10 @@ usersRouter.get('/:userID/bills', rsrUserService.queryUsers, function (req, res,
 usersRouter.post('/:userID/bills', rsrUserService.queryUsers, function (req, res, callback) {
 
     if (req.users && req.users.length > 0) {
-        var userID = req.query.userID;
+
+        // todo: billsService.queryBills() to verify bill exists.
+
+        var userID = req.query.rsrUid;
         var billNumber = req.body.bill_number;   
 
         rsrUserService.followBill(userID, billNumber, function (err, results) {
@@ -127,7 +130,10 @@ usersRouter.post('/:userID/bills', rsrUserService.queryUsers, function (req, res
 usersRouter.delete('/:userID/bills', rsrUserService.queryUsers, function (req, res, callback) {
 
     if (req.users && req.users.length > 0) {
-        var userID = req.query.userID;
+
+        // todo: see if the user's followsBill array contains the bill number.
+        
+        var userID = req.query.rsrUid;
         var billNumber = req.body.bill_number;
 
         rsrUserService.unfollowBill(userID, billNumber, function (err, results) {
