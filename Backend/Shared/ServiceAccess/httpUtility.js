@@ -136,8 +136,8 @@ module.exports = {
    * @param {http.ServerResponse} httpResponse - the response to modify
    * @param {object} body - the object that needs JSON stringification
    */
-  setResponse404Json: function(httpResponse, body) {
-    httpResponse.writeHead(404, {'Content-Type': 'application/json'});
+  setJsonResponse: function(httpResponse, statusCode, body) {
+    httpResponse.writeHead(statusCode, {'Content-Type': 'application/json'});
     httpResponse.write(JSON.stringify(body));
   }
 }

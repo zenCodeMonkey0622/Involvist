@@ -3,6 +3,7 @@
 
 const debugUtil = require('../../Shared/Debug/debugUtility');
 const sharedConfig = require('../../Shared/Config/SharedConfig');
+const dataSource = require('../../Shared/RousrData/RousrDataSource');
 const config = { databaseType: 'mongodb', 
                  uri: 'mongodb://' + 
                     sharedConfig.get('/rousrApi/congressDataSource/authCreds/user') + 
@@ -14,16 +15,16 @@ const RousrUser = require('../../Shared/Entities/RousrUser').RousrUser;
 * A constructor for defining the RouserUserService
 */
 var RousrUserService = function () {
-    //TODO - initialization
+    this.rousrDataSource = dataSource.create(config);
 }
 
 /**
 * newUser() - called after a new user is created to save the user data to the database
-* @param <object> userName - the name of the user
-* @param <object> realName - the user's real name
-* @param <object> email - the user's email
-* @param <string> assignedUid - the user's assigned unique id
-* @param <function(err, rsrUser)> callback - the callback
+* @param {string} userName - the name of the user
+* @param {string} realName - the user's real name
+* @param {string} email - the user's email
+* @param {string} assignedUid - the user's assigned unique id
+* @param {function(err, rsrUser)} callback - the callback
 */
 RousrUserService.prototype.registerNewUser = function (userName, realName, email, assignedUid, callback) {
 
@@ -43,66 +44,68 @@ RousrUserService.prototype.registerNewUser = function (userName, realName, email
 
 /**
 * queryUsers() - Queries the users in the database
-* @param <object> req - request - req.query will contain the value to query for
-* @param <object> res - response
-* @param <function()> next - the next function to call
+* @param {dictionary} queryDictionary - key/value pair 
+* @param {function(err, docs)} callback - the callback function
 */
-RousrUserService.prototype.queryUsers = function (req, res, next) {
-    var keys = Object.keys(req.query);
-    var userKeys = Object.keys(RousrUser.schema.paths);
-    var query = {};
+// todo: make this service return error and results via callback
+// instead of calling next and placing results in the request object.
+// also remove response parameter
+RousrUserService.prototype.queryUsers = function (queryDictionary, callback) {
+    var queryKeys = Object.keys(rqueryDictionary);
+    var schemaKeys = Object.keys(RousrUser.schema.paths);
+    var queryDict = {};
 
-    for (var i = 0; i < keys.length; i++) {
-        if (userKeys.indexOf(keys[i]) !== -1) {
-            var filterParam = keys[i];
-            var queryValue = req.query[filterParam];            
+    for (var i = 0; i < queryKeys.length; i++) {
+        if (schemaKeys.indexOf(queryKeys[i]) !== -1) {
+            var queryKey = queryKeys[i];
+            var queryValue = req.query[queryKey];            
             //'$' is to search for the exact value.  For example looking for h.r.300 and not every number containing h.r.300, such as h.r.3002
-            query[filterParam] = { '$regex': queryValue + '$', '$options': 'i' };
+            queryDict[queryKey] = { '$regex': queryValue + '$', '$options': 'i' };
         }
     }
     
-    RousrUser.find(query, function (err, docs) {
+    RousrUser.find(queryDict, function (err, docs) {
         if (err) {
-            return next(err);
+            return callback(err, null);
         }
-        req.users = docs;
-        return next();
+        
+        return callback(null, docs);
     });
 }
 
 /**
 * followBill() - saves a bill the user wants to follow to the database
-* @param <object> assignedUid - the user's assigned unique id
-* @param <object> billNumber - the bill number the user wants to follow
-* @param <function()> next - the next function to call
+* @param {string} assignedUid - the user's assigned unique id
+* @param {string} billNumber - the bill number the user wants to follow
+* @param {function(err, results)} callback - the callback
 */
-RousrUserService.prototype.followBill = function (assignedUid, billNumber, next) {
+RousrUserService.prototype.followBill = function (assignedUid, billNumber, callback) {
     console.log('billNumber: ' + billNumber);
     RousrUser.update({ rsrUid: assignedUid }, { $addToSet: { followingBills: billNumber } }, function (err, results) {
         if (err) {
             console.error(err);
-            return next(err);
+            return callback(err, null);
         }
 
-        return next(null, results);
+        return callback(null, results);
     });
 }
 
 /**
 * unfollowBill() - unfollows a bill the user was following
-* @param <object> assignedUid - the user's assigned unique id
-* @param <object> billNumber - the bill number the user wants to unfollow
-* @param <function()> next - the next function to call
+* @param {string} assignedUid - the user's assigned unique id
+* @param {string} billNumber - the bill number the user wants to follow
+* @param {function(err, results)} callback - the callback
 */
-RousrUserService.prototype.unfollowBill = function (assignedUid, billNumber, next) {
+RousrUserService.prototype.unfollowBill = function (assignedUid, billNumber, callback) {
 
     RousrUser.update({ rsrUid: assignedUid }, { $pull: { followingBills: billNumber } }, function (err, results) {
         if (err) {
             console.error(err);
-            return next(err);
+            return callback(err, null);
         }
 
-        return next(null, results);
+        return callback(null, results);
     });
 }
 

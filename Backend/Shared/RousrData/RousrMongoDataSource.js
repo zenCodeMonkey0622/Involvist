@@ -170,11 +170,10 @@ RousrMongoDataSource.prototype.queryBills = function (reqQuery, callback) {
 
 /**
 * getBillsByName() - Queries the bills collection by name.
-* @param <object> reqQuery - has a name field, which will be alphanumeric, and an optional exact field
-* @param <function()> callback
+* @param {string} name - has a name field, which will be alphanumeric, and an optional exact field
+* @param {function()} callback
 */
-RousrMongoDataSource.prototype.getBillsByName = function (reqQuery, callback) {
-    var billName = reqQuery.name;
+RousrMongoDataSource.prototype.getBillsByName = function (name, callback) {
     var keys = Object.keys(reqQuery);
     
     // by default we use regex
@@ -187,7 +186,7 @@ RousrMongoDataSource.prototype.getBillsByName = function (reqQuery, callback) {
     }
 
     var findQuery = Bill.find();
-    findQuery.where({ 'rsr_name': useRegex ? { '$regex': billName.toLowerCase() } : billName.toLowerCase() });
+    findQuery.where({ 'rsr_name': useRegex ? { '$regex': name.toLowerCase() } : name.toLowerCase() });
     findQuery.select({
         number: 1,
         rsr_name: 1,

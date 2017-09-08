@@ -56,7 +56,7 @@ BillsService.prototype.queryBills = function (req, res, next)
 BillsService.prototype.getBillsByName = function (req, res, next) {
     debugUtility.debugLog('bills service get bills by name for: ' + req.query.name + ' start: ' + debugUtility.debugTimeNow());
 
-    this.rousrDataSource.getBillsByName(req.query, function (err, docs) {
+    this.rousrDataSource.getBillsByName(req.query.name, function (err, docs) {
         debugUtility.debugLog('bills service get bills by name callback end: ' + debugUtility.debugTimeNow());
         if (err) {
             return next(err);
