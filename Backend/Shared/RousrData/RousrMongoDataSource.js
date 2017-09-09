@@ -15,15 +15,20 @@ const Bill = require('../Entities/Bill').Bill;
 * A constructor for defining new mongoDb database service
 */
 function RousrMongoDataSource(options) {
+
+    // note: if multiple instances of this class are instantiate
+    // the connect call will throw an error trying to open unclosed
+    // connection. despite this the connection still works. need to figure
+    // out how to create an instance-based property for the db var.
     mongoose.connect(options.uri);
     var db = mongoose.connection;
 
     db.on('error', function(err) {
-        console.error('Connection Error:', err);
+        debugUtil.debugErrorLog('RousrMongoDataSource connection error: ' + err.message);
     });
 
     db.once('open', function(){
-        debugUtil.debugLog('DB connection: ' + options.uri + ' successful');
+        debugUtil.debugLog('RousrMongoDataSource DB connection: ' + options.uri + ' successful');
     });
 }
 
@@ -173,20 +178,10 @@ RousrMongoDataSource.prototype.queryBills = function (reqQuery, callback) {
 * @param {string} name - has a name field, which will be alphanumeric, and an optional exact field
 * @param {function()} callback
 */
-RousrMongoDataSource.prototype.getBillsByName = function (name, callback) {
-    var keys = Object.keys(reqQuery);
-    
-    // by default we use regex
-    var useRegex = true;
-
-    // if the 'exact' parameter is passed, set the useRegex
-    // based on the value
-    if (keys.indexOf('exact') >= 0) {
-        useRegex = !reqQuery.exact
-    }
+RousrMongoDataSource.prototype.getBillsByName = function (name, exact, callback) {
 
     var findQuery = Bill.find();
-    findQuery.where({ 'rsr_name': useRegex ? { '$regex': name.toLowerCase() } : name.toLowerCase() });
+    findQuery.where({ 'rsr_name': exact ? name.toLowerCase() : { '$regex': name.toLowerCase() } });
     findQuery.select({
         number: 1,
         rsr_name: 1,
@@ -205,14 +200,12 @@ RousrMongoDataSource.prototype.getBillsByName = function (name, callback) {
         latest_major_action: 1
     });
 
-    findQuery.exec(function (err, docs) {
-        if (err) {
-            return callback(err);
-        }
+    findQuery.exec(function (err, res) {
+        if (err) return callback(err, null);
 
-        debugUtil.debugLog('getBillsByName found ' + docs.length + ' results');
+        debugUtil.debugLog('getBillsByName found ' + res.length + ' results');
 
-        callback(null, docs);
+        callback(null, res);
     });
 }
 

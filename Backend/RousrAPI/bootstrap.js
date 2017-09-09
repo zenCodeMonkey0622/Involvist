@@ -32,7 +32,13 @@ authProcess.stdout.on('data', (data) => {
 
 // bootstrap process will listen to auth process's stderr
 authProcess.stderr.on('data', (data) => {
-  console.error('[auth server err] ' + data);
+
+  var consoleColorCode = '\x1b[31m%s\x1b[0m';
+  if (data.includes('Warning')){
+    consoleColorCode = '\x1b[33m%s\x1b[0m';
+  }
+  
+  console.error(consoleColorCode, '[auth server err] ' + data);
 });
 
 // bootstrap process will listen to auth process's stdout
@@ -42,7 +48,13 @@ gwyProcess.stdout.on('data', (data) => {
 
 // bootstrap process will listen to auth process's stderr
 gwyProcess.stderr.on('data', (data) => {
-  console.error('[gateway server err] ' + data);
+
+  var consoleColorCode = '\x1b[31m%s\x1b[0m';
+  if (data.includes('Warning')){
+    consoleColorCode = '\x1b[33m%s\x1b[0m';
+  }
+  
+  console.error(consoleColorCode, '[gateway server err] ' + data);
 });
 
 // bootstrap process will listen to usr mngmnt process's stdoutq
@@ -52,5 +64,11 @@ frameProcess.stdout.on('data', (data) => {
 
 // bootstrap process will listen to usr mngmnt process's stderr
 frameProcess.stderr.on('data', (data) => {
-  console.error('[frame server err] ' + data);
+
+  var consoleColorCode = '\x1b[31m%s\x1b[0m';
+  if (data.includes('Warning')){
+    consoleColorCode = '\x1b[33m%s\x1b[0m';
+  }
+
+  console.error(consoleColorCode, '[frame server err] ' + data);
 });

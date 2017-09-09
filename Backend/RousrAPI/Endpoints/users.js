@@ -6,7 +6,7 @@ const express = require('express');
 const usersRouter = express.Router();
 const bodyParser = require('body-parser')
 
-const billsService = require('../Bills/BillsService');
+//const billsService = require('../Bills/BillsServiceClass');
 const sharedConfig = require('../../Shared/Config/SharedConfig');
 const httpUtil = require('../../Shared/ServiceAccess/httpUtility');
 const debugUtil = require('../../Shared/Debug/debugUtility');

@@ -94,8 +94,6 @@ describe('Rousr API', function() {
             const expectedResponseCode = '200';
             const expectedReturnCount = 1;
 
-            debugger;
-
             const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
                 testConfig.TEST_CONGRESS_BILLS_ENDPOINT + testConfig.TEST_CONGRESS_BILLS_QUERYNAME_PATH + billName,
@@ -142,10 +140,12 @@ describe('Rousr API', function() {
                 queryRequest.end();
         });
 
-        it('should return zero bills matching the name feefifofum', function(done) {
+        it('should return 404 bill not found', function(done) {
 
-            const expectedResponseCode = '200';
+            const expectedResponseCode = '404';
             const expectedReturnCount = 0;
+
+            debugger;
 
             const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                 sharedConfig.get('/gateway/svcPort'),
