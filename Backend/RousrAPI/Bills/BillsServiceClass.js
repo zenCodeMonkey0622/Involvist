@@ -39,11 +39,11 @@ class BillsServiceClass {
     */
     getBillsByNumber(billNumber, callback) {
         
-                debugUtility.debugLog('bills service get bills by number for: ' + billNumber + ' start: ' + debugUtility.debugTimeNow());
+                debugUtility.debugLog('bills service get bills by number query for: ' + billNumber + ' start: ' + debugUtility.debugTimeNow());
                 
                 this.rousrDataSource.getBillsByNumber(billNumber, true, function(err, bills) {
                     
-                    debugUtility.debugLog('bills service get bills by number callback end: ' + debugUtility.debugTimeNow());
+                    debugUtility.debugLog('bills service get bills by number query end: ' + debugUtility.debugTimeNow());
                     if (err) return callback(err, null);
             
                     if (bills != null) {
@@ -59,11 +59,11 @@ class BillsServiceClass {
     */
     getBillsByName(billName, callback) {
 
-        debugUtility.debugLog('bills service get bills by name for: ' + billName + ' start: ' + debugUtility.debugTimeNow());
+        debugUtility.debugLog('bills service get bills by name query for: ' + billName + ' start: ' + debugUtility.debugTimeNow());
         
         this.rousrDataSource.getBillsByName(billName, true, function(err, bills) {
             
-            debugUtility.debugLog('bills service get bills by name callback end: ' + debugUtility.debugTimeNow());
+            debugUtility.debugLog('bills service get bills by name query end: ' + debugUtility.debugTimeNow());
             if (err) return callback(err, null);
     
             if (bills != null) {
@@ -71,6 +71,26 @@ class BillsServiceClass {
             }
         });
     }
+
+     /**
+    * getBillsByName() - Returns bills matching a particular name
+    * @param {string} primarySubject - the bill's primary subject
+    * @param {function(err, bills)} callback - the callback function
+    */
+    getBillsBySubject(primarySubject, callback) {
+        
+                debugUtility.debugLog('bills service get bills by subject query for: ' + primarySubject + ' start: ' + debugUtility.debugTimeNow());
+                
+                this.rousrDataSource.getBillsBySubject(primarySubject, true, function(err, bills) {
+                    
+                    debugUtility.debugLog('bills service get bills by subject query end: ' + debugUtility.debugTimeNow());
+                    if (err) return callback(err, null);
+            
+                    if (bills != null) {
+                        return callback(null, bills);
+                    }
+                });
+            }
 
     addTagToBill(billNumber, tag, callback) {
 
