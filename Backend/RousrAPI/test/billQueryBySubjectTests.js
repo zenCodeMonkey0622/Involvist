@@ -92,7 +92,7 @@ describe('Rousr Bills API', function() {
         it('should return 600 bills matching the primary subject ' + billSubject, function(done) {
 
             // increase the timeout for this query
-            this.timeout(7000);
+            this.timeout(10000);
 
             const expectedResponseCode = '200';
             const expectedReturnCount = 600;
