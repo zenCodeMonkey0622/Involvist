@@ -142,9 +142,9 @@ describe('Rousr API', function() {
                 queryRequest.end();
         });
 
-        it('should return zero bills matching the number feefifofum', function(done) {
+        it('should return 404 bill not found', function(done) {
 
-            const expectedResponseCode = '200';
+            const expectedResponseCode = '404';
             const expectedReturnCount = 0;
 
             const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
