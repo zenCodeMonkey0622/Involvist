@@ -47,7 +47,7 @@ after( function() {
     secureAgent.destroy();
 });
 
-describe('Rousr API', function() {
+describe('Rousr Bills API', function() {
 
     describe('Bill Query By Number', function() {
 
