@@ -50,7 +50,7 @@ function tokenCheck(req, res, next)
         return res.json(csResponse(false, error.error, null));
       }
       else {
-        debugUtil.debugLog('access to ' + req.path + ' granted.');
+        debugUtil.debugLog('access to resource ' + req.path + ' granted.');
         next();
       }
   });

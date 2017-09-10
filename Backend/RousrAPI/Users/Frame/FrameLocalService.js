@@ -113,7 +113,6 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
       });
 
       res.on('end', () => {
-        debugUtil.debugLog('frame response body end: ' + responseData);
 
         if (res.statusCode != '200') {
           var frErr = frameError(responseData);
@@ -127,7 +126,7 @@ FrameLocalService.prototype.findByCredentials = function(username, password, cal
     });
 
   frameRequest.on('error', (e) => {
-      console.error('problem with frame request: ' + e.message);
+      console.error('problem with FrameLocalService.findByCredentials request: ' + e.message);
       callback(e);
   })
 

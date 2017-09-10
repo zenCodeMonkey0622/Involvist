@@ -6,7 +6,9 @@ const express = require('express');
 const usersRouter = express.Router();
 const bodyParser = require('body-parser')
 
-//const billsService = require('../Bills/BillsServiceClass');
+const billsServiceClass = require('../bills/BillsServiceClass');
+const billsService = new billsServiceClass();
+const sharedConstants = require('../../Shared/SharedConstants');
 const sharedConfig = require('../../Shared/Config/SharedConfig');
 const httpUtil = require('../../Shared/ServiceAccess/httpUtility');
 const debugUtil = require('../../Shared/Debug/debugUtility');
@@ -127,14 +129,14 @@ usersRouter.get('/:userID', function (req, res, next) {
 //Example - https://<api.server.host>:<api_port>/v1/users/bills
 usersRouter.get('/:userID/bills', function (req, res, next) {
 
-    rsrUserService(req.query, function(err, users) {
+    rsrUserService.queryUsers(req.query, function(err, users) {
         
         if (err) {
             httpUtil.setJsonResponse(res, 500, csResponse(false, err, null));
             next();
         }
 
-        if (users == null) {
+        if (users == null || users.length == 0) {
             httpUtil.setJsonResponse(res, 404, csResponse(false, "User not found.", null));
             next();
         }
@@ -155,29 +157,33 @@ usersRouter.get('/:userID/bills', function (req, res, next) {
 //Example - https://<api.server.host>:<api_port>/v1/users/59694b9de61e342680869c57/bills
 usersRouter.post('/:userID/bills', function (req, res, next) {
 
-    rsrUserService(req.query, function(err, users) {
+    // validate user exists
+    rsrUserService.queryUsers(req.query, function(err, users) {
         
         if (err) {
-            httpUtil.setJsonResponse(res, 500, csResponse(false, err, null));
-            next();
+            return next(err);
         }
 
-        if (users == null) {
+        if (users == null || users.length == 0) {
             httpUtil.setJsonResponse(res, 404, csResponse(false, "User not found.", null));
-            next();
+            return next();
         }
 
-        if (users && users.length > 0) {
-            
-            // todo: billsService.queryBills() to verify bill exists.
-    
-            var userID = req.query.rsrUid;
-            var billNumber = req.body.bill_number;   
-    
-            rsrUserService.followBill(userID, billNumber, function (err, results) {
+        // validate bill exists
+        billsService.getBillsByNumber(req.body.bill_number, function(err, bills) {
+            if (err) {
+                return next(err);
+            }
+            if (bills == null || bills.length == 0) {
+                httpUtil.setJsonResponse(res, 404, csResponse(false, 
+                                                sharedConstants.errors.billNotFound, 
+                                                null));
+                return next();
+            }
+
+            rsrUserService.followBill(req.query.rsrUid, req.body.bill_number, function (err, results) {
                 if (err) {
-                    httpUtil.setJsonResponse(res, 500, csResponse(false, err, null));
-                    next();
+                    return next(err);
                 }       
     
                 if (results) {
@@ -185,58 +191,50 @@ usersRouter.post('/:userID/bills', function (req, res, next) {
                     res.json(csResp);
                 }
             });
-        }
-        else {
-            httpUtil.setJsonResponse(res, 404, csResponse(false, "User not found.", null));
-            next();
-        }
+
+        });
+        
     });
 });
 
 //Example - https://<api.server.host>:<api_port>/v1/users/59694b9de61e342680869c57/bills
 usersRouter.delete('/:userID/bills', rsrUserService.queryUsers, function (req, res, next) {
 
-    rsrUserService(req.query, function(err, users) {
+    rsrUserService.queryUsers(req.query, function(err, users) {
         
         if (err) {
             httpUtil.setJsonResponse(res, 500, csResponse(false, err, null));
             next();
         }
 
-        if (users == null) {
+        if (users == null || users.length == 0) {
             httpUtil.setJsonResponse(res, 404, csResponse(false, "User not found.", null));
             next();
         }
 
-        if (req.users && req.users.length > 0) {
-            
-            var user = req.users[0];
-            var userID = user.rsrUid;
-            var billNumber = req.body.bill_number;
+        var user = users[0];
+        var userID = user.rsrUid;
+        var billNumber = req.body.bill_number;
+
+        if (user.followingBills.includes(billNumber)) {
+            rsrUserService.unfollowBill(userID, billNumber, function (err, results) {
+                if (err) {
+                    httpUtil.setJsonResponse(res, 500, csResponse(false, err, null));
+                    next();
+                } 
     
-            if (user.followingBills.includes(billNumber)) {
-                rsrUserService.unfollowBill(userID, billNumber, function (err, results) {
-                    if (err) {
-                        httpUtil.setJsonResponse(res, 500, csResponse(false, err, null));
-                        next();
-                    } 
-        
-                    if (results) {
-                        var csResp = csResponse(true, null, results);
-                        res.json(csResp);
-                    }
-        
-                });
-            }
-            else {
-                httpUtil.setJsonResponse(res, 409, csResponse(false, "User not following bill " + billNumber, null));
-                next();
-            }
+                if (results) {
+                    var csResp = csResponse(true, null, results);
+                    res.json(csResp);
+                }
+    
+            });
         }
         else {
-            httpUtil.setJsonResponse(res, 404, csResponse(false, "User not found.", null));
+            httpUtil.setJsonResponse(res, 409, csResponse(false, "User not following bill " + billNumber, null));
             next();
         }
+
     });
 });
 

@@ -51,7 +51,7 @@ after( function() {
 // last assert so mocha knows it needs to wait before executing
 // other tests
 
-describe('Rousr API', function() {
+describe('Rousr User API', function() {
     
         describe('User Follows Bill', function() {
     

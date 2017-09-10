@@ -51,14 +51,14 @@ RousrUserService.prototype.registerNewUser = function (userName, realName, email
 // instead of calling next and placing results in the request object.
 // also remove response parameter
 RousrUserService.prototype.queryUsers = function (queryDictionary, callback) {
-    var queryKeys = Object.keys(rqueryDictionary);
+    var queryKeys = Object.keys(queryDictionary);
     var schemaKeys = Object.keys(RousrUser.schema.paths);
     var queryDict = {};
 
     for (var i = 0; i < queryKeys.length; i++) {
         if (schemaKeys.indexOf(queryKeys[i]) !== -1) {
             var queryKey = queryKeys[i];
-            var queryValue = req.query[queryKey];            
+            var queryValue = queryDictionary[queryKey];            
             //'$' is to search for the exact value.  For example looking for h.r.300 and not every number containing h.r.300, such as h.r.3002
             queryDict[queryKey] = { '$regex': queryValue + '$', '$options': 'i' };
         }
