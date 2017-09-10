@@ -22,7 +22,7 @@ class BillsServiceClass {
 
         this.rousrDataSource.queryBills(queryDict, function(err, bills) {
             
-            debugUtility.debugLog('bills service query bills callback start: ' + debugUtility.debugTimeNow());
+            debugUtility.debugLog('bills service query bills callback end: ' + debugUtility.debugTimeNow());
 
             if (err) return callback(err, null);
     
@@ -32,6 +32,31 @@ class BillsServiceClass {
         });
     }
 
+    /**
+    * getBillsByNumber() - Returns bills matching a particular number
+    * @param {string} billNumber - the bill number
+    * @param {function(err, bills)} callback - the callback function
+    */
+    getBillsByNumber(billNumber, callback) {
+        
+                debugUtility.debugLog('bills service get bills by number for: ' + billNumber + ' start: ' + debugUtility.debugTimeNow());
+                
+                this.rousrDataSource.getBillsByNumber(billNumber, true, function(err, bills) {
+                    
+                    debugUtility.debugLog('bills service get bills by number callback end: ' + debugUtility.debugTimeNow());
+                    if (err) return callback(err, null);
+            
+                    if (bills != null) {
+                        return callback(null, bills);
+                    }
+                });
+            }
+
+    /**
+    * getBillsByName() - Returns bills matching a particular name
+    * @param {string} billName - the bill name
+    * @param {function(err, bills)} callback - the callback function
+    */
     getBillsByName(billName, callback) {
 
         debugUtility.debugLog('bills service get bills by name for: ' + billName + ' start: ' + debugUtility.debugTimeNow());

@@ -175,8 +175,46 @@ RousrMongoDataSource.prototype.queryBills = function (reqQuery, callback) {
 
 /**
 * getBillsByName() - Queries the bills collection by name.
-* @param {string} name - has a name field, which will be alphanumeric, and an optional exact field
-* @param {function()} callback
+* @param {string} number - bill number
+* @param {bool} exact - if the number parameter is exact or should use a regex pattern match
+* @param {function(err, results)} callback - callback function
+*/
+RousrMongoDataSource.prototype.getBillsByNumber = function (number, exact, callback) {
+    
+        var findQuery = Bill.find();
+        findQuery.where({ 'number': exact ? number : { '$regex': number } });
+        findQuery.select({
+            number: 1,
+            rsr_name: 1,
+            bill_uri: 1,
+            title: 1,
+            sponsor_id: 1,
+            sponsor_uri: 1,
+            gpo_pdf_uri: 1,
+            congressdotgov_url: 1,
+            govtrack_url: 1,
+            introduced_date: 1,
+            active: 1,
+            primary_subject: 1,
+            summary: 1,
+            latest_major_action_date: 1,
+            latest_major_action: 1
+        });
+    
+        findQuery.exec(function (err, res) {
+            if (err) return callback(err, null);
+    
+            debugUtil.debugLog('getBillsByNumber found ' + res.length + ' results');
+    
+            callback(null, res);
+        });
+    }
+
+/**
+* getBillsByName() - Queries the bills collection by name.
+* @param {string} name - bill name
+* @param {bool} exact - if the name parameter is exact or should use a regex pattern match
+* @param {function(err, results)} callback - callback function
 */
 RousrMongoDataSource.prototype.getBillsByName = function (name, exact, callback) {
 

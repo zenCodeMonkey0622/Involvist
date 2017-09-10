@@ -54,7 +54,6 @@ billsRouter.get('/', billsService.queryBills.bind(billsService), function(req, r
 
 billsRouter.param('number', function (req, res, next, billNumber) {
     req.query.number = billNumber;
-    req.query.exact = 1;
     next();
 });
 
@@ -80,6 +79,7 @@ billsRouter.param('sponsor', function (req, res, next, sponsor) {
 
 //Example - https://<api.server.host>:<api_port>/v1/bills/name/hr4881
 billsRouter.get('/name/:name', function (req, res, next) {
+
     billsService.getBillsByName(req.query.name, function (err, bills) {
         if (err) {
             return next(err);
@@ -124,14 +124,15 @@ billsRouter.get('/name/:name', function (req, res, next) {
 });
 
 //Example - https://<api.server.host>:<api_port>/api/v1/bills/number/H.R.4881
-billsRouter.get('/number/:number', function (req, res, next) {    
-    billsService.queryBills(req, res, function (err) {
+billsRouter.get('/number/:number', function (req, res, next) {   
+
+    billsService.getBillsByNumber(req.query.number, function (err, bills) {
         if (err) {
             next(err);
         }
         var currentBills = null;
-        if (req.bills) {
-            currentBills = req.bills.map(function (bill) {
+        if (bills) {
+            currentBills = bills.map(function (bill) {
                 return {
                     "number": bill.number,
                     "rsr_name": bill.rsr_name,
