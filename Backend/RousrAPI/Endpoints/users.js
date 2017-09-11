@@ -26,19 +26,19 @@ usersRouter.get('/', function (req, res, next) {
     
     if (!sharedConfig.get('/debug/enableDebugApiLayer')) {
         httpUtil.setJsonResponse(res, 403, csResponse(false, "gtfo", null));
-        next();
+        return next();
     }
 
     rsrUserService(req.query, function(err, users) {
         
         if (err) {
             httpUtil.setJsonResponse(res, 500, csResponse(false, err, null));
-            next();
+            return next();
         }
 
         if (users == null) {
             httpUtil.setJsonResponse(res, 404, csResponse(false, "User not found.", null));
-            next();
+            return next();
         }
 
         results = users.map(function (rousrUser) {
@@ -73,12 +73,12 @@ usersRouter.get('/name/:name', function (req, res, next) {
 
         if (err) {
             httpUtil.setJsonResponse(res, 500, csResponse(false, err, null));
-            next();
+            return next();
         }
 
         if (users == null) {
             httpUtil.setJsonResponse(res, 404, csResponse(false, "User not found.", null));
-            next();
+            return next();
         }
 
         results = users.map(function (rousrUser) {
@@ -103,12 +103,12 @@ usersRouter.get('/:userID', function (req, res, next) {
         
         if (err) {
             httpUtil.setJsonResponse(res, 500, csResponse(false, err, null));
-            next();
+            return next();
         }
 
         if (users == null) {
             httpUtil.setJsonResponse(res, 404, csResponse(false, "User not found.", null));
-            next();
+            return next();
         }
 
         results = users.map(function (rousrUser) {
@@ -133,12 +133,12 @@ usersRouter.get('/:userID/bills', function (req, res, next) {
         
         if (err) {
             httpUtil.setJsonResponse(res, 500, csResponse(false, err, null));
-            next();
+            return next();
         }
 
         if (users == null || users.length == 0) {
             httpUtil.setJsonResponse(res, 404, csResponse(false, "User not found.", null));
-            next();
+            return next();
         }
 
         var followingBills = null;    
@@ -149,7 +149,7 @@ usersRouter.get('/:userID/bills', function (req, res, next) {
         }
         else {
             httpUtil.setJsonResponse(res, 404, csResponse(false, "User not found.", null));
-            next();
+            return next();
         }
     });
 });

@@ -168,8 +168,6 @@ describe('Rousr User API', function() {
                 const expectedResponseCode = '404';
                 const rsrUid = 'tst_unknownuser_rsruid';
 
-                debugger;
-
                 const queryRequest = httpUtil.makeHttpsRequest(testConfig.TEST_ROUSR_API_URI,
                     sharedConfig.get('/gateway/svcPort'),
                     testConfig.TEST_USER_ENDPOINT + '/' + rsrUid + testConfig.TEST_USER_FOLLOWINGBILLS_PATH,
