@@ -198,18 +198,18 @@ usersRouter.post('/:userID/bills', function (req, res, next) {
 });
 
 //Example - https://<api.server.host>:<api_port>/v1/users/59694b9de61e342680869c57/bills
-usersRouter.delete('/:userID/bills', rsrUserService.queryUsers, function (req, res, next) {
+usersRouter.delete('/:userID/bills', function (req, res, next) {
 
     rsrUserService.queryUsers(req.query, function(err, users) {
         
         if (err) {
             httpUtil.setJsonResponse(res, 500, csResponse(false, err, null));
-            next();
+            return next();
         }
 
         if (users == null || users.length == 0) {
             httpUtil.setJsonResponse(res, 404, csResponse(false, "User not found.", null));
-            next();
+            return next();
         }
 
         var user = users[0];
@@ -220,7 +220,7 @@ usersRouter.delete('/:userID/bills', rsrUserService.queryUsers, function (req, r
             rsrUserService.unfollowBill(userID, billNumber, function (err, results) {
                 if (err) {
                     httpUtil.setJsonResponse(res, 500, csResponse(false, err, null));
-                    next();
+                    return next();
                 } 
     
                 if (results) {
@@ -232,7 +232,7 @@ usersRouter.delete('/:userID/bills', rsrUserService.queryUsers, function (req, r
         }
         else {
             httpUtil.setJsonResponse(res, 409, csResponse(false, "User not following bill " + billNumber, null));
-            next();
+            return next();
         }
 
     });
