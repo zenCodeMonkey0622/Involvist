@@ -1,4 +1,4 @@
-// BillsServiceClass.js
+// BillsService.js
 // defines the BillsService class
 
 const sharedConfig = require('../../Shared/Config/SharedConfig');
@@ -10,7 +10,7 @@ const config = { databaseType: 'mongodb',
                     '@' + sharedConfig.get('/rousrApi/congressDataSource/uri') };
 const debugUtility = require('../../Shared/Debug/debugUtility');
 
-class BillsServiceClass {
+class BillsService {
 
     constructor() {
         this.rousrDataSource = dataSource.create(config);
@@ -113,4 +113,4 @@ class BillsServiceClass {
     }
 }
 
-module.exports = BillsServiceClass;
+module.exports = BillsService;

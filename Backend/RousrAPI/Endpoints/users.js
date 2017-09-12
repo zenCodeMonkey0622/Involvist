@@ -6,7 +6,7 @@ const express = require('express');
 const usersRouter = express.Router();
 const bodyParser = require('body-parser')
 
-const billsServiceClass = require('../bills/BillsServiceClass');
+const billsServiceClass = require('../bills/BillsService');
 const billsService = new billsServiceClass();
 const sharedConstants = require('../../Shared/SharedConstants');
 const sharedConfig = require('../../Shared/Config/SharedConfig');
