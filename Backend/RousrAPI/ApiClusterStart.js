@@ -4,8 +4,8 @@
 // DEPRECATED. KEEPING AROUND FOR CLUSTER REFERENCE CODE 
 var cluster = require('cluster');
 var express = require('express');
-var gateway = require('./endpoints/gateway');
-const auth = require('./auth/authentication');
+var gateway = require('./Endpoints/gateway');
+const auth = require('./Auth/authentication');
 const debugUtil = require('../Shared/Debug/debugUtility');
 
 //var numCPUs = require('os').cpus().length;
