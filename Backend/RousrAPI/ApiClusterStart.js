@@ -8,6 +8,8 @@ var gateway = require('./Endpoints/gateway');
 const auth = require('./Auth/authentication');
 const debugUtil = require('../Shared/Debug/debugUtility');
 
+console.log('test test');
+
 //var numCPUs = require('os').cpus().length;
 //DEBUG CODE: setting numCPUs to 1 to make debugging easier.
 var numCPUs = 1;
