@@ -5,7 +5,7 @@
 const express = require('express');
 const billsRouter = express.Router();
 const bodyParser = require('body-parser');
-const billsServiceClass = require('../bills/BillsService');
+const billsServiceClass = require('../Bills/BillsService');
 const billsService = new billsServiceClass();
 const csResponse = require('../DataTransfer/CSResponse');
 const httpUtil = require('../../Shared/ServiceAccess/httpUtility');
